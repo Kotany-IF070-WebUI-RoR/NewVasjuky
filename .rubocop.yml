@@ -2,17 +2,24 @@
 
 inherit_from: .rubocop_todo.yml
 
+Documentation:
+    Enabled: false
+
 AllCops:
   Exclude:
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
-    - 'bin/'
-  TargetRubyVersion: 2.1
+    - 'config/initializers/new_framework_defaults.rb'
+    - 'bin/*'
+  TargetRubyVersion: 2.3
 
 Style/Encoding:
   EnforcedStyle: when_needed
   Enabled: true
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: always
