@@ -12,6 +12,7 @@ AllCops:
     - 'tmp/**/*'
     - 'config/initializers/new_framework_defaults.rb'
     - 'bin/*'
+    - 'db/schema.rb'
   TargetRubyVersion: 2.3
 
 Style/Encoding:
@@ -22,4 +23,15 @@ Style/ClassAndModuleChildren:
   EnforcedStyle: nested
 
 Style/FrozenStringLiteralComment:
-  EnforcedStyle: always
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Style/BlockComments:
+  Description: 'Do not use block comments.'
+  StyleGuide: '#no-block-comments'
+  Enabled: false
