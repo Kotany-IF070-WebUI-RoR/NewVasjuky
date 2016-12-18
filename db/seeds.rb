@@ -12,6 +12,6 @@
 
 # Initialize first account:
 User.create! do |u|
-  u.email     = 'test@test.com'
-  u.password  = 'password'
+  u.email = 'test@test.com'
+  u.password = 'password'
 end
