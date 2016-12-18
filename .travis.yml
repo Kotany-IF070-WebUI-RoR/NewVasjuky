@@ -5,5 +5,9 @@ rvm:
 
 cache: bundler
 
+  
 script:
   - bundle exec rubocop
+  - export RAILS_ENV=test
+  - bundle exec rake db:create db:schema:load db:test:prepare
+  - bundle exec rspec
