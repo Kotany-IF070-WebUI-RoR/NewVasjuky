@@ -13,6 +13,7 @@ AllCops:
     - 'config/initializers/new_framework_defaults.rb'
     - 'bin/*'
     - 'db/schema.rb'
+
   TargetRubyVersion: 2.3
 
 Style/Encoding:
@@ -24,6 +25,7 @@ Style/ClassAndModuleChildren:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+  EnforcedStyle: always
 
 Style/NumericLiterals:
   Enabled: false
