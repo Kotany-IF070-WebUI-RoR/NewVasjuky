@@ -12,6 +12,7 @@ AllCops:
     - 'tmp/**/*'
     - 'config/initializers/new_framework_defaults.rb'
     - 'bin/*'
+    - 'db/**/*'
   TargetRubyVersion: 2.3
 
 Style/Encoding:
@@ -23,3 +24,9 @@ Style/ClassAndModuleChildren:
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: always
+
+Style/NumericLiterals:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
