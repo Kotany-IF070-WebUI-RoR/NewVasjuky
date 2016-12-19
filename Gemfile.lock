@@ -185,7 +185,7 @@ GEM
     tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.0.4)
+    uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.2)
     warden (1.2.6)
