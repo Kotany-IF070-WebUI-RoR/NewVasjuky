@@ -7,7 +7,7 @@ class User < ApplicationRecord
          omniauth_providers: [:facebook]
 
   enum role: [:user, :moderator, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+  after_initialize :set_default_role, if: :new_record?
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
