@@ -13,12 +13,13 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
+gem 'thor', '0.19.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'sqlite3'
   # Environment variables
-  gem 'dotenv-rails'
+    gem 'dotenv-rails'
 end
 
 group :production do
