@@ -17,8 +17,10 @@
       <%= f.label :remember_me %>
     </div>
   <% end -%>
+    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
 
-  <div class="actions">
+
+    <div class="actions">
     <%= f.submit "Log in", data: { disable_with: "Please wait..." } %>
   </div>
 <% end %>
