@@ -23,6 +23,6 @@ feature 'List of users' do
     visit account_users_path
     expect(page).to have_selector 'a[rel="next"]'
     first('a[rel="next"]').click
-    expect(page).to have_content '@example.com'
+    expect(page).to have_content '@'
   end
 end

@@ -21,6 +21,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'capybara'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'faker'
   gem 'rspec-rails', '~> 3.5'
   gem 'sqlite3'
   # Environment variables
