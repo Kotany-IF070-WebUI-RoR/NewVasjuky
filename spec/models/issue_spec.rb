@@ -2,6 +2,11 @@ require 'rails_helper'
 
 describe Issue, type: :model do
   subject { build(:issue) }
+  let(:reporter) { create(:user, :reporter) }
+
+  before(:each) do
+    subject.user_id = reporter.id
+  end
 
   describe 'Name' do
     it 'should be present' do
@@ -106,6 +111,17 @@ describe Issue, type: :model do
     it 'should be wide' do
       subject.description = 'a' * 49
       expect(subject).to be_invalid
+    end
+  end
+
+  describe 'User id' do
+    it 'should be present' do
+      subject.user_id = nil
+      expect(subject).to be_invalid
+    end
+
+    it 'should exist and user sohuld be present' do
+      expect(subject.user_id).to be_equal User.last.id
     end
   end
 end
