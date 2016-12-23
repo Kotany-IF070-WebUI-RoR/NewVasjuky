@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!, :banned?
 
+  after_filter :prepare_unobtrusive_flash
+
   def user_not_authorized
     flash[:alert] = 'Access denied'
     redirect_to request.referrer || root_path

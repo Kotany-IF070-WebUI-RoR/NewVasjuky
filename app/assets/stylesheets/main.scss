@@ -1,0 +1,1438 @@
+@include sticky-footer(180px, "main", "#footer" "footer");
+//colors
+$white: #fff;
+$black_5: rgba(0, 0, 0, .05);
+$color_catskill_white: #f1f4f7;
+$color_storm_dust: #5f6468;
+$color_tapa: #777;
+$color_dodger_blue: #30a5ff;
+$color_gull_gray: #9fadbb;
+$color_java: #1ebfae;
+$color_yellow_orange: #ffb53e;
+$color_alizarin_crimson: #f9243f;
+$color_coral_red: #ef4040;
+$color_gallery: #eee;
+$black_10: rgba(0, 0, 0, .1);
+$color_athens_gray: #e9ecf2;
+$color_elephant: #1b3548;
+$color_atlantis: #8ad919;
+$white_75: rgba(255, 255, 255, .75);
+$color_mountain_mist: #999;
+$white_80: rgba(255, 255, 255, .8);
+$white_20: rgba(255, 255, 255, .2);
+$white_50: rgba(255, 255, 255, .5);
+$color_tundora: #444;
+$color_fuscous_gray: #555;
+$color_alabaster: #f9f9f9;
+$black_50: rgba(0, 0, 0, .5);
+$color_st_tropaz: #285e8e;
+$black_25: rgba(0, 0, 0, 0.25);
+$color_black_haze: #f6f6f6;
+$color_alto: #ddd;
+$color_mercury: #e6e7e8;
+
+//@extend-elements
+//original selectors
+//.btn-default, .btn-default:hover, .btn-default:focus, .btn-default:active,
+//.btn-default.active, .open >.dropdown-toggle.btn-default,
+//.btn-default.disabled, .btn-default[disabled], fieldset[disabled]
+//.btn-default, .btn-default.disabled:hover, .btn-default[disabled]:hover,
+//fieldset[disabled] .btn-default:hover, .btn-default.disabled:focus,
+//.btn-default[disabled]:focus, fieldset[disabled] .btn-default:focus,
+//.btn-default.disabled:active, .btn-default[disabled]:active,
+//fieldset[disabled] .btn-default:active, .btn-default.disabled.active,
+//.btn-default[disabled].active, fieldset[disabled] .btn-default.active
+%extend_1 {
+  background-color: $color_athens_gray;
+  border-color: $color_athens_gray;
+  color: $color_elephant;
+}
+
+
+body {
+  background: $color_catskill_white;
+  padding-top: 50px;
+  color: $color_storm_dust;
+}
+p {
+  color: $color_tapa;
+}
+a {
+  color: $color_dodger_blue;
+  &:hover {
+    color: $color_dodger_blue;
+  }
+  &:focus {
+    color: $color_dodger_blue;
+  }
+  &.btn {
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      //Instead of the line below you could use @include box-shadow($shadow-1,$shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: inset 0 0 500px $black_10;
+      opacity: 1;
+    }
+  }
+  &.bg-primary:hover {
+    background-color: $color_athens_gray;
+  }
+  &.bg-success:hover {
+    background-color: $color_atlantis;
+  }
+  &.bg-info:hover {
+    background-color: $color_dodger_blue;
+  }
+  &.bg-warning:hover {
+    background-color: $color_yellow_orange;
+  }
+  &.bg-danger:hover {
+    background-color: $color_alizarin_crimson;
+  }
+  &.todo-list-item:focus {
+    text-decoration: none;
+    background-color: $color_black_haze;
+  }
+}
+h1 {
+  color: $color_storm_dust;
+  font-weight: 300;
+  font-size: 40px;
+  &.page-header {
+    margin-top: 30px;
+    border-bottom: 0;
+  }
+}
+h2 {
+  color: $color_storm_dust;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+h3 {
+  color: $color_storm_dust;
+  font-weight: 300;
+}
+h4 {
+  color: $color_storm_dust;
+  font-weight: 300;
+}
+h5 {
+  color: $color_storm_dust;
+}
+h6 {
+  color: $color_storm_dust;
+}
+.large {
+  font-size: 2em;
+}
+.text-muted {
+  color: $color_gull_gray;
+}
+.color-gray {
+  color: $color_storm_dust;
+}
+.color-blue {
+  color: $color_dodger_blue;
+}
+.color-teal {
+  color: $color_java;
+}
+.color-orange {
+  color: $color_yellow_orange;
+}
+.color-red {
+  color: $color_alizarin_crimson;
+}
+.bg-primary {
+  color: $color_elephant;
+  background-color: $color_athens_gray;
+  .glyphicon-remove {
+    color: $color_storm_dust;
+    &:hover {
+      color: $color_coral_red;
+    }
+  }
+}
+.no-padding {
+  padding: 0;
+  margin: 0;
+}
+.glyphicon-xl {
+  font-size: 6em;
+}
+.glyphicon-l {
+  font-size: 3em;
+}
+.glyphicon-m {
+  font-size: 1.5em;
+}
+.glyphicon-s {
+  font-size: 0.75em;
+}
+
+section{
+  @include make-row();
+  article{
+     @include make-md-column(12);
+  }
+}
+
+.form-control {
+  border: 1px solid $color_gallery;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: none;
+  &:focus {
+    border: 1px solid $color_dodger_blue;
+    outline: 0;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: inset 0 0 0 1px $color_dodger_blue;
+  }
+}
+button {
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: inset 0 0 500px $black_10;
+    opacity: 1;
+  }
+}
+.btn-default {
+  @extend %extend_1;
+  &:hover {
+    @extend %extend_1;
+  }
+  &:focus {
+    @extend %extend_1;
+  }
+  &:active {
+    @extend %extend_1;
+  }
+  &.active {
+    @extend %extend_1;
+  }
+  &.disabled {
+    @extend %extend_1;
+    &:hover {
+      @extend %extend_1;
+    }
+    &:focus {
+      @extend %extend_1;
+    }
+    &:active {
+      @extend %extend_1;
+    }
+    &.active {
+      @extend %extend_1;
+    }
+  }
+}
+.open {
+  > .dropdown-toggle {
+    &.btn-default {
+      @extend %extend_1;
+    }
+    &.btn-primary {
+      background-color: $color_dodger_blue;
+      border-color: $color_dodger_blue;
+    }
+    &.btn-success {
+      background-color: $color_atlantis;
+      border-color: $color_atlantis;
+    }
+    &.btn-warning {
+      background-color: $color_yellow_orange;
+      border-color: $color_yellow_orange;
+    }
+    &.btn-danger {
+      background-color: $color_alizarin_crimson;
+      border-color: $color_alizarin_crimson;
+    }
+  }
+  .dropdown-toggle.datepicker table tr td.active {
+    color: $white;
+    background-color: $black_50;
+    border-color: $color_st_tropaz;
+    &:hover {
+      color: $white;
+      background-color: $black_50;
+      border-color: $color_st_tropaz;
+    }
+    &.disabled {
+      color: $white;
+      background-color: $black_50;
+      border-color: $color_st_tropaz;
+      &:hover {
+        color: $white;
+        background-color: $black_50;
+        border-color: $color_st_tropaz;
+      }
+    }
+  }
+}
+.btn-default[disabled] {
+  @extend %extend_1;
+  &:hover {
+    @extend %extend_1;
+  }
+  &:focus {
+    @extend %extend_1;
+  }
+  &:active {
+    @extend %extend_1;
+  }
+  &.active {
+    @extend %extend_1;
+  }
+}
+fieldset[disabled] {
+  .btn-default {
+    @extend %extend_1;
+    &:hover {
+      @extend %extend_1;
+    }
+    &:focus {
+      @extend %extend_1;
+    }
+    &:active {
+      @extend %extend_1;
+    }
+    &.active {
+      @extend %extend_1;
+    }
+  }
+  .btn-primary {
+    background-color: $color_dodger_blue;
+    border-color: $color_dodger_blue;
+    &:hover {
+      background-color: $color_dodger_blue;
+      border-color: $color_dodger_blue;
+    }
+    &:focus {
+      background-color: $color_dodger_blue;
+      border-color: $color_dodger_blue;
+    }
+    &:active {
+      background-color: $color_dodger_blue;
+      border-color: $color_dodger_blue;
+    }
+    &.active {
+      background-color: $color_dodger_blue;
+      border-color: $color_dodger_blue;
+    }
+  }
+  .btn-success {
+    background-color: $color_atlantis;
+    border-color: $color_atlantis;
+    &:hover {
+      background-color: $color_atlantis;
+      border-color: $color_atlantis;
+    }
+    &:focus {
+      background-color: $color_atlantis;
+      border-color: $color_atlantis;
+    }
+    &:active {
+      background-color: $color_atlantis;
+      border-color: $color_atlantis;
+    }
+    &.active {
+      background-color: $color_atlantis;
+      border-color: $color_atlantis;
+    }
+  }
+  .btn-warning {
+    background-color: $color_yellow_orange;
+    border-color: $color_yellow_orange;
+    &:hover {
+      background-color: $color_yellow_orange;
+      border-color: $color_yellow_orange;
+    }
+    &:focus {
+      background-color: $color_yellow_orange;
+      border-color: $color_yellow_orange;
+    }
+    &:active {
+      background-color: $color_yellow_orange;
+      border-color: $color_yellow_orange;
+    }
+    &.active {
+      background-color: $color_yellow_orange;
+      border-color: $color_yellow_orange;
+    }
+  }
+  .btn-danger {
+    background-color: $color_alizarin_crimson;
+    border-color: $color_alizarin_crimson;
+    &:hover {
+      background-color: $color_alizarin_crimson;
+      border-color: $color_alizarin_crimson;
+    }
+    &:focus {
+      background-color: $color_alizarin_crimson;
+      border-color: $color_alizarin_crimson;
+    }
+    &:active {
+      background-color: $color_alizarin_crimson;
+      border-color: $color_alizarin_crimson;
+    }
+    &.active {
+      background-color: $color_alizarin_crimson;
+      border-color: $color_alizarin_crimson;
+    }
+  }
+}
+.btn-primary {
+  background-color: $color_dodger_blue;
+  border-color: $color_dodger_blue;
+  &:hover {
+    background-color: $color_dodger_blue;
+    border-color: $color_dodger_blue;
+  }
+  &:focus {
+    background-color: $color_dodger_blue;
+    border-color: $color_dodger_blue;
+  }
+  &:active {
+    background-color: $color_dodger_blue;
+    border-color: $color_dodger_blue;
+  }
+  &.active {
+    background-color: $color_dodger_blue;
+    border-color: $color_dodger_blue;
+  }
+  &.disabled {
+    background-color: $color_dodger_blue;
+    border-color: $color_dodger_blue;
+    &:hover {
+      background-color: $color_dodger_blue;
+      border-color: $color_dodger_blue;
+    }
+    &:focus {
+      background-color: $color_dodger_blue;
+      border-color: $color_dodger_blue;
+    }
+    &:active {
+      background-color: $color_dodger_blue;
+      border-color: $color_dodger_blue;
+    }
+    &.active {
+      background-color: $color_dodger_blue;
+      border-color: $color_dodger_blue;
+    }
+  }
+}
+.btn-primary[disabled] {
+  background-color: $color_dodger_blue;
+  border-color: $color_dodger_blue;
+  &:hover {
+    background-color: $color_dodger_blue;
+    border-color: $color_dodger_blue;
+  }
+  &:focus {
+    background-color: $color_dodger_blue;
+    border-color: $color_dodger_blue;
+  }
+  &:active {
+    background-color: $color_dodger_blue;
+    border-color: $color_dodger_blue;
+  }
+  &.active {
+    background-color: $color_dodger_blue;
+    border-color: $color_dodger_blue;
+  }
+}
+.btn-success {
+  background-color: $color_atlantis;
+  border-color: $color_atlantis;
+  &:hover {
+    background-color: $color_atlantis;
+    border-color: $color_atlantis;
+  }
+  &:focus {
+    background-color: $color_atlantis;
+    border-color: $color_atlantis;
+  }
+  &:active {
+    background-color: $color_atlantis;
+    border-color: $color_atlantis;
+  }
+  &.active {
+    background-color: $color_atlantis;
+    border-color: $color_atlantis;
+  }
+  &.disabled {
+    background-color: $color_atlantis;
+    border-color: $color_atlantis;
+    &:hover {
+      background-color: $color_atlantis;
+      border-color: $color_atlantis;
+    }
+    &:focus {
+      background-color: $color_atlantis;
+      border-color: $color_atlantis;
+    }
+    &:active {
+      background-color: $color_atlantis;
+      border-color: $color_atlantis;
+    }
+    &.active {
+      background-color: $color_atlantis;
+      border-color: $color_atlantis;
+    }
+  }
+}
+.btn-success[disabled] {
+  background-color: $color_atlantis;
+  border-color: $color_atlantis;
+  &:hover {
+    background-color: $color_atlantis;
+    border-color: $color_atlantis;
+  }
+  &:focus {
+    background-color: $color_atlantis;
+    border-color: $color_atlantis;
+  }
+  &:active {
+    background-color: $color_atlantis;
+    border-color: $color_atlantis;
+  }
+  &.active {
+    background-color: $color_atlantis;
+    border-color: $color_atlantis;
+  }
+}
+.btn-warning {
+  background-color: $color_yellow_orange;
+  border-color: $color_yellow_orange;
+  &:hover {
+    background-color: $color_yellow_orange;
+    border-color: $color_yellow_orange;
+  }
+  &:focus {
+    background-color: $color_yellow_orange;
+    border-color: $color_yellow_orange;
+  }
+  &:active {
+    background-color: $color_yellow_orange;
+    border-color: $color_yellow_orange;
+  }
+  &.active {
+    background-color: $color_yellow_orange;
+    border-color: $color_yellow_orange;
+  }
+  &.disabled {
+    background-color: $color_yellow_orange;
+    border-color: $color_yellow_orange;
+    &:hover {
+      background-color: $color_yellow_orange;
+      border-color: $color_yellow_orange;
+    }
+    &:focus {
+      background-color: $color_yellow_orange;
+      border-color: $color_yellow_orange;
+    }
+    &:active {
+      background-color: $color_yellow_orange;
+      border-color: $color_yellow_orange;
+    }
+    &.active {
+      background-color: $color_yellow_orange;
+      border-color: $color_yellow_orange;
+    }
+  }
+}
+.btn-warning[disabled] {
+  background-color: $color_yellow_orange;
+  border-color: $color_yellow_orange;
+  &:hover {
+    background-color: $color_yellow_orange;
+    border-color: $color_yellow_orange;
+  }
+  &:focus {
+    background-color: $color_yellow_orange;
+    border-color: $color_yellow_orange;
+  }
+  &:active {
+    background-color: $color_yellow_orange;
+    border-color: $color_yellow_orange;
+  }
+  &.active {
+    background-color: $color_yellow_orange;
+    border-color: $color_yellow_orange;
+  }
+}
+.btn-danger {
+  background-color: $color_alizarin_crimson;
+  border-color: $color_alizarin_crimson;
+  &:hover {
+    background-color: $color_alizarin_crimson;
+    border-color: $color_alizarin_crimson;
+  }
+  &:focus {
+    background-color: $color_alizarin_crimson;
+    border-color: $color_alizarin_crimson;
+  }
+  &:active {
+    background-color: $color_alizarin_crimson;
+    border-color: $color_alizarin_crimson;
+  }
+  &.active {
+    background-color: $color_alizarin_crimson;
+    border-color: $color_alizarin_crimson;
+  }
+  &.disabled {
+    background-color: $color_alizarin_crimson;
+    border-color: $color_alizarin_crimson;
+    &:hover {
+      background-color: $color_alizarin_crimson;
+      border-color: $color_alizarin_crimson;
+    }
+    &:focus {
+      background-color: $color_alizarin_crimson;
+      border-color: $color_alizarin_crimson;
+    }
+    &:active {
+      background-color: $color_alizarin_crimson;
+      border-color: $color_alizarin_crimson;
+    }
+    &.active {
+      background-color: $color_alizarin_crimson;
+      border-color: $color_alizarin_crimson;
+    }
+  }
+}
+.btn-danger[disabled] {
+  background-color: $color_alizarin_crimson;
+  border-color: $color_alizarin_crimson;
+  &:hover {
+    background-color: $color_alizarin_crimson;
+    border-color: $color_alizarin_crimson;
+  }
+  &:focus {
+    background-color: $color_alizarin_crimson;
+    border-color: $color_alizarin_crimson;
+  }
+  &:active {
+    background-color: $color_alizarin_crimson;
+    border-color: $color_alizarin_crimson;
+  }
+  &.active {
+    background-color: $color_alizarin_crimson;
+    border-color: $color_alizarin_crimson;
+  }
+}
+.bg-success {
+  color: $white;
+  background-color: $color_atlantis;
+  a {
+    color: $white_75;
+  }
+}
+.bg-info {
+  color: $white;
+  background-color: $color_dodger_blue;
+  a {
+    color: $white_75;
+  }
+}
+.bg-warning {
+  color: $white;
+  background-color: $color_yellow_orange;
+  a {
+    color: $white_75;
+  }
+}
+.bg-danger {
+  color: $white;
+  background-color: $color_alizarin_crimson;
+  a {
+    color: $white_75;
+  }
+}
+.panel {
+  border: 0;
+  .tabs {
+    margin: 0;
+    padding: 0;
+  }
+}
+.panel-heading {
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  height: 66px;
+  line-height: 45px;
+  .glyphicon {
+    margin-right: 10px;
+  }
+  .glyph {
+    width: 26px;
+    height: 26px;
+    margin: 0 10px 0 0;
+    stroke-width: 2px;
+  }
+}
+.panel-footer {
+  background: $white;
+  border-top: 1px solid $color_gallery;
+  .input-group {
+    padding: 0;
+    margin: 0 -5px;
+  }
+  .input-group-btn:last-child > {
+    .btn {
+      margin: 0;
+    }
+    .btn-group {
+      margin: 0;
+    }
+  }
+}
+.panel-widget {
+  padding: 0;
+  position: relative;
+  background: $white;
+  .panel-footer {
+    border: 0;
+    text-align: center;
+    a {
+      color: $color_mountain_mist;
+      &:hover {
+        color: $color_storm_dust;
+        text-decoration: none;
+      }
+    }
+  }
+  .glyph {
+    stroke-width: 2px;
+  }
+}
+.panel-blue {
+  background: $color_dodger_blue;
+  color: $white;
+  .panel-heading {
+    border-bottom: 1px solid $white_20;
+  }
+  .text-muted {
+    color: $white_50;
+  }
+  .widget-left {
+    background: $color_dodger_blue;
+    color: $white;
+  }
+  .panel-body p {
+    color: $white;
+    color: $white_80;
+  }
+}
+.panel-teal {
+  background: $color_java;
+  color: $white;
+  .panel-heading {
+    border-bottom: 1px solid $white_20;
+  }
+  .text-muted {
+    color: $white_50;
+  }
+  .widget-left {
+    background: $color_java;
+    color: $white;
+  }
+  .panel-body p {
+    color: $white;
+    color: $white_80;
+  }
+}
+.panel-orange {
+  background: $color_yellow_orange;
+  color: $white;
+  .panel-heading {
+    border-bottom: 1px solid $white_20;
+  }
+  .text-muted {
+    color: $white_50;
+  }
+  .widget-left {
+    background: $color_yellow_orange;
+    color: $white;
+  }
+  .panel-body p {
+    color: $white;
+    color: $white_80;
+  }
+}
+.panel-red {
+  background: $color_alizarin_crimson;
+  color: $white;
+  .panel-heading {
+    border-bottom: 1px solid $white_20;
+  }
+  .text-muted {
+    color: $white_50;
+  }
+  .widget-left {
+    background: $color_alizarin_crimson;
+    color: $white;
+  }
+  .panel-body p {
+    color: $white;
+    color: $white_80;
+  }
+}
+.dark-overlay {
+  background: $black_5;
+  text-align: center;
+}
+.widget-left {
+  height: 80px;
+  padding-top: 15px;
+  text-align: center;
+  //Instead of the line below you could use
+  //@include border-top-left-radius($radius)
+  border-top-left-radius: 4px;
+  //Instead of the line below you could use
+  //@include border-bottom-left-radius($radius)
+  border-bottom-left-radius: 4px;
+}
+.widget-right {
+  text-align: left;
+  line-height: 1.6em;
+  margin: 0;
+  padding: 20px;
+  height: 80px;
+  color: $color_mountain_mist;
+  font-weight: 300;
+  background: $white;
+  //Instead of the line below you could use
+  //@include border-top-right-radius($radius)
+  border-top-right-radius: 4px;
+  //Instead of the line below you could use
+  //@include border-bottom-right-radius($radius)
+  border-bottom-right-radius: 4px;
+  .text-muted {
+    color: $color_gull_gray;
+  }
+  .large {
+    color: $color_storm_dust;
+  }
+}
+@media(max-width: 768px) {
+  .widget-right {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    //Instead of the line below you could use @include border-top-left-radius($radius)
+    border-top-left-radius: 0;
+    //Instead of the line below you could use @include border-top-right-radius($radius)
+    border-top-right-radius: 0;
+    //Instead of the line below you could use @include border-bottom-left-radius($radius)
+    border-bottom-left-radius: 4px;
+    //Instead of the line below you could use @include border-bottom-right-radius($radius)
+    border-bottom-right-radius: 4px;
+  }
+  .widget-left {
+    //Instead of the line below you could use @include border-top-left-radius($radius)
+    border-top-left-radius: 4px;
+    //Instead of the line below you could use @include border-top-right-radius($radius)
+    border-top-right-radius: 4px;
+    //Instead of the line below you could use @include border-bottom-left-radius($radius)
+    border-bottom-left-radius: 0;
+    //Instead of the line below you could use @include border-bottom-right-radius($radius)
+    border-bottom-right-radius: 0;
+  }
+}
+.jumbotron {
+  background: $white;
+  border-bottom: 1px solid $color_gallery;
+  color: $color_storm_dust;
+}
+.nav-tabs {
+  background: $color_athens_gray;
+  border: 0;
+  li {
+    a {
+      border: 0;
+      padding: 15px 20px;
+      &:hover {
+        background: $white;
+        border: 0;
+        padding: 15px 20px;
+      }
+    }
+    &.active a {
+      border: 0;
+      padding: 15px 20px;
+      &:hover {
+        border: 0;
+        padding: 15px 20px;
+      }
+    }
+  }
+}
+.nav-pills {
+  padding: 15px;
+  padding-bottom: 0;
+  li {
+    a {
+      border: 0;
+      padding: 7px 15px;
+      &:hover {
+        border: 0;
+        padding: 7px 15px;
+      }
+    }
+    &.active a {
+      border: 0;
+      padding: 7px 15px;
+      background: $color_dodger_blue;
+      &:hover {
+        border: 0;
+        padding: 7px 15px;
+        background: $color_dodger_blue;
+      }
+    }
+  }
+}
+.tab-content {
+  padding: 15px;
+}
+.navbar {
+  border: 0;
+  input {
+    border: 0;
+    background: $color_tundora;
+    color: $white;
+    &:focus {
+      color: $white;
+      background: $color_fuscous_gray;
+      border: 1px solid $color_dodger_blue;
+      outline: 0;
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: inset 0 0 0 1px $color_dodger_blue;
+    }
+  }
+}
+.user-menu {
+  display: inline-block;
+  margin-top: 14px;
+  margin-right: 10px;
+  float: right;
+  list-style: none;
+  padding: 0;
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+    &:focus {
+      text-decoration: none;
+    }
+  }
+  .glyph {
+    height: 16px;
+    width: 16px;
+    margin: 0 10px 0 0;
+    stroke-width: 3px;
+    stroke-width: 4px;
+  }
+}
+.sidebar {
+  display: block;
+  background-color: $white;
+  padding: 0;
+  display: none;
+  form {
+    padding: 20px 15px 5px;
+    border-bottom: 1px solid $color_gallery;
+    margin-bottom: 20px;
+  }
+  .attribution {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid $color_gallery;
+    font-size: 12px;
+  }
+  .glyph {
+    height: 16px;
+    width: 16px;
+    margin: 0 10px 0 0;
+    stroke-width: 3px;
+  }
+  ul.nav {
+    li {
+      &.parent {
+        ul li a {
+          border: none;
+          display: block;
+          padding-left: 30px;
+          line-height: 40px;
+          &:hover {
+            text-decoration: none;
+            background-color: $color_athens_gray;
+          }
+        }
+        a.active {
+          color: $white;
+          background-color: $color_dodger_blue;
+          &:hover {
+            color: $white;
+            background-color: $color_dodger_blue;
+          }
+          &:focus {
+            color: $white;
+            background-color: $color_dodger_blue;
+          }
+        }
+      }
+      &.divider {
+        border-bottom: 1px solid $color_gallery;
+        margin: 20px 0;
+      }
+      &.current a {
+        background-color: $color_dodger_blue;
+        color: $white!important;
+      }
+    }
+    .active {
+      a {
+        color: $white;
+        background-color: $color_dodger_blue;
+      }
+      > a {
+        &:hover {
+          color: $white;
+          background-color: $color_dodger_blue;
+        }
+        &:focus {
+          color: $white;
+          background-color: $color_dodger_blue;
+        }
+      }
+    }
+    ul {
+      li {
+        list-style: none;
+        list-style-type: none;
+      }
+      &.children {
+        width: auto;
+        padding: 0;
+        margin: 0;
+        background: $color_alabaster;
+        li a {
+          height: 40px;
+          background: $color_alabaster;
+          color: $color_dodger_blue!important;
+        }
+      }
+    }
+    a:hover {
+      text-decoration: none;
+      background-color: $color_athens_gray;
+    }
+  }
+  span.glyphicon {
+    margin-right: 10px;
+  }
+}
+@media(min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: $white;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 1px 0 10px $black_5;
+  }
+  .navbar-header {
+    width: 100%;
+  }
+}
+.breadcrumb {
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 0;
+  padding: 10px 15px;
+  background: $color_athens_gray;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 1px 1px $black_5;
+  margin: 0;
+  .glyph {
+    height: 14px;
+    width: 14px;
+    margin: -2px 0 0;
+    stroke-width: 4px;
+  }
+}
+.main-chart {
+  background: $white;
+}
+.easypiechart-panel {
+  text-align: center;
+  padding: 1px 0;
+  margin-bottom: 20px;
+}
+.donut {
+  width: 100%;
+}
+.easypiechart {
+  position: relative;
+  text-align: center;
+  width: 120px;
+  height: 120px;
+  margin: 20px auto 10px auto;
+  .percent {
+    display: block;
+    position: absolute;
+    font-size: 26px;
+    top: 38px;
+    width: 120px;
+  }
+}
+#calendar {
+  width: 100%;
+  table {
+    width: 100%;
+  }
+}
+.datepicker-inline {
+  width: 100%;
+}
+.datepicker {
+  table tr td {
+    &.old {
+      color: $white_50;
+    }
+    &.new {
+      color: $white_50;
+    }
+    &.active {
+      color: $white;
+      background-color: $black_50;
+      border-color: $color_st_tropaz;
+      &:hover {
+        color: $white;
+        background-color: $black_50;
+        border-color: $color_st_tropaz;
+        color: $white;
+        background-color: $black_50;
+        border-color: $color_st_tropaz;
+        &:hover {
+          color: $white;
+          background-color: $black_50;
+          border-color: $color_st_tropaz;
+        }
+        &:focus {
+          color: $white;
+          background-color: $black_50;
+          border-color: $color_st_tropaz;
+        }
+        &:active {
+          color: $white;
+          background-color: $black_50;
+          border-color: $color_st_tropaz;
+        }
+        &.active {
+          color: $white;
+          background-color: $black_50;
+          border-color: $color_st_tropaz;
+        }
+      }
+      &.disabled {
+        color: $white;
+        background-color: $black_50;
+        border-color: $color_st_tropaz;
+        &:hover {
+          color: $white;
+          background-color: $black_50;
+          border-color: $color_st_tropaz;
+          color: $white;
+          background-color: $black_50;
+          border-color: $color_st_tropaz;
+          &:hover {
+            color: $white;
+            background-color: $black_50;
+            border-color: $color_st_tropaz;
+          }
+          &:focus {
+            color: $white;
+            background-color: $black_50;
+            border-color: $color_st_tropaz;
+          }
+          &:active {
+            color: $white;
+            background-color: $black_50;
+            border-color: $color_st_tropaz;
+          }
+          &.active {
+            color: $white;
+            background-color: $black_50;
+            border-color: $color_st_tropaz;
+          }
+        }
+        &:focus {
+          color: $white;
+          background-color: $black_50;
+          border-color: $color_st_tropaz;
+        }
+        &:active {
+          color: $white;
+          background-color: $black_50;
+          border-color: $color_st_tropaz;
+        }
+        &.active {
+          color: $white;
+          background-color: $black_50;
+          border-color: $color_st_tropaz;
+        }
+      }
+      &:focus {
+        color: $white;
+        background-color: $black_50;
+        border-color: $color_st_tropaz;
+      }
+      &:active {
+        color: $white;
+        background-color: $black_50;
+        border-color: $color_st_tropaz;
+      }
+      &.active {
+        color: $white;
+        background-color: $black_50;
+        border-color: $color_st_tropaz;
+      }
+    }
+    &.day {
+      &:hover {
+        background: $black_25;
+      }
+      &.focused {
+        background: $black_25;
+      }
+    }
+    span:hover {
+      background: $black_25;
+    }
+  }
+  thead tr:first-child th:hover {
+    background: $black_25;
+  }
+  tfoot tr th:hover {
+    background: $black_25;
+  }
+}
+.todo-list-item {
+  list-style: none;
+  line-height: 0.9;
+  padding: 14px 15px 8px;
+  .glyphicon {
+    margin-right: 5px;
+    color: $color_gull_gray;
+    &:hover {
+      margin-right: 5px;
+      color: $color_elephant;
+    }
+  }
+  &:hover {
+    text-decoration: none;
+    background-color: $color_black_haze;
+  }
+  .trash .glyph:hover {
+    color: $color_coral_red;
+  }
+}
+.todo-list {
+  padding: 0;
+  margin: -15px;
+  background: $white;
+  color: $color_storm_dust;
+  .checkbox {
+    display: inline-block;
+    margin: 0;
+  }
+  .glyph {
+    width: 14px;
+    height: 14px;
+    stroke-width: 4px;
+    color: $color_mountain_mist;
+  }
+}
+#checkbox {
+  margin: 0;
+}
+.checkbox {
+  > input[type="checkbox"] {
+  margin-left: 0;
+  margin-top: 2px;
+  }
+}
+
+.chat {
+  ul {
+    list-style: none;
+    margin: -15px;
+    padding: 15px;
+    li {
+      margin-bottom: 10px;
+      padding: 15px 5px;
+      border-bottom: 1px solid $color_gallery;
+      &.left .chat-body {
+        margin-left: 100px;
+      }
+      &.right .chat-body {
+        margin-right: 100px;
+      }
+      .chat-body p {
+        margin: 0;
+      }
+    }
+    .glyphicon {
+      margin-right: 5px;
+    }
+  }
+  .panel-body {
+    overflow-y: scroll;
+    height: 300px;
+  }
+}
+.table {
+  background: $white;
+  > thead > tr > th {
+    border-bottom: 1px solid $color_mercury;
+    vertical-align: middle;
+    height: 50px;
+  }
+}
+.fixed-table-container {
+  border: 1px solid $color_gallery;
+  thead th {
+    background: $color_black_haze;
+    border-color: $color_alto;
+    color: $color_storm_dust;
+    font-weight: 300;
+    font-size: 16px;
+  }
+  tbody td {
+    border: 1px solid $color_gallery;
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+.fixed-table-pagination {
+  .pagination {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  .pagination-detail {
+    margin-top: 20px;
+  }
+}
+.icon-grid {
+  div {
+    border: 1px solid $color_alto;
+    margin: 0 0 -1px -1px;
+    text-align: center;
+    padding: 10px 0 20px;
+  }
+  svg {
+    width: 35%;
+    display: block;
+    margin: 0 auto;
+  }
+  h4 {
+    display: none;
+  }
+  pre {
+    margin: 10px 10px -10px 10px;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0;
+    font-size: 10px;
+    border-color: $color_alto;
+    height: 65px;
+    overflow: scroll;
+  }
+}
+.navbar-header .navbar-brand {
+  color: $white;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 2px;
+  span {
+    color: $color_dodger_blue;
+  }
+}
+.panel-default .panel-heading {
+  background: $white;
+  border-bottom: 1px solid $color_gallery;
+  color: $color_storm_dust;
+}
+
+.placeholder h2 {
+  margin-bottom: 0;
+}
+#easypiechart-blue .percent {
+  color: $color_dodger_blue;
+}
+#easypiechart-teal .percent {
+  color: $color_java;
+}
+#easypiechart-orange .percent {
+  color: $color_yellow_orange;
+}
+#easypiechart-red .percent {
+  color: $color_coral_red;
+}
+.panel-body input[type=checkbox]:checked + label {
+  text-decoration: line-through;
+  color: $color_tapa;
+}
+.chat-body small {
+  margin-left: 5px;
+}
+.alert .glyph {
+  width: 26px;
+  height: 26px;
+  margin: 0 10px 0 0;
+  stroke-width: 2px;
+}
+.glyph.table {
+  background: none;
+  border: none;
+}
+
+.notice {
+    color: darkgreen;
+}
+.alert {
+    color: red;
+}
+
+/* Debug frame */
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}

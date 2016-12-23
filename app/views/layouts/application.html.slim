@@ -1,0 +1,13 @@
+doctype html
+html
+  = render 'layouts/head'
+
+  body
+    = render 'layouts/header'
+    main
+      .container-fluid
+        section
+          .unobtrusive-flash-container
+          = yield
+      #footer
+    = render 'layouts/footer'
