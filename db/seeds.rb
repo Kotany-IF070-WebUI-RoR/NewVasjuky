@@ -1,2 +1,5 @@
 # frozen_string_literal: true
-User.create!(email: 'test@test.com', password: 'password')
+User.where(email: 'test@test.com').first_or_create(password: 'password',
+                                                   role: :admin)
+User.where(email: 'user@test.com').first_or_create(password: 'password',
+                                                   role: :user)

@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :rememberable, :trackable, :omniauthable,
          omniauth_providers: [:facebook]
 
+  enum role: [:reporter, :moderator, :admin]
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX }
@@ -14,6 +16,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
+      user.role = :reporter
     end
   end
 end
