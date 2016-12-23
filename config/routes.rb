@@ -8,6 +8,6 @@ Rails.application.routes.draw do
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'home#index'
   namespace :account do
-    resources :users, only: [:index]
+    resources :users, only: [:index, :new, :create, :destroy]
   end
 end

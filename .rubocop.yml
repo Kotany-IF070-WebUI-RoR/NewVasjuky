@@ -10,7 +10,7 @@ AllCops:
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
-    - 'config/initializers/new_framework_defaults.rb'
+    - 'config/initializers/*'
     - 'bin/*'
     - 'db/**/*'
   TargetRubyVersion: 2.3

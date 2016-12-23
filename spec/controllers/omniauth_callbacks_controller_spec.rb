@@ -19,7 +19,7 @@ describe Users::OmniauthCallbacksController, type: :controller do
     before(:each) do
       env_for_omniauth
       User.create!(provider: 'facebook', uid: '1234',
-                   name: 'Vasya', email: 'vasya@pup.kin')
+                   name: 'Vasya', email: 'vasya@pup.kin', password: 'password')
     end
     it { expect(user).not_to be_nil }
     it do

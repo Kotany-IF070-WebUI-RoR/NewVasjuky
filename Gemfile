@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
+gem 'bootstrap-sass', '3.3.6'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem 'dynamic_form'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'kaminari'
@@ -11,8 +13,10 @@ gem 'omniauth-facebook'
 gem 'puma', '~> 3.0'
 gem 'pundit'
 gem 'rails', '>= 5.0.0.1'
+gem 'rails-controller-testing'
 gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
 gem 'slim-rails'
 gem 'thor', '0.19.1'
 gem 'uglifier', '>= 1.3.0'

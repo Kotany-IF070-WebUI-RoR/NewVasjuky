@@ -13,6 +13,18 @@ FactoryGirl.define do
   factory :user do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
+
+    trait :reporter do
+      role :reporter
+    end
+
+    trait :admin do
+      role :admin
+    end
+
+    trait :moderator do
+      role :moderator
+    end
   end
 
   sequence :email do |n|
