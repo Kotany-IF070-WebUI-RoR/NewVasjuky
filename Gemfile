@@ -12,6 +12,7 @@ gem 'pundit'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
+gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
