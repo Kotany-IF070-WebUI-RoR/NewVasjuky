@@ -15,6 +15,9 @@ AllCops:
     - 'db/**/*'
   TargetRubyVersion: 2.3
 
+EndOfLine:
+  Enabled: false
+
 Style/Encoding:
   EnforcedStyle: when_needed
   Enabled: true
