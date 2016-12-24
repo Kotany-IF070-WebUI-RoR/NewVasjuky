@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class UserPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    user && (user.admin? || user.moderator?)
   end
 end

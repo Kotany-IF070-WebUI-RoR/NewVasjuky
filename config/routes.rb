@@ -1,14 +1,24 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  devise_for :users,
+             controllers: { omniauth_callbacks: 'users/omniauth_callbacks' },
+             skip: [:sessions]
+
   devise_scope :user do
-    get 'wp-admin', to: 'devise/sessions#new'
+    get 'wp-admin', to: 'devise/sessions#new', as: :new_user_session
+    post 'wp-admin', to: 'devise/sessions#create', as: :user_session
+    delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  devise_for :users,
-             controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  root to: 'home#index'
-  resources :issues, only: [:new, :create]
   namespace :account do
-    resources :users, only: [:index]
+    resources :users, only: [:index] do
+      member do
+        patch :toggle_ban
+      end
+    end
   end
+
+  resources :issues, only: [:new, :create]
+
+  root to: 'home#index'
 end
