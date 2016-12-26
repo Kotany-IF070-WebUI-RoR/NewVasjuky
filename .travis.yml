@@ -10,3 +10,9 @@ script:
   - bundle exec rubocop
   - bin/rake db:migrate RAILS_ENV=test
   - bin/rake
+
+addons:
+    code_climate:
+        repo_token: 8389ecc14a0756a14142623aa158328aaae5add4739b79cbed2e4e958509cd76
+after_success:
+  - bundle exec codeclimate-test-reporter
