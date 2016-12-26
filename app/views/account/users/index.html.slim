@@ -1,4 +1,14 @@
 h1 All Users
-ul.users
-  = render @users
-= paginate @users
+.container
+  .table-responsive
+    table.table.table-bordered
+      thead
+        tr
+          th Email
+          th Name
+          th Ban
+          th Role
+      tbody
+        tr
+          = render @users
+= paginate @users, theme: 'twitter-bootstrap-3'

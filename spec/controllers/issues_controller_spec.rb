@@ -14,13 +14,13 @@ RSpec.describe IssuesController, type: :controller do
     it 'when user is admin' do
       sign_in admin
       get :new
-      expect(response).to have_http_status(:found)
+      expect(response).to have_http_status(:success)
     end
 
     it 'when user is moderator' do
       sign_in moderator
       get :new
-      expect(response).to have_http_status(:found)
+      expect(response).to have_http_status(:success)
     end
 
     it 'when user is a reporter' do
@@ -50,7 +50,7 @@ RSpec.describe IssuesController, type: :controller do
       expected = expect do
         post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
       end
-      expected.to change(Issue, :count).by(0)
+      expected.to change(Issue, :count).by(1)
     end
 
     it 'when user is a admin' do
@@ -58,7 +58,7 @@ RSpec.describe IssuesController, type: :controller do
       expected = expect do
         post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
       end
-      expected.to change(Issue, :count).by(0)
+      expected.to change(Issue, :count).by(1)
     end
   end
 end

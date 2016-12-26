@@ -1,13 +1,16 @@
-li
-  = link_to user.email, user.email
-  span
-    = " | Name: "
-  span
-    = user.name
-  - if user.reporter?
-    span
-      = " | "
-    - if user.banned?
-      = link_to "Unban", toggle_ban_account_user_path(user), method: :patch
+tr
+  td= user.email
+  td= user.name
+  td
+    - if policy(user).toggle_ban?
+      - if user.banned?
+        = link_to 'Unban', toggle_ban_account_user_path(user), method: :patch
+      - else
+        = link_to 'Ban', toggle_ban_account_user_path(user), method: :patch
+  td
+    - if policy(user).change_role?
+      = simple_form_for(user, url: change_role_account_user_path(user)) do |f|
+        = f.select(:role, User.roles.keys)
+        button.btn.btn-default.btn-xs = f.submit 'Change role'
     - else
-      = link_to "Ban", toggle_ban_account_user_path(user), method: :patch
+      = user.role

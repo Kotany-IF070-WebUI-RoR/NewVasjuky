@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
+gem 'bootstrap-kaminari-views'
+gem 'bootstrap-sass', '3.3.6'
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
