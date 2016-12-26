@@ -8,25 +8,25 @@ RSpec.describe IssuesController, type: :controller do
   describe 'GET #new' do
     it 'when user is not logged in' do
       get :new
-      expect(response).not_to redirect_to new_issue_path
+      expect(response).to have_http_status(:found)
     end
 
     it 'when user is admin' do
       sign_in admin
       get :new
-      expect(response).not_to redirect_to new_issue_path
+      expect(response).to have_http_status(:found)
     end
 
     it 'when user is moderator' do
       sign_in moderator
       get :new
-      expect(response).not_to redirect_to new_issue_path
+      expect(response).to have_http_status(:found)
     end
 
     it 'when user is a reporter' do
       sign_in reporter
       get :new
-      expect(response).to render_template(:new)
+      expect(response).to have_http_status(:success)
     end
   end
   describe 'POST #create' do
