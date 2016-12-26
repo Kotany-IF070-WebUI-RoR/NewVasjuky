@@ -8,12 +8,9 @@ h1 New Vasjuky Project
       |Name:  #{current_user.name}
     li
       |Email: #{current_user.email}
-  br/
   = link_to('Logout', destroy_user_session_path, :method => :delete)
 
 - if current_user && current_user.admin?
-  br/
-  br/
   div
     = link_to 'All users', account_users_path
 

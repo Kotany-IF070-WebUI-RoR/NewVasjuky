@@ -1,0 +1,12 @@
+h1 All Users
+.container
+  .table-responsive
+    table.table.table-bordered
+      th Email
+      th Name
+      th Role
+      th
+      = render @users
+  = paginate @users
+- if current_user.admin?
+  = link_to 'Create new moderator', new_account_user_path

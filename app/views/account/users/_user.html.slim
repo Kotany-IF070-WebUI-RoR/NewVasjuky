@@ -1,0 +1,7 @@
+tr
+  td= link_to user.email, user.email
+  td= user.name
+  td= user.role
+  td
+    - if current_user != user && current_user.admin?
+      = link_to 'delete', account_user_path(user), method: :delete, data: {confirm: 'Delete user, are you sure?'}
