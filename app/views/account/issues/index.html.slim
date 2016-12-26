@@ -1,17 +1,17 @@
 .row
   .col-md-12
-    h1 All Users
+    h1 Issues
     = link_to 'Home', root_path
     .container
       .table-responsive
         table.table.table-bordered
           thead
             tr
-              th Email
+              th Issue ID
               th Name
-              th Ban
-              th Role
+              th Status
+              th Remove
           tbody
             tr
-              = render @users
-      = paginate @users, theme: 'twitter-bootstrap-3'
+              = render @issues
+      = paginate @issues, theme: 'twitter-bootstrap-3'

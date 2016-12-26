@@ -29,6 +29,7 @@ RSpec.describe IssuesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
   describe 'POST #create' do
     it 'when user is not logged in' do
       expected = expect do

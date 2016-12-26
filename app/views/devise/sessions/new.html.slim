@@ -1,21 +1,7 @@
 .col-xs-10.col-xs-offset-1.col-sm-8.col-sm-offset-2.col-md-4.col-md-offset-4
   .login-panel.panel.panel-default
     .panel-heading
-      h2 Log in
+      h2 Sign in
     .panel-body
-      = simple_form_for(resource, as:  resource_name,
-                      url: session_path(resource_name),
-                      html: {class: 'panel-body'}) do |f|
-        .form-group
-          = f.label :email
-          = f.email_field :email, autofocus: true, class: 'form-control'
-        .form-group
-          = f.label :password
-          = f.password_field :password, autocomplete: "off", class: 'form-control'
-        - if devise_mapping.rememberable?
-          .checkbox
-            = f.check_box :remember_me
-            = f.label :remember_me
-          .actions
-        = f.submit "Log in", class: 'btn btn-default btn-lg',
-                      data: {disable_with: "Please wait..."}
+      = link_to 'Sign in with Facebook', user_facebook_omniauth_authorize_path,
+              class: 'btn btn-primary'

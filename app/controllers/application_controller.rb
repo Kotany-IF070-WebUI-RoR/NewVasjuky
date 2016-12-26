@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!, :banned?
 
-  after_filter :prepare_unobtrusive_flash
+  after_action :prepare_unobtrusive_flash
 
   def user_not_authorized
     flash[:alert] = 'Access denied'
