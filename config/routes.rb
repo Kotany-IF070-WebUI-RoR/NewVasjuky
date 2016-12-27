@@ -5,12 +5,18 @@ Rails.application.routes.draw do
              skip: [:sessions]
 
   devise_scope :user do
-    get 'wp-admin', to: 'devise/sessions#new', as: :new_user_session
-    post 'wp-admin', to: 'devise/sessions#create', as: :user_session
+    get 'sign-in', to: 'devise/sessions#new', as: :new_user_session
+    post 'sign-in', to: 'devise/sessions#create', as: :user_session
     delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
   namespace :account do
+    resources :issues, only: [:index, :destroy] do
+      member do
+        patch :approve
+      end
+    end
+
     resources :users, only: [:index] do
       member do
         patch :toggle_ban
@@ -20,6 +26,5 @@ Rails.application.routes.draw do
   end
 
   resources :issues, only: [:new, :create]
-
   root to: 'home#index'
 end

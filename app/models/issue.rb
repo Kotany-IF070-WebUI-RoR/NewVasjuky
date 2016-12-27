@@ -16,4 +16,5 @@ class Issue < ApplicationRecord
                               message: 'should be valid' }
   validates :description, length: { minimum: 50 }
   mount_uploader :attachment, AttachmentUploader
+  scope :ordered, -> { order(created_at: :desc) }
 end
