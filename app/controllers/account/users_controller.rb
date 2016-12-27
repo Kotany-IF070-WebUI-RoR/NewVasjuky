@@ -15,5 +15,11 @@ module Account
     def update; end
 
     def destroy; end
+
+    def toggle_ban
+      @user = User.find(params[:id])
+      @user.toggle!(:banned)
+      redirect_to account_users_path
+    end
   end
 end

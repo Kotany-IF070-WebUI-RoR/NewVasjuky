@@ -1,0 +1,13 @@
+li
+  = link_to user.email, user.email
+  span
+    = " | Name: "
+  span
+    = user.name
+  - if user.reporter?
+    span
+      = " | "
+    - if user.banned?
+      = link_to "Unban", toggle_ban_account_user_path(user), method: :patch
+    - else
+      = link_to "Ban", toggle_ban_account_user_path(user), method: :patch
