@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index] do
       member do
         patch :toggle_ban
+        patch :change_role
       end
     end
   end
