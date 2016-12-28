@@ -2,19 +2,13 @@ header
   nav.navbar.navbar-inverse.navbar-fixed-top[role="navigation"]
     .container
       .navbar-header
-        button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#menu-collapse"]
-          span.sr-only
-            | Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-        a.navbar-brand[href="/"]
+        a.navbar-brand href="/"
           span
             | New
           | Vasjuky
-        #menu-collapse
-          ul.user-menu.pull-right
-            li
-              button.btn.btn-primary
-                | Login with Facebook
-                / Place your facebook login code up here
+        - if current_user.nil?
+          = link_to 'Sign in with Facebook', user_facebook_omniauth_authorize_path,
+                  class: ('btn btn-primary header-btn col-xs-12 col-sm-3 col-sm-offset-6 col-md-3 col-lg-2 col-lg-offset-7' ), \
+id:('facebook_auth')
+        - else
+          = render 'layouts/logged_content'

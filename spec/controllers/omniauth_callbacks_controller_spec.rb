@@ -19,7 +19,8 @@ describe Users::OmniauthCallbacksController, type: :controller do
     before(:each) do
       env_for_omniauth
       User.create!(provider: 'facebook', uid: '1234',
-                   name: 'Vasya', email: 'vasya@pup.kin')
+                   first_name: 'Vasya', last_name: 'Pupkin',
+                   email: 'vasya@pup.kin')
     end
     it { expect(user).not_to be_nil }
     it do
@@ -40,7 +41,10 @@ def env_for_omniauth
   OmniAuth.config.mock_auth[:facebook] =
     OmniAuth::AuthHash.new(provider: 'facebook',
                            uid: '1234',
-                           info: { name: 'Vasya',
-                                   email: 'vasya@pup.kin' })
+                           info: { first_name: 'Vasya',
+                                   last_name: 'Pupkin',
+                                   email: 'vasya@pup.kin',
+                           image: File.open("#{Rails.root}/spec/files/avatar.jpg")
+                           })
   request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:facebook]
 end
