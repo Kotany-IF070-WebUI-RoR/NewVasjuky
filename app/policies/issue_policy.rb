@@ -11,12 +11,4 @@ class IssuePolicy < ApplicationPolicy
   def destroy?
     user && (user.admin? || user.moderator?)
   end
-
-  def new?
-    user
-  end
-
-  def create?
-    user
-  end
 end
