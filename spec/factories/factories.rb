@@ -4,7 +4,7 @@ FactoryGirl.define do
     name        { Faker::Name.name_with_middle }
     address     { Faker::Address.street_address }
     phone       { Faker::PhoneNumber.cell_phone }
-    email       { user.email }
+    email       { Faker::Internet.email }
     description { Faker::Lorem.characters(255) }
     attachment  do
       Rack::Test::UploadedFile.new(
