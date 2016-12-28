@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227172439) do
+ActiveRecord::Schema.define(version: 20161228201733) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
+  
   create_table "issues", force: :cascade do |t|
     t.string   "name",        default: ""
     t.string   "address",     default: ""
@@ -49,9 +49,12 @@ ActiveRecord::Schema.define(version: 20161227172439) do
     t.datetime "updated_at",                             null: false
     t.string   "provider"
     t.string   "uid"
-    t.string   "name"
     t.integer  "role"
+    t.boolean  "approved"
     t.boolean  "banned",                 default: false
+    t.string   "image_url"
+    t.string   "first_name"
+    t.string   "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

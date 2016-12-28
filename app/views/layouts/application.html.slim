@@ -5,9 +5,12 @@ html
   body
     = render 'layouts/header'
     main
-      .container-fluid
-        section
-          .unobtrusive-flash-container
-          = yield
+      .container
+        .row
+          .col-md-6
+            .unobtrusive-flash-container
+        .row
+          .col-md-12
+            = yield
       #footer
     = render 'layouts/footer'
