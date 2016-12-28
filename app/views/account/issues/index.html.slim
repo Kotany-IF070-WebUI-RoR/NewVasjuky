@@ -1,17 +1,15 @@
-.row
-  .col-md-12
-    h1 Issues
-    = link_to 'Home', root_path
-    .container
-      .table-responsive
-        table.table.table-bordered
-          thead
-            tr
-              th Issue ID
-              th Name
-              th Status
-              th Remove
-          tbody
-            tr
-              = render @issues
-      = paginate @issues, theme: 'twitter-bootstrap-3'
+h1 Issues
+= link_to 'Home', root_path
+.container
+  .table-responsive
+    table.table.table-bordered
+      thead
+        tr
+          th Issue ID
+          th Name
+          th Status
+          th Remove
+      tbody
+        tr
+          = render @issues
+  = paginate @issues, theme: 'twitter-bootstrap-3'
