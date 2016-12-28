@@ -10,20 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161226115116) do
+ActiveRecord::Schema.define(version: 20161227172439) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "issues", force: :cascade do |t|
     t.string   "name",        default: ""
     t.string   "address",     default: ""
     t.string   "phone",       default: ""
     t.string   "email",       default: ""
-    t.string   "category"
     t.string   "description", default: ""
     t.string   "attachment"
     t.boolean  "approved",    default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "user_id"
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_issues_on_category_id"
     t.index ["user_id"], name: "index_issues_on_user_id"
   end
 
@@ -44,8 +51,6 @@ ActiveRecord::Schema.define(version: 20161226115116) do
     t.string   "uid"
     t.string   "name"
     t.integer  "role"
-    t.string   "image_url"
-    t.boolean  "approved"
     t.boolean  "banned",                 default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Issue, type: :model do
-  subject { build(:issue) }
+  subject { create(:issue) }
   let(:reporter) { create(:user, :reporter) }
 
   before(:each) do
@@ -15,12 +15,7 @@ describe Issue, type: :model do
     end
 
     it 'should not be to long' do
-      subject.name = 'a' * 51
-      expect(subject).to be_invalid
-    end
-
-    it 'should contain only letters' do
-      subject.name = 'Andrew666'
+      subject.name = 'a' * 256
       expect(subject).to be_invalid
     end
 
@@ -96,8 +91,8 @@ describe Issue, type: :model do
   end
 
   describe 'Category' do
-    it 'should be present' do
-      subject.category = '   '
+    it 'should exist' do
+      subject.category_id = 999999
       expect(subject).to be_invalid
     end
   end

@@ -4,8 +4,7 @@ FactoryGirl.define do
     name        { Faker::Name.name_with_middle }
     address     { Faker::Address.street_address }
     phone       { Faker::PhoneNumber.cell_phone }
-    email       { Faker::Internet.email }
-    category    { Faker::Lorem.words(4).join }
+    email       { user.email }
     description { Faker::Lorem.characters(255) }
     attachment  do
       Rack::Test::UploadedFile.new(
@@ -13,6 +12,7 @@ FactoryGirl.define do
       )
     end
     association :user, factory: :user
+    association :category, factory: :category
   end
 
   factory :user do
@@ -30,6 +30,10 @@ FactoryGirl.define do
     trait :moderator do
       role :moderator
     end
+  end
+
+  factory :category do
+    name { Faker::Name.title }
   end
 
   sequence :email do |n|
