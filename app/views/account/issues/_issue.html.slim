@@ -1,6 +1,7 @@
 tr
-  td= issue.id
+  td= issue.created_at
   td= issue.name
+  td= issue.user.full_name
   td
     - if issue.approved?
       |approved

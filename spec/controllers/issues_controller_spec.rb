@@ -32,7 +32,6 @@ RSpec.describe IssuesController, type: :controller do
 
   describe 'POST #create' do
     it 'when user is not logged in' do
-      pending("minor fix in test needed")
       expected = expect do
         post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
       end

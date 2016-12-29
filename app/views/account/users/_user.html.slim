@@ -1,6 +1,6 @@
 tr
   td= user.email
-  td= user.name
+  td= user.full_name
   td
     - if policy(user).toggle_ban?
       - if user.banned?
