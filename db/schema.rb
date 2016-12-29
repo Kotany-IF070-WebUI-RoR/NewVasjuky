@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20161228201733) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-  
+
   create_table "issues", force: :cascade do |t|
     t.string   "name",        default: ""
     t.string   "address",     default: ""
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20161228201733) do
     t.string   "provider"
     t.string   "uid"
     t.integer  "role"
-    t.boolean  "approved"
     t.boolean  "banned",                 default: false
     t.string   "image_url"
     t.string   "first_name"
