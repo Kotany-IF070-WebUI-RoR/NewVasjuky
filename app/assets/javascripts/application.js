@@ -22,4 +22,6 @@
 //= require unobtrusive_flash_ui
 //= require unobtrusive_flash_bootstrap
 //= require bootstrap-sprockets
-//= require_tree .
+//= require home.coffee
+//= require issues.coffee
+//= require users.coffee

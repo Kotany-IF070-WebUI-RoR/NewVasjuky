@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 describe IssuesController, type: :controller do
   let(:reporter) { create(:user, :reporter) }
   let(:admin) { create(:user, :admin) }

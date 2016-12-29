@@ -14,10 +14,15 @@ class IssuesController < ApplicationController
     end
   end
 
+  def show
+    @issue = Issue.find(params[:id])
+  end
+
   private
 
   def issues_params
     params.require(:issue).permit(:name, :address, :phone, :email,
-                                  :category_id, :description, :attachment)
+                                  :category_id, :description, :attachment,
+                                  :location, :title)
   end
 end

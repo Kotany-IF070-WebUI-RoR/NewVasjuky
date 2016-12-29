@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Issue, type: :model do
+
   subject { create(:issue) }
   let(:reporter) { create(:user, :reporter) }
 
