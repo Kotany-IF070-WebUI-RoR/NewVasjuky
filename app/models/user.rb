@@ -12,8 +12,8 @@ class User < ApplicationRecord
 
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX }
-  validates :first_name, presence: true, length: { minimum: 3, maximum: 25 }
-  validates :last_name, presence: true, length: { minimum: 2, maximum: 25 }
+  validates :first_name, presence: true, length: { maximum: 25 }
+  validates :last_name, presence: true, length: { maximum: 25 }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider,
