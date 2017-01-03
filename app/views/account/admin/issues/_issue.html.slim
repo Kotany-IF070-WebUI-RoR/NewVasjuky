@@ -1,0 +1,12 @@
+tr
+  td= issue.created_at
+  td= issue.name
+  td= issue.user.full_name
+  td
+    - if issue.approved?
+      |approved
+    - else
+      = link_to 'Approve', approve_account_admin_issue_path(issue),
+              method: :patch
+  td
+    = link_to 'Remove', account_admin_issue_path(issue), method: :delete
