@@ -1373,13 +1373,11 @@ fieldset[disabled] {
   border: none;
 }
 
-.notice {
-    color: darkgreen;
+.alert{
+  position: absolute;
+  width: 100%;
+  z-index: 100;
 }
-.alert {
-    color: red;
-}
-
 /* Debug frame */
 
 @mixin box_sizing {

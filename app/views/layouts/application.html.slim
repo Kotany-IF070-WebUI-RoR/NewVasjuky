@@ -3,12 +3,10 @@ html
   = render 'layouts/head'
 
   body
+    .unobtrusive-flash-container
     = render 'layouts/header'
     main
       .container
-        .row
-          .col-md-6
-            .unobtrusive-flash-container
         .row
           .col-md-12
             = yield
