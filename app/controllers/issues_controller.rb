@@ -1,3 +1,4 @@
+# Encoding: utf-8
 class IssuesController < ApplicationController
   def new
     @issue = Issue.new
@@ -7,7 +8,7 @@ class IssuesController < ApplicationController
     @issue = Issue.new(issues_params)
     @issue.user_id = current_user.id
     if @issue.save
-      redirect_to root_path, notice: 'Assignment successfully created!'
+      redirect_to root_path, notice: 'Звернення створене успішно!'
     else
       render 'new'
     end

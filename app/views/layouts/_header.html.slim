@@ -7,8 +7,8 @@ header
             | New
           | Vasjuky
         - if current_user.nil?
-          = link_to 'Sign in with Facebook', user_facebook_omniauth_authorize_path,
-                  class: ('btn btn-primary header-btn col-xs-12 col-sm-3 col-sm-offset-6 col-md-3 col-lg-2 col-lg-offset-7' ), \
+          = link_to 'Авторизуватися через Facebook', user_facebook_omniauth_authorize_path,
+                  class: ('btn btn-primary header-btn col-xs-12 col-sm-3 col-sm-offset-6 col-md-4 col-lg-3 col-lg-offset-7' ), \
 id:('facebook_auth')
         - else
           = render 'layouts/logged_content'

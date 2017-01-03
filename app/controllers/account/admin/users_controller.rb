@@ -1,3 +1,4 @@
+# Encoding: utf-8
 # frozen_string_literal: true
 module Account
   module Admin
@@ -14,7 +15,7 @@ module Account
         if @user.update_attributes(user_params)
           redirect_to request.referrer
         else
-          redirect_to request.referrer, alert: 'Unable to change role'
+          redirect_to request.referrer, alert: 'Не можу змінити роль'
         end
       end
 
