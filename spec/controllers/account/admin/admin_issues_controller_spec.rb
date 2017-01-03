@@ -1,10 +1,11 @@
 require 'rails_helper'
 
-describe Account::IssuesController do
+describe Account::Admin::IssuesController do
   let(:reporter) { create(:user, :reporter) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :moderator) }
   let(:issue) {create(:issue)}
+  
   describe 'Get #index' do
     let(:action) { get :index }
     it 'when user is not logged in' do
@@ -32,7 +33,9 @@ describe Account::IssuesController do
 
   describe 'Approve issues' do
     let(:action) {patch :approve, params: {id: issue.id}}
-
+    before :each do
+      @request.env['HTTP_REFERER'] = account_admin_issues_url
+    end
     it 'when user is not logged in' do
       action
       expect(action).to have_http_status(302)
@@ -68,7 +71,9 @@ describe Account::IssuesController do
     let(:action) do
       expect {delete :destroy, params: {id: issue.id}}
     end
+    
     before :each do
+      @request.env['HTTP_REFERER'] = account_admin_issues_url
       issue
     end
     
@@ -95,8 +100,4 @@ describe Account::IssuesController do
       action.to change(Issue, :count).by(0)
     end
   end
-
- 
-  
-  
 end

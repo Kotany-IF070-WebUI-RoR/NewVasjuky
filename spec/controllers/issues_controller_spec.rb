@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe IssuesController, type: :controller do
+describe IssuesController, type: :controller do
   let(:reporter) { create(:user, :reporter) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :moderator) }

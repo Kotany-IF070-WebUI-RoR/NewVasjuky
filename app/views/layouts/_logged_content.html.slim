@@ -1,9 +1,9 @@
 ul.navbar-nav.nav.pull-right
   - if current_user.admin? || current_user.moderator?
     li.nav-text-link
-      = link_to 'All users', account_users_path
+      = link_to 'All users', account_admin_users_path
     li.nav-text-link
-      = link_to 'All issues', account_issues_path
+      = link_to 'All issues', account_admin_issues_path
   li
     = link_to 'Report issue', new_issue_path, class: 'btn btn-primary header-btn'
 
