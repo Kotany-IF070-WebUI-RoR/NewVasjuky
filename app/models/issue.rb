@@ -4,8 +4,8 @@ class Issue < ApplicationRecord
   REGEXP_NAME = /\p{L}/
   REGEXP_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.\w+\z/i
   REGEXP_PHONE = /\A[ x0-9\+\(\)\-\.]+\z/
-  validates :name, :address, :phone, :email, :category_id, :description, :user_id,
-            presence: true
+  validates :name, :address, :phone, :email, :category_id, :description,
+            :user_id, presence: true
   validates :name, length: { maximum: 255 },
                    format: { with: REGEXP_NAME,
                              message: 'should contain only letters' }

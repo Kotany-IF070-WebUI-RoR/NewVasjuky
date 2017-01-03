@@ -1,7 +1,6 @@
 class IssuesController < ApplicationController
   def new
     @issue = Issue.new
-    @categories = Category.all
   end
 
   def create
