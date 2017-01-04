@@ -18,6 +18,6 @@ class IssuesController < ApplicationController
 
   def issues_params
     params.require(:issue).permit(:name, :address, :phone, :email,
-                                  :category, :description, :attachment)
+                                  :category_id, :description, :attachment)
   end
 end

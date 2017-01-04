@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20161228201733) do
     t.string   "provider"
     t.string   "uid"
     t.integer  "role"
-    t.boolean  "approved"
     t.boolean  "banned",                 default: false
     t.string   "image_url"
     t.string   "first_name"
