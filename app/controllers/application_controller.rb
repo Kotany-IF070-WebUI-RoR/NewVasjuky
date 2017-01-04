@@ -1,3 +1,4 @@
+# Encoding: utf-8
 # frozen_string_literal: true
 class ApplicationController < ActionController::Base
   include Pundit
@@ -12,7 +13,7 @@ class ApplicationController < ActionController::Base
   after_action :prepare_unobtrusive_flash
 
   def user_not_authorized
-    flash[:alert] = 'Access denied'
+    flash[:alert] = 'Доступ заборонено'
     redirect_to request.referrer || root_path
   end
 
@@ -20,7 +21,7 @@ class ApplicationController < ActionController::Base
     return unless current_user && current_user.banned?
     sign_out current_user
     flash[:notice] = nil
-    flash.now[:alert] = 'This account has been banned!'
+    flash.now[:alert] = 'Цей аккаунт був заблокований!'
     root_path
   end
 end

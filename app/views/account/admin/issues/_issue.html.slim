@@ -8,8 +8,8 @@ tr
     - else
       | waiting to approve
       br/
-      = link_to 'Approve', approve_account_admin_issue_path(issue),
+      = link_to 'Схвалити', approve_account_admin_issue_path(issue),
               method: :patch
-      |  | 
-      = link_to 'Remove', account_admin_issue_path(issue), method: :delete
-    
+      |  |
+      = link_to 'Видалити', account_admin_issue_path(issue), method: :delete
+
