@@ -11,16 +11,18 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resources :issues, only: [:index, :destroy] do
-      member do
-        patch :approve
+    namespace :admin do
+      resources :issues, only: [:index, :destroy] do
+        member do
+          patch :approve
+        end
       end
-    end
 
-    resources :users, only: [:index] do
-      member do
-        patch :toggle_ban
-        patch :change_role
+      resources :users, only: [:index] do
+        member do
+          patch :toggle_ban
+          patch :change_role
+        end
       end
     end
   end

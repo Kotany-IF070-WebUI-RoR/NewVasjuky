@@ -1,3 +1,4 @@
+# Encoding: utf-8
 class Issue < ApplicationRecord
   belongs_to :user
   belongs_to :category
@@ -8,13 +9,14 @@ class Issue < ApplicationRecord
             :user_id, presence: true
   validates :name, length: { maximum: 255 },
                    format: { with: REGEXP_NAME,
-                             message: 'should contain only letters' }
+                             message: 'Ім\'я повинне містити лише літери' }
   validates :phone, length: { maximum: 50 },
                     format: { with: REGEXP_PHONE,
-                              message: 'should contain only numbers' }
+                              message: 'Номер телефону повинен містити лише
+                              цифри' }
   validates :email, length: { maximum: 255 },
                     format: { with: REGEXP_EMAIL,
-                              message: 'should be valid' }
+                              message: 'Адреса повинна бути справжньою' }
   validates :description, length: { minimum: 50 }
   mount_uploader :attachment, AttachmentUploader
   scope :ordered, -> { order(created_at: :desc) }

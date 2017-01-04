@@ -1,11 +1,12 @@
 ul.navbar-nav.nav.pull-right
   - if current_user.admin? || current_user.moderator?
-    li.nav-text-link
-      = link_to 'All users', account_users_path
-    li.nav-text-link
-      = link_to 'Issues for approval', account_issues_path
+      li.nav-text-link
+        = link_to 'Всі користувачі', account_admin_users_path
+      li.nav-text-link
+        = link_to 'Всі звернення', account_admin_issues_path
   li
-    = link_to 'Report issue', new_issue_path, class: 'btn btn-primary header-btn'
+    = link_to 'Надіслати звернення', new_issue_path,
+            class: 'btn btn-primary header-btn'
 
   li.dropdown
     a.dropdown-toggle href='#' data-toggle="dropdown"
@@ -14,6 +15,6 @@ ul.navbar-nav.nav.pull-right
       span.caret
       ul.dropdown-menu role='menu'
         li
-          = link_to 'My issues', '#'
+          = link_to 'Мої звернення', '#'
         li
-          = link_to('Logout', destroy_user_session_path, :method => :delete)
+          = link_to('Вийти', destroy_user_session_path, :method => :delete)

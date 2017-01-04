@@ -19,6 +19,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require unobtrusive_flash
+//= require unobtrusive_flash_ui
 //= require unobtrusive_flash_bootstrap
 //= require bootstrap-sprockets
 //= require_tree .

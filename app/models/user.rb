@@ -9,10 +9,11 @@ class User < ApplicationRecord
   enum role: [:reporter, :moderator, :admin]
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX }
-  validates :first_name, presence: true, length: { minimum: 3, maximum: 25 }
-  validates :last_name, presence: true, length: { minimum: 2, maximum: 25 }
+  validates :first_name, presence: true, length: { maximum: 25 }
+  validates :last_name, presence: true, length: { maximum: 25 }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider,
@@ -26,5 +27,9 @@ class User < ApplicationRecord
       last_name: auth.info.last_name,
       image_url: auth.info.image,
       role: :reporter }
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end

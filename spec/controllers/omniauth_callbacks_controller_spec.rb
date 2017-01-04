@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Users::OmniauthCallbacksController, type: :controller do
-  let(:succes_auth_text) { 'Successfully authenticated from Facebook account.' }
+  let(:succes_auth_text) { 'Вхід з облікового запису Facebook успішний.' }
   let(:user) { User.find_by(email: 'vasya@pup.kin') }
   let(:before_auth_user_count) { User.count }
 

@@ -1,14 +1,12 @@
 doctype html
 html
-  = render 'layouts/head'
+  = render 'shared/head'
 
   body
+    .unobtrusive-flash-container
     = render 'layouts/header'
     main
       .container
-        .row
-          .col-md-6
-            .unobtrusive-flash-container
         .row
           .col-md-12
             = yield
