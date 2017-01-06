@@ -4,3 +4,5 @@
 [![Issue Count](https://codeclimate.com/github/Kotany-IF070-WebUI-RoR/NewVasjuky/badges/issue_count.svg)](https://codeclimate.com/github/Kotany-IF070-WebUI-RoR/NewVasjuky)
 
 This is the [production version of developed application](http://whispering-wave-20431.herokuapp.com) for group IF070 Web UI/RoR of [SoftServe IT Аcademy](https://softserve.ua/en/university/it-academy/)
+
+For correct work of Google Maps API, you must set environment variable GOOGLE_MAPS_API_KEY with your api key 

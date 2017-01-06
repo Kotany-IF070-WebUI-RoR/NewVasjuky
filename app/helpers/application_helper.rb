@@ -2,19 +2,22 @@
 # frozen_string_literal: true
 module ApplicationHelper
   def admin?
-    return if current_user && current_user.admin?
-    redirect_back(fallback_location: root_path)
-    flash[:alert] = 'Доступ заборонено'
+    return true if current_user && current_user.admin?
+    access_denied
   end
 
   def moderator?
-    return if current_user && current_user.moderator?
-    redirect_back(fallback_location: root_path)
-    flash[:alert] = 'Доступ заборонено'
+    return true if current_user && current_user.moderator?
+    access_denied
   end
 
   def admin_or_moderator?
-    return if current_user && (current_user.admin? || current_user.moderator?)
+    return true if current_user &&
+                   (current_user.admin? || current_user.moderator?)
+    access_denied
+  end
+
+  def access_denied
     redirect_back(fallback_location: root_path)
     flash[:alert] = 'Доступ заборонено'
   end
