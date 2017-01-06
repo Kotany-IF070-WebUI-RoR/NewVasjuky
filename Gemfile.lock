@@ -174,8 +174,6 @@ GEM
     powerpack (0.1.1)
     public_suffix (2.0.4)
     puma (3.6.2)
-    pundit (1.1.0)
-      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -324,7 +322,6 @@ DEPENDENCIES
   omniauth-facebook
   pg
   puma (~> 3.0)
-  pundit
   rails (>= 5.0.0.1)
   rails-controller-testing
   rspec-rails (~> 3.5)

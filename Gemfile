@@ -17,7 +17,6 @@ gem 'kaminari'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'puma', '~> 3.0'
-gem 'pundit'
 gem 'rails', '>= 5.0.0.1'
 gem 'rails-controller-testing'
 gem 'rubocop', require: false
