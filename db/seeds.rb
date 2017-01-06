@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 issue_categories = ['Соціальний захист', #0
                     'Інші питання', #1
                     'Фінансові питання', #2
@@ -281,10 +282,14 @@ issues = [
 ]
 
 issues.each do |issue|
-  FactoryGirl.create(:issue, name: issue[:name],
-                             address: issue[:address],
+  FactoryGirl.create(:issue, title: issue[:name],
+                             location: issue[:address][:street_address],
+                             latitude: issue[:address][:lat],
+                             longitude: issue[:address][:lng],
+                             address: issue[:address][:street_address],
+                             name: Faker::Name.name_with_middle,
                              phone: Faker::PhoneNumber.cell_phone,
-                             category: issue[:category],
+                             category_id: categories.index(issue[:category]),
                              description: issue[:description],
                              attachment: issue[:attachment],
                              created_at: Time.now - rand(10).days)

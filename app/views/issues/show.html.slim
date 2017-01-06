@@ -1,0 +1,9 @@
+h1= @issue.title
+p
+  | Проблема: #{@issue.description}
+p
+  | Адреса: #{@issue.location}
+p
+  | Координати: #{@issue.latitude} #{@issue.longitude}
+= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@issue.latitude},#{@issue.longitude}&markers=#{@issue.latitude},#{@issue.longitude}&zoom=17&size=640x400&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
+      class: 'img-fluid img-rounded', alt: "#{@issue.name} on the map"

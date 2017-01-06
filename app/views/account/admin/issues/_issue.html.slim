@@ -1,6 +1,6 @@
 tr
   td= issue.created_at
-  td= issue.name
+  td= link_to issue.title, issue
   td= issue.user.full_name
   td
     - if issue.approved?

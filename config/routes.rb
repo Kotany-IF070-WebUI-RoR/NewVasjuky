@@ -27,6 +27,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :issues, only: [:new, :create]
+  resources :issues, only: [:new, :create, :show]
   root to: 'home#index'
 end
