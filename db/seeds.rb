@@ -294,3 +294,13 @@ issues.each do |issue|
                              attachment: issue[:attachment],
                              created_at: Time.now - rand(10).days)
 end
+
+Issue.all.each do |issue|
+  20.times do
+    FactoryGirl.create(:comment,
+                       user_id: rand(1..User.count),
+                       commentable: issue,
+                       created_at: Time.now - rand(10).days)
+  end
+end
+

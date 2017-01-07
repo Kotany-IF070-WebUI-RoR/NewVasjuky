@@ -5,6 +5,9 @@ inherit_from: .rubocop_todo.yml
 Documentation:
     Enabled: false
 
+Rails:
+    Enabled: true
+
 AllCops:
   Exclude:
     - 'vendor/**/*'
