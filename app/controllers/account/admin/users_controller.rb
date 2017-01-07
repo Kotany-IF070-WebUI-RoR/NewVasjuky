@@ -3,14 +3,15 @@
 module Account
   module Admin
     class UsersController < ApplicationController
+      before_action :admin_or_moderator?, only: [:index, :toggle_ban]
+      before_action :admin?, only: [:change_role]
+
       def index
         @users = User.page(params[:page]).per(20)
-        authorize @users
       end
 
       def change_role
         @user = User.find(params[:id])
-        authorize @user
 
         if @user.update_attributes(user_params)
           redirect_to request.referrer
@@ -21,7 +22,6 @@ module Account
 
       def toggle_ban
         @user = User.find(params[:id])
-        authorize @user
         @user.toggle!(:banned)
         redirect_to request.referrer
       end
