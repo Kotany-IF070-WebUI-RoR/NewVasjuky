@@ -1,5 +1,6 @@
 # Encoding: utf-8
 class Issue < ApplicationRecord
+  has_many :comments, as: :commentable
   belongs_to :user
   belongs_to :category
   has_many :issue_attachments

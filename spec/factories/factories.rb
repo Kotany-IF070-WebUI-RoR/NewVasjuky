@@ -25,6 +25,7 @@ FactoryGirl.define do
     last_name   { Faker::Name.last_name }
     email       { Faker::Internet.email }
     password    { Faker::Internet.password }
+    image_url   { Faker::Avatar.image }
 
     trait :reporter do
       role :reporter
@@ -45,5 +46,12 @@ FactoryGirl.define do
 
   sequence :email do |n|
     "person#{n}@example.com"
+  end
+
+  factory :comment do
+    title { Faker::Lorem.sentence(4) }
+    content { Faker::Lorem.sentence(10) }
+    association :commentable, factory: :issue
+    association :user, factory: :user
   end
 end

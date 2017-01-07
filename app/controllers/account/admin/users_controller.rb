@@ -14,16 +14,16 @@ module Account
         @user = User.find(params[:id])
 
         if @user.update_attributes(user_params)
-          redirect_to request.referrer
+          redirect_to request.referer
         else
-          redirect_to request.referrer, alert: 'Не можу змінити роль'
+          redirect_to request.referer, alert: 'Не можу змінити роль'
         end
       end
 
       def toggle_ban
         @user = User.find(params[:id])
         @user.toggle!(:banned)
-        redirect_to request.referrer
+        redirect_to request.referer
       end
 
       private

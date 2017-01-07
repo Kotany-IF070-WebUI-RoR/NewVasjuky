@@ -10,13 +10,13 @@ module Account
       def approve
         @issue = Issue.find(params[:id])
         @issue.update_attribute('approved', 'true')
-        redirect_to request.referrer
+        redirect_back(fallback_location: root_path)
       end
 
       def destroy
         @issue = Issue.find(params[:id])
         @issue.destroy
-        redirect_to request.referrer
+        redirect_back(fallback_location: root_path)
       end
     end
   end

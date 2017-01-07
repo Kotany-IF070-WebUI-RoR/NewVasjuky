@@ -1,0 +1,18 @@
+li.row.comment
+  .col-sm-3.col-md-2.text-center-xs
+    p
+      =image_tag comment.user.image_url
+  .col-sm-9.col-md-10
+    h5
+      | #{comment.title}
+    p.posted
+      | #{ I18n.l comment.created_at, format: :published }
+    p.author
+      = link_to comment.user.full_name, '#'
+    p.content
+      | #{comment.content}
+
+    - if comment.can_delete?(current_user)
+      = link_to 'Видалити', comment, method: :delete, class: 'remove_comment',
+              id: comment.id
+    end
