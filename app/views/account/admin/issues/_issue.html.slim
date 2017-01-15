@@ -3,13 +3,15 @@ tr
   td= link_to issue.title, issue
   td= issue.user.full_name
   td
-    - if issue.approved?
-      |approved
+    - unless issue.pending?
+      = issue.status
     - else
       | waiting to approve
       br/
       = link_to 'Схвалити', approve_account_admin_issue_path(issue),
               method: :patch
       |  |
-      = link_to 'Видалити', account_admin_issue_path(issue), method: :delete
+      = link_to 'Відхилити', decline_account_admin_issue_path(issue),
+              method: :patch
+  td= link_to 'Редагувати', edit_account_admin_issue_path(issue)
 

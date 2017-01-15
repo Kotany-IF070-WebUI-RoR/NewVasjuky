@@ -7,11 +7,15 @@ FactoryGirl.define do
     title       { Faker::Lorem.characters(30) }
     description { Faker::Lorem.characters(255) }
     location    { Faker::Address.street_address }
+<<<<<<< 6481111ca59c341e51675d976271dab8e2ade256
     association :user, factory: :user
     association :category, factory: :category
   end
 
   factory :issue_attachment do
+=======
+    status :pending
+>>>>>>> Adds form for editing issue. Adds issue statuses
     attachment do
       [ Rack::Test::UploadedFile.new(
         Rails.root.join('spec', 'files', 'avatar.jpg')
