@@ -8,7 +8,6 @@ Documentation:
 AllCops:
   Exclude:
     - 'vendor/**/*'
-    - 'spec/**/*'
     - 'tmp/**/*'
     - 'config/initializers/*'
     - 'bin/*'
@@ -36,3 +35,8 @@ Style/BlockComments:
   Description: 'Do not use block comments.'
   StyleGuide: '#no-block-comments'
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/routes.rb'
+    - 'spec/**/*'

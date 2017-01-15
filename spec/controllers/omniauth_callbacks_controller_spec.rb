@@ -1,3 +1,4 @@
+# Encoding: utf-8
 require 'rails_helper'
 
 describe Users::OmniauthCallbacksController, type: :controller do
@@ -38,13 +39,15 @@ end
 def env_for_omniauth
   request.env['devise.mapping'] = Devise.mappings[:user]
   OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:facebook] =
-    OmniAuth::AuthHash.new(provider: 'facebook',
-                           uid: '1234',
-                           info: { first_name: 'Vasya',
-                                   last_name: 'Pupkin',
-                                   email: 'vasya@pup.kin',
-                           image: File.open("#{Rails.root}/spec/files/avatar.jpg")
-                           })
+  OmniAuth.config.mock_auth[:facebook] = omni_auth_env_data_for_facebook
+
   request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:facebook]
+end
+
+def omni_auth_env_data_for_facebook
+  @image_path = File.open("#{Rails.root}/spec/files/avatar.jpg")
+  OmniAuth::AuthHash.new(provider: 'facebook', uid: '1234',
+                         info: { first_name: 'Vasya', last_name: 'Pupkin',
+                                 email: 'vasya@pup.kin',
+                                 image: @image_path })
 end

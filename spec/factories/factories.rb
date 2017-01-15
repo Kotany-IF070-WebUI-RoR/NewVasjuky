@@ -7,14 +7,7 @@ FactoryGirl.define do
     title       { Faker::Lorem.characters(30) }
     description { Faker::Lorem.characters(255) }
     location    { Faker::Address.street_address }
-    # attachment  do
-    #   Rack::Test::UploadedFile.new(
-    #     Rails.root.join('spec', 'files', 'avatar.jpg')
-    #   )
-    # end
-    # issue_attachment_id { 1 }
     association :user, factory: :user
-    # association :issue_attachment, factory: :issue_attachment, strategy: :build
     association :category, factory: :category
   end
 
@@ -53,6 +46,4 @@ FactoryGirl.define do
   sequence :email do |n|
     "person#{n}@example.com"
   end
-
-
 end
