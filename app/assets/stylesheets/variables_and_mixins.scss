@@ -1,34 +1,74 @@
 //colors
 $white: #fff;
-$black_5: rgba(0, 0, 0, .05);
-$color_catskill_white: #f1f4f7;
-$color_storm_dust: #5f6468;
+$color_tundora : #444;
 $color_tapa: #777;
-$color_dodger_blue: #30a5ff;
-$color_gull_gray: #9fadbb;
-$color_java: #1ebfae;
-$color_yellow_orange: #ffb53e;
-$color_alizarin_crimson: #f9243f;
-$color_coral_red: #ef4040;
-$color_gallery: #eee;
-$black_10: rgba(0, 0, 0, .1);
-$color_athens_gray: #e9ecf2;
-$color_elephant: #1b3548;
-$color_atlantis: #8ad919;
-$white_75: rgba(255, 255, 255, .75);
-$color_mountain_mist: #999;
-$white_80: rgba(255, 255, 255, .8);
-$white_20: rgba(255, 255, 255, .2);
-$white_50: rgba(255, 255, 255, .5);
-$color_tundora: #444;
-$color_fuscous_gray: #555;
-$color_alabaster: #f9f9f9;
-$black_50: rgba(0, 0, 0, .5);
-$color_st_tropaz: #285e8e;
-$black_25: rgba(0, 0, 0, 0.25);
-$color_black_haze: #f6f6f6;
-$color_alto: #ddd;
-$color_mercury: #e6e7e8;
+$color_celeste_approx: #ccc;
+$color_pelorous_approx: #38a7bb;
+$color_fuscous_gray_approx: #555;
+$color_mountain_mist_approx: #999;
+$color_gallery_approx: #eee;
+$color_san_marino_approx: #4460ae;
+$color_thunderbird_approx: #c21f25;
+$color_picton_blue_approx: #3cf;
+$color_cabaret_approx: #cd4378;
+$color_fern_green_approx: #4a7f45;
+$color_casal_approx: #20616d;
+$color_mercury_approx: #e6e6e6;
+$color_paradiso_approx: #2a7d8c;
+$color_bon_jour_approx: #e0e0e0;
+$black: #000;
+$color_jelly_bean_approx: #2c8494;
+$color_quill_gray_approx: #d5d5d5;
+$color_black_haze_approx: #f7f7f7;
+$red: #f00;
+$color_japanese_laurel_approx: #008000;
+$blue: #00f;
+$yellow: #ff0;
+$color_viking_approx: #5bc0de;
+$color_pink_swan_approx: #bbb;
+$color_eastern_blue_approx: #2390b0;
+$color_fern_approx: #5cb85c;
+$color_killarney_approx: #357935;
+$color_storm_dust_approx: #666;
+$gray: #808080;
+$color_mine_shaft_approx: #333;
+$white_90: rgba(255, 255, 255, 0.9);
+$white_50: rgba(255, 255, 255, 0.5);
+$color_alto_approx: #ddd;
+$white_10: rgba(255, 255, 255, 0.1);
+$color_masala_approx: #3b3b3b;
+$color_tapa_approx: #777;
+$color_half_baked_approx: #80cbd9;
+$color_suva_gray_approx: #888;
+$color_elm_approx: #267280;
+$black_15: rgba(0, 0, 0, 0.15);
+$black_17_5: rgba(0, 0, 0, 0.175);
+$mercury: #e5e5e5;
+$black_7_5: rgba(0, 0, 0, .075);
+$color_pelorous_60_approx: rgba(56, 167, 187, 0.6);
+$color_regent_st_blue_approx: #a7dbe5;
+$color_wild_sand_approx: #f5f5f5;
+$white_15: rgba(255, 255, 255, 0.15);
+
+//fonts
+$sans1: "Roboto";
+$sans2: "Helvetica";
+$sans3: "Arial";
+$default_sans: "sans-serif";
+$serif1: "Times New Roman";
+$serif2: "Times";
+$default_serif: "serif";
+$symbolic: "FontAwesome";
+
+//data-uris
+$data_uri_0: "data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale";
+
+//urls
+$texture_1: url("http://subtlepatterns.com/patterns/subtle_zebra_3d.png");
+$main_bg: url("/images/if.jpg");
+$texture_2: url("/images/texture-bw.png");
+$bg_1: url("/images/fixed-background-1.jpg");
+$bg_2: url("/images/fixed-background-2.jpg");
 
 @mixin background-image($width: 100%, $height: 200px) {
   position: relative;

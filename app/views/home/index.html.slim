@@ -1,24 +1,55 @@
-.jumbotron.baner
-  h1 Hello, Франківськ!
-  p.light До вашої уваги соцаліний проект під кодовою назвою "NewVasjuky" групи IF-070.WebUI-RoR,
-            який має на меті #{'#{ довга мотиваційна стрінга }'}...
-
-  .button.btn.btn-primary.btn-lg.center
-    = link_to 'Повідомити про проблему', new_issue_path
-ul.nav.nav-pills.issue-counter role="tablist"
-  .count= link_to issues_path
-    li role="presentation"
-      span.badge #{@count}
-      span.phrase Проблем додано
-  .count= link_to issues_path
-    li role="presentation"
-      span.badge #{@closed_count}
-      span.phrase Проблем вирішено
-.row
-  .col-md-12
-    h3 Останні додані:
-  - @issues_feed.each do |issue|
-    .col-md-3.col-sm-3
-      .thumbnail.feed-issue= link_to issue
-        .attachment= image_tag issue.attachment
-        span.caption #{issue.title}
+section.no-mb
+  .jumbotron
+    .dark-mask
+    .container
+      .row.mb-small
+        .col-sm-12.text-center
+          h1 Hello, Франківськ!
+          h2 До вашої уваги соцальний проект під кодовою назвою "NewVasjuky" групи IF-070.WebUI-RoR
+      .row
+        .col-md-6.col-sm-12
+          p З допомогою цього додатка можна у кілька кліків надіслати звернення для вирішення різноманітних комунальних проблем з будь-якого пристрою: смартфона, планшета, комп'ютера.
+        .col-md-6.col-sm-12
+          = link_to 'Повідомити про проблему', new_issue_path, class: 'scroll-to btn btn-lg btn-template-transparent-black'
+section.bar.background-pentagon.no-mb
+  .container
+    .row.showcase
+      .col-sm-6
+        .item
+          .icon
+            i.fa.fa-align-justify
+          h4
+            span.counter #{@count}
+            br
+            = link_to 'звернень надіслано', issues_path
+      .col-sm-6
+        .item
+          .icon
+            i.fa.fa-align-justify
+          h4
+            span.counter #{@approved_count}
+            br
+            = link_to 'проблем вирішено', issues_path
+section.bar.background-white.no-mb
+  .container
+    .col-md-12
+      .heading.text-center
+        h2 Останні додані:
+      .row
+      - @issues_feed.each do |issue|
+        .col-md-3.col-sm-6
+          .box-image-text.blog
+            .top
+              .image= link_to issue
+                .attachment= image_tag issue.attachment
+              .bg
+              .text
+                .buttons
+                  = link_to 'Читати далі', issue, class: 'btn btn-template-transparent-primary'
+            .content
+              h4
+                  = link_to issue.title, issue
+              p.author-category NameOfCategory
+              p.intro Maybe here will be description of item
+              p.read-more
+                = link_to 'Читати далі', issue, class: 'btn btn-template-main'
