@@ -1,17 +1,13 @@
-
 FactoryGirl.define do
-
-
   factory :issue do
-
     name        { Faker::Name.name_with_middle }
     address     { Faker::Address.street_address }
     phone       { Faker::PhoneNumber.cell_phone }
     email       { Faker::Internet.email }
-    title        { Faker::Lorem.characters(30) }
+    title       { Faker::Lorem.characters(30) }
     description { Faker::Lorem.characters(255) }
-    location {Faker::Address.street_address}
-    attachment  do
+    location    { Faker::Address.street_address }
+    attachment do
       Rack::Test::UploadedFile.new(
         Rails.root.join('spec', 'files', 'avatar.jpg')
       )
@@ -46,6 +42,4 @@ FactoryGirl.define do
   sequence :email do |n|
     "person#{n}@example.com"
   end
-
-
 end
