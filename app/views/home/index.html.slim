@@ -49,7 +49,7 @@ section.bar.background-white.no-mb
             .content
               h4
                   = link_to issue.title, issue
-              p.author-category NameOfCategory
-              p.intro Maybe here will be description of item
+              p.author-category
+                = link_to issue.category.name, '#'
               p.read-more
                 = link_to 'Читати далі', issue, class: 'btn btn-template-main'

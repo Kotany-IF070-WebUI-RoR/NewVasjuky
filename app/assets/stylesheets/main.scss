@@ -1,4 +1,4 @@
-@include sticky-footer(380px, "main", "#footer" "footer");
+@include sticky-footer(280px, "main", "#footer" "footer");
 @import "variables_and_mixins";
 
 .clearfix {
@@ -1323,7 +1323,8 @@ fieldset[disabled] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: $black_7_5;
+    background: $black;
+    opacity:0.6;
   }
   h1 {
     color: $white;

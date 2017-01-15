@@ -1,16 +1,21 @@
-- @issues.each do |issue|
-  .media.issue-container.fix-overflow
-    .media-left.media-top
-      = link_to issue
-        .attachment.media-object= image_tag issue.attachment
-    .media-body
-      h4.media-heading.issue-title
+section.post
+  .row
+    .col-md-4
+      .image
+        = link_to issue
+          .attachment.media-object= image_tag issue.attachment
+    .col-md-8
+      h2
         = link_to issue.title, issue
-      span #{'Категорія: '}
-      = link_to issue.category.name, '#'
-      p.issue-about #{issue.description}
-      .timestamp
-        span.author Автор: #{issue.user.full_name} |
-        span  Додано:    #{time_ago_in_words(issue.created_at)} тому
-        br
-        span  Локація: #{issue.location}
+      .clearfix
+        p.author-category
+          span.author Автор: #{issue.user.full_name }
+          br
+          span #{'Категорія: '}
+          = link_to issue.category.name, '#'
+        p.date-comments
+          i.fa.fa-calendar-o
+          span  Додано: #{time_ago_in_words(issue.created_at)} тому
+          br
+          span Локація: #{issue.location}
+      p.intro #{issue.description}
