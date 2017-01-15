@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107120342) do
+ActiveRecord::Schema.define(version: 20170117212751) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -37,15 +37,15 @@ ActiveRecord::Schema.define(version: 20170107120342) do
     t.string   "email",       default: ""
     t.string   "description", default: ""
     t.string   "attachment"
-    t.boolean  "approved",    default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "user_id"
     t.integer  "category_id"
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.string   "location"
     t.string   "title"
+    t.integer  "status",      default: 0
     t.index ["category_id"], name: "index_issues_on_category_id"
     t.index ["user_id"], name: "index_issues_on_user_id"
   end
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20170107120342) do
     t.datetime "updated_at",                             null: false
     t.string   "provider"
     t.string   "uid"
-    t.integer  "role",                   default: 0
+    t.integer  "role"
     t.boolean  "banned",                 default: false
     t.string   "image_url"
     t.string   "first_name"
