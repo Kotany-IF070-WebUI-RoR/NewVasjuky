@@ -11,11 +11,11 @@ FactoryGirl.define do
     title        { Faker::Lorem.characters(30) }
     description { Faker::Lorem.characters(255) }
     location {Faker::Address.street_address}
-    attachment  do
-      Rack::Test::UploadedFile.new(
-        Rails.root.join('spec', 'files', 'avatar.jpg')
-      )
-    end
+    # attachment  do
+    #   Rack::Test::UploadedFile.new(
+    #     Rails.root.join('spec', 'files', 'avatar.jpg')
+    #   )
+    # end
     association :user, factory: :user
     association :category, factory: :category
   end

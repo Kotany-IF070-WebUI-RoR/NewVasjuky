@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104131054) do
+ActiveRecord::Schema.define(version: 20170116074132) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "issue_attachments", force: :cascade do |t|
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "issue_id"
+    t.index ["issue_id"], name: "index_issue_attachments_on_issue_id"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -24,7 +32,6 @@ ActiveRecord::Schema.define(version: 20170104131054) do
     t.string   "phone",       default: ""
     t.string   "email",       default: ""
     t.string   "description", default: ""
-    t.string   "attachment"
     t.boolean  "approved",    default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false

@@ -2,6 +2,8 @@
 class Issue < ApplicationRecord
   belongs_to :user
   belongs_to :category
+  has_many :issue_attachments
+  accepts_nested_attributes_for :issue_attachments
   REGEXP_NAME = /\p{L}/
   REGEXP_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.\w+\z/i
   REGEXP_PHONE = /\A[ x0-9\+\(\)\-\.]+\z/
@@ -19,7 +21,6 @@ class Issue < ApplicationRecord
                     format: { with: REGEXP_EMAIL,
                               message: 'Адреса повинна бути справжньою' }
   validates :description, length: { minimum: 50 }
-  mount_uploader :attachment, AttachmentUploader
   scope :ordered, -> { order(created_at: :desc) }
   geocoded_by :location
   after_validation :geocode,
