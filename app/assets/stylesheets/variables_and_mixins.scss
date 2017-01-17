@@ -30,4 +30,45 @@ $color_black_haze: #f6f6f6;
 $color_alto: #ddd;
 $color_mercury: #e6e7e8;
 
+@mixin background-image($width: 100%, $height: 200px) {
+  position: relative;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 10px;
+  width: $width;
+  height: $height;
+}
+
+@mixin shadow {
+  position: relative;
+  box-shadow: 1px 5px 20px -4px $color-tundora;
+  transition: all 0.2s ease-in-out;
+}
+
+@mixin pseudo-shadow {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  box-shadow: 1px 5px 20px -1px $color-tundora;
+  transition: opacity 0.2s ease-in-out;
+}
+
+
+.attachment {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+
+  img {
+    transform-origin: top left;
+    transform: scale(0.5);
+  }
+}
+
 

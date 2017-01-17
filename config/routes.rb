@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :issues, only: [:new, :create, :show] do
+  resources :issues, only: [:new, :index, :create, :show] do
     resources :comments, module: :issues, only: :create
   end
 

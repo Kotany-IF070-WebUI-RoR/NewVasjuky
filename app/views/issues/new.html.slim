@@ -5,21 +5,25 @@ h1 Надіслати нове звернення
 .container
   .row
     .col-md-8.col-md-offset-2
-      = simple_form_for @issue, html: {multipart: true} ,
-                                url: issues_path do |f|
+      = simple_form_for @issue, html: {multipart: true},
+              url: issues_path do |f|
         = f.error_messages
         = f.input :name, label: 'Ваше Ім\'я',
-                    placeholder: 'Петро Петрович Петренко'
+                placeholder: 'Петро Петрович Петренко'
         = f.input :address, label: 'Ваша адреса',
-                    placeholder: 'вул. Грушевського 21'
+                placeholder: 'вул. Грушевського 21'
         = f.input :phone, label: 'Номер телефону',
-                    placeholder: '+380 342 77 77 77'
+                placeholder: '+380 342 77 77 77'
         = f.input :email, as: :email, label: 'Email',
-                    placeholder: 'user@domain.com'
+                placeholder: 'user@domain.com'
         = f.input :title, label: 'Короткий опис проблеми'
-        = f.association :category, collection: Category.order(:name).all, label: 'Категорія'
-	    = f.input :location, label: 'Адреса проблеми',
-                    placeholder: 'Івано-Франківськ, Сахарова, 33'
+        = f.association :category, collection: Category.order(:name).all,
+                label: 'Категорія'
+        = f.input :location, label: 'Адреса проблеми',
+                placeholder: 'Івано-Франківськ, Сахарова, 33'
         = f.input :description, as: :text, label: 'Текст звернення'
-        = f.input :attachment, as: :file, label: 'Додаток'
+        = f.input :attachment, as: 'file', label: 'Додати фото (формат: jpeg, gif, png)'
         = f.button :submit, class: 'btn btn-primary'
+
+javascript:
+    $('document').ready(validate_attachment());

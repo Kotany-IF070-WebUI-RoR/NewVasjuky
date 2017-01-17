@@ -1,0 +1,41 @@
+.timestamp {
+  font-size: .9em;
+  height: 100%;
+}
+
+.issue-about {
+  height: 80px;
+  margin-top: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.issue-container {
+  width: 75%;
+  height: 100%;
+  margin: 0 auto 20px;
+  background-color: $white;
+  @include shadow;
+}
+
+.issue-container::after {
+  @include pseudo-shadow;
+}
+
+.issue-container:hover::after {
+  opacity: 1;
+}
+
+.media-body {
+  padding-right: 20px;
+}
+
+.issues-section {
+  margin-top: 40px;
+}
+.issue-title {
+  margin-top: 10px;
+}
+.fix-overflow {
+  overflow: visible;
+}

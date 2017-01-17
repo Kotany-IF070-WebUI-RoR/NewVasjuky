@@ -22,6 +22,7 @@ class Issue < ApplicationRecord
   validates :description, length: { minimum: 50 }
   mount_uploader :attachment, AttachmentUploader
   scope :ordered, -> { order(created_at: :desc) }
+  scope :approved, -> { where(approved: true) }
   geocoded_by :location
   after_validation :geocode,
                    if: ->(obj) { obj.location.present? && !obj.latitude? }

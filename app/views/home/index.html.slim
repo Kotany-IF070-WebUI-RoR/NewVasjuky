@@ -1,1 +1,24 @@
-h1 New Vasjuky Project
+.jumbotron.baner
+  h1 Hello, Франківськ!
+  p.light До вашої уваги соцаліний проект під кодовою назвою "NewVasjuky" групи IF-070.WebUI-RoR,
+            який має на меті #{'#{ довга мотиваційна стрінга }'}...
+
+  .button.btn.btn-primary.btn-lg.center
+    = link_to 'Повідомити про проблему', new_issue_path
+ul.nav.nav-pills.issue-counter role="tablist"
+  .count= link_to issues_path
+    li role="presentation"
+      span.badge #{@count}
+      span.phrase Проблем додано
+  .count= link_to issues_path
+    li role="presentation"
+      span.badge #{@approved_count}
+      span.phrase Проблем вирішено
+.row
+  .col-md-12
+    h3 Останні додані:
+  - @issues_feed.each do |issue|
+    .col-md-3.col-sm-3
+      .thumbnail.feed-issue= link_to issue
+        .attachment= image_tag issue.attachment
+        span.caption #{issue.title}
