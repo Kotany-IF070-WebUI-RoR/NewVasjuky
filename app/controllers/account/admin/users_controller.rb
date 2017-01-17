@@ -3,27 +3,27 @@
 module Account
   module Admin
     class UsersController < ApplicationController
+      before_action :admin_or_moderator?, only: [:index, :toggle_ban]
+      before_action :admin?, only: [:change_role]
+
       def index
         @users = User.page(params[:page]).per(20)
-        authorize @users
       end
 
       def change_role
         @user = User.find(params[:id])
-        authorize @user
 
         if @user.update_attributes(user_params)
-          redirect_to request.referrer
+          redirect_to request.referer
         else
-          redirect_to request.referrer, alert: 'Не можу змінити роль'
+          redirect_to request.referer, alert: 'Не можу змінити роль'
         end
       end
 
       def toggle_ban
         @user = User.find(params[:id])
-        authorize @user
         @user.toggle!(:banned)
-        redirect_to request.referrer
+        redirect_to request.referer
       end
 
       private

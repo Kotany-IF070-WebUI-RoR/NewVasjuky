@@ -1,17 +1,13 @@
-
 FactoryGirl.define do
-
-
   factory :issue do
-
     name        { Faker::Name.name_with_middle }
     address     { Faker::Address.street_address }
     phone       { Faker::PhoneNumber.cell_phone }
     email       { Faker::Internet.email }
-    title        { Faker::Lorem.characters(30) }
+    title       { Faker::Lorem.characters(30) }
     description { Faker::Lorem.characters(255) }
-    location {Faker::Address.street_address}
-    attachment  do
+    location    { Faker::Address.street_address }
+    attachment do
       Rack::Test::UploadedFile.new(
         Rails.root.join('spec', 'files', 'avatar.jpg')
       )
@@ -25,6 +21,7 @@ FactoryGirl.define do
     last_name   { Faker::Name.last_name }
     email       { Faker::Internet.email }
     password    { Faker::Internet.password }
+    image_url   { Faker::Avatar.image }
 
     trait :reporter do
       role :reporter
@@ -47,5 +44,10 @@ FactoryGirl.define do
     "person#{n}@example.com"
   end
 
-
+  factory :comment do
+    title { Faker::Lorem.sentence(4) }
+    content { Faker::Lorem.sentence(10) }
+    association :commentable, factory: :issue
+    association :user, factory: :user
+  end
 end

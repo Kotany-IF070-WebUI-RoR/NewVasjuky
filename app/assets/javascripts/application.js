@@ -25,3 +25,4 @@
 //= require home.coffee
 //= require issues.coffee
 //= require users.coffee
+//= require comments.js

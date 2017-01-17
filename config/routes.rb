@@ -27,6 +27,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :issues, only: [:new, :create, :show]
+  resources :issues, only: [:new, :create, :show] do
+    resources :comments, module: :issues, only: :create
+  end
+
+  resources :comments, only: [:destroy]
+
   root to: 'home#index'
 end

@@ -61,19 +61,19 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
 
-  Geocoder.configure(:lookup => :test)
+  Geocoder.configure(lookup: :test)
 
   Geocoder::Lookup::Test.set_default_stub(
-      [
-          {
-              'latitude'     => 40.7143528,
-              'longitude'    => -74.0059731,
-              'address'      => 'New York, NY, USA',
-              'state'        => 'New York',
-              'state_code'   => 'NY',
-              'country'      => 'United States',
-              'country_code' => 'US'
-          }
-      ]
+    [
+      {
+        'latitude'     => 40.7143528,
+        'longitude'    => -74.0059731,
+        'address'      => 'New York, NY, USA',
+        'state'        => 'New York',
+        'state_code'   => 'NY',
+        'country'      => 'United States',
+        'country_code' => 'US'
+      }
+    ]
   )
 end

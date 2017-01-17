@@ -9,7 +9,7 @@ describe Account::Admin::UsersController, type: :controller do
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
     end
-    
+
     it 'when user is not logged in' do
       get :index
       expect(response).not_to redirect_to account_admin_users_path
@@ -38,30 +38,34 @@ describe Account::Admin::UsersController, type: :controller do
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
     end
-    
+
     it 'when user is not logged in' do
-      patch :change_role, params: { id: moderator.id, user: { role: 'reporter' } }
+      patch :change_role, params: { id: moderator.id,
+                                    user: { role: 'reporter' } }
       moderator.reload
       expect(moderator.role).to eq('moderator')
     end
 
     it 'when user is a reporter' do
       sign_in reporter
-      patch :change_role, params: { id: moderator.id, user: { role: 'reporter' } }
+      patch :change_role, params: { id: moderator.id,
+                                    user: { role: 'reporter' } }
       moderator.reload
       expect(moderator.role).to eq('moderator')
     end
 
     it 'when user is a moderator' do
       sign_in moderator
-      patch :change_role, params: { id: moderator.id, user: { role: 'reporter' } }
+      patch :change_role, params: { id: moderator.id,
+                                    user: { role: 'reporter' } }
       moderator.reload
       expect(moderator.role).to eq('moderator')
     end
 
     it 'when user is a admin' do
       sign_in admin
-      patch :change_role, params: { id: moderator.id, user: { role: 'reporter' } }
+      patch :change_role, params: { id: moderator.id,
+                                    user: { role: 'reporter' } }
       moderator.reload
       expect(moderator.role).to eq('reporter')
     end
