@@ -10,12 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104131054) do
+ActiveRecord::Schema.define(version: 20170107120342) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.integer  "user_id"
+    t.text     "title"
+    t.text     "content"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -53,7 +65,7 @@ ActiveRecord::Schema.define(version: 20170104131054) do
     t.datetime "updated_at",                             null: false
     t.string   "provider"
     t.string   "uid"
-    t.integer  "role"
+    t.integer  "role",                   default: 0
     t.boolean  "banned",                 default: false
     t.string   "image_url"
     t.string   "first_name"

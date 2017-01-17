@@ -1,0 +1,24 @@
+.row.comment {
+  border: 1px solid grey;
+  margin: 15px;
+  padding: 15px;
+
+  h5{
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  .content{
+    background-color: $white;
+  }
+
+  img{
+    height: 120px;
+    width: 120px;
+  }
+
+  &.removed_comment {
+    background-color: #ededed;
+  }
+}
+

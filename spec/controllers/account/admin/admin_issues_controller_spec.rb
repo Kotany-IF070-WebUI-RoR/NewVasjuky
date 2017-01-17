@@ -4,8 +4,8 @@ describe Account::Admin::IssuesController do
   let(:reporter) { create(:user, :reporter) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :moderator) }
-  let(:issue) {create(:issue)}
-  
+  let(:issue) { create(:issue) }
+
   describe 'Get #index' do
     let(:action) { get :index }
     it 'when user is not logged in' do
@@ -32,7 +32,7 @@ describe Account::Admin::IssuesController do
   end
 
   describe 'Approve issues' do
-    let(:action) {patch :approve, params: {id: issue.id}}
+    let(:action) { patch :approve, params: { id: issue.id } }
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
     end
@@ -55,7 +55,6 @@ describe Account::Admin::IssuesController do
       action
       issue.reload
       expect(issue.approved).to be_truthy
-
     end
 
     it 'when user is a reporter' do
@@ -63,20 +62,19 @@ describe Account::Admin::IssuesController do
       action
       issue.reload
       expect(issue.approved).to be_falsey
-
     end
   end
 
   describe 'Remove issues' do
     let(:action) do
-      expect {delete :destroy, params: {id: issue.id}}
+      expect { delete :destroy, params: { id: issue.id } }
     end
-    
+
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
       issue
     end
-    
+
     it 'when user is not logged in' do
       expect(Issue.count).to eq(1)
       action.to change(Issue, :count).by(0)
@@ -87,7 +85,7 @@ describe Account::Admin::IssuesController do
       sign_in admin
       action.to change(Issue, :count).by(-1)
     end
-    
+
     it 'when user is moderator' do
       expect(Issue.count).to eq(1)
       sign_in moderator

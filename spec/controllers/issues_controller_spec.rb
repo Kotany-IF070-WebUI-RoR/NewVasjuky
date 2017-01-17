@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe IssuesController, type: :controller do
   let(:reporter) { create(:user, :reporter) }
   let(:admin) { create(:user, :admin) }
@@ -40,7 +39,7 @@ describe IssuesController, type: :controller do
     end
 
     it 'when user is a reporter' do
-      pending("minor fix in test needed")
+      pending('minor fix in test needed')
       sign_in reporter
       expected = expect do
         post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
@@ -49,7 +48,7 @@ describe IssuesController, type: :controller do
     end
 
     it 'when user is a moderator' do
-      pending("minor fix in test needed")
+      pending('minor fix in test needed')
       sign_in moderator
       expected = expect do
         post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
@@ -58,7 +57,7 @@ describe IssuesController, type: :controller do
     end
 
     it 'when user is a admin' do
-      pending("minor fix in test needed")
+      pending('minor fix in test needed')
       sign_in admin
       expected = expect do
         post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
