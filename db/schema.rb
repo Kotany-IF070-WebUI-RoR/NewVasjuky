@@ -27,21 +27,23 @@ ActiveRecord::Schema.define(version: 20170116074132) do
   end
 
   create_table "issues", force: :cascade do |t|
-    t.string   "name",        default: ""
-    t.string   "address",     default: ""
-    t.string   "phone",       default: ""
-    t.string   "email",       default: ""
-    t.string   "description", default: ""
-    t.boolean  "approved",    default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "name",                default: ""
+    t.string   "address",             default: ""
+    t.string   "phone",               default: ""
+    t.string   "email",               default: ""
+    t.string   "description",         default: ""
+    t.boolean  "approved",            default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "user_id"
     t.integer  "category_id"
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.string   "location"
     t.string   "title"
+    t.integer  "issue_attachment_id"
     t.index ["category_id"], name: "index_issues_on_category_id"
+    t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id"
     t.index ["user_id"], name: "index_issues_on_user_id"
   end
 

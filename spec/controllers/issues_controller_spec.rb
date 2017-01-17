@@ -34,34 +34,44 @@ describe IssuesController, type: :controller do
   describe 'POST #create' do
     it 'when user is not logged in' do
       expected = expect do
-        post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
+        post :create, params: {
+          issue: FactoryGirl.build(:issue).attributes,
+          issue_attachments: FactoryGirl.attributes_for(:issue_attachment)
+        }
       end
       expected.to change(Issue, :count).by(0)
     end
 
     it 'when user is a reporter' do
-      pending("minor fix in test needed")
       sign_in reporter
       expected = expect do
-        post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
+        post :create, params: {
+          issue: FactoryGirl.build(:issue).attributes,
+          issue_attachments: FactoryGirl.attributes_for(:issue_attachment)
+        }
       end
+      # debugger
       expected.to change(Issue, :count).by(1)
     end
 
     it 'when user is a moderator' do
-      pending("minor fix in test needed")
       sign_in moderator
       expected = expect do
-        post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
+        post :create, params: {
+          issue: FactoryGirl.build(:issue).attributes,
+          issue_attachments: FactoryGirl.attributes_for(:issue_attachment)
+        }
       end
       expected.to change(Issue, :count).by(1)
     end
 
     it 'when user is a admin' do
-      pending("minor fix in test needed")
       sign_in admin
       expected = expect do
-        post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
+        post :create, params: {
+          issue: FactoryGirl.build(:issue).attributes,
+          issue_attachments: FactoryGirl.attributes_for(:issue_attachment)
+        }
       end
       expected.to change(Issue, :count).by(1)
     end

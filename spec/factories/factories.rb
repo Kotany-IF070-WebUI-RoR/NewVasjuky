@@ -1,23 +1,30 @@
-
 FactoryGirl.define do
-
-
   factory :issue do
-
     name        { Faker::Name.name_with_middle }
     address     { Faker::Address.street_address }
     phone       { Faker::PhoneNumber.cell_phone }
     email       { Faker::Internet.email }
-    title        { Faker::Lorem.characters(30) }
+    title       { Faker::Lorem.characters(30) }
     description { Faker::Lorem.characters(255) }
-    location {Faker::Address.street_address}
+    location    { Faker::Address.street_address }
     # attachment  do
     #   Rack::Test::UploadedFile.new(
     #     Rails.root.join('spec', 'files', 'avatar.jpg')
     #   )
     # end
+    # issue_attachment_id { 1 }
     association :user, factory: :user
+    # association :issue_attachment, factory: :issue_attachment, strategy: :build
     association :category, factory: :category
+  end
+
+  factory :issue_attachment do
+    attachment do
+      [ Rack::Test::UploadedFile.new(
+        Rails.root.join('spec', 'files', 'avatar.jpg')
+      )
+    ]
+    end
   end
 
   factory :user do
