@@ -11,7 +11,7 @@ function validate_attachment() {
             error_messages.push("Дозволені тільки вказані формати: " + file_extension.join(', '));
         }
         if (error_messages.length > 0) {
-            alert(error_messages.join(' '));
+            UnobtrusiveFlash.showFlashMessage(error_messages.join(' '), {type: 'error', timeout: 0});
             this.value = '';
         }
     })
