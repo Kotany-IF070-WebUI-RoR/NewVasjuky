@@ -11,6 +11,7 @@
           button.btn#cencel_deletion Скасувати видалення
 
 .comments_list_wrapper
+  h3 Коментарі:
   = render 'comments/comments_list', commentable: commentable
   = paginate paginate_comments_of(commentable), theme: 'twitter-bootstrap-3'
 javascript:
