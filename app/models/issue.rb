@@ -29,6 +29,7 @@ class Issue < ApplicationRecord
                               message: 'Адреса повинна бути справжньою' }
   validates :description, length: { minimum: 50 }
   scope :ordered, -> { order(created_at: :desc) }
+  scope :approved, -> { where(approved: true) }
   geocoded_by :location
   after_validation :geocode,
                    if: ->(obj) { obj.location.present? && !obj.latitude? }

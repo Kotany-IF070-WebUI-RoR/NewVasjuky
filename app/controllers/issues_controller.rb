@@ -5,6 +5,10 @@ class IssuesController < ApplicationController
     @issue_attachment = @issue.issue_attachments.build
   end
 
+  def index
+    @issues = Issue.approved.ordered.page(params[:page]).per(10)
+  end
+
   def create
     @issue = Issue.new(issues_params)
     @issue.user_id = current_user.id

@@ -26,3 +26,6 @@
 //= require issues.coffee
 //= require users.coffee
 //= require comments.js
+//= require flash.js
+//= require validate_attachment.js
+
