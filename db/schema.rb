@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20170117212751) do
     t.integer  "status",      default: 0
     t.index ["category_id"], name: "index_issues_on_category_id"
     t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id"
+    t.index ["status"], name: "index_issues_on_status"
     t.index ["user_id"], name: "index_issues_on_user_id"
   end
 
