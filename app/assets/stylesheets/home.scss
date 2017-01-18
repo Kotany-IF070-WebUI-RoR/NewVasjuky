@@ -1,0 +1,94 @@
+.baner {
+  color: $white;
+  width: 100%;
+  height: 600px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: image_url("if.jpg");
+  border-radius: 0px !important;
+}
+
+.light {
+  color: $white;
+}
+
+.center{
+  position: relative;
+  left: 50%;
+  margin-top: 150px;
+  transform: translateX(-50%);
+  a {
+    text-decoration: none;
+    color: $white;
+  }
+  a:hover {
+    color: whitesmoke;
+  }
+}
+
+.center:hover {
+  background-color: dodgerblue;
+  border-color: dodgerblue;
+}
+
+.issue-counter, .feed {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.nav-pills > .count,
+.count li {
+  float: none;
+  display: inline;
+  margin: 0 1%;
+}
+
+.count a {
+  text-decoration: none;
+}
+.thumbnail {
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+span.badge {
+  font-size: 40px;
+  margin-right: 20px;
+  &:hover {
+    background-color: $color_tundora;
+  }
+}
+
+.phrase  {
+  color: $color_tapa;
+  font-size: 30px;
+  line-height: 60px;
+  vertical-align: middle;
+  &:hover {
+    color: $color_tundora;
+  }
+}
+
+.feed-issue {
+  @include shadow;
+  width: 215px;
+  margin: 0 auto;
+  .caption {
+    width: 100%;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    color: #5f6468;
+  }
+}
+
+.feed-issue::after {
+  @include pseudo-shadow;
+}
+
+.feed-issue:hover::after {
+  opacity: 1;
+}

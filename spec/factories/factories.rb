@@ -23,6 +23,7 @@ FactoryGirl.define do
     email       { Faker::Internet.email }
     password    { Faker::Internet.password }
     image_url   { Faker::Avatar.image }
+    role        :reporter
 
     trait :reporter do
       role :reporter
