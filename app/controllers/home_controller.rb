@@ -6,6 +6,6 @@ class HomeController < ApplicationController
     @issues = Issue.approved.ordered
     @issues_feed = @issues.first(4)
     @count = Issue.approved.count
-    @approved_count = Issue.closed.count
+    @closed_count = Issue.closed.count
   end
 end
