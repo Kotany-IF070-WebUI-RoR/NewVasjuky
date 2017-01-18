@@ -11,7 +11,7 @@ class Issue < ApplicationRecord
             :description, :user_id, :title,
             presence: true
   validates :location, presence: true,
-                       unless: ->(obj) { lat_and_long_present?(obj) }
+                       unless: ->(obj) { lt_ln_present?(obj) }
   validates :name, length: { maximum: 255 },
                    format: { with: REGEXP_NAME,
                              message: 'Ім\'я повинне містити лише літери' }
@@ -25,15 +25,16 @@ class Issue < ApplicationRecord
   validates :description, length: { minimum: 50 }
   mount_uploader :attachment, AttachmentUploader
   scope :ordered, -> { order(created_at: :desc) }
-  scope :approved, -> { where(approved: true) }
+  scope :approved, -> { where(status: :open) }
+  scope :closed, -> { where(status: :closed) }
   geocoded_by :location
   after_validation :geocode,
                    if: ->(obj) { obj.location.present? && !obj.latitude? }
   reverse_geocoded_by :latitude, :longitude, address: :location
   after_validation :reverse_geocode,
-                   if: ->(obj) { lat_and_long_present?(obj) }
+                   if: ->(obj) { !obj.location.present? && lt_ln_present?(obj) }
 
-  def lat_and_long_present?(obj)
+  def lt_ln_present?(obj)
     obj.latitude.present? && obj.longitude.present?
   end
 end
