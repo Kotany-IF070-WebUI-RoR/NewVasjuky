@@ -1,5 +1,7 @@
 # Encoding: utf-8
 class IssuesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+
   def new
     @issue = Issue.new
     @issue_attachment = @issue.issue_attachments.build

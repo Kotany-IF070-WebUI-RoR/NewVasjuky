@@ -293,7 +293,7 @@ issues.each do |issue|
                              description: issue[:description],
                              attachment: issue[:attachment],
                              created_at: Time.now - rand(10).days,
-                             approved: true )
+                             status: :pending )
 end
 
 Issue.all.each do |issue|
