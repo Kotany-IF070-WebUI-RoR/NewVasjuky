@@ -1,0 +1,20 @@
+h1 Редагувати звернення
+= link_to 'На головну', root_path
+.container
+  .row
+    .col-md-8.col-md-offset-2
+      = simple_form_for @issue, html: {multipart: true} ,
+              url: account_admin_issue_path do |f|
+        = f.error_messages
+        = f.input :name, label: 'Ім\'я репортера', disabled: true
+        = f.input :address, label: 'Адреса репортера', disabled: true
+        = f.input :phone, label: 'Номер телефону', disabled: true
+        = f.input :email, as: :email, label: 'Email', disabled: true
+        = f.input :title, label: 'Короткий опис проблеми', disabled: true
+        = f.input :description, as: :text, label: 'Текст звернення', disabled: true
+        = f.association :category, collection: Category.order(:name).all, label: 'Категорія'
+        = f.input :location, label: 'Адреса проблеми'
+        = f.input :latitude, label: 'Широта'
+        = f.input :longitude, label: 'Довгота'
+        = f.input :status, label: 'Статус проблеми', as: :select, collection: Issue.statuses.keys.to_a
+        = f.button :submit, class: 'btn btn-primary'

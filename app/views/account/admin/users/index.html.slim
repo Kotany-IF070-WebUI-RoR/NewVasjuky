@@ -11,4 +11,5 @@ h1 All Users
       tbody
         tr
           = render @users
-  = paginate @users, theme: 'twitter-bootstrap-3'
+  .text-center
+    = paginate @users, theme: 'twitter-bootstrap-3'

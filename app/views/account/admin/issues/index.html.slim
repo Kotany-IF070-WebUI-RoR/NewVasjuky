@@ -8,7 +8,9 @@ h1 Звернення
           th Назва
           th Автор
           th Статус
+          th Редагувати
       tbody
         tr
           = render @issues
-  = paginate @issues, theme: 'twitter-bootstrap-3'
+  .text-center
+      = paginate @issues, theme: 'twitter-bootstrap-3'

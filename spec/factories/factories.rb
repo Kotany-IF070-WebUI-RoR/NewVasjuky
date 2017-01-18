@@ -7,6 +7,7 @@ FactoryGirl.define do
     title       { Faker::Lorem.characters(30) }
     description { Faker::Lorem.characters(255) }
     location    { Faker::Address.street_address }
+    status :pending
     attachment do
       Rack::Test::UploadedFile.new(
         Rails.root.join('spec', 'files', 'avatar.jpg')
@@ -22,6 +23,7 @@ FactoryGirl.define do
     email       { Faker::Internet.email }
     password    { Faker::Internet.password }
     image_url   { Faker::Avatar.image }
+    role        :reporter
 
     trait :reporter do
       role :reporter

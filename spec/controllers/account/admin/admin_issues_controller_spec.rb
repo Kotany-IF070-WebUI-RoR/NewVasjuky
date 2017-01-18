@@ -40,28 +40,62 @@ describe Account::Admin::IssuesController do
       action
       expect(action).to have_http_status(302)
       issue.reload
-      expect(issue.approved).to be_falsey
+      expect(issue.open?).to be_falsey
     end
 
     it 'when user is admin' do
       sign_in admin
       action
       issue.reload
-      expect(issue.approved).to be_truthy
+      expect(issue.open?).to be_truthy
     end
 
     it 'when user is moderator' do
       sign_in moderator
       action
       issue.reload
-      expect(issue.approved).to be_truthy
+      expect(issue.open?).to be_truthy
     end
 
     it 'when user is a reporter' do
       sign_in reporter
       action
       issue.reload
-      expect(issue.approved).to be_falsey
+      expect(issue.open?).to be_falsey
+    end
+  end
+
+  describe 'Decline issues' do
+    let(:action) { patch :decline, params: { id: issue.id } }
+    before :each do
+      @request.env['HTTP_REFERER'] = account_admin_issues_url
+    end
+    it 'when user is not logged in' do
+      action
+      expect(action).to have_http_status(302)
+      issue.reload
+      expect(issue.declined?).to be_falsey
+    end
+
+    it 'when user is admin' do
+      sign_in admin
+      action
+      issue.reload
+      expect(issue.declined?).to be_truthy
+    end
+
+    it 'when user is moderator' do
+      sign_in moderator
+      action
+      issue.reload
+      expect(issue.declined?).to be_truthy
+    end
+
+    it 'when user is a reporter' do
+      sign_in reporter
+      action
+      issue.reload
+      expect(issue.declined?).to be_falsey
     end
   end
 

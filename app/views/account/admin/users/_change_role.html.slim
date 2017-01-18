@@ -1,0 +1,3 @@
+= simple_form_for(user, url: change_role_account_admin_user_path(user)) do |f|
+  = f.select(:role, User.roles.keys)
+  button.btn.btn-default.btn-xs = f.submit 'Змінити роль'

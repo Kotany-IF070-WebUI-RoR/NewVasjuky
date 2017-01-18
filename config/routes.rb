@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   namespace :account do
     namespace :admin do
-      resources :issues, only: [:index, :destroy] do
+      resources :issues, only: [:index, :destroy, :edit, :update] do
         member do
-          patch :approve
+          patch :approve, :decline
         end
       end
 
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :issues, only: [:new, :create, :show] do
+  resources :issues, only: [:new, :index, :create, :show] do
     resources :comments, module: :issues, only: :create
   end
 
