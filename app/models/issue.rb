@@ -4,6 +4,10 @@ class Issue < ApplicationRecord
   belongs_to :user
   belongs_to :category
   enum status: [:pending, :declined, :open, :closed]
+  STATUSES = { 'open' => 'Запит прийнято',
+               'pending' => 'Очікує на модерацію',
+               'declined' => 'Запит відмовлено',
+               'closed' => 'Запит вирішено' }.freeze
   REGEXP_NAME = /\p{L}/
   REGEXP_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.\w+\z/i
   REGEXP_PHONE = /\A[ x0-9\+\(\)\-\.]+\z/
@@ -36,5 +40,9 @@ class Issue < ApplicationRecord
 
   def lt_ln_present?(obj)
     obj.latitude.present? && obj.longitude.present?
+  end
+
+  def status_name
+    STATUSES[status]
   end
 end
