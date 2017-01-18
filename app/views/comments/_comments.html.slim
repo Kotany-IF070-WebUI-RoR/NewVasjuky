@@ -1,7 +1,7 @@
 -if current_user
   = render 'comments/form', commentable: commentable
   #delete_confirmation.modal
-    .modal-dialog.modal-sm
+    .modal-dialog.modal-md
       .modal-content
         .modal-body
           p
@@ -13,20 +13,5 @@
 .comments_list_wrapper
   = render 'comments/comments_list', commentable: commentable
   = paginate paginate_comments_of(commentable), theme: 'twitter-bootstrap-3'
-.modal.fade
-  .modal-dialog role="document"
-    .modal-content
-      .modal-header
-        h5.modal-title Modal title
-        button.close aria-label="Close" data-dismiss="modal" type="button"
-          span aria-hidden="true"  &times;
-      .modal-body
-        p Modal body text goes here.
-      .modal-footer
-        button.btn.btn-primary type="button"  Save changes
-        button.btn.btn-secondary data-dismiss="modal" type="button"  Close
 javascript:
   $('document').ready(init_comments_page());
-
-
-
