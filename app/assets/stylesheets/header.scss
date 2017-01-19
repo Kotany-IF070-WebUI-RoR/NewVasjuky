@@ -7,11 +7,6 @@ header {
     margin-top: 18px;
   }
 
-  a.navbar-brand {
-    margin-top: 11px;
-    margin-bottom: 8px;
-  }
-
   .btn {
     display: block;
     margin-top: 8px;
@@ -41,4 +36,10 @@ header {
     color: $color_black_haze;
     @include border-radius(5px);
   }
+}
+}
+
+.yamm .nav {
+  margin-bottom: 0;
+  margin-top: 0;
 }
