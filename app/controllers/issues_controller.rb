@@ -1,6 +1,7 @@
 # Encoding: utf-8
 class IssuesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :setup_issue, only: [:create]
 
   def new
     @issue = Issue.new
@@ -12,15 +13,9 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @issue = Issue.new(issues_params)
-    @issue.user_id = current_user.id
     respond_to do |format|
       if @issue.save
-        params[:issue_attachments][:attachment].each do |a|
-          @issue_attachment = @issue.issue_attachments.create!(
-            attachment: a
-          )
-        end
+        create_attachments(params[:issue_attachments][:attachment])
         format.html do
           redirect_to root_path, notice: 'Звернення створене успішно!'
         end
@@ -41,5 +36,18 @@ class IssuesController < ApplicationController
                                   :category_id, :description,
                                   :location, :title,
                                   issue_attachments: [])
+  end
+
+  def setup_issue
+    @issue = Issue.new(issues_params)
+    @issue.user_id = current_user.id
+  end
+
+  def create_attachments(attachments)
+    attachments.each do |a|
+      @issue_attachment = @issue.issue_attachments.create!(
+        attachment: a
+      )
+    end
   end
 end
