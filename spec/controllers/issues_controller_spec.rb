@@ -65,4 +65,64 @@ describe IssuesController, type: :controller do
       expected.to change(Issue, :count).by(1)
     end
   end
+
+  describe 'Read issue when status is "pending"' do
+    let!(:pending_issue) { create(:issue, status: 'pending') }
+    let(:request) { get :show, params: { id: pending_issue.id } }
+    let(:author) { pending_issue.user }
+
+    it 'when user is not logged in' do
+      expect(request).to have_http_status(302)
+    end
+
+    it 'when user is a reporter but not author of issue' do
+      sign_in(reporter)
+      expect(request).to have_http_status(302)
+    end
+
+    it 'when user is a reporter and author of issue' do
+      sign_in(author)
+      expect(request).to have_http_status(200)
+    end
+
+    it 'when user is a moderator' do
+      sign_in(moderator)
+      expect(request).to have_http_status(200)
+    end
+
+    it 'when user is a admin' do
+      sign_in(admin)
+      expect(request).to have_http_status(200)
+    end
+  end
+
+  describe 'Read issue when status is "declined"' do
+    let!(:declined_issue) { create(:issue, status: 'declined') }
+    let(:request) { get :show, params: { id: declined_issue.id } }
+    let(:author) { declined_issue.user }
+
+    it 'when user is not logged in' do
+      expect(request).to have_http_status(302)
+    end
+
+    it 'when user is a reporter but not author of issue' do
+      sign_in(reporter)
+      expect(request).to have_http_status(302)
+    end
+
+    it 'when user is a reporter and author of issue' do
+      sign_in(author)
+      expect(request).to have_http_status(200)
+    end
+
+    it 'when user is a moderator' do
+      sign_in(moderator)
+      expect(request).to have_http_status(200)
+    end
+
+    it 'when user is a admin' do
+      sign_in(admin)
+      expect(request).to have_http_status(200)
+    end
+  end
 end

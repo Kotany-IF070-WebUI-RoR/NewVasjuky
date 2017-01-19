@@ -45,4 +45,8 @@ class Issue < ApplicationRecord
   def status_name
     STATUSES[status]
   end
+
+  def published?
+    (status == 'open') || (status == 'closed')
+  end
 end
