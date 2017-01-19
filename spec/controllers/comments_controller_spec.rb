@@ -3,6 +3,7 @@ require 'rails_helper'
 describe CommentsController, type: :controller do
   let(:reporter_1) { create(:user, :reporter) }
   let(:reporter_2) { create(:user, :reporter) }
+  let(:banned_reporter) { create(:user, :reporter, banned: true) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :admin) }
   let(:commentable) { create(:issue, user: reporter_1) }
@@ -25,6 +26,11 @@ describe CommentsController, type: :controller do
 
     it 'when user is reporter but no author of it' do
       sign_in reporter_2
+      expect { action }.to change(Comment, :count).by(0)
+    end
+
+    it 'when user is banned reporter' do
+      sign_in banned_reporter
       expect { action }.to change(Comment, :count).by(0)
     end
 
@@ -54,6 +60,11 @@ describe CommentsController, type: :controller do
 
     it 'when user is reporter but no author of it' do
       sign_in reporter_2
+      expect { action }.to change(Comment, :count).by(0)
+    end
+
+    it 'when user is banned reporter' do
+      sign_in banned_reporter
       expect { action }.to change(Comment, :count).by(0)
     end
 
