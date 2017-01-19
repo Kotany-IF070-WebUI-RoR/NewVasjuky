@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     respond_to do |format|
       if @comment.save
-        format.html { comments_list }
+        format.html { comments_list(1) }
       else
         format.json { comment_error }
       end
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     if @comment.can_delete?(current_user)
       @comment.destroy
       respond_to do |format|
-        format.html { comments_list }
+        format.html { comments_list(params[:page]) }
       end
     else
       redirect_to @commentable
@@ -30,9 +30,9 @@ class CommentsController < ApplicationController
 
   private
 
-  def comments_list
+  def comments_list(page = 1)
     render partial: 'comments/comments_list',
-           locals: { commentable: @commentable }
+           locals: { commentable: @commentable, page: page }
   end
 
   def comment_error

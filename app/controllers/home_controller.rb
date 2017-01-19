@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   def index
     @issues = Issue.approved.ordered
     @issues_feed = @issues.first(4)
-    @count = Issue.all.count
-    @approved_count = @issues.count
+    @count = Issue.approved.count
+    @closed_count = Issue.closed.count
   end
 end

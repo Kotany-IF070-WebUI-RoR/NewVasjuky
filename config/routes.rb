@@ -32,6 +32,6 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:destroy]
-
+  resources :users, only: [:show]
   root to: 'home#index'
 end
