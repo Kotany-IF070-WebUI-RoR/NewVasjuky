@@ -1,6 +1,6 @@
 # Encoding: utf-8
 class IssuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def new
     @issue = Issue.new

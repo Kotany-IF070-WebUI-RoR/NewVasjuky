@@ -31,8 +31,10 @@ function confirm_removing(remove_link) {
     confirmation_modal.show();
     confirmation_modal.on('click', function (e) {
         if(e.target.id === 'confirm_deletion') {
-            var request = remove_comment(remove_link);
-            request.done(add_removed_status(remove_link));
+            var delete_request = remove_comment(remove_link);
+            delete_request.done(function () {
+                update_comment_list(delete_request.responseText)
+            });
             confirmation_modal.hide();
         }
         else if (e.target.id === 'cencel_deletion') {
@@ -42,17 +44,13 @@ function confirm_removing(remove_link) {
 }
 
 function remove_comment(remove_link) {
-    return $.ajax( { url: '/comments/' + remove_link.id, method: 'DELETE'} );
+    return $.ajax( { url: '/comments/' + remove_link.id,
+                    method: 'DELETE', data: {page: get_commets_page()} });
 }
 
-function add_removed_status(remove_link) {
-    var comment_block = $(remove_link).parents('li.comment.row');
-    comment_block.addClass('removed_comment');
-    $(remove_link).replaceWith('<span>Видалено</span>');
-}
 
 function update_comment_list(list_data) {
-    $("ul.comments_list").remove();
+    $("div.comments_list").remove();
     $(".comments_list_wrapper").prepend(list_data);
 }
 
@@ -93,5 +91,12 @@ function remove_error_status(form) {
         $(this).removeClass('has-error');
         $(this).find('.help-block').remove();
     })
+}
+
+function get_commets_page() {
+    var results = new RegExp('[\?&]page=([^&#]*)').exec(window.location.href);
+    if (results !== null) {
+        return results[1] || 1
+    }
 }
 
