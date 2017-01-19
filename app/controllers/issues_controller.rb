@@ -2,7 +2,6 @@
 class IssuesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :setup_issue, only: [:create]
-
   def new
     @issue = Issue.new
     @issue_attachment = @issue.issue_attachments.build
