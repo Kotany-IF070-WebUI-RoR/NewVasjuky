@@ -11,7 +11,8 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.find(params[:id])
-    redirect_back(fallback_location: root_path) unless can_read_issue?(@issue)
+    redirect_back(fallback_location: root_path) unless \
+                                               @issue.can_read_by?(current_user)
   end
 
   def create
@@ -30,10 +31,5 @@ class IssuesController < ApplicationController
     params.require(:issue).permit(:name, :address, :phone, :email,
                                   :category_id, :description, :attachment,
                                   :location, :title)
-  end
-
-  def can_read_issue?(issue)
-    issue.published? ||
-      (current_user.present? && current_user.can_read?(issue))
   end
 end

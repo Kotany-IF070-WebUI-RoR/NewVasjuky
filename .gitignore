@@ -15,7 +15,6 @@ rerun.txt
 pickle-email-*.html
 .idea
 coverage
-Gemfile.lock
 
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo

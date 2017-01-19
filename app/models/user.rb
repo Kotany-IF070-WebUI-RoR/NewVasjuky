@@ -33,8 +33,4 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
-
-  def can_read?(issue)
-    admin? || moderator? || (issue.user == self)
-  end
 end

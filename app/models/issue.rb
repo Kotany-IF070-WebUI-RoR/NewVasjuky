@@ -49,4 +49,12 @@ class Issue < ApplicationRecord
   def published?
     (status == 'open') || (status == 'closed')
   end
+
+  def can_read_by?(user)
+    if user.present?
+      user.admin? || user.moderator? || (self.user == user) || published?
+    else
+      false
+    end
+  end
 end
