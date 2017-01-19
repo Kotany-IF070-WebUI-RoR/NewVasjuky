@@ -19,7 +19,6 @@ header {
     color: $white
   }
 
-
   img.user_img {
     height: 39px;
     margin-left: 15px;
@@ -33,5 +32,13 @@ header {
     margin-bottom: 8px;
     }
 
+  .banned {
+    float:left;
+    height: 50px;
+    line-height: 30px;
+    padding: 10px;
+    margin: 10px 0 0 100px;
+    color: $color_black_haze;
+    @include border-radius(5px);
+  }
 }
-

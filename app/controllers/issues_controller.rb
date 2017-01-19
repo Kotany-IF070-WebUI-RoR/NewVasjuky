@@ -1,6 +1,7 @@
 # Encoding: utf-8
 class IssuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, :require_active_user,
+                     only: [:index, :show]
   def index
     @issues = Issue.approved.ordered.page(params[:page]).per(10)
   end

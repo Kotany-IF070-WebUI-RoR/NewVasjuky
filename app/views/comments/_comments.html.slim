@@ -1,5 +1,6 @@
--if user_signed_in?
-  = render 'comments/form', commentable: commentable
+-if current_user
+  = render 'comments/form', commentable: commentable \
+  unless current_user.banned?
   #delete_confirmation.modal
     .modal-dialog.modal-md
       .modal-content

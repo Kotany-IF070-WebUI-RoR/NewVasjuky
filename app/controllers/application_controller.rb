@@ -5,16 +5,17 @@ class ApplicationController < ActionController::Base
   helper_method :admin?, :admin_or_moderator?
   protect_from_forgery with: :exception
 
-  before_action :authenticate_user!, :banned?
+  before_action :authenticate_user!
+  before_action :require_active_user,
+                if: -> { user_signed_in? && !devise_controller? }
 
   after_action :prepare_unobtrusive_flash
 
-  def banned?
+  def require_active_user
     return unless current_user.banned?
-    sign_out current_user
-    flash[:notice] = nil
-    flash.now[:alert] = 'Цей аккаунт був заблокований!'
-    root_path
+    redirect_back(fallback_location: root_path)
+    flash[:alert] = 'У вас немає доступу доступу цієї сторінки.
+                     Ваш аккаунт заблоковано.'
   end
 
   def current_user
