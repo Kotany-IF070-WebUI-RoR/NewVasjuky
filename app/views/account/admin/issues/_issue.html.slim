@@ -1,17 +1,18 @@
 tr
-  td= issue.created_at
+  td= issue.created_at.strftime("%d/%m/%Y %H:%M")
   td= link_to issue.title, issue
   td= issue.user.full_name
   td
     - unless issue.pending?
-      = issue.status
+      span.label.label-success
+        = issue.status
     - else
-      | waiting to approve
+      span.label.label-info Очікує
       br/
       = link_to 'Схвалити', approve_account_admin_issue_path(issue),
-              method: :patch
-      |  |
+              method: :patch, class: 'btn btn-xs btn-success'
       = link_to 'Відхилити', decline_account_admin_issue_path(issue),
-              method: :patch
-  td= link_to 'Редагувати', edit_account_admin_issue_path(issue)
+              method: :patch, class: 'btn btn-xs btn-danger'
+  td= link_to 'Редагувати', edit_account_admin_issue_path(issue),
+              class: 'btn btn-template-main btn-sm'
 
