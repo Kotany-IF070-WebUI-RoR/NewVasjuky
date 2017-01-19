@@ -9,9 +9,8 @@
         .modal-footer
           button.btn.btn-danger#confirm_deletion Видалити
           button.btn#cencel_deletion Скасувати видалення
-
+h3 Коментарі:
 .comments_list_wrapper
   = render 'comments/comments_list', commentable: commentable
-  = paginate paginate_comments_of(commentable), theme: 'twitter-bootstrap-3'
 javascript:
   $('document').ready(init_comments_page());
