@@ -3,12 +3,13 @@ class Issue < ApplicationRecord
   has_many :comments, as: :commentable
   belongs_to :user
   belongs_to :category
-<<<<<<< 6481111ca59c341e51675d976271dab8e2ade256
   has_many :issue_attachments
   accepts_nested_attributes_for :issue_attachments
-=======
   enum status: [:pending, :declined, :open, :closed]
->>>>>>> Adds form for editing issue. Adds issue statuses
+  STATUSES = { 'open' => 'Запит прийнято',
+               'pending' => 'Очікує на модерацію',
+               'declined' => 'Запит відмовлено',
+               'closed' => 'Запит вирішено' }.freeze
   REGEXP_NAME = /\p{L}/
   REGEXP_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.\w+\z/i
   REGEXP_PHONE = /\A[ x0-9\+\(\)\-\.]+\z/
@@ -40,5 +41,9 @@ class Issue < ApplicationRecord
 
   def lt_ln_present?(obj)
     obj.latitude.present? && obj.longitude.present?
+  end
+
+  def status_name
+    STATUSES[status]
   end
 end
