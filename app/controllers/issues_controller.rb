@@ -12,7 +12,7 @@ class IssuesController < ApplicationController
   def show
     @issue = Issue.find(params[:id])
     redirect_back(fallback_location: root_path) unless \
-                                               @issue.can_read_by?(current_user)
+                                                  @issue.can_read?(current_user)
   end
 
   def create

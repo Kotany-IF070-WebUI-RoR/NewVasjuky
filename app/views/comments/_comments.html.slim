@@ -1,4 +1,4 @@
--if current_user
+-if user_signed_in?
   = render 'comments/form', commentable: commentable
   #delete_confirmation.modal
     .modal-dialog.modal-md
