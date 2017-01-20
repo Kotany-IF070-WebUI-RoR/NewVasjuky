@@ -20,5 +20,5 @@
                 li= link_to 'Спочатку нові', '#'
                 li.divider role='separator'
                 li= link_to 'Спочатку старі', '#'
-        = render @issues
+        = render 'issue', collection: @issues
         .text-center= paginate @issues, theme: 'twitter-bootstrap-3'
