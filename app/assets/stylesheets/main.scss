@@ -69,11 +69,11 @@
       }
       &.active > a {
         text-decoration: none !important;
-        border-top: solid 5px $color_casal_approx;
+        border-top: solid 5px $color_primary_dark;
       }
       &.open > a {
         text-decoration: none !important;
-        border-top: solid 5px $color_casal_approx;
+        border-top: solid 5px $color_primary_dark;
       }
     }
   }
@@ -197,11 +197,11 @@
       }
     }
     &.active > a {
-      border-top: solid 5px $color_casal_approx;
+      border-top: solid 5px $color_primary_dark;
       background: white !important;
       color: $color_text_light !important;
       &:hover {
-        border-top: solid 5px $color_casal_approx;
+        border-top: solid 5px $color_primary_dark;
       }
     }
     &.open > a {
@@ -278,11 +278,11 @@ a {
   color: $color_primary;
   text-decoration: none;
   &:hover {
-    color: $color_elm_approx;
+    color: $color_links_hover;
     text-decoration: underline;
   }
   &:focus {
-    color: $color_elm_approx;
+    color: $color_links_hover;
     text-decoration: underline;
     outline: thin dotted;
     outline-offset: -2px;
@@ -303,10 +303,10 @@ a {
     margin: 0 5px;
   }
   &.text-primary:hover {
-    color: $color_jelly_bean_approx;
+    color: $color_primarybtn;
   }
   &.bg-primary:hover {
-    background-color: $color_jelly_bean_approx;
+    background-color: $color_primarybtn;
   }
   &.list-group-item.active > .badge {
     color: $color_primary;
@@ -635,19 +635,19 @@ section {
       &:hover {
         color: white;
         &.facebook {
-          background-color: $color_san_marino_approx;
+          background-color: $color_facebook;
         }
         &.gplus {
-          background-color: $color_thunderbird_approx;
+          background-color: $color_googleplus;
         }
         &.twitter {
-          background-color: $color_picton_blue_approx;
+          background-color: $color_twitter;
         }
         &.instagram {
-          background-color: $color_cabaret_approx;
+          background-color: $color_instagram;
         }
         &.email {
-          background-color: $color_fern_green_approx;
+          background-color: $color_mailsharer;
         }
       }
     }
@@ -875,24 +875,24 @@ body {
   border-color: $color_primary;
   &:hover {
     color: $color_primary;
-    background-color: $color_mercury_approx;
-    border-color: $color_paradiso_approx;
+    background-color: $color_highligt;
+    border-color: $color_mainbtn_border;
     background: $color_primary;
     color: white;
     border-color: $color_primary;
   }
   &:focus {
     color: $color_primary;
-    background-color: $color_mercury_approx;
-    border-color: $color_paradiso_approx;
+    background-color: $color_highligt;
+    border-color: $color_mainbtn_border;
     background: $color_primary;
     color: white;
     border-color: $color_primary;
   }
   &:active {
     color: $color_primary;
-    background-color: $color_mercury_approx;
-    border-color: $color_paradiso_approx;
+    background-color: $color_highligt;
+    border-color: $color_mainbtn_border;
     background-image: none;
     background: $color_primary;
     color: white;
@@ -900,8 +900,8 @@ body {
   }
   &.active {
     color: $color_primary;
-    background-color: $color_mercury_approx;
-    border-color: $color_paradiso_approx;
+    background-color: $color_highligt;
+    border-color: $color_mainbtn_border;
     background-image: none;
     background: $color_primary;
     color: white;
@@ -1049,7 +1049,7 @@ fieldset[disabled] {
   &:hover {
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    border-color: $color_bon_jour_approx;
+    border-color: $color_transparentbtn_border;
     background: white;
     color: $color_primary;
     border-color: white;
@@ -1057,7 +1057,7 @@ fieldset[disabled] {
   &:focus {
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    border-color: $color_bon_jour_approx;
+    border-color: $color_transparentbtn_border;
     background: white;
     color: $color_primary;
     border-color: white;
@@ -1065,7 +1065,7 @@ fieldset[disabled] {
   &:active {
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    border-color: $color_bon_jour_approx;
+    border-color: $color_transparentbtn_border;
     background-image: none;
     background: white;
     color: $color_primary;
@@ -1074,7 +1074,7 @@ fieldset[disabled] {
   &.active {
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    border-color: $color_bon_jour_approx;
+    border-color: $color_transparentbtn_border;
     background-image: none;
     background: white;
     color: $color_primary;
@@ -1132,7 +1132,7 @@ fieldset[disabled] {
   &:hover {
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    border-color: $color_bon_jour_approx;
+    border-color: $color_transparentbtn_border;
     background: white;
     color: black;
     border-color: white;
@@ -1140,7 +1140,7 @@ fieldset[disabled] {
   &:focus {
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    border-color: $color_bon_jour_approx;
+    border-color: $color_transparentbtn_border;
     background: white;
     color: black;
     border-color: white;
@@ -1148,7 +1148,7 @@ fieldset[disabled] {
   &:active {
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    border-color: $color_bon_jour_approx;
+    border-color: $color_transparentbtn_border;
     background-image: none;
     background: white;
     color: black;
@@ -1157,7 +1157,7 @@ fieldset[disabled] {
   &.active {
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    border-color: $color_bon_jour_approx;
+    border-color: $color_transparentbtn_border;
     background-image: none;
     background: white;
     color: black;
@@ -1214,24 +1214,24 @@ fieldset[disabled] {
   border-color: $color_primary;
   &:hover {
     color: white;
-    background-color: $color_jelly_bean_approx;
-    border-color: $color_paradiso_approx;
+    background-color: $color_primarybtn;
+    border-color: $color_mainbtn_border;
   }
   &:focus {
     color: white;
-    background-color: $color_jelly_bean_approx;
-    border-color: $color_paradiso_approx;
+    background-color: $color_primarybtn;
+    border-color: $color_mainbtn_border;
   }
   &:active {
     color: white;
-    background-color: $color_jelly_bean_approx;
-    border-color: $color_paradiso_approx;
+    background-color: $color_primarybtn;
+    border-color: $color_mainbtn_border;
     background-image: none;
   }
   &.active {
     color: white;
-    background-color: $color_jelly_bean_approx;
-    border-color: $color_paradiso_approx;
+    background-color: $color_primarybtn;
+    border-color: $color_mainbtn_border;
     background-image: none;
   }
   &.disabled {
@@ -1337,7 +1337,7 @@ fieldset[disabled] {
     color: $color_text_light;
   }
   > hr {
-    border-top-color: $color_quill_gray_approx;
+    border-top-color: $color_hr;
   }
   .container {
     max-width: 100%;
@@ -1623,31 +1623,6 @@ fieldset[disabled] {
       border-color: black black transparent transparent;
     }
   }
-  &.sale {
-    top: 0;
-  }
-  &.new {
-    top: 50px;
-    .theribbon {
-      background-color: $color_viking_approx;
-      //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-      text-shadow: 0 1px 2px $color_pink_swan_approx;
-      &:after {
-        border-color: $color_eastern_blue_approx $color_eastern_blue_approx transparent transparent;
-      }
-    }
-  }
-  &.gift {
-    top: 100px;
-    .theribbon {
-      background-color: $color_fern_approx;
-      //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-      text-shadow: 0 1px 2px $color_pink_swan_approx;
-      &:after {
-        border-color: $color_killarney_approx $color_killarney_approx transparent transparent;
-      }
-    }
-  }
 }
 .home-carousel {
   position: relative;
@@ -1703,17 +1678,6 @@ fieldset[disabled] {
     letter-spacing: 0.10em;
     li {
       margin-bottom: 10px;
-    }
-  }
-  .owl-theme .owl-controls .owl-page {
-    span {
-      background: $color_storm_dust_approx;
-    }
-    &.active span {
-      background: white;
-    }
-    &:hover span {
-      background: white;
     }
   }
 }
@@ -1857,24 +1821,19 @@ fieldset[disabled] {
         line-height: 26px;
       }
       &.facebook {
-        background-color: $color_san_marino_approx;
-        background-color: $color_san_marino_approx;
+        background-color: $color_facebook;
       }
       &.gplus {
-        background-color: $color_thunderbird_approx;
-        background-color: $color_thunderbird_approx;
+        background-color: $color_googleplus;
       }
       &.twitter {
-        background-color: $color_picton_blue_approx;
-        background-color: $color_picton_blue_approx;
+        background-color: $color_twitter;
       }
       &.instagram {
-        background-color: $color_cabaret_approx;
-        background-color: $color_cabaret_approx;
+        background-color: $color_instagram;
       }
       &.email {
-        background-color: $color_fern_green_approx;
-        background-color: $color_fern_green_approx;
+        background-color: $color_mailsharer;
       }
     }
   }
@@ -1927,7 +1886,7 @@ fieldset[disabled] {
     background: $color_text_primary;
     color: white;
     .icon {
-      color: $color_black_haze_approx;
+      color: $color_boxbg;
       border-color: transparent;
       font-size: 70px;
     }
@@ -2131,7 +2090,7 @@ fieldset[disabled] {
   border-left: none;
   border-right: none;
   .box-header {
-    background: $color_black_haze_approx;
+    background: $color_boxbg;
     margin: -20px 0 20px;
     padding: 20px;
     border-bottom: solid 1px $color_border_light;
@@ -2148,7 +2107,7 @@ fieldset[disabled] {
     }
   }
   .box-footer {
-    background: $color_black_haze_approx;
+    background: $color_boxbg;
     margin: 30px 0 -20px;
     padding: 20px;
     border-top: solid 1px $color_border_light;
@@ -2174,7 +2133,7 @@ fieldset[disabled] {
     margin-bottom: 0;
   }
   h1 {
-    color: $color_mine_shaft_approx;
+    color: $color_headings;
     text-transform: uppercase;
     font-size: 30px;
     font-weight: 700;
@@ -2601,7 +2560,7 @@ fieldset[disabled] {
 }
 .product {
   background: white;
-  border-bottom: solid 1px $color_mercury_approx;
+  border-bottom: solid 1px $color_highligt;
   //Instead of the line below you could use @include box-sizing($bs)
   box-sizing: border-box;
   margin-bottom: 60px;
@@ -2747,19 +2706,19 @@ fieldset[disabled] {
         line-height: 26px;
       }
       &.facebook {
-        background-color: $color_san_marino_approx;
+        background-color: $color_facebook;
       }
       &.gplus {
-        background-color: $color_thunderbird_approx;
+        background-color: $color_googleplus;
       }
       &.twitter {
-        background-color: $color_picton_blue_approx;
+        background-color: $color_twitter;
       }
       &.instagram {
-        background-color: $color_cabaret_approx;
+        background-color: $color_instagram;
       }
       &.email {
-        background-color: $color_fern_green_approx;
+        background-color: $color_mailsharer;
       }
     }
   }
@@ -2970,7 +2929,7 @@ fieldset[disabled] {
   }
 }
 #copyright {
-  background: $color_mine_shaft_approx;
+  background: $color_headings;
   color: $color_faded;
   padding: 50px 0;
   font-size: 12px;
@@ -3183,7 +3142,7 @@ fieldset[disabled] {
 }
 .tab-content {
   padding: 15px;
-  border: solid 1px $color_alto_approx;
+  border: solid 1px $color_disabled_text;
   border-top: none;
 }
 .navbar-collapse {
@@ -3322,11 +3281,11 @@ fieldset[disabled] {
   .navbar-brand {
     color: $color_text_primary;
     &:hover {
-      color: $color_masala_approx;
+      color: $color_navbar_text;
       background-color: transparent;
     }
     &:focus {
-      color: $color_masala_approx;
+      color: $color_navbar_text;
       background-color: transparent;
     }
   }
@@ -3374,16 +3333,16 @@ fieldset[disabled] {
       color: $color_text_primary;
       &:hover {
         color: $color_text_primary;
-        background-color: $color_half_baked_approx;
+        background-color: $color_navbar_li_bg;
       }
       &:focus {
         color: $color_text_primary;
-        background-color: $color_half_baked_approx;
+        background-color: $color_navbar_li_bg;
       }
     }
   }
   .navbar-toggle {
-    border-color: $color_alto_approx;
+    border-color: $color_disabled_text;
     &:hover {
       background-color: $color_primary;
     }
@@ -3391,7 +3350,7 @@ fieldset[disabled] {
       background-color: $color_primary;
     }
     .icon-bar {
-      background-color: $color_suva_gray_approx;
+      background-color: $color_navbar_icon;
     }
   }
   .navbar-collapse {
@@ -3456,7 +3415,7 @@ hr {
   > li > a {
     padding: 5px 20px;
     line-height: 1.42857143;
-    color: $color_mine_shaft_approx;
+    color: $color_headings;
     white-space: nowrap;
   }
 }
@@ -3478,7 +3437,7 @@ label {
     border-color: $color_primary;
     outline: 0;
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-    box-shadow: inset 0 1px 1px black_7_5, 0 0 8px $color_pelorous_60_approx;
+    box-shadow: inset 0 1px 1px black_7_5, 0 0 8px $color_shadow_60;
   }
 }
 .form-group {
@@ -3520,22 +3479,22 @@ label {
     > a {
       color: $color_border_light;
       background-color: white;
-      border-color: $color_alto_approx;
+      border-color: $color_disabled_text;
       &:hover {
         color: $color_border_light;
         background-color: white;
-        border-color: $color_alto_approx;
+        border-color: $color_disabled_text;
       }
       &:focus {
         color: $color_border_light;
         background-color: white;
-        border-color: $color_alto_approx;
+        border-color: $color_disabled_text;
       }
     }
     > span {
       color: $color_border_light;
       background-color: white;
-      border-color: $color_alto_approx;
+      border-color: $color_disabled_text;
     }
   }
 }
@@ -3551,16 +3510,16 @@ label {
       text-decoration: none;
       color: $color_primary;
       background-color: white;
-      border: 1px solid $color_alto_approx;
+      border: 1px solid $color_disabled_text;
       &:hover {
         color: $color_primary;
         background-color: $color_regent_st_blue_approx;
-        border-color: $color_alto_approx;
+        border-color: $color_disabled_text;
       }
       &:focus {
         color: $color_primary;
         background-color: $color_regent_st_blue_approx;
-        border-color: $color_alto_approx;
+        border-color: $color_disabled_text;
       }
     }
     > span {
@@ -3569,16 +3528,16 @@ label {
       text-decoration: none;
       color: $color_primary;
       background-color: white;
-      border: 1px solid $color_alto_approx;
+      border: 1px solid $color_disabled_text;
       &:hover {
         color: $color_primary;
         background-color: $color_regent_st_blue_approx;
-        border-color: $color_alto_approx;
+        border-color: $color_disabled_text;
       }
       &:focus {
         color: $color_primary;
         background-color: $color_regent_st_blue_approx;
-        border-color: $color_alto_approx;
+        border-color: $color_disabled_text;
       }
     }
   }
@@ -3625,31 +3584,31 @@ label {
       > span {
         color: $color_border_light;
         background-color: white;
-        border-color: $color_alto_approx;
+        border-color: $color_disabled_text;
         &:hover {
           color: $color_border_light;
           background-color: white;
-          border-color: $color_alto_approx;
+          border-color: $color_disabled_text;
         }
         &:focus {
           color: $color_border_light;
           background-color: white;
-          border-color: $color_alto_approx;
+          border-color: $color_disabled_text;
         }
       }
       > a {
         color: $color_text_light;
         background-color: white;
-        border-color: $color_alto_approx;
+        border-color: $color_disabled_text;
         &:hover {
           color: $color_text_light;
           background-color: white;
-          border-color: $color_alto_approx;
+          border-color: $color_disabled_text;
         }
         &:focus {
           color: $color_text_light;
           background-color: white;
-          border-color: $color_alto_approx;
+          border-color: $color_disabled_text;
         }
       }
     }
@@ -3669,7 +3628,7 @@ h1 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -3677,7 +3636,7 @@ h2 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -3685,7 +3644,7 @@ h3 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -3693,25 +3652,25 @@ h4 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
 }
 h5 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
 }
 h6 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
 }
 .h1 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -3719,7 +3678,7 @@ h6 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -3727,7 +3686,7 @@ h6 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -3735,19 +3694,19 @@ h6 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
 }
 .h5 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
 }
 .h6 {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-weight: 900;
   line-height: 1.1;
-  color: $color_mine_shaft_approx;
+  color: $color_headings;
 }
 .lead {
   margin-bottom: 20px;
@@ -3950,32 +3909,32 @@ ul.list-style-none {
 .open > .dropdown-toggle {
   &.btn-template-main {
     color: $color_primary;
-    background-color: $color_mercury_approx;
-    border-color: $color_paradiso_approx;
+    background-color: $color_highligt;
+    border-color: $color_mainbtn_border;
     background-image: none;
   }
   &.btn-template-transparent-primary {
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    border-color: $color_bon_jour_approx;
+    border-color: $color_transparentbtn_border;
     background-image: none;
   }
   &.btn-template-transparent-black {
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    border-color: $color_bon_jour_approx;
+    border-color: $color_transparentbtn_border;
     background-image: none;
   }
   &.btn-template-primary {
     color: white;
-    background-color: $color_jelly_bean_approx;
-    border-color: $color_paradiso_approx;
+    background-color: $color_primarybtn;
+    border-color: $color_mainbtn_border;
     background-image: none;
   }
 }
 #categoryMenu h3 {
   padding: 20px;
-  background: $color_black_haze_approx;
+  background: $color_boxbg;
   margin: 0;
   border-bottom: solid 1px $color_border_light;
   text-transform: uppercase;
@@ -4060,19 +4019,19 @@ ul.list-style-none {
       line-height: 26px;
     }
     &.facebook {
-      background-color: $color_san_marino_approx;
+      background-color: $color_facebook;
     }
     &.gplus {
-      background-color: $color_thunderbird_approx;
+      background-color: $color_googleplus;
     }
     &.twitter {
-      background-color: $color_picton_blue_approx;
+      background-color: $color_twitter;
     }
     &.instagram {
-      background-color: $color_cabaret_approx;
+      background-color: $color_instagram;
     }
     &.email {
-      background-color: $color_fern_green_approx;
+      background-color: $color_mailsharer;
     }
   }
 }
