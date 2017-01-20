@@ -1,3 +1,5 @@
+- if current_user.banned?
+  div.banned.bg-danger Ваш обліковий запис заблоковано
 ul.navbar-nav.nav.pull-right
   - if current_user.admin? || current_user.moderator?
       li.nav-text-link

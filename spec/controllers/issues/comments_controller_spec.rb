@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe Issues::CommentsController, type: :controller do
   let(:reporter) { create(:user, :reporter) }
+  let(:banned_reporter) { create(:user, :reporter, banned: true) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :admin) }
   let(:commentable) { create(:issue, user: reporter) }
@@ -21,6 +22,12 @@ describe Issues::CommentsController, type: :controller do
       sign_in reporter
       expect { action }.to change(Comment, :count).by(1)
     end
+
+    it 'user is banned' do
+      sign_in banned_reporter
+      expect { action }.to change(Comment, :count).by(0)
+      expect(action).to have_http_status(302)
+    end
   end
 
   describe 'Create comment without AJAX when' do
@@ -37,6 +44,12 @@ describe Issues::CommentsController, type: :controller do
     it 'user is logged in' do
       sign_in reporter
       expect { action }.to change(Comment, :count).by(1)
+    end
+
+    it 'user is banned' do
+      sign_in banned_reporter
+      expect { action }.to change(Comment, :count).by(0)
+      expect(action).to have_http_status(302)
     end
   end
 end

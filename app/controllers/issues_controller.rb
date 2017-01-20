@@ -1,13 +1,19 @@
 # Encoding: utf-8
 class IssuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, :require_active_user,
+                     only: [:index, :show]
+  def index
+    @issues = Issue.approved.ordered.page(params[:page]).per(10)
+  end
 
   def new
     @issue = Issue.new
   end
 
-  def index
-    @issues = Issue.approved.ordered.page(params[:page]).per(10)
+  def show
+    @issue = Issue.find(params[:id])
+    redirect_back(fallback_location: root_path) unless \
+                                                  @issue.can_read?(current_user)
   end
 
   def create
@@ -18,10 +24,6 @@ class IssuesController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def show
-    @issue = Issue.find(params[:id])
   end
 
   private

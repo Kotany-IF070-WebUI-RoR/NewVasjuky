@@ -14,5 +14,5 @@ li.row.comment
 
     - if comment.can_delete?(current_user)
       = link_to 'Видалити', comment, method: :delete, class: 'remove_comment',
-              id: comment.id
+              id: comment.id unless current_user.banned?
     end

@@ -1,5 +1,6 @@
--if current_user
-  = render 'comments/form', commentable: commentable
+-if user_signed_in?
+  = render 'comments/form', commentable: commentable \
+  unless current_user.banned?
   #delete_confirmation.modal
     .modal-dialog.modal-md
       .modal-content
@@ -9,7 +10,6 @@
         .modal-footer
           button.btn.btn-danger#confirm_deletion Видалити
           button.btn#cencel_deletion Скасувати видалення
-h3 Коментарі:
 .comments_list_wrapper
   = render 'comments/comments_list', commentable: commentable
 javascript:

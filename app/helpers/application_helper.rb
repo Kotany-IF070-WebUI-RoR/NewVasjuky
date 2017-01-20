@@ -2,18 +2,17 @@
 # frozen_string_literal: true
 module ApplicationHelper
   def admin?
-    return true if current_user && current_user.admin?
+    return true if current_user.admin?
     access_denied
   end
 
   def moderator?
-    return true if current_user && current_user.moderator?
+    return true if current_user.moderator?
     access_denied
   end
 
   def admin_or_moderator?
-    return true if current_user &&
-                   (current_user.admin? || current_user.moderator?)
+    return true if current_user.admin? || current_user.moderator?
     access_denied
   end
 
@@ -24,7 +23,7 @@ module ApplicationHelper
   end
 
   def admin_change_role(user)
-    if current_user && current_user.admin? && !user.admin?
+    if current_user.admin? && !user.admin?
       render 'account/admin/users/change_role', user: user
     else
       render plain: user.role.to_s
