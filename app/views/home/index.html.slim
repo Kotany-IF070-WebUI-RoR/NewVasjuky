@@ -17,7 +17,7 @@ section.bar.background-pentagon.no-mb
       .col-sm-6
         .item
           .icon
-            i.fa.fa-align-justify
+            i.fa.fa-question
           h4
             span.counter #{@count}
             br
@@ -25,9 +25,9 @@ section.bar.background-pentagon.no-mb
       .col-sm-6
         .item
           .icon
-            i.fa.fa-align-justify
+            i.fa.fa-check
           h4
-            span.counter #{@approved_count}
+            span.counter #{@closed_count}
             br
             = link_to 'проблем вирішено', issues_path
 section.bar.background-white.no-mb
@@ -37,19 +37,15 @@ section.bar.background-white.no-mb
         h2 Останні додані:
       .row
       - @issues_feed.each do |issue|
-        .col-md-3.col-sm-6
-          .box-image-text.blog
-            .top
-              .image= link_to issue
-                .attachment= image_tag issue.attachment
-              .bg
-              .text
-                .buttons
-                  = link_to 'Читати далі', issue, class: 'btn btn-template-transparent-primary'
-            .content
+        section.post
+          .row
+            .col-md-4
+              .image
+                = link_to issue
+                  .attachment.media-object= image_tag issue.attachment
+            .col-md-8
               h4
-                  = link_to issue.title, issue
-              p.author-category
-                = link_to issue.category.name, '#'
+                = link_to issue.title, issue
+              p.intro #{issue.description}
               p.read-more
                 = link_to 'Читати далі', issue, class: 'btn btn-template-main'

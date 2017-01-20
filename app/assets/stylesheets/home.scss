@@ -1,94 +1,26 @@
-.baner {
-  color: $white;
-  width: 100%;
-  height: 600px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: image_url("if.jpg");
-  border-radius: 0px !important;
-}
-
-.light {
-  color: $white;
-}
-
-.center{
+.jumbotron {
+  padding: 30px;
+  margin-bottom: 0;
   position: relative;
-  left: 50%;
-  margin-top: 150px;
-  transform: translateX(-50%);
-  a {
-    text-decoration: none;
-    color: $white;
+  background: $main_bg center center repeat;
+  background-size: cover;
+  //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: all 0.2s ease-out;
+  .dark-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity:0.6;
   }
-  a:hover {
-    color: whitesmoke;
+  h1, h2{
+    color: white;
   }
-}
-
-.center:hover {
-  background-color: dodgerblue;
-  border-color: dodgerblue;
-}
-
-.issue-counter, .feed {
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-.nav-pills > .count,
-.count li {
-  float: none;
-  display: inline;
-  margin: 0 1%;
-}
-
-.count a {
-  text-decoration: none;
 }
 .thumbnail {
   a:hover {
     text-decoration: none;
   }
-}
-
-span.badge {
-  font-size: 40px;
-  margin-right: 20px;
-  &:hover {
-    background-color: $color_tundora;
-  }
-}
-
-.phrase  {
-  color: $color_tapa;
-  font-size: 30px;
-  line-height: 60px;
-  vertical-align: middle;
-  &:hover {
-    color: $color_tundora;
-  }
-}
-
-.feed-issue {
-  @include shadow;
-  width: 215px;
-  margin: 0 auto;
-  .caption {
-    width: 100%;
-    display: inline-block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    font-weight: bold;
-    color: #5f6468;
-  }
-}
-
-.feed-issue::after {
-  @include pseudo-shadow;
-}
-
-.feed-issue:hover::after {
-  opacity: 1;
 }

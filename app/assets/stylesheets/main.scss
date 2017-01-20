@@ -33,20 +33,20 @@
       padding: 0;
       li {
         list-style-type: none;
-        border-bottom: solid 1px $color_gallery_approx;
+        border-bottom: solid 1px $color_border_light;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         padding: 4px 0;
         a {
           position: relative;
-          color: $color_mountain_mist_approx;
+          color: $color_text_light;
           font-size: 12px;
           display: block;
           //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
           transition: all 0.2s ease-out;
           left: 0;
           &:hover {
-            color: $color_pelorous_approx;
+            color: $color_primary;
             text-decoration: none;
             background: none;
             left: 2px;
@@ -64,7 +64,7 @@
         letter-spacing: 0.08em;
         border-top: solid 5px transparent;
         &:hover {
-          border-top: solid 5px $color_pelorous_approx;
+          border-top: solid 5px $color_primary;
         }
       }
       &.active > a {
@@ -83,13 +83,13 @@
       text-transform: uppercase;
       padding-bottom: 10px;
       margin-top: 5px;
-      border-bottom: dotted 1px $color_fuscous_gray_approx;
+      border-bottom: dotted 1px $color_text_primary;
       letter-spacing: 0.08em;
     }
     h5 {
       text-transform: uppercase;
       padding-bottom: 10px;
-      border-bottom: dotted 1px $color_fuscous_gray_approx;
+      border-bottom: dotted 1px $color_text_primary;
       letter-spacing: 0.08em;
     }
     ul {
@@ -97,18 +97,18 @@
       padding: 0;
       li {
         list-style-type: none;
-        border-bottom: solid 1px $color_gallery_approx;
+        border-bottom: solid 1px $color_border_light;
         text-transform: uppercase;
         padding: 4px 0;
         a {
           position: relative;
-          color: $color_mountain_mist_approx;
+          color: $color_border_light;
           font-size: 12px;
           display: block;
           //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
           transition: all 0.2s ease-out;
           &:hover {
-            color: $color_pelorous_approx;
+            color: $color_primary;
             text-decoration: none;
             padding-left: 2px;
           }
@@ -141,40 +141,40 @@
     }
   }
   .btn-default {
-    color: $color_mountain_mist_approx;
-    background-color: $white;
+    color: $color_border_light;
+    background-color: white;
     margin-left: 7px;
     margin-right: 0;
     &.navbar-toggle {
-      color: $color_mountain_mist_approx;
-      background-color: $white;
+      color: $color_border_light;
+      background-color: white;
       margin-left: 7px;
       margin-right: 0;
       &:hover {
-        background-color: $white;
-        border-color: $color_pelorous_approx;
-        color: $color_pelorous_approx;
+        background-color: white;
+        border-color: $color_primary;
+        color: $color_primary;
       }
       &:focus {
-        background-color: $white;
-        border-color: $color_pelorous_approx;
-        color: $color_pelorous_approx;
+        background-color: white;
+        border-color: $color_primary;
+        color: $color_primary;
       }
     }
     &:hover {
-      background-color: $white;
-      border-color: $color_pelorous_approx;
-      color: $color_pelorous_approx;
+      background-color: white;
+      border-color: $color_primary;
+      color: $color_primary;
     }
     &:focus {
-      background-color: $white;
-      border-color: $color_pelorous_approx;
-      color: $color_pelorous_approx;
+      background-color: white;
+      border-color: $color_primary;
+      color: $color_primary;
     }
   }
   #search {
     clear: both;
-    border-top: solid 1px $color_pelorous_approx;
+    border-top: solid 1px $color_primary;
     text-align: right;
     form {
       float: right;
@@ -186,34 +186,34 @@
   &.navbar-light ul.nav > li {
     > a {
       &:hover {
-        border-top: solid 5px $color_pelorous_approx;
-        background: $white !important;
-        color: $color_fuscous_gray_approx !important;
+        border-top: solid 5px $color_primary;
+        background: white !important;
+        color: $color_text_light !important;
       }
       &:focus {
-        border-top: solid 5px $color_pelorous_approx;
-        background: $white !important;
-        color: $color_fuscous_gray_approx !important;
+        border-top: solid 5px $color_primary;
+        background: white !important;
+        color: $color_text_light !important;
       }
     }
     &.active > a {
       border-top: solid 5px $color_casal_approx;
-      background: $white !important;
-      color: $color_fuscous_gray_approx !important;
+      background: white !important;
+      color: $color_text_light !important;
       &:hover {
         border-top: solid 5px $color_casal_approx;
       }
     }
     &.open > a {
       &:hover {
-        border-top: solid 5px $color_pelorous_approx;
-        background: $white !important;
-        color: $color_fuscous_gray_approx !important;
+        border-top: solid 5px $color_primary;
+        background: white !important;
+        color: $color_text_light !important;
       }
       &:focus {
-        border-top: solid 5px $color_pelorous_approx;
-        background: $white !important;
-        color: $color_fuscous_gray_approx !important;
+        border-top: solid 5px $color_primary;
+        background: white !important;
+        color: $color_text_light !important;
       }
     }
   }
@@ -275,7 +275,7 @@
 a {
   //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
   transition: all 0.2s ease-out;
-  color: $color_pelorous_approx;
+  color: $color_primary;
   text-decoration: none;
   &:hover {
     color: $color_elm_approx;
@@ -289,12 +289,12 @@ a {
   }
   &.badge {
     &:hover {
-      color: $white;
+      color: white;
       text-decoration: none;
       cursor: pointer;
     }
     &:focus {
-      color: $white;
+      color: white;
       text-decoration: none;
       cursor: pointer;
     }
@@ -309,8 +309,8 @@ a {
     background-color: $color_jelly_bean_approx;
   }
   &.list-group-item.active > .badge {
-    color: $color_pelorous_approx;
-    background-color: $white;
+    color: $color_primary;
+    background-color: white;
   }
 }
 button {
@@ -324,10 +324,10 @@ button {
   cursor: pointer !important;
 }
 .required {
-  color: $color_pelorous_approx;
+  color: $color_primary;
 }
 .accent {
-  color: $color_pelorous_approx;
+  color: $color_primary;
 }
 .text-uppercase {
   text-transform: uppercase;
@@ -404,7 +404,7 @@ section {
   margin-bottom: 40px;
   h1 {
     display: inline-block;
-    border-bottom: solid 5px $color_pelorous_approx;
+    border-bottom: solid 5px $color_primary;
     line-height: 1.1;
     margin-bottom: 0;
     padding-bottom: 10px;
@@ -413,12 +413,12 @@ section {
     letter-spacing: 0.06em;
     i.fa {
       display: inline-block;
-      background: $color_pelorous_approx;
+      background: $color_primary;
       width: 30px;
       height: 30px;
       vertical-align: middle;
       text-align: center;
-      color: $white;
+      color: white;
       font-size: 12px;
       line-height: 30px;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
@@ -427,7 +427,7 @@ section {
   }
   h2 {
     display: inline-block;
-    border-bottom: solid 5px $color_pelorous_approx;
+    border-bottom: solid 5px $color_primary;
     line-height: 1.1;
     margin-bottom: 0;
     padding-bottom: 10px;
@@ -436,12 +436,12 @@ section {
     letter-spacing: 0.06em;
     i.fa {
       display: inline-block;
-      background: $color_pelorous_approx;
+      background: $color_primary;
       width: 30px;
       height: 30px;
       vertical-align: middle;
       text-align: center;
-      color: $white;
+      color: white;
       font-size: 12px;
       line-height: 30px;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
@@ -450,7 +450,7 @@ section {
   }
   h3 {
     display: inline-block;
-    border-bottom: solid 5px $color_pelorous_approx;
+    border-bottom: solid 5px $color_primary;
     line-height: 1.1;
     margin-bottom: 0;
     padding-bottom: 10px;
@@ -459,12 +459,12 @@ section {
     letter-spacing: 0.06em;
     i.fa {
       display: inline-block;
-      background: $color_pelorous_approx;
+      background: $color_primary;
       width: 30px;
       height: 30px;
       vertical-align: middle;
       text-align: center;
-      color: $white;
+      color: white;
       font-size: 12px;
       line-height: 30px;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
@@ -473,7 +473,7 @@ section {
   }
   h4 {
     display: inline-block;
-    border-bottom: solid 5px $color_pelorous_approx;
+    border-bottom: solid 5px $color_primary;
     line-height: 1.1;
     margin-bottom: 0;
     padding-bottom: 10px;
@@ -482,12 +482,12 @@ section {
     letter-spacing: 0.06em;
     i.fa {
       display: inline-block;
-      background: $color_pelorous_approx;
+      background: $color_primary;
       width: 30px;
       height: 30px;
       vertical-align: middle;
       text-align: center;
-      color: $white;
+      color: white;
       font-size: 12px;
       line-height: 30px;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
@@ -496,7 +496,7 @@ section {
   }
   h5 {
     display: inline-block;
-    border-bottom: solid 5px $color_pelorous_approx;
+    border-bottom: solid 5px $color_primary;
     line-height: 1.1;
     margin-bottom: 0;
     padding-bottom: 10px;
@@ -505,12 +505,12 @@ section {
     letter-spacing: 0.06em;
     i.fa {
       display: inline-block;
-      background: $color_pelorous_approx;
+      background: $color_primary;
       width: 30px;
       height: 30px;
       vertical-align: middle;
       text-align: center;
-      color: $white;
+      color: white;
       font-size: 12px;
       line-height: 30px;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
@@ -522,11 +522,11 @@ section {
   display: inline-block;
   width: 80px;
   height: 80px;
-  color: $white;
+  color: white;
   line-height: 80px;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 40px;
-  border: solid 1px $white;
+  border: solid 1px white;
   font-size: 20px;
   &.icon-lg {
     font-size: 30px;
@@ -542,8 +542,8 @@ section {
     i {
       width: 20px;
       height: 20px;
-      background: $color_pelorous_approx;
-      color: $white;
+      background: $color_primary;
+      color: white;
       text-align: center;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
       border-radius: 10px;
@@ -601,18 +601,18 @@ section {
     background: $texture_1;
     #all {
       position: relative;
-      background: $white;
+      background: white;
       width: 1200px;
       margin: 0 auto;
       overflow: hidden;
       //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-      box-shadow: 0 0 5px $color_celeste_approx;
+      box-shadow: 0 0 5px $color_faded;
     }
   }
 }
 #top {
-  background: $color_fuscous_gray_approx;
-  color: $color_gallery_approx;
+  background: $color_text_primary;
+  color: $color_border_light;
   padding: 10px 0;
   p {
     margin: 0;
@@ -622,7 +622,7 @@ section {
     float: right;
     text-align: right;
     a {
-      color: $color_mountain_mist_approx;
+      color: $color_border_light;
       display: inline-block;
       width: 24px;
       height: 24px;
@@ -633,7 +633,7 @@ section {
       text-align: center;
       vertical-align: bottom;
       &:hover {
-        color: $white;
+        color: white;
         &.facebook {
           background-color: $color_san_marino_approx;
         }
@@ -656,7 +656,7 @@ section {
     float: right;
     a {
       font-size: 12px;
-      color: $color_gallery_approx;
+      color: $color_border_light;
       margin-right: 15px;
       text-decoration: none;
       text-transform: uppercase;
@@ -665,11 +665,11 @@ section {
     }
   }
   &.light {
-    background: $white;
-    color: $color_mountain_mist_approx;
-    border-bottom: solid 1px $color_gallery_approx;
+    background: white;
+    color: $color_border_light;
+    border-bottom: solid 1px $color_border_light;
     .login a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
     }
   }
 }
@@ -738,37 +738,37 @@ section {
   .navbar-default .navbar-nav .open .dropdown-menu {
     > {
       .active > a {
-        color: $white;
-        background-color: $color_pelorous_approx;
+        color: white;
+        background-color: $color_primary;
         &:hover {
-          color: $white;
-          background-color: $color_pelorous_approx;
+          color: white;
+          background-color: $color_primary;
         }
         &:focus {
-          color: $white;
-          background-color: $color_pelorous_approx;
+          color: white;
+          background-color: $color_primary;
         }
       }
       .disabled > a {
-        color: $color_celeste_approx;
+        color: $color_faded;
         background-color: transparent;
         &:hover {
-          color: $color_celeste_approx;
+          color: $color_faded;
           background-color: transparent;
         }
         &:focus {
-          color: $color_celeste_approx;
+          color: $color_faded;
           background-color: transparent;
         }
       }
     }
     > li > a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       &:hover {
-        color: $color_pelorous_approx;
+        color: $color_primary;
       }
       &:focus {
-        color: $color_pelorous_approx;
+        color: $color_primary;
       }
     }
   }
@@ -803,7 +803,7 @@ section {
     top: 0;
     z-index: 1000;
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-    box-shadow: 0 0 5px $color_celeste_approx;
+    box-shadow: 0 0 5px $color_faded;
     //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
     transition: all 0.5s ease-out;
   }
@@ -815,7 +815,7 @@ body {
   font-family: $sans1, $sans2, $sans3, $default_sans;
   font-size: 14px;
   line-height: 1.42857143;
-  color: $color_fuscous_gray_approx;
+  color: $color_text_primary;
   &.boxed .navbar-affixed-top.affix {
     position: static;
   }
@@ -826,7 +826,7 @@ body {
     margin-bottom: 20px;
   }
   a {
-    color: $color_pelorous_approx;
+    color: $color_primary;
   }
   p {
     font-weight: 300;
@@ -870,413 +870,413 @@ body {
   border-radius: 0;
 }
 .btn-template-main {
-  color: $color_pelorous_approx;
-  background-color: $white;
-  border-color: $color_pelorous_approx;
+  color: $color_primary;
+  background-color: white;
+  border-color: $color_primary;
   &:hover {
-    color: $color_pelorous_approx;
+    color: $color_primary;
     background-color: $color_mercury_approx;
     border-color: $color_paradiso_approx;
-    background: $color_pelorous_approx;
-    color: $white;
-    border-color: $color_pelorous_approx;
+    background: $color_primary;
+    color: white;
+    border-color: $color_primary;
   }
   &:focus {
-    color: $color_pelorous_approx;
+    color: $color_primary;
     background-color: $color_mercury_approx;
     border-color: $color_paradiso_approx;
-    background: $color_pelorous_approx;
-    color: $white;
-    border-color: $color_pelorous_approx;
+    background: $color_primary;
+    color: white;
+    border-color: $color_primary;
   }
   &:active {
-    color: $color_pelorous_approx;
+    color: $color_primary;
     background-color: $color_mercury_approx;
     border-color: $color_paradiso_approx;
     background-image: none;
-    background: $color_pelorous_approx;
-    color: $white;
-    border-color: $color_pelorous_approx;
+    background: $color_primary;
+    color: white;
+    border-color: $color_primary;
   }
   &.active {
-    color: $color_pelorous_approx;
+    color: $color_primary;
     background-color: $color_mercury_approx;
     border-color: $color_paradiso_approx;
     background-image: none;
-    background: $color_pelorous_approx;
-    color: $white;
-    border-color: $color_pelorous_approx;
+    background: $color_primary;
+    color: white;
+    border-color: $color_primary;
   }
   &.disabled {
-    background-color: $white;
-    border-color: $color_pelorous_approx;
+    background-color: white;
+    border-color: $color_primary;
     &:hover {
-      background-color: $white;
-      border-color: $color_pelorous_approx;
+      background-color: white;
+      border-color: $color_primary;
     }
     &:focus {
-      background-color: $white;
-      border-color: $color_pelorous_approx;
+      background-color: white;
+      border-color: $color_primary;
     }
     &:active {
-      background-color: $white;
-      border-color: $color_pelorous_approx;
+      background-color: white;
+      border-color: $color_primary;
     }
     &.active {
-      background-color: $white;
-      border-color: $color_pelorous_approx;
+      background-color: white;
+      border-color: $color_primary;
     }
   }
   .badge {
-    color: $white;
-    background-color: $color_pelorous_approx;
+    color: white;
+    background-color: $color_primary;
   }
 }
 .btn-template-main[disabled] {
-  background-color: $white;
-  border-color: $color_pelorous_approx;
+  background-color: white;
+  border-color: $color_primary;
   &:hover {
-    background-color: $white;
-    border-color: $color_pelorous_approx;
+    background-color: white;
+    border-color: $color_primary;
   }
   &:focus {
-    background-color: $white;
-    border-color: $color_pelorous_approx;
+    background-color: white;
+    border-color: $color_primary;
   }
   &:active {
-    background-color: $white;
-    border-color: $color_pelorous_approx;
+    background-color: white;
+    border-color: $color_primary;
   }
   &.active {
-    background-color: $white;
-    border-color: $color_pelorous_approx;
+    background-color: white;
+    border-color: $color_primary;
   }
 }
 fieldset[disabled] {
   .btn-template-main {
-    background-color: $white;
-    border-color: $color_pelorous_approx;
+    background-color: white;
+    border-color: $color_primary;
     &:hover {
-      background-color: $white;
-      border-color: $color_pelorous_approx;
+      background-color: white;
+      border-color: $color_primary;
     }
     &:focus {
-      background-color: $white;
-      border-color: $color_pelorous_approx;
+      background-color: white;
+      border-color: $color_primary;
     }
     &:active {
-      background-color: $white;
-      border-color: $color_pelorous_approx;
+      background-color: white;
+      border-color: $color_primary;
     }
     &.active {
-      background-color: $white;
-      border-color: $color_pelorous_approx;
+      background-color: white;
+      border-color: $color_primary;
     }
   }
   .btn-template-transparent-primary {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
     &:hover {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &:focus {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &:active {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &.active {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
   }
   .btn-template-transparent-black {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
     &:hover {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &:focus {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &:active {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &.active {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
   }
   .btn-template-primary {
-    background-color: $color_pelorous_approx;
-    border-color: $color_pelorous_approx;
+    background-color: $color_primary;
+    border-color: $color_primary;
     &:hover {
-      background-color: $color_pelorous_approx;
-      border-color: $color_pelorous_approx;
+      background-color: $color_primary;
+      border-color: $color_primary;
     }
     &:focus {
-      background-color: $color_pelorous_approx;
-      border-color: $color_pelorous_approx;
+      background-color: $color_primary;
+      border-color: $color_primary;
     }
     &:active {
-      background-color: $color_pelorous_approx;
-      border-color: $color_pelorous_approx;
+      background-color: $color_primary;
+      border-color: $color_primary;
     }
     &.active {
-      background-color: $color_pelorous_approx;
-      border-color: $color_pelorous_approx;
+      background-color: $color_primary;
+      border-color: $color_primary;
     }
   }
   .navbar-default .btn-link {
     &:hover {
-      color: $color_celeste_approx;
+      color: $color_faded;
     }
     &:focus {
-      color: $color_celeste_approx;
+      color: $color_faded;
     }
   }
 }
 .btn-template-transparent-primary {
-  color: $white;
+  color: white;
   background-color: transparent;
-  border-color: $white;
+  border-color: white;
   &:hover {
-    color: $white;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
     border-color: $color_bon_jour_approx;
-    background: $white;
-    color: $color_pelorous_approx;
-    border-color: $white;
+    background: white;
+    color: $color_primary;
+    border-color: white;
   }
   &:focus {
-    color: $white;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
     border-color: $color_bon_jour_approx;
-    background: $white;
-    color: $color_pelorous_approx;
-    border-color: $white;
+    background: white;
+    color: $color_primary;
+    border-color: white;
   }
   &:active {
-    color: $white;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
     border-color: $color_bon_jour_approx;
     background-image: none;
-    background: $white;
-    color: $color_pelorous_approx;
-    border-color: $white;
+    background: white;
+    color: $color_primary;
+    border-color: white;
   }
   &.active {
-    color: $white;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
     border-color: $color_bon_jour_approx;
     background-image: none;
-    background: $white;
-    color: $color_pelorous_approx;
-    border-color: $white;
+    background: white;
+    color: $color_primary;
+    border-color: white;
   }
   &.disabled {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
     &:hover {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &:focus {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &:active {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &.active {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
   }
   .badge {
     color: transparent;
-    background-color: $white;
+    background-color: white;
   }
 }
 .btn-template-transparent-primary[disabled] {
   background-color: transparent;
-  border-color: $white;
+  border-color: white;
   &:hover {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
   }
   &:focus {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
   }
   &:active {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
   }
   &.active {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
   }
 }
 .btn-template-transparent-black {
-  color: $white;
+  color: white;
   background-color: transparent;
-  border-color: $white;
+  border-color: white;
   &:hover {
-    color: $white;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
     border-color: $color_bon_jour_approx;
-    background: $white;
-    color: $black;
-    border-color: $white;
+    background: white;
+    color: black;
+    border-color: white;
   }
   &:focus {
-    color: $white;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
     border-color: $color_bon_jour_approx;
-    background: $white;
-    color: $black;
-    border-color: $white;
+    background: white;
+    color: black;
+    border-color: white;
   }
   &:active {
-    color: $white;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
     border-color: $color_bon_jour_approx;
     background-image: none;
-    background: $white;
-    color: $black;
-    border-color: $white;
+    background: white;
+    color: black;
+    border-color: white;
   }
   &.active {
-    color: $white;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
     border-color: $color_bon_jour_approx;
     background-image: none;
-    background: $white;
-    color: $black;
-    border-color: $white;
+    background: white;
+    color: black;
+    border-color: white;
   }
   &.disabled {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
     &:hover {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &:focus {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &:active {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
     &.active {
       background-color: transparent;
-      border-color: $white;
+      border-color: white;
     }
   }
   .badge {
     color: transparent;
-    background-color: $white;
+    background-color: white;
   }
 }
 .btn-template-transparent-black[disabled] {
   background-color: transparent;
-  border-color: $white;
+  border-color: white;
   &:hover {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
   }
   &:focus {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
   }
   &:active {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
   }
   &.active {
     background-color: transparent;
-    border-color: $white;
+    border-color: white;
   }
 }
 .btn-template-primary {
-  color: $white;
-  background-color: $color_pelorous_approx;
-  border-color: $color_pelorous_approx;
+  color: white;
+  background-color: $color_primary;
+  border-color: $color_primary;
   &:hover {
-    color: $white;
+    color: white;
     background-color: $color_jelly_bean_approx;
     border-color: $color_paradiso_approx;
   }
   &:focus {
-    color: $white;
+    color: white;
     background-color: $color_jelly_bean_approx;
     border-color: $color_paradiso_approx;
   }
   &:active {
-    color: $white;
+    color: white;
     background-color: $color_jelly_bean_approx;
     border-color: $color_paradiso_approx;
     background-image: none;
   }
   &.active {
-    color: $white;
+    color: white;
     background-color: $color_jelly_bean_approx;
     border-color: $color_paradiso_approx;
     background-image: none;
   }
   &.disabled {
-    background-color: $color_pelorous_approx;
-    border-color: $color_pelorous_approx;
+    background-color: $color_primary;
+    border-color: $color_primary;
     &:hover {
-      background-color: $color_pelorous_approx;
-      border-color: $color_pelorous_approx;
+      background-color: $color_primary;
+      border-color: $color_primary;
     }
     &:focus {
-      background-color: $color_pelorous_approx;
-      border-color: $color_pelorous_approx;
+      background-color: $color_primary;
+      border-color: $color_primary;
     }
     &:active {
-      background-color: $color_pelorous_approx;
-      border-color: $color_pelorous_approx;
+      background-color: $color_primary;
+      border-color: $color_primary;
     }
     &.active {
-      background-color: $color_pelorous_approx;
-      border-color: $color_pelorous_approx;
+      background-color: $color_primary;
+      border-color: $color_primary;
     }
   }
   .badge {
-    color: $color_pelorous_approx;
-    background-color: $white;
+    color: $color_primary;
+    background-color: white;
   }
 }
 .btn-template-primary[disabled] {
-  background-color: $color_pelorous_approx;
-  border-color: $color_pelorous_approx;
+  background-color: $color_primary;
+  border-color: $color_primary;
   &:hover {
-    background-color: $color_pelorous_approx;
-    border-color: $color_pelorous_approx;
+    background-color: $color_primary;
+    border-color: $color_primary;
   }
   &:focus {
-    background-color: $color_pelorous_approx;
-    border-color: $color_pelorous_approx;
+    background-color: $color_primary;
+    border-color: $color_primary;
   }
   &:active {
-    background-color: $color_pelorous_approx;
-    border-color: $color_pelorous_approx;
+    background-color: $color_primary;
+    border-color: $color_primary;
   }
   &.active {
-    background-color: $color_pelorous_approx;
-    border-color: $color_pelorous_approx;
+    background-color: $color_primary;
+    border-color: $color_primary;
   }
 }
 #intro {
@@ -1288,12 +1288,12 @@ fieldset[disabled] {
     h1 {
       text-transform: uppercase;
       font-size: 50px;
-      color: $white;
+      color: white;
       margin-bottom: 40px;
       letter-spacing: 0.08em;
     }
     h3 {
-      color: $white;
+      color: white;
       margin-bottom: 40px;
     }
     .btn {
@@ -1309,52 +1309,32 @@ fieldset[disabled] {
     position: relative;
   }
 }
-.jumbotron {
-  padding: 30px;
-  margin-bottom: 0;
-  position: relative;
-  background: $main_bg center center repeat;
-  background-size: cover;
-  //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-  transition: all 0.2s ease-out;
-  .dark-mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: $black;
-    opacity:0.6;
-  }
+
   h1 {
-    color: $white;
-    color: $white;
+    color: $color_text_light;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
   h2 {
-    color: $white;
-    color: $white;
+    color: $color_text_light;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
   h3 {
-    color: $white;
-    color: $white;
+    color: $color_text_light;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
   p {
-    color: $white;
+    color: $color_text_primary;
     margin-bottom: 20px;
-    font-size: 21px;
     font-weight: 400;
     &.text-uppercase {
       font-weight: 700;
     }
   }
   ul {
-    color: $white;
+    color: $color_text_light;
   }
   > hr {
     border-top-color: $color_quill_gray_approx;
@@ -1363,12 +1343,8 @@ fieldset[disabled] {
     max-width: 100%;
     z-index: 2;
   }
-}
+
 .container {
-  .jumbotron {
-    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-    border-radius: 0;
-  }
   > {
     .navbar-header {
       margin-right: -15px;
@@ -1398,14 +1374,14 @@ fieldset[disabled] {
 }
 .panel {
   margin-bottom: 20px;
-  background-color: $white;
+  background-color: white;
   border: 1px solid transparent;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 0;
   //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
   box-shadow: 0 0 0;
   &.sidebar-menu {
-    background: $white;
+    background: white;
     margin: 0 0 20px;
     //Instead of the line below you could use @include box-sizing($bs)
     box-sizing: border-box;
@@ -1422,76 +1398,42 @@ fieldset[disabled] {
       border-bottom: none;
       h1 {
         display: inline-block;
-        border-bottom: solid 5px $color_pelorous_approx;
+        border-bottom: solid 5px $color_primary;
         line-height: 1.1;
         margin-bottom: 0;
         padding-bottom: 10px;
       }
       h2 {
         display: inline-block;
-        border-bottom: solid 5px $color_pelorous_approx;
+        border-bottom: solid 5px $color_primary;
         line-height: 1.1;
         margin-bottom: 0;
         padding-bottom: 10px;
       }
       h3 {
         display: inline-block;
-        border-bottom: solid 5px $color_pelorous_approx;
+        border-bottom: solid 5px $color_primary;
         line-height: 1.1;
         margin-bottom: 0;
         padding-bottom: 10px;
       }
       h4 {
         display: inline-block;
-        border-bottom: solid 5px $color_pelorous_approx;
+        border-bottom: solid 5px $color_primary;
         line-height: 1.1;
         margin-bottom: 0;
         padding-bottom: 10px;
       }
       h5 {
         display: inline-block;
-        border-bottom: solid 5px $color_pelorous_approx;
+        border-bottom: solid 5px $color_primary;
         line-height: 1.1;
         margin-bottom: 0;
         padding-bottom: 10px;
       }
       .btn.btn-danger {
-        color: $white;
+        color: white;
         margin-top: 5px;
-      }
-    }
-    .panel-body {
-      padding: 0;
-      label {
-        color: $color_mountain_mist_approx;
-        font-size: 12px;
-        &:hover {
-          color: $color_fuscous_gray_approx;
-        }
-      }
-      span.colour {
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        border: solid 1px $color_fuscous_gray_approx;
-        vertical-align: top;
-        margin-top: 2px;
-        margin-left: 5px;
-        &.white {
-          background: $white;
-        }
-        &.red {
-          background: $red;
-        }
-        &.green {
-          background: $color_japanese_laurel_approx;
-        }
-        &.blue {
-          background: $blue;
-        }
-        &.yellow {
-          background: $yellow;
-        }
       }
     }
     ul {
@@ -1519,14 +1461,14 @@ fieldset[disabled] {
               padding: 10px 15px;
               padding-left: 30px;
               font-size: 12px;
-              color: $color_mountain_mist_approx;
+              color: $color_border_light;
               &:hover {
                 text-decoration: none;
-                background-color: $color_gallery_approx;
+                background-color: $color_border_light;
               }
               &:focus {
                 text-decoration: none;
-                background-color: $color_gallery_approx;
+                background-color: $color_border_light;
               }
             }
           }
@@ -1540,19 +1482,19 @@ fieldset[disabled] {
           a {
             display: inline-block;
             padding: 5px;
-            border: solid 1px $color_gallery_approx;
+            border: solid 1px $color_border_light;
             //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
             border-radius: 0;
-            color: $color_pelorous_approx;
+            color: $color_primary;
             margin: 5px 5px 5px 0;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             font-weight: 700;
             font-size: 12px;
             &:hover {
-              color: $color_pelorous_approx;
+              color: $color_primary;
               text-decoration: none;
-              border-color: $color_pelorous_approx;
+              border-color: $color_primary;
             }
           }
         }
@@ -1564,7 +1506,7 @@ fieldset[disabled] {
         li {
           margin-bottom: 10px;
           padding: 5px 0;
-          border-bottom: dotted 1px $color_gallery_approx;
+          border-bottom: dotted 1px $color_border_light;
           &:before {
             content: " ";
             display: table;
@@ -1590,7 +1532,7 @@ fieldset[disabled] {
           p.date {
             float: right;
             font-size: 12px;
-            color: $color_mountain_mist_approx;
+            color: $color_border_light;
           }
         }
       }
@@ -1601,7 +1543,7 @@ fieldset[disabled] {
         li {
           margin-bottom: 10px;
           padding: 5px 0;
-          border-bottom: dotted 1px $color_gallery_approx;
+          border-bottom: dotted 1px $color_border_light;
           &:before {
             content: " ";
             display: table;
@@ -1627,7 +1569,7 @@ fieldset[disabled] {
           p.date {
             float: right;
             font-size: 12px;
-            color: $color_mountain_mist_approx;
+            color: $color_border_light;
           }
         }
       }
@@ -1660,8 +1602,8 @@ fieldset[disabled] {
     width: 80px;
     padding: 6px 20px;
     margin: 30px 10px 10px -71px;
-    color: $white;
-    background-color: $color_pelorous_approx;
+    color: white;
+    background-color: $color_primary;
     font-family: $sans1, $sans2, $sans3, $default_sans;
     &:before {
       content: ' ';
@@ -1678,7 +1620,7 @@ fieldset[disabled] {
       top: 100%;
       border-width: 5px 10px;
       border-style: solid;
-      border-color: $black $black transparent transparent;
+      border-color: black black transparent transparent;
     }
   }
   &.sale {
@@ -1719,7 +1661,7 @@ fieldset[disabled] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: $color_pelorous_approx;
+    background: $color_primary;
     opacity: 0.9;
     filter: alpha(opacity=90);
   }
@@ -1728,24 +1670,24 @@ fieldset[disabled] {
     padding-bottom: 20px;
   }
   h1 {
-    color: $white;
+    color: white;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 46px;
     letter-spacing: 0.08em;
   }
   h2 {
-    color: $white;
+    color: white;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 40px;
     letter-spacing: 0.08em;
   }
   h3 {
-    color: $white;
+    color: white;
   }
   p {
-    color: $white;
+    color: white;
     font-size: 18px;
     font-weight: 700;
     padding: 0;
@@ -1753,7 +1695,7 @@ fieldset[disabled] {
     letter-spacing: 0.10em;
   }
   ul {
-    color: $white;
+    color: white;
     font-size: 18px;
     font-weight: 700;
     padding: 0;
@@ -1768,10 +1710,10 @@ fieldset[disabled] {
       background: $color_storm_dust_approx;
     }
     &.active span {
-      background: $white;
+      background: white;
     }
     &:hover span {
-      background: $white;
+      background: white;
     }
   }
 }
@@ -1805,7 +1747,7 @@ fieldset[disabled] {
   .item {
     list-style-type: none;
     margin: 0 5px;
-    background: $white;
+    background: white;
     padding-bottom: 60px;
     //Instead of the line below you could use @include box-sizing($bs)
     box-sizing: border-box;
@@ -1822,7 +1764,7 @@ fieldset[disabled] {
         clear: both;
       }
       .text {
-        color: $color_mountain_mist_approx;
+        color: $color_border_light;
         margin-bottom: 40px;
       }
       .bottom {
@@ -1835,7 +1777,7 @@ fieldset[disabled] {
         padding: 20px;
         height: 50px;
         .icon {
-          color: $color_pelorous_approx;
+          color: $color_primary;
           font-size: 30px;
           float: left;
           width: 20%;
@@ -1851,7 +1793,7 @@ fieldset[disabled] {
           letter-spacing: 0.08em;
         }
         p {
-          color: $color_mountain_mist_approx;
+          color: $color_border_light;
           margin: 0;
           font-size: 12px;
         }
@@ -1875,7 +1817,7 @@ fieldset[disabled] {
     margin-bottom: 5px;
     letter-spacing: 0.08em;
     a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
     }
   }
   .social {
@@ -1883,7 +1825,7 @@ fieldset[disabled] {
     margin-bottom: 20px;
     a {
       margin: 0 10px 0 0;
-      color: $white;
+      color: white;
       display: inline-block;
       width: 26px;
       height: 26px;
@@ -1896,7 +1838,7 @@ fieldset[disabled] {
       transition: all 0.2s ease-out;
       vertical-align: bottom;
       margin: 0 10px 0 0;
-      color: $white;
+      color: white;
       display: inline-block;
       width: 26px;
       height: 26px;
@@ -1937,13 +1879,13 @@ fieldset[disabled] {
     }
   }
   p.role {
-    color: $color_mountain_mist_approx;
+    color: $color_border_light;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
   .text p {
-    color: $color_mountain_mist_approx;
+    color: $color_border_light;
     font-size: 12px;
   }
 }
@@ -1951,8 +1893,8 @@ fieldset[disabled] {
   text-align: center;
   margin-bottom: 40px;
   .icon {
-    color: $color_pelorous_approx;
-    border-color: $color_pelorous_approx;
+    color: $color_primary;
+    border-color: $color_primary;
     //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
     transition: all 0.2s ease-out;
   }
@@ -1960,43 +1902,43 @@ fieldset[disabled] {
     font-size: 18px;
     text-transform: uppercase;
     line-height: 1.5;
-    color: $color_fuscous_gray_approx;
+    color: $color_text_primary;
     font-weight: 800;
     letter-spacing: 0.08em;
     a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
     }
   }
   p {
-    color: $color_mountain_mist_approx;
+    color: $color_border_light;
   }
   &.box-white {
     padding: 20px;
-    border: dotted 1px $color_mountain_mist_approx;
+    border: dotted 1px $color_text_light;
     .icon {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       border-color: transparent;
       font-size: 70px;
     }
   }
   &.box-dark {
     padding: 20px;
-    border: dotted 1px $color_mountain_mist_approx;
-    background: $color_fuscous_gray_approx;
-    color: $white;
+    border: dotted 1px $color_text_light;
+    background: $color_text_primary;
+    color: white;
     .icon {
       color: $color_black_haze_approx;
       border-color: transparent;
       font-size: 70px;
     }
     h3 {
-      color: $white;
+      color: white;
       a {
-        color: $white;
+        color: white;
       }
     }
     p {
-      color: $white;
+      color: white;
     }
   }
   &:hover .icon {
@@ -2021,7 +1963,7 @@ fieldset[disabled] {
     height: 100%;
     opacity: 0;
     filter: alpha(opacity=0);
-    background: $color_pelorous_approx;
+    background: $color_primary;
   }
   .name {
     position: absolute;
@@ -2032,15 +1974,15 @@ fieldset[disabled] {
     transform: translate(0, 100%);
     //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
     transition: all 0.2s ease-out;
-    color: $white;
+    color: white;
     padding: 0 20px;
     h3 {
-      color: $white;
+      color: white;
       text-transform: uppercase;
       font-size: 18px;
       letter-spacing: 0.08em;
       a {
-        color: $white;
+        color: white;
         text-decoration: none;
       }
     }
@@ -2054,7 +1996,7 @@ fieldset[disabled] {
     transform: translate(0, -150%);
     //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
     transition: all 0.2s ease-out;
-    color: $white;
+    color: white;
     padding: 0 20px;
   }
   &:hover {
@@ -2090,7 +2032,7 @@ fieldset[disabled] {
       height: 100%;
       opacity: 0;
       filter: alpha(opacity=0);
-      background: $color_pelorous_approx;
+      background: $color_primary;
     }
     .name {
       position: absolute;
@@ -2101,15 +2043,15 @@ fieldset[disabled] {
       transform: translate(0, 100%);
       //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
       transition: all 0.2s ease-out;
-      color: $white;
+      color: white;
       padding: 0 20px;
       h3 {
-        color: $white;
+        color: white;
         text-transform: uppercase;
         font-size: 18px;
         letter-spacing: 0.08em;
         a {
-          color: $white;
+          color: white;
           text-decoration: none;
         }
       }
@@ -2123,7 +2065,7 @@ fieldset[disabled] {
       transform: translate(0, -150%);
       //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
       transition: all 0.2s ease-out;
-      color: $white;
+      color: white;
       padding: 0 20px;
     }
   }
@@ -2131,19 +2073,19 @@ fieldset[disabled] {
     h3 {
       text-transform: uppercase;
       line-height: 1.5;
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       font-weight: 800;
       letter-spacing: 0.08em;
     }
     h4 {
       text-transform: uppercase;
       line-height: 1.5;
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       font-weight: 800;
       letter-spacing: 0.08em;
     }
     p {
-      color: $color_mountain_mist_approx;
+      color: $color_border_light;
     }
   }
   &:hover {
@@ -2164,7 +2106,7 @@ fieldset[disabled] {
   }
   &.blog {
     .author-category {
-      color: $color_mountain_mist_approx;
+      color: $color_border_light;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-weight: 300;
@@ -2180,9 +2122,9 @@ fieldset[disabled] {
   }
 }
 .box {
-  background: $white;
+  background: white;
   margin: 0 0 30px;
-  border: solid 1px $color_celeste_approx;
+  border: solid 1px $color_faded;
   //Instead of the line below you could use @include box-sizing($bs)
   box-sizing: border-box;
   padding: 20px 0;
@@ -2192,7 +2134,7 @@ fieldset[disabled] {
     background: $color_black_haze_approx;
     margin: -20px 0 20px;
     padding: 20px;
-    border-bottom: solid 1px $color_gallery_approx;
+    border-bottom: solid 1px $color_border_light;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     &:before {
@@ -2209,7 +2151,7 @@ fieldset[disabled] {
     background: $color_black_haze_approx;
     margin: 30px 0 -20px;
     padding: 20px;
-    border-top: solid 1px $color_gallery_approx;
+    border-top: solid 1px $color_border_light;
     &:before {
       content: " ";
       display: table;
@@ -2245,21 +2187,21 @@ fieldset[disabled] {
 }
 .bar {
   position: relative;
-  background: $color_pelorous_approx;
+  background: $color_primary;
   padding: 60px 0;
   &.background-pentagon {
     background: $texture_2 center center repeat;
-    border-top: solid 1px $color_mountain_mist_approx;
-    border-bottom: solid 1px $color_mountain_mist_approx;
+    border-top: solid 1px $color_text_light;
+    border-bottom: solid 1px $color_text_light;
   }
   &.background-gray {
-    background: $color_gallery_approx;
+    background: $color_border_light;
   }
   &.background-gray-dark {
-    background: $color_fuscous_gray_approx;
+    background: $color_text_primary;
   }
   &.background-white {
-    background: $white;
+    background: white;
   }
   &.background-image-fixed-1 {
     background: $bg_1 center top no-repeat;
@@ -2273,25 +2215,25 @@ fieldset[disabled] {
   }
   &.color-white {
     h1 {
-      color: $white;
+      color: white;
     }
     h2 {
-      color: $white;
+      color: white;
     }
     h3 {
-      color: $white;
+      color: white;
     }
     h4 {
-      color: $white;
+      color: white;
     }
     h5 {
-      color: $white;
+      color: white;
     }
     h6 {
-      color: $white;
+      color: white;
     }
     p {
-      color: $white;
+      color: white;
     }
   }
   &.padding-big {
@@ -2311,7 +2253,7 @@ fieldset[disabled] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: $black;
+    background: black;
     opacity: 0.3;
     filter: alpha(opacity=30);
   }
@@ -2319,9 +2261,9 @@ fieldset[disabled] {
 .portfolio-showcase {
   margin: 15px 0 60px;
   p {
-    color: $color_mountain_mist_approx;
+    color: $color_border_light;
     &.lead {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       margin-bottom: 20px;
     }
     &.buttons {
@@ -2346,20 +2288,20 @@ fieldset[disabled] {
 }
 .packages {
   .package {
-    background: $white;
+    background: white;
     margin-top: 25px;
     margin-bottom: 20px;
     padding-bottom: 15px;
     text-align: center;
-    border: solid 1px $color_pelorous_approx;
+    border: solid 1px $color_primary;
     overflow: hidden;
     .package-header {
       height: 57px;
-      color: $white;
+      color: white;
       line-height: 57px;
-      background: $color_pelorous_approx;
+      background: $color_primary;
       h5 {
-        color: $white;
+        color: white;
         text-transform: uppercase;
         font-weight: bold;
         line-height: 57px;
@@ -2367,16 +2309,16 @@ fieldset[disabled] {
         letter-spacing: 0.08em;
       }
       &.light-gray {
-        background: $color_gallery_approx;
+        background: $color_border_light;
         h5 {
-          color: $color_fuscous_gray_approx;
+          color: $color_text_primary;
         }
       }
     }
     .price {
       line-height: 120px;
       height: 100px;
-      color: $white;
+      color: white;
       font-weight: 400;
       h4 {
         display: inline;
@@ -2386,7 +2328,7 @@ fieldset[disabled] {
       }
       .period {
         line-height: normal;
-        color: $color_mountain_mist_approx;
+        color: $color_border_light;
       }
     }
     ul {
@@ -2397,7 +2339,7 @@ fieldset[disabled] {
         padding-bottom: 10px;
         width: 80%;
         margin: auto;
-        border-bottom: 1px dotted $color_celeste_approx;
+        border-bottom: 1px dotted $color_faded;
         &:last-child {
           border-bottom: 0;
         }
@@ -2430,24 +2372,24 @@ fieldset[disabled] {
 #map {
   height: 300px;
   &.with-border {
-    border-top: solid 1px $color_pelorous_approx;
-    border-bottom: solid 1px $color_pelorous_approx;
+    border-top: solid 1px $color_primary;
+    border-bottom: solid 1px $color_primary;
   }
 }
 @media(min-width: 768px) {
   .nav-tabs-justified {
     > li > a {
-      border-bottom: 1px solid $color_pelorous_approx;
+      border-bottom: 1px solid $color_primary;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
       border-radius: 0 0 0 0;
     }
     > .active > a {
-      border-bottom-color: $white;
+      border-bottom-color: white;
       &:hover {
-        border-bottom-color: $white;
+        border-bottom-color: white;
       }
       &:focus {
-        border-bottom-color: $white;
+        border-bottom-color: white;
       }
     }
   }
@@ -2560,17 +2502,17 @@ fieldset[disabled] {
   }
   .nav-tabs.nav-justified {
     > li > a {
-      border-bottom: 1px solid $color_pelorous_approx;
+      border-bottom: 1px solid $color_primary;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
       border-radius: 0 0 0 0;
     }
     > .active > a {
-      border-bottom-color: $white;
+      border-bottom-color: white;
       &:hover {
-        border-bottom-color: $white;
+        border-bottom-color: white;
       }
       &:focus {
-        border-bottom-color: $white;
+        border-bottom-color: white;
       }
     }
   }
@@ -2611,7 +2553,7 @@ fieldset[disabled] {
       clear: both;
     }
     .posted {
-      color: $color_mountain_mist_approx;
+      color: $color_border_light;
       font-size: 12px;
     }
     .reply {
@@ -2624,7 +2566,7 @@ fieldset[disabled] {
   #comments {
     padding: 20px 0;
     margin-top: 20px;
-    border-top: solid 1px $color_gallery_approx;
+    border-top: solid 1px $color_border_light;
     &:before {
       content: " ";
       display: table;
@@ -2641,7 +2583,7 @@ fieldset[disabled] {
   #comment-form {
     padding: 20px 0;
     margin-top: 20px;
-    border-top: solid 1px $color_gallery_approx;
+    border-top: solid 1px $color_border_light;
     margin-bottom: 20px;
     &:before {
       content: " ";
@@ -2658,7 +2600,7 @@ fieldset[disabled] {
   }
 }
 .product {
-  background: $white;
+  background: white;
   border-bottom: solid 1px $color_mercury_approx;
   //Instead of the line below you could use @include box-sizing($bs)
   box-sizing: border-box;
@@ -2681,7 +2623,7 @@ fieldset[disabled] {
       text-transform: uppercase;
       letter-spacing: 0.08em;
       a {
-        color: $color_fuscous_gray_approx;
+        color: $color_text_primary;
         &:hover {
           text-decoration: none;
         }
@@ -2690,7 +2632,7 @@ fieldset[disabled] {
     p.price {
       font-size: 18px;
       del {
-        color: $color_mountain_mist_approx;
+        color: $color_border_light;
       }
     }
   }
@@ -2704,7 +2646,7 @@ fieldset[disabled] {
     width: 100%;
     border: solid 1px transparent;
     padding: 20px;
-    background: $white_90;
+    background: white_90;
     //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
     transition: all 0.2s ease-out;
     text-align: center;
@@ -2719,7 +2661,7 @@ fieldset[disabled] {
       clear: both;
       position: absolute;
       top: 0;
-      background: $white_50;
+      background: white_50;
     }
     .image img {
       //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
@@ -2732,7 +2674,7 @@ fieldset[disabled] {
   text-align: center;
   margin-bottom: 40px;
   a {
-    color: $color_mountain_mist_approx;
+    color: $color_border_light;
     text-decoration: underline;
   }
 }
@@ -2752,19 +2694,19 @@ fieldset[disabled] {
       height: 40px;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
       border-radius: 40px;
-      background: $color_celeste_approx;
+      background: $color_faded;
       line-height: 40px;
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       text-align: center;
       text-decoration: none;
       font-family: $sans1, $sans2, $sans3, $default_sans;
       &.active {
-        background: $color_pelorous_approx;
-        color: $white;
+        background: $color_primary;
+        color: white;
       }
       &:hover {
-        background: $color_pelorous_approx;
-        color: $white;
+        background: $color_primary;
+        color: white;
       }
     }
     input {
@@ -2788,7 +2730,7 @@ fieldset[disabled] {
     line-height: 26px;
     a {
       margin: 0 10px 0 0;
-      color: $white;
+      color: white;
       display: inline-block;
       width: 26px;
       height: 26px;
@@ -2825,7 +2767,7 @@ fieldset[disabled] {
 #checkout {
   .nav {
     margin-bottom: 20px;
-    border-bottom: solid 1px $color_pelorous_approx;
+    border-bottom: solid 1px $color_primary;
     li {
       height: 100%;
       a {
@@ -2883,42 +2825,42 @@ fieldset[disabled] {
   margin-bottom: 30px;
 }
 #get-it {
-  background: $color_pelorous_approx;
+  background: $color_primary;
   padding: 50px 0 30px;
-  color: $white;
+  color: white;
   text-align: center;
   h1 {
-    color: $white;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin: 0 0 20px;
   }
   h2 {
-    color: $white;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin: 0 0 20px;
   }
   h3 {
-    color: $white;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin: 0 0 20px;
   }
   h4 {
-    color: $white;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin: 0 0 20px;
   }
   h5 {
-    color: $white;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin: 0 0 20px;
   }
   h6 {
-    color: $white;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin: 0 0 20px;
@@ -2928,38 +2870,38 @@ fieldset[disabled] {
   }
 }
 #footer {
-  background: $color_fuscous_gray_approx;
+  background: $color_text_primary;
   padding: 50px 0;
-  color: $color_mountain_mist_approx;
+  color: $color_border_light;
   h1 {
-    color: $color_gallery_approx;
+    color: $color_border_light;
   }
   h2 {
-    color: $color_gallery_approx;
+    color: $color_border_light;
   }
   h3 {
-    color: $color_gallery_approx;
+    color: $color_border_light;
   }
   h4 {
-    color: $color_gallery_approx;
+    color: $color_border_light;
     font-size: 14px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
   h5 {
-    color: $color_gallery_approx;
+    color: $color_border_light;
   }
   h6 {
-    color: $color_gallery_approx;
+    color: $color_border_light;
   }
   ul {
     padding-left: 0;
     list-style: none;
     a {
-      color: $color_mountain_mist_approx;
+      color: $color_border_light;
       &:hover {
-        color: $color_pelorous_approx;
+        color: $color_primary;
         text-decoration: none;
       }
     }
@@ -2973,7 +2915,7 @@ fieldset[disabled] {
     padding: 7.5px;
     overflow: hidden;
     a {
-      border: solid 1 px $color_gallery_approx;
+      border: solid 1 px $color_border_light;
     }
     img {
       //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
@@ -2988,7 +2930,7 @@ fieldset[disabled] {
     clear: both;
     padding: 5px 0;
     margin-bottom: 10px;
-    border-bottom: solid 1px $color_fuscous_gray_approx;
+    border-bottom: solid 1px $color_text_primary;
     .image {
       float: left;
       width: 15%;
@@ -3005,7 +2947,7 @@ fieldset[disabled] {
         letter-spacing: 0.08em;
         font-size: 12px;
         a {
-          color: $color_gallery_approx;
+          color: $color_text_light;
         }
       }
     }
@@ -3019,17 +2961,17 @@ fieldset[disabled] {
     }
   }
   .social a {
-    color: $color_fuscous_gray_approx;
+    color: $color_text_primary;
     font-size: 25px;
     margin: 0 10px 0 0;
     &:hover {
-      color: $color_pelorous_approx;
+      color: $color_primary;
     }
   }
 }
 #copyright {
   background: $color_mine_shaft_approx;
-  color: $color_celeste_approx;
+  color: $color_faded;
   padding: 50px 0;
   font-size: 12px;
   line-height: 28px;
@@ -3056,8 +2998,8 @@ fieldset[disabled] {
   position: fixed;
   top: 140px;
   left: 0;
-  background: $white;
-  border: solid 1px $color_gallery_approx;
+  background: white;
+  border: solid 1px $color_border_light;
 }
 .breadcrumb {
   font-family: $sans1, $sans2, $sans3, $default_sans;
@@ -3071,10 +3013,10 @@ fieldset[disabled] {
   text-align: right;
   > li + li:before {
     content: " >\00a0";
-    color: $color_fuscous_gray_approx;
+    color: $color_text_primary;
   }
   > .active {
-    color: $color_mountain_mist_approx;
+    color: $color_border_light;
   }
 }
 .nav {
@@ -3082,37 +3024,37 @@ fieldset[disabled] {
     > a {
       padding: 10px 15px;
       &:hover {
-        background-color: $color_gallery_approx;
+        background-color: $color_border_light;
       }
       &:focus {
-        background-color: $color_gallery_approx;
+        background-color: $color_border_light;
       }
     }
     &.disabled > a {
-      color: $color_mountain_mist_approx;
+      color: $color_border_light;
       &:hover {
-        color: $color_mountain_mist_approx;
+        color: $color_border_light;
       }
       &:focus {
-        color: $color_mountain_mist_approx;
+        color: $color_border_light;
       }
     }
   }
   .open > a {
-    background-color: $color_gallery_approx;
-    border-color: $color_pelorous_approx;
+    background-color: $color_border_light;
+    border-color: $color_primary;
     &:hover {
-      background-color: $color_gallery_approx;
-      border-color: $color_pelorous_approx;
+      background-color: $color_border_light;
+      border-color: $color_primary;
     }
     &:focus {
-      background-color: $color_gallery_approx;
-      border-color: $color_pelorous_approx;
+      background-color: $color_border_light;
+      border-color: $color_primary;
     }
   }
 }
 .nav-tabs {
-  border-bottom: 1px solid $color_pelorous_approx;
+  border-bottom: 1px solid $color_primary;
   > li {
     float: left;
     margin-bottom: -1px;
@@ -3123,26 +3065,26 @@ fieldset[disabled] {
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
       border-radius: 0 0 0 0;
       &:hover {
-        border-color: $color_gallery_approx $color_gallery_approx $color_pelorous_approx;
+        border-color: $color_border_light $color_border_light $color_primary;
       }
     }
     &.active > a {
-      color: $color_fuscous_gray_approx;
-      background-color: $white;
-      border: 1px solid $color_pelorous_approx;
+      color: $color_text_primary;
+      background-color: white;
+      border: 1px solid $color_primary;
       border-bottom-color: transparent;
       cursor: default;
       &:hover {
-        color: $color_fuscous_gray_approx;
-        background-color: $white;
-        border: 1px solid $color_pelorous_approx;
+        color: $color_text_primary;
+        background-color: white;
+        border: 1px solid $color_primary;
         border-bottom-color: transparent;
         cursor: default;
       }
       &:focus {
-        color: $color_fuscous_gray_approx;
-        background-color: $white;
-        border: 1px solid $color_pelorous_approx;
+        color: $color_text_primary;
+        background-color: white;
+        border: 1px solid $color_primary;
         border-bottom-color: transparent;
         cursor: default;
       }
@@ -3166,12 +3108,12 @@ fieldset[disabled] {
         left: auto;
       }
       .active > a {
-        border: 1px solid $color_pelorous_approx;
+        border: 1px solid $color_primary;
         &:hover {
-          border: 1px solid $color_pelorous_approx;
+          border: 1px solid $color_primary;
         }
         &:focus {
-          border: 1px solid $color_pelorous_approx;
+          border: 1px solid $color_primary;
         }
       }
     }
@@ -3191,26 +3133,26 @@ fieldset[disabled] {
       margin-left: 2px;
     }
     &.active > a {
-      color: $white;
-      background-color: $color_pelorous_approx;
+      color: white;
+      background-color: $color_primary;
       &:hover {
-        color: $white;
-        background-color: $color_pelorous_approx;
+        color: white;
+        background-color: $color_primary;
       }
       &:focus {
-        color: $white;
-        background-color: $color_pelorous_approx;
+        color: white;
+        background-color: $color_primary;
       }
     }
   }
   > .active > a > .badge {
-    color: $color_pelorous_approx;
-    background-color: $white;
+    color: $color_primary;
+    background-color: white;
   }
 }
 .nav-justified {
   width: 100%;
-  border-bottom: solid 1px $color_pelorous_approx;
+  border-bottom: solid 1px $color_primary;
   > li {
     float: none;
     > a {
@@ -3230,12 +3172,12 @@ fieldset[disabled] {
     border-radius: 0;
   }
   > .active > a {
-    border: 1px solid $color_pelorous_approx;
+    border: 1px solid $color_primary;
     &:hover {
-      border: 1px solid $color_pelorous_approx;
+      border: 1px solid $color_primary;
     }
     &:focus {
-      border: 1px solid $color_pelorous_approx;
+      border: 1px solid $color_primary;
     }
   }
 }
@@ -3353,7 +3295,7 @@ fieldset[disabled] {
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
   //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-  box-shadow: inset 0 1px 0 $white_10, 0 1px 0 $white_10;
+  box-shadow: inset 0 1px 0 white_10, 0 1px 0 white_10;
   margin-top: 14px;
   margin-bottom: 14px;
 }
@@ -3374,11 +3316,11 @@ fieldset[disabled] {
   margin-bottom: 21px;
 }
 .navbar-default {
-  background-color: $white;
-  border-color: $color_celeste_approx;
+  background-color: white;
+  border-color: $color_faded;
   border-bottom: none;
   .navbar-brand {
-    color: $color_fuscous_gray_approx;
+    color: $color_text_primary;
     &:hover {
       color: $color_masala_approx;
       background-color: transparent;
@@ -3388,56 +3330,54 @@ fieldset[disabled] {
       background-color: transparent;
     }
   }
-  .navbar-text {
-    color: $color_tapa_approx;
-  }
+
   .navbar-nav {
     > {
       .active > a {
-        color: $white;
-        background-color: $color_pelorous_approx;
+        color: white;
+        background-color: $color_primary;
         &:hover {
-          color: $white;
-          background-color: $color_pelorous_approx;
+          color: white;
+          background-color: $color_primary;
         }
         &:focus {
-          color: $white;
-          background-color: $color_pelorous_approx;
+          color: white;
+          background-color: $color_primary;
         }
       }
       .disabled > a {
-        color: $color_celeste_approx;
+        color: $color_faded;
         background-color: transparent;
         &:hover {
-          color: $color_celeste_approx;
+          color: $color_faded;
           background-color: transparent;
         }
         &:focus {
-          color: $color_celeste_approx;
+          color: $color_faded;
           background-color: transparent;
         }
       }
       .open > a {
-        background-color: $color_pelorous_approx;
-        color: $white;
+        background-color: $color_primary;
+        color: white;
         &:hover {
-          background-color: $color_pelorous_approx;
-          color: $white;
+          background-color: $color_primary;
+          color: white;
         }
         &:focus {
-          background-color: $color_pelorous_approx;
-          color: $white;
+          background-color: $color_primary;
+          color: white;
         }
       }
     }
     > li > a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       &:hover {
-        color: $color_fuscous_gray_approx;
+        color: $color_text_primary;
         background-color: $color_half_baked_approx;
       }
       &:focus {
-        color: $color_fuscous_gray_approx;
+        color: $color_text_primary;
         background-color: $color_half_baked_approx;
       }
     }
@@ -3445,42 +3385,42 @@ fieldset[disabled] {
   .navbar-toggle {
     border-color: $color_alto_approx;
     &:hover {
-      background-color: $color_pelorous_approx;
+      background-color: $color_primary;
     }
     &:focus {
-      background-color: $color_pelorous_approx;
+      background-color: $color_primary;
     }
     .icon-bar {
       background-color: $color_suva_gray_approx;
     }
   }
   .navbar-collapse {
-    border-color: $color_celeste_approx;
+    border-color: $color_faded;
   }
   .navbar-form {
-    border-color: $color_celeste_approx;
+    border-color: $color_faded;
   }
   .navbar-link {
-    color: $color_fuscous_gray_approx;
+    color: $color_text_primary;
     &:hover {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
     }
   }
   .btn-link {
-    color: $color_fuscous_gray_approx;
+    color: $color_text_primary;
     &:hover {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
     }
     &:focus {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
     }
   }
   .btn-link[disabled] {
     &:hover {
-      color: $color_celeste_approx;
+      color: $color_faded;
     }
     &:focus {
-      color: $color_celeste_approx;
+      color: $color_faded;
     }
   }
 }
@@ -3492,17 +3432,17 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 1px solid $color_gallery_approx;
+  border-top: 1px solid $color_border_light;
 }
 .dropdown-menu {
   z-index: 1000;
   font-size: 14px;
-  background-color: $white;
-  border: 1px solid $black_15;
+  background-color: white;
+  border: 1px solid black_15;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 0;
   //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-  box-shadow: 0 6px 12px $black_17_5;
+  box-shadow: 0 6px 12px black_17_5;
   &.pull-right {
     right: 0;
     left: auto;
@@ -3535,10 +3475,10 @@ label {
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 0;
   &:focus {
-    border-color: $color_pelorous_approx;
+    border-color: $color_primary;
     outline: 0;
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-    box-shadow: inset 0 1px 1px $black_7_5, 0 0 8px $color_pelorous_60_approx;
+    box-shadow: inset 0 1px 1px black_7_5, 0 0 8px $color_pelorous_60_approx;
   }
 }
 .form-group {
@@ -3546,7 +3486,7 @@ label {
 }
 .pager {
   margin: 20px 0;
-  border-top: solid 1px $color_gallery_approx;
+  border-top: solid 1px $color_border_light;
   padding-top: 20px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -3554,47 +3494,47 @@ label {
   li {
     display: inline;
     > a {
-      background-color: $white;
-      border: 1px solid $color_pelorous_approx;
+      background-color: white;
+      border: 1px solid $color_primary;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
       border-radius: 0;
       &:hover {
         text-decoration: none;
-        color: $white;
-        background-color: $color_pelorous_approx;
+        color: white;
+        background-color: $color_primary;
       }
       &:focus {
         text-decoration: none;
-        color: $white;
-        background-color: $color_pelorous_approx;
+        color: white;
+        background-color: $color_primary;
       }
     }
     > span {
-      background-color: $white;
-      border: 1px solid $color_pelorous_approx;
+      background-color: white;
+      border: 1px solid $color_primary;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
       border-radius: 0;
     }
   }
   .disabled {
     > a {
-      color: $color_mountain_mist_approx;
-      background-color: $white;
+      color: $color_border_light;
+      background-color: white;
       border-color: $color_alto_approx;
       &:hover {
-        color: $color_mountain_mist_approx;
-        background-color: $white;
+        color: $color_border_light;
+        background-color: white;
         border-color: $color_alto_approx;
       }
       &:focus {
-        color: $color_mountain_mist_approx;
-        background-color: $white;
+        color: $color_border_light;
+        background-color: white;
         border-color: $color_alto_approx;
       }
     }
     > span {
-      color: $color_mountain_mist_approx;
-      background-color: $white;
+      color: $color_border_light;
+      background-color: white;
       border-color: $color_alto_approx;
     }
   }
@@ -3609,16 +3549,16 @@ label {
       padding: 6px 12px;
       line-height: 1.42857143;
       text-decoration: none;
-      color: $color_pelorous_approx;
-      background-color: $white;
+      color: $color_primary;
+      background-color: white;
       border: 1px solid $color_alto_approx;
       &:hover {
-        color: $color_pelorous_approx;
+        color: $color_primary;
         background-color: $color_regent_st_blue_approx;
         border-color: $color_alto_approx;
       }
       &:focus {
-        color: $color_pelorous_approx;
+        color: $color_primary;
         background-color: $color_regent_st_blue_approx;
         border-color: $color_alto_approx;
       }
@@ -3627,16 +3567,16 @@ label {
       padding: 6px 12px;
       line-height: 1.42857143;
       text-decoration: none;
-      color: $color_pelorous_approx;
-      background-color: $white;
+      color: $color_primary;
+      background-color: white;
       border: 1px solid $color_alto_approx;
       &:hover {
-        color: $color_pelorous_approx;
+        color: $color_primary;
         background-color: $color_regent_st_blue_approx;
         border-color: $color_alto_approx;
       }
       &:focus {
-        color: $color_pelorous_approx;
+        color: $color_primary;
         background-color: $color_regent_st_blue_approx;
         border-color: $color_alto_approx;
       }
@@ -3646,69 +3586,69 @@ label {
     .active {
       > a {
         z-index: 2;
-        color: $white;
-        background-color: $color_pelorous_approx;
-        border-color: $color_pelorous_approx;
+        color: white;
+        background-color: $color_primary;
+        border-color: $color_primary;
         &:hover {
           z-index: 2;
-          color: $white;
-          background-color: $color_pelorous_approx;
-          border-color: $color_pelorous_approx;
+          color: white;
+          background-color: $color_primary;
+          border-color: $color_primary;
         }
         &:focus {
           z-index: 2;
-          color: $white;
-          background-color: $color_pelorous_approx;
-          border-color: $color_pelorous_approx;
+          color: white;
+          background-color: $color_primary;
+          border-color: $color_primary;
         }
       }
       > span {
         z-index: 2;
-        color: $white;
-        background-color: $color_pelorous_approx;
-        border-color: $color_pelorous_approx;
+        color: white;
+        background-color: $color_primary;
+        border-color: $color_primary;
         &:hover {
           z-index: 2;
-          color: $white;
-          background-color: $color_pelorous_approx;
-          border-color: $color_pelorous_approx;
+          color: white;
+          background-color: $color_primary;
+          border-color: $color_primary;
         }
         &:focus {
           z-index: 2;
-          color: $white;
-          background-color: $color_pelorous_approx;
-          border-color: $color_pelorous_approx;
+          color: white;
+          background-color: $color_primary;
+          border-color: $color_primary;
         }
       }
     }
     .disabled {
       > span {
-        color: $color_mountain_mist_approx;
-        background-color: $white;
+        color: $color_border_light;
+        background-color: white;
         border-color: $color_alto_approx;
         &:hover {
-          color: $color_mountain_mist_approx;
-          background-color: $white;
+          color: $color_border_light;
+          background-color: white;
           border-color: $color_alto_approx;
         }
         &:focus {
-          color: $color_mountain_mist_approx;
-          background-color: $white;
+          color: $color_border_light;
+          background-color: white;
           border-color: $color_alto_approx;
         }
       }
       > a {
-        color: $color_mountain_mist_approx;
-        background-color: $white;
+        color: $color_text_light;
+        background-color: white;
         border-color: $color_alto_approx;
         &:hover {
-          color: $color_mountain_mist_approx;
-          background-color: $white;
+          color: $color_text_light;
+          background-color: white;
           border-color: $color_alto_approx;
         }
         &:focus {
-          color: $color_mountain_mist_approx;
-          background-color: $white;
+          color: $color_text_light;
+          background-color: white;
           border-color: $color_alto_approx;
         }
       }
@@ -3823,28 +3763,28 @@ h6 {
   font-style: italic;
 }
 .text-primary {
-  color: $color_pelorous_approx;
+  color: $color_primary;
 }
 .bg-primary {
-  color: $white;
-  background-color: $color_pelorous_approx;
+  color: white;
+  background-color: $color_primary;
 }
 abbr[title] {
-  border-bottom: 1px dotted $color_mountain_mist_approx;
+  border-bottom: 1px dotted $color_text_light;
 }
 abbr[data-original-title] {
-  border-bottom: 1px dotted $color_mountain_mist_approx;
+  border-bottom: 1px dotted $color_text_light;
 }
 blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
   font-size: 14px;
-  border-left: 5px solid $color_pelorous_approx;
+  border-left: 5px solid $color_primary;
   footer {
     display: block;
     font-size: 80%;
     line-height: 1.42857143;
-    color: $color_mountain_mist_approx;
+    color: $color_border_light;
     &:before {
       content: '\2014 \00A0';
     }
@@ -3853,7 +3793,7 @@ blockquote {
     display: block;
     font-size: 80%;
     line-height: 1.42857143;
-    color: $color_mountain_mist_approx;
+    color: $color_text_light;
     &:before {
       content: '\2014 \00A0';
     }
@@ -3862,17 +3802,17 @@ blockquote {
     display: block;
     font-size: 80%;
     line-height: 1.42857143;
-    color: $color_mountain_mist_approx;
+    color: $color_text_light;
     &:before {
       content: '\2014 \00A0';
     }
   }
   &.pull-right {
-    border-right: 5px solid $color_pelorous_approx;
+    border-right: 5px solid $color_primary;
   }
 }
 .blockquote-reverse {
-  border-right: 5px solid $color_pelorous_approx;
+  border-right: 5px solid $color_primary;
 }
 address {
   margin-bottom: 20px;
@@ -3909,38 +3849,38 @@ address {
     }
   }
   &.accordion .panel {
-    border-color: $color_celeste_approx;
+    border-color: $color_faded;
   }
 }
 .panel-primary {
-  border-color: $color_pelorous_approx;
+  border-color: $color_primary;
   > {
     .panel-heading {
-      color: $white;
-      background-color: $color_pelorous_approx;
-      border-color: $color_pelorous_approx;
+      color: white;
+      background-color: $color_primary;
+      border-color: $color_primary;
       .badge {
-        color: $color_pelorous_approx;
-        background-color: $white;
+        color: $color_primary;
+        background-color: white;
       }
       + .panel-collapse > .panel-body {
-        border-top-color: $color_pelorous_approx;
+        border-top-color: $color_primary;
       }
     }
     .panel-footer + .panel-collapse > .panel-body {
-      border-bottom-color: $color_pelorous_approx;
+      border-bottom-color: $color_primary;
     }
   }
   .panel-title {
     font-weight: 300;
     a:hover {
-      color: $white;
+      color: white;
       text-decoration: none;
     }
   }
 }
 .progress-bar-primary {
-  background-color: $color_pelorous_approx;
+  background-color: $color_primary;
 }
 .yamm {
   .nav {
@@ -3989,13 +3929,13 @@ ul.list-style-none {
     margin-bottom: 20px;
     letter-spacing: 0.08em;
     a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
     }
   }
   .text {
     margin-bottom: 20px;
     p {
-      color: $color_mountain_mist_approx;
+      color: $color_text_light;
       font-size: 12px;
       margin-bottom: 20px;
     }
@@ -4009,25 +3949,25 @@ ul.list-style-none {
 }
 .open > .dropdown-toggle {
   &.btn-template-main {
-    color: $color_pelorous_approx;
+    color: $color_primary;
     background-color: $color_mercury_approx;
     border-color: $color_paradiso_approx;
     background-image: none;
   }
   &.btn-template-transparent-primary {
-    color: $white;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
     border-color: $color_bon_jour_approx;
     background-image: none;
   }
   &.btn-template-transparent-black {
-    color: $white;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
     border-color: $color_bon_jour_approx;
     background-image: none;
   }
   &.btn-template-primary {
-    color: $white;
+    color: white;
     background-color: $color_jelly_bean_approx;
     border-color: $color_paradiso_approx;
     background-image: none;
@@ -4037,7 +3977,7 @@ ul.list-style-none {
   padding: 20px;
   background: $color_black_haze_approx;
   margin: 0;
-  border-bottom: solid 1px $color_gallery_approx;
+  border-bottom: solid 1px $color_border_light;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -4052,9 +3992,9 @@ ul.list-style-none {
       line-height: 25px;
       margin: 0 5px 0 0;
       font-size: 18px;
-      color: $color_pelorous_approx;
+      color: $color_primary;
       padding: 0;
-      background: $white;
+      background: white;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
       border-radius: 13px;
       vertical-align: middle;
@@ -4064,10 +4004,10 @@ ul.list-style-none {
     }
   }
   .owl-page.active span {
-    background: $color_pelorous_approx;
+    background: $color_primary;
   }
   &.clickable .owl-page:hover span {
-    background: $color_pelorous_approx;
+    background: $color_primary;
   }
 }
 .owl-theme .owl-controls {
@@ -4081,9 +4021,9 @@ ul.list-style-none {
       line-height: 25px;
       margin: 0 5px 0 0;
       font-size: 18px;
-      color: $color_pelorous_approx;
+      color: $color_primary;
       padding: 0;
-      background: $white;
+      background: white;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
       border-radius: 13px;
       vertical-align: middle;
@@ -4093,17 +4033,17 @@ ul.list-style-none {
     }
   }
   .owl-page.active span {
-    background: $color_pelorous_approx;
+    background: $color_primary;
   }
   &.clickable .owl-page:hover span {
-    background: $color_pelorous_approx;
+    background: $color_primary;
   }
 }
 .team-member-detail .social {
   margin-bottom: 20px;
   a {
     margin: 0 10px 0 0;
-    color: $white;
+    color: white;
     display: inline-block;
     width: 26px;
     height: 26px;
@@ -4144,7 +4084,7 @@ ul.list-style-none {
 }
 .portfolio-project .project-more {
   h4 {
-    color: $color_fuscous_gray_approx;
+    color: $color_text_primary;
     text-transform: uppercase;
     margin-bottom: 0;
     text-align: left;
@@ -4152,7 +4092,7 @@ ul.list-style-none {
     letter-spacing: 0.08em;
   }
   p {
-    color: $color_mountain_mist_approx;
+    color: $color_text_light;
     padding: 10px 0;
     margin-bottom: 20px;
     text-align: left;
@@ -4164,14 +4104,15 @@ ul.list-style-none {
     display: inline-block;
     width: 50px;
     height: 50px;
-    color: $color_fuscous_gray_approx;
+    color: $color_text_primary;
     line-height: 50px;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    @include border-radius(25px);
     border-radius: 25px;
-    border: solid 1px $color_fuscous_gray_approx;
+    border: solid 1px $color_text_primary;
   }
   h4 {
-    color: $color_fuscous_gray_approx;
+    color: $color_text_primary;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     line-height: 1.5;
@@ -4188,9 +4129,9 @@ ul.list-style-none {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       &:hover {
-        color: $color_pelorous_approx;
+        color: $color_primary;
       }
     }
   }
@@ -4198,14 +4139,14 @@ ul.list-style-none {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       &:hover {
-        color: $color_pelorous_approx;
+        color: $color_primary;
       }
     }
   }
   .author-category {
-    color: $color_mountain_mist_approx;
+    color: $color_text_light;
     text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 0.08em;
@@ -4231,10 +4172,10 @@ ul.list-style-none {
     text-align: right;
   }
   .date-comments a {
-    color: $color_mountain_mist_approx;
+    color: $color_text_light;
     margin-right: 20px;
     &:hover {
-      color: $color_pelorous_approx;
+      color: $color_primary;
     }
   }
 }
@@ -4246,9 +4187,9 @@ ul.list-style-none {
     letter-spacing: 0.08em;
     text-align: center;
     a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       &:hover {
-        color: $color_pelorous_approx;
+        color: $color_primary;
       }
     }
   }
@@ -4257,14 +4198,14 @@ ul.list-style-none {
     letter-spacing: 0.08em;
     text-align: center;
     a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       &:hover {
-        color: $color_pelorous_approx;
+        color: $color_primary;
       }
     }
   }
   .author-category {
-    color: $color_mountain_mist_approx;
+    color: $color_text_light;
     text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 0.08em;
@@ -4293,10 +4234,10 @@ ul.list-style-none {
     margin-top: 20px;
   }
   .date-comments a {
-    color: $color_mountain_mist_approx;
+    color: $color_text_light;
     margin-right: 20px;
     &:hover {
-      color: $color_pelorous_approx;
+      color: $color_primary;
     }
   }
 }
@@ -4308,15 +4249,15 @@ ul.list-style-none {
     font-size: 24px;
     letter-spacing: 0.08em;
     a {
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       &:hover {
-        color: $color_pelorous_approx;
+        color: $color_primary;
       }
     }
   }
   .author-category {
     float: left;
-    color: $color_mountain_mist_approx;
+    color: $color_text_light;
     text-transform: uppercase;
     font-weight: 300;
     font-size: 12px;
@@ -4329,10 +4270,10 @@ ul.list-style-none {
     float: right;
     font-size: 12px;
     a {
-      color: $color_mountain_mist_approx;
+      color: $color_text_light;
       margin-right: 20px;
       &:hover {
-        color: $color_pelorous_approx;
+        color: $color_primary;
       }
     }
   }
@@ -4391,23 +4332,23 @@ ul.list-style-none {
   display: block;
   border: solid 1px transparent;
   &.active {
-    border-color: $color_pelorous_approx;
+    border-color: $color_primary;
   }
 }
 #order-summary table {
   margin-top: 20px;
   td {
-    color: $color_mountain_mist_approx;
+    color: $color_border_light;
   }
   tr.total {
     td {
       font-size: 18px;
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       font-weight: 700;
     }
     th {
       font-size: 18px;
-      color: $color_fuscous_gray_approx;
+      color: $color_text_primary;
       font-weight: 700;
     }
   }

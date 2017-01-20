@@ -11,11 +11,12 @@ section.post
         p.author-category
           span.author Автор: #{issue.user.full_name }
           br
-          span #{'Категорія: '}
+          span  #{'Категорія: '}
           = link_to issue.category.name, '#'
         p.date-comments
           i.fa.fa-calendar-o
-          span  Додано: #{time_ago_in_words(issue.created_at)} тому
+          span  #{time_ago_in_words(issue.created_at)} тому
           br
-          span Локація: #{issue.location}
-      p.intro #{issue.description}
+          i.fa.fa-location-arrow
+          span  #{issue.location}
+      p #{issue.description}
