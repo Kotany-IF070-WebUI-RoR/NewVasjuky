@@ -11,7 +11,7 @@
       li
         = link_to 'Всі звернення', account_admin_issues_path
       li
-          = link_to('Вийти', destroy_user_session_path, :method => :delete)
+          = link_to('Вийти', destroy_user_session_path, method: :delete)
 - else
     li
       = link_to 'Надіслати звернення', new_issue_path
@@ -24,8 +24,8 @@
           img.user_img src='#{current_user.image_url}'
           = current_user.first_name
         li
-          = link_to 'Мої звернення', '#'
+          = link_to 'Мої звернення', user_path(current_user)
         li
           = link_to 'Всі звернення', issues_path
         li
-          = link_to('Вийти', destroy_user_session_path, :method => :delete)
+          = link_to('Вийти', destroy_user_session_path, method: :delete)
