@@ -5,7 +5,7 @@ describe CommentsController, type: :controller do
   let(:reporter_2) { create(:user, :reporter) }
   let(:banned_reporter) { create(:user, :reporter, banned: true) }
   let(:admin) { create(:user, :admin) }
-  let(:moderator) { create(:user, :admin) }
+  let(:moderator) { create(:user, :moderator) }
   let(:commentable) { create(:issue, user: reporter_1) }
   let!(:comment) do
     create(:comment, user: reporter_1, commentable: commentable)
