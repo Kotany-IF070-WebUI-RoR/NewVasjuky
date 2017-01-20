@@ -1,1 +1,4 @@
-Користувач #{@issue.name} подав нову скаргу!
+| Користувач #{@user.full_name} подав 
+= link_to issue_url(@issue)
+  | нову скаргу
+| .

@@ -30,34 +30,3 @@ p
   br
   b Контактний e-mail:
   i   #{@issue.email}
-
-/h1 NEWVASJUKY
-/small
-  = link_to 'ГОЛОВНА', root_url
-  span  | 
-  = link_to 'КОРИСТУВАЧІ', account_admin_users_url
-  span  | 
-  = link_to 'СКАРГИ', account_admin_issues_url
-/p
-  | Користувач подав 
-  = link_to issue_url(@issue)
-    | нову скаргу
-  | .
-/h2 #{@issue.title}
-/p
-  i #{@issue.description}
-/p
-  b Категорія:
-  i   #{@issue.category.name}
-  br
-  b Подавач:
-  i   #{@issue.name}
-  br
-  b Адреса:
-  i   #{@issue.location}
-  br
-  b Контактний телефон:
-  i   #{@issue.phone}
-  br
-  b Контактний e-mail:
-  i   #{@issue.email}
