@@ -27,7 +27,7 @@ module Account
         return unless @user.reporter?
         @user.toggle!(:banned)
         redirect_back(fallback_location: root_path)
-        if @user.banned == true
+        if @user.banned?
           flash[:notice] = "Користувач #{@user.full_name} заблокований"
         else
           flash[:notice] = "Користувач #{@user.full_name} розблокований"
