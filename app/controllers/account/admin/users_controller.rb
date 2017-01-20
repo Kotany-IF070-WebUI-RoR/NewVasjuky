@@ -14,16 +14,24 @@ module Account
         @user = User.find(params[:id])
 
         if @user.update_attributes(user_params)
-          redirect_to request.referer
+          redirect_back(fallback_location: root_path)
         else
-          redirect_to request.referer, alert: 'Не можу змінити роль'
+          redirect_back(fallback_location: root_path)
+          flash[:alert] = 'Не можу змінити роль'
         end
       end
 
       def toggle_ban
         @user = User.find(params[:id])
+
+        return unless @user.reporter?
         @user.toggle!(:banned)
-        redirect_to request.referer
+        redirect_back(fallback_location: root_path)
+        if @user.banned?
+          flash[:notice] = "Користувач #{@user.full_name} заблокований"
+        else
+          flash[:notice] = "Користувач #{@user.full_name} розблокований"
+        end
       end
 
       private
