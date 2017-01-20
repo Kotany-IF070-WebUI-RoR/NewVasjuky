@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 class CommentsController < ApplicationController
-  include CommentsHelper
   before_action :authenticate_user!
 
   def create
@@ -8,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     respond_to do |format|
       if @comment.save
-        format.html { comments_list(1) }
+        format.html { comments_list }
       else
         format.json { comment_error }
       end
@@ -21,7 +20,7 @@ class CommentsController < ApplicationController
     if @comment.can_delete?(current_user)
       @comment.destroy
       respond_to do |format|
-        format.html { comments_list(params[:page]) }
+        format.html { comments_list }
       end
     else
       redirect_to @commentable
@@ -30,9 +29,9 @@ class CommentsController < ApplicationController
 
   private
 
-  def comments_list(page = 1)
+  def comments_list
     render partial: 'comments/comments_list',
-           locals: { commentable: @commentable, page: page }
+           locals: { commentable: @commentable }
   end
 
   def comment_error

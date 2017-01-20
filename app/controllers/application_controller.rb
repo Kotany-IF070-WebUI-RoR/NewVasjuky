@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   after_action :prepare_unobtrusive_flash
 
   def banned?
-    return unless user_signed_in? && current_user.banned?
+    return unless current_user.banned?
     sign_out current_user
     flash[:notice] = nil
     flash.now[:alert] = 'Цей аккаунт був заблокований!'
@@ -19,5 +19,9 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= super || User.new
+  end
+
+  def user_signed_in?
+    current_user.persisted?
   end
 end

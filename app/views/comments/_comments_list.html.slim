@@ -2,8 +2,4 @@
   .comments_list
     h3 Коментарі:
     ul.comments_list
-      = render partial: 'comments/comment',
-           collection: paginate_comments_of(commentable)
-    = paginate paginate_comments_of(commentable),
-            params: {controller: 'issues', action: 'show', id: commentable},
-            theme: 'twitter-bootstrap-3'
+      = render partial: 'comments/comment', collection: commentable.comments.ordered
