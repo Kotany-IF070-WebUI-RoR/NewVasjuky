@@ -45,4 +45,16 @@ class Issue < ApplicationRecord
   def status_name
     STATUSES[status]
   end
+
+  def published?
+    %w(open close).include? status
+  end
+
+  def can_read_when_unpublished?(user)
+    user.admin? || user.moderator? || (self.user == user)
+  end
+
+  def can_read?(user)
+    published? || can_read_when_unpublished?(user)
+  end
 end

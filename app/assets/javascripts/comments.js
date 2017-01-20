@@ -44,8 +44,7 @@ function confirm_removing(remove_link) {
 }
 
 function remove_comment(remove_link) {
-    return $.ajax( { url: '/comments/' + remove_link.id,
-                    method: 'DELETE', data: {page: get_commets_page()} });
+    return $.ajax( { url: '/comments/' + remove_link.id, method: 'DELETE' });
 }
 
 
@@ -92,11 +91,3 @@ function remove_error_status(form) {
         $(this).find('.help-block').remove();
     })
 }
-
-function get_commets_page() {
-    var results = new RegExp('[\?&]page=([^&#]*)').exec(window.location.href);
-    if (results !== null) {
-        return results[1] || 1
-    }
-}
-
