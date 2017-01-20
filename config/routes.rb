@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks' },
              skip: [:sessions]
@@ -33,5 +34,6 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:destroy]
   resources :users, only: [:show]
+  get '/map', to: 'static_pages#map'
   root to: 'home#index'
 end
