@@ -56,3 +56,15 @@
 .unobtrusive-flash-container.fixed .alert {
   position: fixed;
 }
+
+#issues-map {
+  height:500px;
+  
+  .leaflet-map-pane {
+      z-index: 2 !important;
+  }
+
+  .leaflet-google-layer {
+      z-index: 1 !important;
+  }
+}

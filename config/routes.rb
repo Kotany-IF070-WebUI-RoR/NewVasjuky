@@ -34,4 +34,5 @@ Rails.application.routes.draw do
   resources :comments, only: [:destroy]
   resources :users, only: [:show]
   root to: 'home#index'
+  get '/map', to: 'issues#map'
 end

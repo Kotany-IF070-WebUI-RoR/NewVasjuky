@@ -1,0 +1,22 @@
+link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
+script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"
+script src="http://www.matchingnotes.com/javascripts/leaflet-google.js"
+
+h1 Мапа звернень
+#issues-map
+javascript: 
+
+  var map = new L.Map('issues-map', 
+            { center: new L.LatLng(50.1192478, 26.8197633), 
+              zoom: 9});
+  var googleLayer = new L.Google('ROADMAP');
+  map.addLayer(googleLayer);
+  
+  var markers = #{get_markers};
+  console.log(markers)
+  markers.forEach(function(coords){
+    L.marker(coords).addTo(map);
+  });
+
+  var bounds = new L.LatLngBounds(markers);
+  map.fitBounds(bounds);

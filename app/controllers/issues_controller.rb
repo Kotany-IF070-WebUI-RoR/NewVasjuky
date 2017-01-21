@@ -6,6 +6,10 @@ class IssuesController < ApplicationController
     @issues = Issue.approved.ordered.page(params[:page]).per(10)
   end
 
+  def map
+    @issues = Issue.all
+  end
+
   def new
     @issue = Issue.new
   end
@@ -33,4 +37,5 @@ class IssuesController < ApplicationController
                                   :category_id, :description, :attachment,
                                   :location, :title)
   end
+
 end
