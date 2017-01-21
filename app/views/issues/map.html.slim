@@ -4,6 +4,7 @@ script src="http://www.matchingnotes.com/javascripts/leaflet-google.js"
 
 h1 Мапа звернень
 #issues-map
+
 javascript: 
 
   var map = new L.Map('issues-map', 
@@ -13,10 +14,14 @@ javascript:
   map.addLayer(googleLayer);
   
   var markers = #{get_markers};
-  console.log(markers)
-  markers.forEach(function(coords){
-    L.marker(coords).addTo(map);
+  var bounds = [];
+  markers.forEach(function(issue){
+    var coords = issue.latlng
+    var marker = L.marker(coords).addTo(map);
+    var popup = L.popup()
+                  .setLatLng(coords)
+                  .setContent(issue.popup)
+    marker.bindPopup(popup);
+    bounds.push(coords)
   });
-
-  var bounds = new L.LatLngBounds(markers);
   map.fitBounds(bounds);
