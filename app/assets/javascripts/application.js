@@ -27,7 +27,7 @@
 //= require jquery.waypoints
 //= require owl.carousel.min
 //= require home.coffee
-//= require issues.coffee
+//= require issues.js
 //= require cocoon
 //= require users.coffee
 //= require comments

@@ -1,28 +1,29 @@
-h2 =@user.full_name
-.user-profile.row 
-  .user-photo.col-md-3.col-xs-12
-    =image_tag(@user.image_url)
-  .user-info.col-md-9.col-xs-12
-    p Електронна пошта: #{@user.email}
-    p Запис зареєстровано: #{l @user.created_at, format: :long}
-- if @issues.any?
-  .box.user-issues.col-xs-12
-    h4 Мої звернення:
-    .table-responsive
-      table.table.table-hover
-        thead
-          tr
-            th Звернення
-            th Назва
-            th Дата створення
-            th Статус
-            th Посилання
-
-        tbody
-          - @issues.each do |issue|
+.container
+  h2 =@user.full_name
+  .user-profile.row 
+    .user-photo.col-md-3.col-xs-12
+      =image_tag(@user.image_url)
+    .user-info.col-md-9.col-xs-12
+      p Електронна пошта: #{@user.email}
+      p Запис зареєстровано: #{l @user.created_at, format: :long}
+  - if @issues.any?
+    .box.user-issues.col-xs-12
+      h4 Мої звернення:
+      .table-responsive
+        table.table.table-hover
+          thead
             tr
-              td № #{issue.id}
-              td =issue.title
-              td =l issue.created_at, format: :long
-              td =show_issue_status(issue)
-              td =link_to 'Переглянути', issue_path(issue)
+              th Звернення
+              th Назва
+              th Дата створення
+              th Статус
+              th Посилання
+
+          tbody
+            - @issues.each do |issue|
+              tr
+                td № #{issue.id}
+                td =issue.title
+                td =l issue.created_at, format: :long
+                td =show_issue_status(issue)
+                td =link_to 'Переглянути', issue_path(issue)
