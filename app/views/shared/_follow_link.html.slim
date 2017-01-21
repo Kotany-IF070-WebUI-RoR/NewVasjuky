@@ -1,6 +1,6 @@
 -if !current_user.follows?(issue)
   = link_to 'Слідкувати', issue_follow_path(issue), method: :post,
-                      class: "btn btn-primary btn-#{ yield(:follow_btn_size) }"
+                      class: "btn btn-info pull-right btn-#{ yield(:follow_btn_size) }"
 -elsif current_user.follows?(issue)
   = link_to 'Відписатися', issue_unfollow_path(issue), method: :post,
-                      class: "btn btn-warning btn-#{ yield(:follow_btn_size) }"
+                      class: "btn btn-warning pull-right btn-#{ yield(:follow_btn_size) }"

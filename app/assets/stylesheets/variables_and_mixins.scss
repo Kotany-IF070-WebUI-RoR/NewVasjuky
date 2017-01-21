@@ -86,3 +86,7 @@ $bg_2: url("/images/fixed-background-2.jpg");
   transition: opacity 0.2s ease-in-out;
 }
 
+@mixin scaling {
+  transform-origin: top left;
+  transform: scale(.7);
+}

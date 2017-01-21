@@ -1,7 +1,5 @@
 - content_for :javascript do
   = javascript_include_tag 'geocoding'
-  javascript:
-    $('document').ready(validate_attachment());
 #heading-breadcrumbs
   .container
     .row
@@ -37,3 +35,6 @@
               = simple_fields_for :issue_attachments do |ia|
                 = link_to_add_association 'Додати зображення', f, :issue_attachments
             = f.button :submit, class: 'btn btn-primary'
+
+javascript:
+  $('document').ready(validate_attachment());

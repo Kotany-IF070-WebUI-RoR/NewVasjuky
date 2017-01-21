@@ -1,23 +1,27 @@
 - @issues.each do |issue|
   section.post
     .row
-      .col-md-4
-        .image
+      .media.issue-container
+        .media-left.media-top.col-md-4.col-sm-4
           = link_to issue
-            .attachment.media-object= image_tag issue.first_attached_image
-      .col-md-8
-        h2
-          = link_to issue.title, issue
-        .clearfix
-          p.author-category
-            span.author Автор: #{issue.user.full_name }
-            br
-            span  #{'Категорія: '}
-            = link_to issue.category.name, category_path(issue.category)
-          p.date-comments
-            i.fa.fa-calendar-o
-            span  #{time_ago_in_words(issue.created_at)} тому
-            br
-            i.fa.fa-location-arrow
-            span  #{issue.location}
-        p #{issue.description}
+            = image_tag issue.first_attached_image, class: 'img-responsive attachment media-object'
+        .media-body
+          h2
+            = link_to issue.title, issue
+          .clearfix
+            p.author-category
+              span.author Автор:
+              br
+              span #{issue.user.full_name }
+              br
+              span  #{'Категорія: '}
+              br
+              = link_to issue.category.name, category_path(issue.category)
+            p.date-comments.info-group-wrapper
+              i.fa.fa-calendar-o
+              span  #{time_ago_in_words(issue.created_at)} тому
+              br
+              i.fa.fa-location-arrow
+              span  #{issue.location}
+          p.issue-description
+            = truncate("#{issue.description}", length: 130)

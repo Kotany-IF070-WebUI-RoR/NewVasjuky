@@ -9,7 +9,7 @@ class Issue < ApplicationRecord
   enum status: [:pending, :declined, :open, :closed]
   STATUSES = { 'open' => 'Запит прийнято',
                'pending' => 'Очікує на модерацію',
-               'declined' => 'Запит відмовлено',
+               'declined' => 'Запит відхилено',
                'closed' => 'Запит вирішено' }.freeze
   REGEXP_NAME = /\p{L}/
   REGEXP_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.\w+\z/i

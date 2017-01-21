@@ -1,11 +1,9 @@
-.comment-form
-  h3
-    | Прокоментуйте:
+.comment-form.col-md-8
+  h3 Залиште коментар:
   = simple_form_for([commentable, Comment.new], remote: true) do |f|
-    = f.input :title,  label: false,
-            placeholder: 'Заголовок (максимум 150 символів)', as: :string
-    = f.input :content, as: :text, label: false,
-            placeholder: 'Коментар (максимум 3000 символів)'
+    = f.input :title,  label: 'Заголовок',
+            placeholder: 'максимум 150 символів', as: :string
+    = f.input :content, as: :text, label: 'Коментар',
+            placeholder: 'максимум 3000 символів'
     = f.button :submit, value: 'Коментувати',
             class: 'btn btn-template-main'
-  p[id="comment_result"]

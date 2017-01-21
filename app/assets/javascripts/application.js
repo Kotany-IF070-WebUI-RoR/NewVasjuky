@@ -28,8 +28,7 @@
 //= require issues.coffee
 //= require cocoon
 //= require users.coffee
-//= require comments.js
-//= require flash.js
-//= require validate_attachment.js
+//= require comments
 //= require flash
+//= require validate_attachment
 //= require front

@@ -13,8 +13,12 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.find(params[:id])
+    category_id = @issue.category_id
+    @relevant_issues = find_relevant(category_id, @issue.id).limit(4)
     redirect_back(fallback_location: root_path) unless \
-                                                  @issue.can_read?(current_user)
+                                                @issue.can_read?(current_user)
+    status = @issue.status
+    @issue_label = issue_status(status)
   end
 
   def followees
@@ -43,5 +47,19 @@ class IssuesController < ApplicationController
                                     :attachment,
                                     :_destroy
                                   ])
+  end
+
+  def find_relevant(category_id, issue_id)
+    Issue.where(category_id: category_id)
+         .where.not(id: issue_id)
+  end
+
+  def issue_status(status)
+    case status
+    when 'open'     then 'label-success'
+    when 'pending'  then 'label-warning'
+    when 'declined' then 'label-danger'
+    when 'closed'   then 'label-default'
+    end
   end
 end

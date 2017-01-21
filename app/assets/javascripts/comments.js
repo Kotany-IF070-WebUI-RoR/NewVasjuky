@@ -2,23 +2,31 @@
 function init_comments_page() {
     // Comments sending
     $(".new_comment").on("ajax:success", function(e, data, status, xhr) {
-        flash_comment_result ('Коментар надіслано', 'succes');
+        UnobtrusiveFlash.showFlashMessage('Коментар надіслано', {type: 'success'});
         this.reset();
         remove_error_status(this);
         update_comment_list(xhr.responseText);
     }).on("ajax:error", function(e, xhr, status, error) {
-        flash_comment_result('Коментар не надіслано', "error");
+        UnobtrusiveFlash.showFlashMessage('Коментар не надіслано', {type: 'error'});
         remove_error_status(this);
         render_errors(xhr.responseText, this);
     });
     // end of comments sending
 
     // removing comments
-    $(".comments_list_wrapper").on("click", function (e) {
-        if(!e.target.classList.contains('remove_comment')) return;
-        e.preventDefault();
-        e.stopPropagation();
-        confirm_removing(e.target)
+    $(".comment-list-wrapper").on("click", function (e) {
+        var target = e.target,
+            target_parent = target.parentNode,
+            remove_link;
+        if(target.classList.contains('remove-comment') ||
+           target_parent.classList.contains('remove-comment')) {
+            e.preventDefault();
+            e.stopPropagation();
+            remove_link = (target.id.trim() !== '') ? target : target_parent;
+            confirm_removing(remove_link);
+        } else {
+            return;
+        }
     });
     // end of removing comments
 }
@@ -36,6 +44,7 @@ function confirm_removing(remove_link) {
                 update_comment_list(delete_request.responseText)
             });
             confirmation_modal.hide();
+            UnobtrusiveFlash.showFlashMessage('Коментар видалено', {type: 'warning'});
         }
         else if (e.target.id === 'cencel_deletion') {
             confirmation_modal.hide();
@@ -49,18 +58,8 @@ function remove_comment(remove_link) {
 
 
 function update_comment_list(list_data) {
-    $("div.comments_list").remove();
-    $(".comments_list_wrapper").prepend(list_data);
-}
-
-function flash_comment_result( text, class_name ) {
-    var comment_result = $("#comment_result");
-    comment_result.removeClass();
-    comment_result.addClass(class_name);
-    comment_result.finish();
-    comment_result.empty();
-    comment_result.show();
-    comment_result.append(text).delay(5000).fadeOut(1000);
+    $("div.comment-list").remove();
+    $(".comment-list-wrapper").prepend(list_data);
 }
 
 
