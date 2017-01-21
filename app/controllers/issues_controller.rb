@@ -37,5 +37,4 @@ class IssuesController < ApplicationController
                                   :category_id, :description, :attachment,
                                   :location, :title)
   end
-
 end

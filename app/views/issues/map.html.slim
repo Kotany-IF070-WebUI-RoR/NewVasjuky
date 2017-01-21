@@ -13,7 +13,7 @@ javascript:
   var googleLayer = new L.Google('ROADMAP');
   map.addLayer(googleLayer);
   
-  var markers = #{get_markers};
+  var markers = #{collect_markers};
   var bounds = [];
   markers.forEach(function(issue){
     var coords = issue.latlng
