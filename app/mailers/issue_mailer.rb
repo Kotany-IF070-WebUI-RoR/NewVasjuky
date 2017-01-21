@@ -9,9 +9,9 @@ class IssueMailer < ApplicationMailer
   default template_path: 'mailers/issues'
   default_url_options[:host] = 'localhost:3000'
 
-  def issue_created(issue, user)
+  def issue_created(saved, user)
     @user = user
-    @issue = issue
+    @issue = saved
     @recipients = User.where(role: :admin).or(User.where(role: :moderator))
     emails = @recipients.collect(&:email).join(',')
     mail to: emails,
