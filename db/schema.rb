@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119144147) do
+ActiveRecord::Schema.define(version: 20170121132658) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -30,22 +30,33 @@ ActiveRecord::Schema.define(version: 20170119144147) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.string   "follower_type"
+    t.integer  "follower_id"
+    t.string   "followable_type"
+    t.integer  "followable_id"
+    t.datetime "created_at"
+    t.index ["followable_id", "followable_type"], name: "fk_followables"
+    t.index ["follower_id", "follower_type"], name: "fk_follows"
+  end
+
   create_table "issues", force: :cascade do |t|
-    t.string   "name",        default: ""
-    t.string   "address",     default: ""
-    t.string   "phone",       default: ""
-    t.string   "email",       default: ""
-    t.string   "description", default: ""
+    t.string   "name",            default: ""
+    t.string   "address",         default: ""
+    t.string   "phone",           default: ""
+    t.string   "email",           default: ""
+    t.string   "description",     default: ""
     t.string   "attachment"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "user_id"
     t.integer  "category_id"
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.string   "location"
     t.string   "title"
-    t.integer  "status",      default: 0
+    t.integer  "status",          default: 0
+    t.integer  "followers_count", default: 0
     t.index ["category_id"], name: "index_issues_on_category_id"
     t.index ["status"], name: "index_issues_on_status"
     t.index ["user_id"], name: "index_issues_on_user_id"
@@ -71,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170119144147) do
     t.string   "image_url"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "followees_count",        default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

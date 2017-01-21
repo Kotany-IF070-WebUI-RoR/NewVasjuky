@@ -1,3 +1,4 @@
+- provide(:follow_btn_size, 'lg')
 #heading-breadcrumbs
   .container
     .row
@@ -9,6 +10,12 @@
           li= link_to 'Усі звернення', issues_path
           li Поточна
 #content
+  .follow
+    - if user_signed_in?
+      = render 'shared/follow_link', issue: @issue
+    div.followers_count
+      | Слідкує:
+      span.badge #{@issue.followers_count}
   .container
     .row
       #blog-post.col-md-9
@@ -30,3 +37,4 @@
         .comments
           = render 'comments/comments', commentable: @issue
       .col-md-3
+

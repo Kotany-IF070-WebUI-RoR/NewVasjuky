@@ -12,6 +12,8 @@ li.dropdown
       = current_user.first_name
     li
       = link_to 'Мої звернення', user_path(current_user)
+    li
+      = link_to 'Відслідковувані звернення', followees_path
     - if current_user.admin? || current_user.moderator?
       li
         span Меню модератора
