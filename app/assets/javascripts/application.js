@@ -19,13 +19,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require unobtrusive_flash
-//= require unobtrusive_flash_ui
 //= require unobtrusive_flash_bootstrap
 //= require bootstrap-sprockets
+//= require jquery.cookie
+//= require jquery.counterup.min
+//= require jquery.waypoints
 //= require home.coffee
 //= require issues.coffee
 //= require users.coffee
 //= require comments.js
 //= require flash.js
 //= require validate_attachment.js
-
+//= require flash
+//= require front

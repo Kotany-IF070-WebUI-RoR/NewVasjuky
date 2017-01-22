@@ -1,1 +1,1 @@
-Slim::Engine.set_options pretty: Rails.env.development?
+# Slim::Engine.set_options pretty: Rails.env.development?

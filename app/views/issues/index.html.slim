@@ -1,15 +1,24 @@
-h1 Звернення
-.dropdown.issue-sort-by
-  a.dropdown-toggle href='#' data-toggle="dropdown"
-    span Сортувати
-    span.caret
-    ul.dropdown-menu role='menu'
-      li
-        = link_to 'Спочатку нові', '#'
-      li.divider role='separator'
-      li
-        = link_to 'Спочатку старі', '#'
-section.container.issues-section
-  = render 'issue', collection: @issues
-.text-center
-  = paginate @issues, theme: 'twitter-bootstrap-3'
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7
+        h1 Звернення
+      .col-md-5
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Звернення
+#content
+  .container
+    .row
+      #blog-listing-medium.col-md-9
+        .pull-right
+          .dropdown.issue-sort-by
+            a.dropdown-toggle href='#' data-toggle="dropdown"
+              span Сортувати
+              span.caret
+              ul.dropdown-menu role='menu'
+                li= link_to 'Спочатку нові', '#'
+                li.divider role='separator'
+                li= link_to 'Спочатку старі', '#'
+        = render 'issue', collection: @issues
+        .text-center= paginate @issues, theme: 'twitter-bootstrap-3'
