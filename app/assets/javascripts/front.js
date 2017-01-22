@@ -5,33 +5,9 @@ if ($.cookie("theme_layout")) {
     $('body').addClass($.cookie("theme_layout"));
 }
 $(function () {
-    menuSliding();
     animations();
     counters();
 });
-
-/* menu sliding */
-function menuSliding() {
-    $('.dropdown').on('show.bs.dropdown', function (e) {
-  var dropdownMenu = $(this).find('.dropdown-menu').first().stop(true, true);
-  if ($(window).width() > 750) {
-      dropdownMenu.slideDown();
-  }
-  else {
-      dropdownMenu.show();
-  }
-    }
-    );
-    $('.dropdown').on('hide.bs.dropdown', function (e) {
-  var dropdownMenu = $(this).find('.dropdown-menu').first().stop(true, true);
-  if ($(window).width() > 750) {
-      dropdownMenu.slideUp();
-  }
-  else {
-      dropdownMenu.hide();
-  }
-    });
-}
 
 /* animations */
 function animations() {

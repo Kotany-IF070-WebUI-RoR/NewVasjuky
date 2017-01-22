@@ -258,7 +258,6 @@
 .text-hide {
   font: 0/0 a;
   color: transparent;
-  //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
   text-shadow: none;
   background-color: transparent;
   border: 0;
@@ -1371,6 +1370,12 @@ fieldset[disabled] {
     padding-left: 60px;
     padding-right: 60px;
   }
+}
+.alert{
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  margin-top: 10px;
 }
 .panel {
   margin-bottom: 20px;
@@ -3406,6 +3411,9 @@ hr {
     right: 0;
     left: auto;
   }
+  span{
+    padding-left: 1em;
+  }
   .divider {
     height: 1px;
     margin: 9px 0;
@@ -3847,6 +3855,7 @@ address {
     &.navbar-right .dropdown-menu {
       left: auto;
       right: 0;
+      min-width: 100%;
     }
   }
   .collapse {
