@@ -26,6 +26,7 @@ gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'slim-rails'
+gem 'socialization'
 gem 'thor', '0.19.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'unobtrusive_flash', '>=3'

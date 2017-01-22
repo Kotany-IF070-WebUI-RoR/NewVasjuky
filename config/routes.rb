@@ -28,10 +28,13 @@ Rails.application.routes.draw do
   end
 
   resources :issues, only: [:new, :index, :create, :show] do
+    post 'follow',   to: 'issues/socializations#follow'
+    post 'unfollow', to: 'issues/socializations#unfollow'
     resources :comments, module: :issues, only: :create
   end
 
   resources :comments, only: [:destroy]
   resources :users, only: [:show]
+  get  'followees', to: 'issues#followees'
   root to: 'home#index'
 end

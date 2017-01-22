@@ -38,6 +38,8 @@ class Issue < ApplicationRecord
   after_validation :reverse_geocode,
                    if: ->(obj) { !obj.location.present? && lt_ln_present?(obj) }
 
+  acts_as_followable
+
   def lt_ln_present?(obj)
     obj.latitude.present? && obj.longitude.present?
   end

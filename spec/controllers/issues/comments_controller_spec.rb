@@ -5,7 +5,7 @@ describe Issues::CommentsController, type: :controller do
   let(:banned_reporter) { create(:user, :reporter, banned: true) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :admin) }
-  let(:commentable) { create(:issue, user: reporter) }
+  let(:commentable) { create(:issue, user: reporter, status: 'open') }
   let(:valid_comment) { build(:comment, commentable: commentable) }
   describe 'Create comment with AJAX when it is valid and ' do
     let(:action) do
@@ -50,6 +50,56 @@ describe Issues::CommentsController, type: :controller do
       sign_in banned_reporter
       expect { action }.to change(Comment, :count).by(0)
       expect(action).to have_http_status(302)
+    end
+  end
+
+  describe 'Follow issue when comment it and' do
+    let(:action) do
+      post :create, params: { issue_id: commentable,
+                              comment: valid_comment.attributes }
+    end
+
+    it 'user is reporter' do
+      sign_in reporter
+      action
+      expect(reporter.follows?(commentable)).to be_truthy
+    end
+
+    it 'user is admin' do
+      sign_in admin
+      action
+      expect(admin.follows?(commentable)).to be_truthy
+    end
+
+    it 'user is moderator' do
+      sign_in moderator
+      action
+      expect(moderator.follows?(commentable)).to be_truthy
+    end
+  end
+
+  describe 'Follow issue when comment it and' do
+    let(:action) do
+      post :create, params: { issue_id: commentable,
+                              comment: valid_comment.attributes }
+    end
+
+    it 'user is reporter' do
+      sign_in reporter
+      action
+      expect(reporter.follows?(commentable)).to be_truthy
+    end
+
+    it 'user is admin' do
+      sign_in admin
+      action
+      expect(admin.follows?(commentable)).to be_truthy
+    end
+
+    it 'user is moderator' do
+      sign_in moderator
+      action
+      expect(moderator.follows?(commentable)).to be_truthy
     end
   end
 end

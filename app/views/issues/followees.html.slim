@@ -1,0 +1,28 @@
+- provide(:follow_btn_size, 'xs')
+- if current_user.followees_count > 0
+    h4 Відслідковувані:
+    .table-responsive
+      table.table.table-hover
+        thead
+          tr
+            th Звернення
+            th Назва
+            th Дата створення
+            th Статус
+            th Дія
+
+        tbody
+          - @issues.each do |issue|
+            tr
+              td &#8470; #{issue.id}
+              td = issue.title
+              td = l issue.created_at, format: :long
+              td = show_issue_status(issue)
+              td
+                = link_to 'Переглянути', issue_path(issue),
+                        class: 'btn btn-primary btn-xs'
+                = render 'shared/follow_link', issue: issue
+
+- else
+  h3 Ви поки не слідкуєте за жодним зверненням...
+  = link_to 'Переглянути усі', issues_path
