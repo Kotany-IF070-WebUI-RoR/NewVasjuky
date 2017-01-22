@@ -49,7 +49,7 @@ class Issue < ApplicationRecord
   end
 
   def published?
-    %w(open close).include? status
+    %w(open closed).include? status
   end
 
   def can_read_when_unpublished?(user)

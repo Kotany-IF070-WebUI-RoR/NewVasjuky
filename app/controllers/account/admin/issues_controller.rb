@@ -1,3 +1,4 @@
+# Encoding: utf-8
 # frozen_string_literal: true
 module Account
   module Admin
@@ -13,7 +14,8 @@ module Account
 
       def update
         if @issue.update_attributes(issues_params)
-          flash[:success] = 'Issue updated'
+          flash[:success] = 'Звернення змінено!'
+          facebook_posting(@issue) if @issue.status == 'open'
           redirect_to @issue
         else
           render 'edit'
@@ -22,6 +24,7 @@ module Account
 
       def approve
         @issue.update_attribute('status', :open)
+        facebook_posting(@issue)
         redirect_back(fallback_location: root_path)
       end
 
@@ -37,13 +40,28 @@ module Account
 
       private
 
+      def facebook_posting(issue)
+        return if Rails.env.test?
+        page = prepare_facebook_page
+        page.feed!(message: "Адреса: #{issue.location}. \n \n
+                            Опис: #{issue.description} \n \n
+                            #{issue.category.tags}",
+                   link: issue_url(issue), name: issue.title.to_s,
+                   picture: "#{ENV['IMAGE_HOSTING_URL']}#{issue.attachment}")
+      end
+
+      def prepare_facebook_page
+        FbGraph2::Page.new(ENV['FACEBOOK_GROUP_ID'],
+                           access_token: ENV['FACEBOOK_GROUP_TOKEN'])
+      end
+
       def find_issue
         @issue = Issue.find(params[:id])
       end
 
       def issues_params
-        params.require(:issue).permit(:category_id, :location, :approved,
-                                      :latitude, :longitude, :status)
+        params.require(:issue).permit(:category_id, :location, :latitude,
+                                      :longitude, :status)
       end
     end
   end

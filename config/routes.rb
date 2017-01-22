@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories, only: [:show]
+
   resources :issues, only: [:new, :index, :create, :show] do
     post 'follow',   to: 'issues/socializations#follow'
     post 'unfollow', to: 'issues/socializations#unfollow'
