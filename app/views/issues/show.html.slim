@@ -1,13 +1,32 @@
-h1
-  = @issue.title
-p
-  | Проблема: #{@issue.description}
-p
-  | Адреса: #{@issue.location}
-p
-  | Координати: #{@issue.latitude} #{@issue.longitude}
-= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@issue.latitude},#{@issue.longitude}&markers=#{@issue.latitude},#{@issue.longitude}&zoom=17&size=640x400&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
-      class: 'img-fluid img-rounded', alt: "#{@issue.name} on the map"
-
-.comments
-  = render 'comments/comments', commentable: @issue
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7
+        h1= @issue.title
+      .col-md-5
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li= link_to 'Усі звернення', issues_path
+          li Поточна
+#content
+  .container
+    .row
+      #blog-post.col-md-9
+        p.text-muted.text-uppercase.mb-small.text-right
+          span.author Автор: #{@issue.user.full_name }
+          br
+          i.fa.fa-calendar-o
+          span  Додано: #{time_ago_in_words(@issue.created_at)} тому
+        p.lead
+          | Проблема: #{@issue.description}
+        .image
+          = image_tag @issue.attachment
+        p
+          | Адреса: #{@issue.location}
+        p
+          | Координати: #{@issue.latitude} #{@issue.longitude}
+        = image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@issue.latitude},#{@issue.longitude}&markers=#{@issue.latitude},#{@issue.longitude}&zoom=17&size=640x400&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
+        class: 'img-fluid img-rounded', alt: "#{@issue.name} on the map"
+        .comments
+          = render 'comments/comments', commentable: @issue
+      .col-md-3
