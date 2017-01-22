@@ -1,7 +1,7 @@
 # Encoding: utf-8
-class IssueMailer < ApplicationMailer\
+class IssueMailer < ApplicationMailer
+  default from: 'new_issue@newvasjuky.com'
   default template_path: 'mailers/issues'
-  default_url_options[:host] = 'localhost:3000'
 
   def issue_created(issue, user)
     @user = user
