@@ -44,11 +44,8 @@ ActiveRecord::Schema.define(version: 20170117212751) do
     t.string   "phone",               default: ""
     t.string   "email",               default: ""
     t.string   "description",         default: ""
-    t.boolean  "approved",            default: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "user_id"
     t.integer  "category_id"
     t.decimal  "latitude"
