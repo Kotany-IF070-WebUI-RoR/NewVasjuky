@@ -90,13 +90,6 @@ describe Issue, type: :model do
     end
   end
 
-  describe 'Category' do
-    it 'should exist' do
-      subject.category_id = 999999
-      expect(subject).to be_invalid
-    end
-  end
-
   describe 'Description' do
     it 'should be present' do
       subject.description = '   '

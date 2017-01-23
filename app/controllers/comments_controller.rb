@@ -5,12 +5,11 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
-    respond_to do |format|
-      if @comment.save
-        format.html { comments_list }
-      else
-        format.json { comment_error }
-      end
+    if @comment.save
+      render_comments_list
+      start_following
+    else
+      respond_to { |format| format.json { comment_error } }
     end
   end
 
@@ -19,9 +18,7 @@ class CommentsController < ApplicationController
     @commentable = @comment.commentable
     if @comment.can_delete?(current_user)
       @comment.destroy
-      respond_to do |format|
-        format.html { comments_list }
-      end
+      render_comments_list
     else
       redirect_to @commentable
     end
@@ -29,7 +26,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def comments_list
+  def render_comments_list
     render partial: 'comments/comments_list',
            locals: { commentable: @commentable }
   end
@@ -40,5 +37,10 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:title, :content)
+  end
+
+  def start_following
+    @commentable.followable? && !current_user.follows?(@commentable) &&
+      current_user.follow!(@commentable)
   end
 end

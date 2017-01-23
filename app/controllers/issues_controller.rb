@@ -16,6 +16,10 @@ class IssuesController < ApplicationController
                                                   @issue.can_read?(current_user)
   end
 
+  def followees
+    @issues = current_user.followees(Issue)
+  end
+
   def create
     @issue = Issue.new(issues_params)
     @issue.user_id = current_user.id

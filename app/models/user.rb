@@ -16,6 +16,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 25 }
   validates :last_name, presence: true, length: { maximum: 25 }
 
+  acts_as_follower
+
   def self.from_omniauth(auth)
     where(provider: auth.provider,
           uid: auth.uid).first_or_create(user_params(auth))
