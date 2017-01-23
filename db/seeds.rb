@@ -308,5 +308,4 @@ Issue.all.each do |issue|
                        commentable: issue,
                        created_at: Time.now - rand(10).days)
   end
-                             created_at: Time.now - rand(10).days)
 end

@@ -18,15 +18,12 @@ h1 Надіслати нове звернення
                 placeholder: 'user@domain.com'
         = f.input :title, label: 'Короткий опис проблеми'
         = f.association :category, collection: Category.order(:name).all,
-                label: 'Категорія'
-        = f.input :location, label: 'Адреса проблеми',
-                placeholder: 'Івано-Франківськ, Сахарова, 33'
+                        label: 'Категорія'
+  	    = f.input :location, label: 'Адреса проблеми',
+                    placeholder: 'Івано-Франківськ, Сахарова, 33'
         = f.input :description, as: :text, label: 'Текст звернення'
         = simple_fields_for :issue_attachments do |i|
           = i.input :attachment, as: :file,
                     name: "post_attachments[attachment][]",
                     input_html: { multiple: true }
         = f.button :submit, class: 'btn btn-primary'
-
-javascript:
-    $('document').ready(validate_attachment());
