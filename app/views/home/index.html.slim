@@ -41,7 +41,7 @@ section.bar.background-white.no-mb
           .box-image-text.blog
             .top
               .image
-                = image_tag issue.attachment, class: 'img-responsive'
+                = image_tag issue.first_attached_image, class: 'img-responsive'
               .bg
               .text
                 .buttons
@@ -51,4 +51,3 @@ section.bar.background-white.no-mb
                 = link_to issue.category.name, '#'
               h4
                   = link_to issue.title, issue
-

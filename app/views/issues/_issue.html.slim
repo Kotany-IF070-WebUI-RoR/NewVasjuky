@@ -4,7 +4,7 @@
       .col-md-4
         .image
           = link_to issue
-            .attachment.media-object= image_tag issue.attachment
+            .attachment.media-object= image_tag issue.first_attached_image
       .col-md-8
         h2
           = link_to issue.title, issue

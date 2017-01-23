@@ -3,6 +3,8 @@ class Issue < ApplicationRecord
   has_many :comments, as: :commentable
   belongs_to :user
   belongs_to :category
+  has_many :issue_attachments
+  accepts_nested_attributes_for :issue_attachments, allow_destroy: true
   enum status: [:pending, :declined, :open, :closed]
   STATUSES = { 'open' => 'Запит прийнято',
                'pending' => 'Очікує на модерацію',
@@ -27,7 +29,6 @@ class Issue < ApplicationRecord
                     format: { with: REGEXP_EMAIL,
                               message: 'Адреса повинна бути справжньою' }
   validates :description, length: { minimum: 50 }
-  mount_uploader :attachment, AttachmentUploader
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :open) }
   scope :closed, -> { where(status: :closed) }
@@ -58,5 +59,9 @@ class Issue < ApplicationRecord
 
   def can_read?(user)
     published? || can_read_when_unpublished?(user)
+  end
+
+  def first_attached_image
+    issue_attachments.first_or_initialize.attachment
   end
 end

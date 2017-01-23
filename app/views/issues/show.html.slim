@@ -27,7 +27,7 @@
         p.lead
           | Проблема: #{@issue.description}
         .image
-          = image_tag @issue.attachment
+          = image_tag @issue.first_attached_image
         p
           | Адреса: #{@issue.location}
         p
@@ -37,4 +37,3 @@
         .comments
           = render 'comments/comments', commentable: @issue
       .col-md-3
-
