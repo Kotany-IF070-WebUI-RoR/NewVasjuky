@@ -108,8 +108,28 @@ describe Issue, type: :model do
       expect(subject).to be_invalid
     end
 
-    it 'should exist and user sohuld be present' do
+    it 'should exist and user should be present' do
       expect(subject.user_id).to be_equal User.last.id
+    end
+  end
+
+  describe 'fb_message' do
+    it 'should have location, description and tags' do
+      expect(subject.fb_message).to include(subject.location)
+    end
+
+    it 'should have description' do
+      expect(subject.fb_message).to include(subject.description)
+    end
+
+    it 'should have tags' do
+      expect(subject.fb_message).to include(subject.category.tags)
+    end
+  end
+
+  describe 'fb_picture' do
+    it 'should have picture url' do
+      expect(subject.fb_picture).to include(ENV['IMAGE_HOSTING_URL'])
     end
   end
 end

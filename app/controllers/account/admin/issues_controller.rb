@@ -43,11 +43,9 @@ module Account
       def facebook_posting(issue)
         return if Rails.env.test?
         page = prepare_facebook_page
-        page.feed!(message: "Адреса: #{issue.location}. \n \n
-                            Опис: #{issue.description} \n \n
-                            #{issue.category.tags}",
+        page.feed!(message: issue.fb_message,
                    link: issue_url(issue), name: issue.title.to_s,
-                   picture: "#{ENV['IMAGE_HOSTING_URL']}#{issue.attachment}")
+                   picture: issue.fb_picture)
       end
 
       def prepare_facebook_page

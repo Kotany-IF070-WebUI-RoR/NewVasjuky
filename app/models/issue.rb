@@ -59,4 +59,16 @@ class Issue < ApplicationRecord
   def can_read?(user)
     published? || can_read_when_unpublished?(user)
   end
+
+  def fb_message
+    fb_location = location.blank? ? '' : "Адреса: #{location} \n \n"
+    fb_description = description.blank? ? '' : "Опис: #{description} \n \n"
+    tags = category.tags.blank? ? '' : category.tags.to_s
+    "#{fb_location} #{fb_description} #{tags}"
+  end
+
+  def fb_picture
+    picture = attachment.file.nil? ? '/uploads/default-image.jpg' : attachment
+    "#{ENV['IMAGE_HOSTING_URL']}#{picture}"
+  end
 end
