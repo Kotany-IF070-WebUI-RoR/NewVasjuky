@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123173207) do
+ActiveRecord::Schema.define(version: 20170124105112) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20170123173207) do
     t.string   "phone",               default: ""
     t.string   "email",               default: ""
     t.string   "description",         default: ""
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "user_id"
     t.integer  "category_id"
     t.decimal  "latitude"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20170123173207) do
     t.integer  "status",              default: 0
     t.integer  "followers_count",     default: 0
     t.integer  "issue_attachment_id"
-    t.boolean  "posted_on_facebook", default: false
+    t.boolean  "posted_on_facebook",  default: false
     t.index ["category_id"], name: "index_issues_on_category_id"
     t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id"
     t.index ["status"], name: "index_issues_on_status"
