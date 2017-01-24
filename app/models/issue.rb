@@ -100,6 +100,6 @@ class Issue < ApplicationRecord
   end
 
   def notify_support
-    IssueMailer.issue_created(id, user.id).deliver
+    IssueMailer.issue_created(id).deliver
   end
 end

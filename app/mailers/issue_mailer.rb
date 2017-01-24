@@ -2,11 +2,11 @@
 class IssueMailer < ApplicationMailer
   default from: 'new_issue@newvasjuky.com'
 
-  def issue_created(issue_id, user_id)
-    @user = User.find(user_id)
-    @issue = Issue.find(issue_id)
+  def issue_created(id)
+    @issue = Issue.find(id)
+    @user = @issue.user
     @recipients = User.where(role: [:admin, :moderator])
-    emails = @recipients.collect(&:email).join(',')
+    emails = @recipients.collect(&:email).join(';')
     mail to: emails,
          subject: 'Подано нову скаргу'
   end

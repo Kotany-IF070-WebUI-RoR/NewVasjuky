@@ -5,7 +5,7 @@ describe IssueMailer, type: :mailer do
   let(:reporter) { create(:user, :reporter) }
   let!(:issue) { create(:issue) }
   let(:category) { create(:category) }
-  let(:mail) { IssueMailer.issue_created(issue.id, reporter.id).deliver! }
+  let(:mail) { IssueMailer.issue_created(issue.id).deliver! }
 
   before :each do
     create(:user, :admin)
@@ -15,13 +15,13 @@ describe IssueMailer, type: :mailer do
   describe '#issue_created' do
     before do
       ResqueSpec.reset!
-      IssueMailer.issue_created(issue.id, reporter.id).deliver
+      IssueMailer.issue_created(issue.id).deliver
     end
 
     it 'added to the queue' do
       expect(IssueMailer).to have_queue_size_of(1)
       expect(IssueMailer)
-        .to have_queued(:issue_created, [issue.id, reporter.id])
+        .to have_queued(:issue_created, [issue.id])
     end
   end
 
