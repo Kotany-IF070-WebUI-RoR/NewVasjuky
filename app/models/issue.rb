@@ -67,8 +67,8 @@ class Issue < ApplicationRecord
   end
 
   def fb_post
-    { message: fb_message, link: fb_link, name: title.to_s,
-      picture: fb_picture }
+    { message: fb_message, link: fb_link,
+      name: title.to_s, picture: fb_picture }
   end
 
   def fb_message
@@ -83,7 +83,8 @@ class Issue < ApplicationRecord
   end
 
   def fb_picture
-    first_attached_image.path || '/uploads/default-image.jpg'
+    picture = first_attached_image.path || 'uploads/default-image.jpg'
+    "#{ENV['IMAGE_HOSTING_URL']}#{picture}"
   end
 
   def post_to_facebook!
