@@ -7,7 +7,8 @@ class IssuesController < ApplicationController
   end
 
   def new
-    @issue = Issue.new
+    @issue = current_user.issues.new
+    @categories = Category.by_name
   end
 
   def show
@@ -21,10 +22,9 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @issue = Issue.new(issues_params)
-    @issue.user_id = current_user.id
+    @issue = current_user.issues.new(issues_params)
     if @issue.save
-      redirect_to root_path, notice: 'Звернення створене успішно!'
+      redirect_to @issue, notice: 'Звернення створене успішно!'
     else
       render 'new'
     end
@@ -33,8 +33,15 @@ class IssuesController < ApplicationController
   private
 
   def issues_params
-    params.require(:issue).permit(:name, :address, :phone, :email,
-                                  :category_id, :description, :attachment,
-                                  :location, :title)
+    params.require(:issue).permit(:name, :address, :phone,
+                                  :email,
+                                  :category_id,
+                                  :description,
+                                  :location,
+                                  :title,
+                                  issue_attachments_attributes: [
+                                    :attachment,
+                                    :_destroy
+                                  ])
   end
 end

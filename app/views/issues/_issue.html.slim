@@ -4,7 +4,7 @@
       .col-md-4
         .image
           = link_to issue
-            .attachment.media-object= image_tag issue.attachment
+            .attachment.media-object= image_tag issue.first_attached_image
       .col-md-8
         h2
           = link_to issue.title, issue
@@ -13,7 +13,7 @@
             span.author Автор: #{issue.user.full_name }
             br
             span  #{'Категорія: '}
-            = link_to issue.category.name, '#'
+            = link_to issue.category.name, category_path(issue.category)
           p.date-comments
             i.fa.fa-calendar-o
             span  #{time_ago_in_words(issue.created_at)} тому
