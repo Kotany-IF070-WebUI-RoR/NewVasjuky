@@ -68,7 +68,7 @@ class Issue < ApplicationRecord
 
   def fb_post
     { message: fb_message, link: fb_link, name: title.to_s,
-      picture: first_attached_image }
+      picture: fb_picture }
   end
 
   def fb_message
@@ -80,6 +80,10 @@ class Issue < ApplicationRecord
 
   def fb_link
     issue_url(self, host: Rails.application.config.host)
+  end
+
+  def fb_picture
+    first_attached_image.path || '/uploads/default-image.jpg'
   end
 
   def post_to_facebook!

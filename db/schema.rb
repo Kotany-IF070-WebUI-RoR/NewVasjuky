@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20170124105112) do
     t.string   "title"
     t.integer  "status",              default: 0
     t.integer  "followers_count",     default: 0
-    t.integer  "issue_attachment_id"
     t.boolean  "posted_on_facebook",  default: false
+    t.integer  "issue_attachment_id"
     t.index ["category_id"], name: "index_issues_on_category_id"
     t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id"
     t.index ["status"], name: "index_issues_on_status"
