@@ -14,8 +14,10 @@ ActiveRecord::Schema.define(version: 20170123173207) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
+    t.string   "tags"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170123173207) do
     t.integer  "status",              default: 0
     t.integer  "followers_count",     default: 0
     t.integer  "issue_attachment_id"
+    t.boolean  "posted_on_facebook", default: false
     t.index ["category_id"], name: "index_issues_on_category_id"
     t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id"
     t.index ["status"], name: "index_issues_on_status"

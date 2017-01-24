@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var error, getReverseGeocodingData, success;
     error = function(msg) {
-        $('#issue_location').val('Введіть адресу проблеми');
+        $('#issue_location').attr('placeholder', 'Введіть адресу проблеми');
     };
     success = function(position) {
          getReverseGeocodingData(position.coords.latitude, position.coords.longitude);
