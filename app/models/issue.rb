@@ -62,11 +62,10 @@ class Issue < ApplicationRecord
     published? || can_read_when_unpublished?(user)
   end
 
-
   def first_attached_image
     issue_attachments.first_or_initialize.attachment
   end
-  
+
   def fb_post
     { message: fb_message, link: fb_link, name: title.to_s,
       picture: first_attached_image }
