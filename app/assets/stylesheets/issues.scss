@@ -10,22 +10,6 @@
   overflow: hidden;
 }
 
-.issue-container {
-  width: 75%;
-  height: 100%;
-  margin: 0 auto 20px;
-  background-color: white;
-  @include shadow;
-}
-
-.issue-container::after {
-  @include pseudo-shadow;
-}
-
-.issue-container:hover::after {
-  opacity: 1;
-}
-
 .media-body {
   padding-right: 20px;
 }
@@ -43,14 +27,93 @@
 }
 
 .attachment {
-  margin: 0 auto;
-
-  img {
-  //  transform-origin: top left;
-  //  transform: scale(0.25);
-  }
+  width: 250px;
+  height: 200px;
+  //margin: 0 auto;
 }
 
 .unobtrusive-flash-container.fixed .alert {
   position: fixed;
+}
+
+.coordinates {
+  cursor: text;
+  .copy {
+    user-select: text;
+  }
+}
+
+.short {
+  height: 75px !important;
+  overflow: hidden;
+}
+
+.followers-count {
+  text-align: end;
+  margin-bottom: 20px;
+  span {
+    display: inline-block;
+    margin-left: 5px;
+  }
+  .badge {
+    background-color: white;
+    border: 2px solid $color_primary;
+    color: $color_text_primary;
+  }
+}
+
+.follow {
+  .btn {
+    margin-bottom: 10px;
+  }
+}
+
+.status {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.info-group-wrapper {
+  text-align: end;
+}
+#issue-carousel {
+  margin-top: 15px;
+  .owl-nav {
+    position: absolute;
+    top: -6px;
+    right: 3px;
+    * {
+      background-color: $white_90;
+      color: $color-primary;
+      opacity: 1;
+    }
+    .disabled {
+      opacity: 0.8;
+    }
+  }
+  .owl-dots {
+    margin-top: 15px;
+    .owl-dot span {
+      width: 12px;
+      height: 12px;
+      opacity: 0.5;
+      &:hover {
+        background-color: $color-primary;
+        opacity: 0.9;
+      }
+    }
+    .active span {
+      background-color: $color-primary;
+      opacity: 0.9;
+    }
+  }
+}
+
+#new_issue {
+  input[name='commit'] {
+    margin-top: 25px;
+  }
+  .nested-fields {
+    margin-bottom: 5px;
+  }
 }

@@ -1,24 +1,39 @@
-.row.comment {
-  border: 1px solid grey;
-  margin: 15px;
-  padding: 15px;
+.comment-form {
+  margin-bottom: 50px;
+}
 
-  h5{
-    font-size: 25px;
-    font-weight: bold;
+.comment-list, .comments {
+  padding-top: 50px;
+  border-top: 1px solid $black_15;
+}
+
+.comment-counter {
+  margin-bottom: 30px;
+}
+
+.comment-body {
+  //margin-bottom: 20px;
+}
+
+#delete_confirmation {
+  .modal-content {
+    border-radius: 0%;
   }
-
-  .content{
-    background-color: white;
-  }
-
-  img{
-    height: 120px;
-    width: 120px;
-  }
-
-  &.removed_comment {
-    background-color: #ededed;
+  .modal-footer, .modal-body {
+    text-align: center;
   }
 }
 
+.user-avatar {
+  //@include scaling;
+  overflow: hidden;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0 10px;
+  width: 100px;
+  height: 100px;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

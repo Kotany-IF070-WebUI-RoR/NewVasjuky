@@ -2,15 +2,15 @@
   = render 'comments/form', commentable: commentable \
   unless current_user.banned?
   #delete_confirmation.modal
-    .modal-dialog.modal-md
+    .modal-dialog.modal-sm
       .modal-content
         .modal-body
-          p
+          span
             | Ви впевнені, що хочете видалити коментар?
         .modal-footer
           button.btn.btn-danger#confirm_deletion Видалити
-          button.btn#cencel_deletion Скасувати видалення
-.comments_list_wrapper
+          button.btn#cencel_deletion Скасувати
+.comment-list-wrapper
   = render 'comments/comments_list', commentable: commentable
 javascript:
-  $('document').ready(init_comments_page());
+    $('document').ready(init_comments_page());

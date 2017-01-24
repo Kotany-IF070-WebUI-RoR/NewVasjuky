@@ -13,8 +13,10 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.find(params[:id])
+    @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
+                             .order('random()').limit(4)
     redirect_back(fallback_location: root_path) unless \
-                                                  @issue.can_read?(current_user)
+                                                @issue.can_read?(current_user)
   end
 
   def followees

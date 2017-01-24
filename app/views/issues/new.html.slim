@@ -1,7 +1,5 @@
 - content_for :javascript do
   = javascript_include_tag 'geocoding'
-  javascript:
-    $('document').ready(validate_attachment());
 #heading-breadcrumbs
   .container
     .row
@@ -23,8 +21,7 @@
                     placeholder: 'Петро Петрович Петренко'
             = f.input :address, label: 'Ваша адреса',
                     placeholder: 'вул. Грушевського 21'
-            = f.input :phone, label: 'Номер телефону',
-                    placeholder: '+380 342 77 77 77'
+            = f.input :phone, label: 'Номер телефону'
             = f.input :email, as: :email, label: 'Email',
                     placeholder: 'user@domain.com'
             = f.input :title, label: 'Короткий опис проблеми'
@@ -37,3 +34,6 @@
               = simple_fields_for :issue_attachments do |ia|
                 = link_to_add_association 'Додати зображення', f, :issue_attachments
             = f.button :submit, class: 'btn btn-primary'
+
+javascript:
+  $('document').ready(validate_form());

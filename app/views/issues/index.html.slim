@@ -1,9 +1,9 @@
 #heading-breadcrumbs
   .container
     .row
-      .col-md-7
-        h1 Звернення
-      .col-md-5
+      .col-md-7.col-sm-6
+        h2 Звернення
+      .col-md-5.col-sm-6
         ul.breadcrumb
           li= link_to 'На головну', root_path
           li Звернення
@@ -20,5 +20,6 @@
                 li= link_to 'Спочатку нові', '#'
                 li.divider role='separator'
                 li= link_to 'Спочатку старі', '#'
+        section.container
         = render 'issue', collection: @issues
         .text-center= paginate @issues, theme: 'twitter-bootstrap-3'

@@ -1,5 +1,4 @@
 -if commentable.comments.any?
-  .comments_list
-    h3 Коментарі:
-    ul.comments_list
-      = render partial: 'comments/comment', collection: commentable.comments.ordered
+  .comment-list.col-md-8
+    h4.text-uppercase.comment-counter 100500 коментарів
+    = render partial: 'comments/comment', collection: commentable.comments.ordered

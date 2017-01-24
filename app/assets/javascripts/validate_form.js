@@ -1,5 +1,5 @@
 "use strict";
-function validate_attachment() {
+function validate_form() {
     $('#issue_attachment').bind('change', function () {
         var size_in_megabytes = this.files[0].size / 1024 / 1024;
         var file_extension = ['jpeg', 'jpg', 'png'];
@@ -14,5 +14,8 @@ function validate_attachment() {
             UnobtrusiveFlash.showFlashMessage(error_messages.join(' '), {type: 'error', timeout: 0});
             this.value = '';
         }
-    })
+    });
+    jQuery(function ($) {
+        $("#issue_phone").mask("+38(999)-999-9999");
+    });
 }

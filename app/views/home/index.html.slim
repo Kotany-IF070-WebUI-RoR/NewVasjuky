@@ -36,7 +36,7 @@ section.bar.background-white.no-mb
       .heading.text-center
         h2 Останні додані:
       .row
-       - @issues_feed.each do |issue|
+      - @issues_feed.each do |issue|
         .col-md-3.col-sm-6
           .box-image-text.blog
             .top
@@ -50,4 +50,4 @@ section.bar.background-white.no-mb
               p.author-category
                 = link_to issue.category.name, category_path(issue.category)
               h4
-                  = link_to issue.title, issue
+                = link_to issue.title, issue
