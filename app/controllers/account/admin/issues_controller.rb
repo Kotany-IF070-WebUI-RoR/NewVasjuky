@@ -15,7 +15,7 @@ module Account
       def update
         if @issue.update_attributes(issues_params)
           flash[:success] = 'Звернення змінено!'
-          facebook_posting(@issue) if @issue.status == 'open'
+          @issue.post_to_facebook! if @issue.status == 'open'
           redirect_to @issue
         else
           render 'edit'
@@ -24,7 +24,7 @@ module Account
 
       def approve
         @issue.update_attribute('status', :open)
-        facebook_posting(@issue)
+        @issue.post_to_facebook!
         redirect_back(fallback_location: root_path)
       end
 
@@ -39,18 +39,6 @@ module Account
       end
 
       private
-
-      def facebook_posting(issue)
-        return if Rails.env.test? || issue.posted_on_facebook?
-        page = prepare_facebook_page
-        page.feed!(issue.fb_post)
-        issue.update_attribute('posted_on_facebook', true)
-      end
-
-      def prepare_facebook_page
-        FbGraph2::Page.new(ENV['FACEBOOK_GROUP_ID'],
-                           access_token: ENV['FACEBOOK_GROUP_TOKEN'])
-      end
 
       def find_issue
         @issue = Issue.find(params[:id])

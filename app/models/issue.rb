@@ -81,4 +81,16 @@ class Issue < ApplicationRecord
     picture = attachment.file.nil? ? '/uploads/default-image.jpg' : attachment
     "#{ENV['IMAGE_HOSTING_URL']}#{picture}"
   end
+
+  def post_to_facebook!
+    return if Rails.env.test? || posted_on_facebook?
+    page = prepare_facebook_page
+    page.feed!(fb_post)
+    update_attribute('posted_on_facebook', true)
+  end
+
+  def prepare_facebook_page
+    FbGraph2::Page.new(ENV['FACEBOOK_GROUP_ID'],
+                       access_token: ENV['FACEBOOK_GROUP_TOKEN'])
+  end
 end
