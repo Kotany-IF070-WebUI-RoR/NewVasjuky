@@ -39,6 +39,7 @@ class Issue < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude, address: :location
   after_validation :reverse_geocode,
                    if: ->(obj) { !obj.location.present? && lt_ln_present?(obj) }
+  after_create :notify_support
 
   acts_as_followable
 
@@ -96,5 +97,9 @@ class Issue < ApplicationRecord
   def prepare_facebook_page
     FbGraph2::Page.new(ENV['FACEBOOK_GROUP_ID'],
                        access_token: ENV['FACEBOOK_GROUP_TOKEN'])
+  end
+
+  def notify_support
+    IssueMailer.issue_created(self, user).deliver
   end
 end
