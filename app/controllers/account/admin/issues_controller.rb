@@ -41,9 +41,10 @@ module Account
       private
 
       def facebook_posting(issue)
-        return if Rails.env.test?
+        return if Rails.env.test? || issue.posted_on_facebook?
         page = prepare_facebook_page
         page.feed!(issue.fb_post)
+        issue.update_attribute('posted_on_facebook', true)
       end
 
       def prepare_facebook_page
