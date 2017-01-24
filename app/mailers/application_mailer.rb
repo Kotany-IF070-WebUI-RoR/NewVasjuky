@@ -2,4 +2,5 @@
 class ApplicationMailer < ActionMailer::Base
   default from: 'noreply@newvasjuky.com'
   layout 'mailer'
+  include Resque::Mailer
 end

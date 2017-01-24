@@ -7,7 +7,7 @@ small
   = link_to 'СКАРГИ', account_admin_issues_url
 p
   | Користувач 
-  b #{@user.full_name} 
+  b #{@user.first_name} #{@user.last_name} 
   | подав 
   = link_to issue_url(@issue)
     | нову скаргу

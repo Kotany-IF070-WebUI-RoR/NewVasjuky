@@ -24,9 +24,13 @@ gem 'omniauth-facebook'
 gem 'puma', '~> 3.0'
 gem 'rails', '>= 5.0.0.1'
 gem 'rails-controller-testing'
+gem 'redis'
+gem 'resque', '~> 1.22.0', require: 'resque/server'
+gem 'resque_mailer'
 gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
+gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git'
 gem 'slim-rails'
 gem 'socialization'
 gem 'thor', '0.19.1'
@@ -56,6 +60,7 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', '~> 1.0.0'
+  gem 'resque_spec'
   gem 'simplecov'
 end
 

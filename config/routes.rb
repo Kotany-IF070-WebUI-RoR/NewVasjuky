@@ -27,6 +27,10 @@ Rails.application.routes.draw do
     end
   end
 
+  authenticate :user, ->(u) { u.admin? } do
+    mount Resque::Server, at: '/resque'
+  end
+
   resources :categories, only: [:show]
 
   resources :issues, only: [:new, :index, :create, :show] do
