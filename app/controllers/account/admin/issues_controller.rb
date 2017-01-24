@@ -43,9 +43,7 @@ module Account
       def facebook_posting(issue)
         return if Rails.env.test?
         page = prepare_facebook_page
-        page.feed!(message: issue.fb_message,
-                   link: issue_url(issue), name: issue.title.to_s,
-                   picture: issue.fb_picture)
+        page.feed!(issue.fb_post)
       end
 
       def prepare_facebook_page

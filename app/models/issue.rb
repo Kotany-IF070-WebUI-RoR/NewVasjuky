@@ -1,5 +1,6 @@
 # Encoding: utf-8
 class Issue < ApplicationRecord
+  include Rails.application.routes.url_helpers
   has_many :comments, as: :commentable
   belongs_to :user
   belongs_to :category
@@ -60,11 +61,20 @@ class Issue < ApplicationRecord
     published? || can_read_when_unpublished?(user)
   end
 
+  def fb_post
+    { message: fb_message, link: fb_link, name: title.to_s,
+      picture: fb_picture }
+  end
+
   def fb_message
     fb_location = location.blank? ? '' : "Адреса: #{location} \n \n"
     fb_description = description.blank? ? '' : "Опис: #{description} \n \n"
     tags = category.tags.blank? ? '' : category.tags.to_s
-    "#{fb_location} #{fb_description} #{tags}"
+    [fb_location, fb_description, tags].reject(&:blank?).join(' ')
+  end
+
+  def fb_link
+    issue_url(self, host: Rails.application.config.host)
   end
 
   def fb_picture

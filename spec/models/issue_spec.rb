@@ -113,23 +113,27 @@ describe Issue, type: :model do
     end
   end
 
-  describe 'fb_message' do
-    it 'should have location, description and tags' do
-      expect(subject.fb_message).to include(subject.location)
+  describe 'fb_post' do
+    it 'should have location' do
+      expect(subject.fb_post[:message]).to include(subject.location)
     end
 
     it 'should have description' do
-      expect(subject.fb_message).to include(subject.description)
+      expect(subject.fb_post[:message]).to include(subject.description)
     end
 
     it 'should have tags' do
-      expect(subject.fb_message).to include(subject.category.tags)
+      expect(subject.fb_post[:message]).to include(subject.category.tags)
     end
-  end
 
-  describe 'fb_picture' do
     it 'should have picture url' do
-      expect(subject.fb_picture).to include(ENV['IMAGE_HOSTING_URL'])
+      picture_link = subject.attachment.file.file.partition('uploads').last
+      expect(subject.fb_post[:picture]).to include(picture_link)
+    end
+
+    it 'should have issue url' do
+      url = "#{Rails.application.config.host}/issues/#{subject.id}"
+      expect(subject.fb_post[:link]).to include(url)
     end
   end
 end
