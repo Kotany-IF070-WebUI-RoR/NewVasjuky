@@ -6,6 +6,10 @@ class IssuesController < ApplicationController
     @issues = Issue.approved.ordered.page(params[:page]).per(10)
   end
 
+  def map
+    @issues = Issue.all
+  end
+
   def new
     @issue = current_user.issues.new
     @categories = Category.by_name

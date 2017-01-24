@@ -39,4 +39,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   get  'followees', to: 'issues#followees'
   root to: 'home#index'
+  get '/map', to: 'issues#map'
 end

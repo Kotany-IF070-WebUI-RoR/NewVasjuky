@@ -54,3 +54,21 @@
 .unobtrusive-flash-container.fixed .alert {
   position: fixed;
 }
+
+#issues-map {
+  height:600px;
+  
+  .leaflet-map-pane {
+      z-index: 2 !important;
+  }
+
+  .leaflet-google-layer {
+      z-index: 1 !important;
+  }
+  .leaflet-popup-content img{
+    display:block;
+    margin:0 auto;
+    max-width:100%;
+    max-height:200px;
+  }
+}
