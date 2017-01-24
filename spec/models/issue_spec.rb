@@ -108,8 +108,32 @@ describe Issue, type: :model do
       expect(subject).to be_invalid
     end
 
-    it 'should exist and user sohuld be present' do
+    it 'should exist and user should be present' do
       expect(subject.user_id).to be_equal User.last.id
+    end
+  end
+
+  describe 'fb_post' do
+    it 'should have location' do
+      expect(subject.fb_post[:message]).to include(subject.location)
+    end
+
+    it 'should have description' do
+      expect(subject.fb_post[:message]).to include(subject.description)
+    end
+
+    it 'should have tags' do
+      expect(subject.fb_post[:message]).to include(subject.category.tags)
+    end
+
+    it 'should have picture url' do
+      picture_link = subject.attachment.file.file.partition('uploads').last
+      expect(subject.fb_post[:picture]).to include(picture_link)
+    end
+
+    it 'should have issue url' do
+      url = "#{Rails.application.config.host}/issues/#{subject.id}"
+      expect(subject.fb_post[:link]).to include(url)
     end
   end
 end

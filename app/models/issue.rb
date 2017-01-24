@@ -1,5 +1,6 @@
 # Encoding: utf-8
 class Issue < ApplicationRecord
+  include Rails.application.routes.url_helpers
   has_many :comments, as: :commentable
   belongs_to :user
   belongs_to :category
@@ -49,7 +50,7 @@ class Issue < ApplicationRecord
   end
 
   def published?
-    %w(open close).include? status
+    %w(open closed).include? status
   end
 
   def can_read_when_unpublished?(user)
@@ -58,5 +59,38 @@ class Issue < ApplicationRecord
 
   def can_read?(user)
     published? || can_read_when_unpublished?(user)
+  end
+
+  def fb_post
+    { message: fb_message, link: fb_link, name: title.to_s,
+      picture: fb_picture }
+  end
+
+  def fb_message
+    fb_location = location.blank? ? '' : "Адреса: #{location} \n \n"
+    fb_description = description.blank? ? '' : "Опис: #{description} \n \n"
+    tags = category.tags.blank? ? '' : category.tags.to_s
+    [fb_location, fb_description, tags].reject(&:blank?).join(' ')
+  end
+
+  def fb_link
+    issue_url(self, host: Rails.application.config.host)
+  end
+
+  def fb_picture
+    picture = attachment.file.nil? ? '/uploads/default-image.jpg' : attachment
+    "#{ENV['IMAGE_HOSTING_URL']}#{picture}"
+  end
+
+  def post_to_facebook!
+    return if Rails.env.test? || posted_on_facebook?
+    page = prepare_facebook_page
+    page.feed!(fb_post)
+    update_attribute('posted_on_facebook', true)
+  end
+
+  def prepare_facebook_page
+    FbGraph2::Page.new(ENV['FACEBOOK_GROUP_ID'],
+                       access_token: ENV['FACEBOOK_GROUP_TOKEN'])
   end
 end

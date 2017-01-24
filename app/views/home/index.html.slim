@@ -5,7 +5,7 @@ section.no-mb
       .row.mb-small
         .col-sm-12.text-center
           h1 Hello, Франківськ!
-          h2 До вашої уваги соцальний проект під кодовою назвою "NewVasjuky" групи IF-070.WebUI-RoR
+          h2 До вашої уваги соціальний проект під кодовою назвою "NewVasjuky" групи IF-070.WebUI-RoR
       .row
         .col-md-6.col-sm-12
           p З допомогою цього додатка можна у кілька кліків надіслати звернення для вирішення різноманітних комунальних проблем з будь-якого пристрою: смартфона, планшета, комп'ютера.
@@ -48,7 +48,7 @@ section.bar.background-white.no-mb
                   = link_to 'Читати далі', issue, class: 'btn btn-template-transparent-primary'
             .content
               p.author-category
-                = link_to issue.category.name, '#'
+                = link_to issue.category.name, category_path(issue.category)
               h4
                   = link_to issue.title, issue
 

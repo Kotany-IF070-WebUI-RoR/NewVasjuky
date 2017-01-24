@@ -1,3 +1,4 @@
+# Encoding: utf-8
 # frozen_string_literal: true
 module Account
   module Admin
@@ -13,7 +14,8 @@ module Account
 
       def update
         if @issue.update_attributes(issues_params)
-          flash[:success] = 'Issue updated'
+          flash[:success] = 'Звернення змінено!'
+          @issue.post_to_facebook! if @issue.status == 'open'
           redirect_to @issue
         else
           render 'edit'
@@ -22,6 +24,7 @@ module Account
 
       def approve
         @issue.update_attribute('status', :open)
+        @issue.post_to_facebook!
         redirect_back(fallback_location: root_path)
       end
 
@@ -42,8 +45,8 @@ module Account
       end
 
       def issues_params
-        params.require(:issue).permit(:category_id, :location, :approved,
-                                      :latitude, :longitude, :status)
+        params.require(:issue).permit(:category_id, :location, :latitude,
+                                      :longitude, :status)
       end
     end
   end
