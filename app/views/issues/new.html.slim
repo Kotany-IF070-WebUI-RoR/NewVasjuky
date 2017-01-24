@@ -21,8 +21,7 @@
                     placeholder: 'Петро Петрович Петренко'
             = f.input :address, label: 'Ваша адреса',
                     placeholder: 'вул. Грушевського 21'
-            = f.input :phone, label: 'Номер телефону',
-                    placeholder: '+380 342 77 77 77'
+            = f.input :phone, label: 'Номер телефону'
             = f.input :email, as: :email, label: 'Email',
                     placeholder: 'user@domain.com'
             = f.input :title, label: 'Короткий опис проблеми'
@@ -37,4 +36,4 @@
             = f.button :submit, class: 'btn btn-primary'
 
 javascript:
-  $('document').ready(validate_attachment());
+  $('document').ready(validate_form());

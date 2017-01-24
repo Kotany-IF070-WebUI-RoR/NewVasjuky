@@ -16,7 +16,7 @@
         h2 #{@issue.title}
       .info-group-wrapper.col-md-3.col-sm-6.pull-right
         h3
-          span.label.label-default.status class="#{@issue_label}" #{@issue.status_name}
+          = show_issue_status(@issue)
         .follow-wrapper
           .follow.pull-right
             - if user_signed_in?
@@ -40,29 +40,11 @@
             span.pull-right
               i.fa.fa-location-arrow
               span  #{@issue.location}
-        .col-md-5
-          .project.owl-carousel.owl-theme.relative
-            .owl-wrapper-outer.relative
-              .owl-wrapper.relative
-                .owl-item
-                  .item
-                    = image_tag @issue.first_attached_image, class: 'img-responsive'
-            .owl-controls.clickable
-              .owl-pagination
-                .owl-page
-                  span.dot
-                .owl-page
-                  span.dot
-                .owl-page.active
-                  span.dot
-                .owl-page
-                  span.dot
-              .owl-buttons
-                .owl-prev.pull-left
-                  i.fa.fa-angle-left
-                .owl-next.pull-right
-                  i.fa.fa-angle-right
-        .col-md-7
+        .col-md-5.col-sm-5
+          .project.owl-carousel.owl-theme id='issue-carousel'
+            - @issue.issue_attachments.each do |issue_attachment|
+              = image_tag issue_attachment.attachment
+        .col-md-7.col-sm-7
           .box-image-text.blog
             .top
               .image
@@ -102,3 +84,14 @@
         .heading.col-md-12
           h3 Коментарі:
         = render 'comments/comments', commentable: @issue
+javascript:
+  $(document).ready(function(){
+    $("#issue-carousel").owlCarousel({
+        nav : true,
+        items : 1,
+        autoplay: true,
+        loop: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true
+    });
+  });

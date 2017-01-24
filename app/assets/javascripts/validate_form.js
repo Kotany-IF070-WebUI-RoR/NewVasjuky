@@ -14,5 +14,5 @@ function validate_attachment() {
             UnobtrusiveFlash.showFlashMessage(error_messages.join(' '), {type: 'error', timeout: 0});
             this.value = '';
         }
-    })
-}
+    });
+

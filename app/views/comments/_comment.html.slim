@@ -9,10 +9,7 @@
         i.fa.fa-clock-o  #{ I18n.l comment.created_at, format: :published }
       h5 #{comment.title}
       p #{comment.content}
-      p.reply.comment-button.pull-left
-        a href="#"
-          i.fa.fa-reply
-          span Відповісти
+      p.reply.comment-button
         - if comment.can_delete?(current_user) && !current_user.banned?
           a.remove-comment.trash.comment-button href="#"  id = comment.id
             i.fa.fa-trash

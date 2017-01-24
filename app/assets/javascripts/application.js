@@ -23,12 +23,14 @@
 //= require bootstrap-sprockets
 //= require jquery.cookie
 //= require jquery.counterup.min
+//= require jquery.maskedinput.min
 //= require jquery.waypoints
+//= require owl.carousel.min
 //= require home.coffee
 //= require issues.coffee
 //= require cocoon
 //= require users.coffee
 //= require comments
 //= require flash
-//= require validate_attachment
+//= require validate_form
 //= require front
