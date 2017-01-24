@@ -8,13 +8,14 @@ FactoryGirl.define do
     description { Faker::Lorem.characters(255) }
     location    { Faker::Address.street_address }
     status :pending
-    attachment do
-      Rack::Test::UploadedFile.new(
-        Rails.root.join('spec', 'files', 'avatar.jpg')
-      )
-    end
     association :user, factory: :user
     association :category, factory: :category
+  end
+
+  factory :issue_attachment do
+    attachment  Rack::Test::UploadedFile.new(
+      Rails.root.join('spec', 'files', 'avatar.jpg')
+    )
   end
 
   factory :user do

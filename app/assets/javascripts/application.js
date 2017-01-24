@@ -26,6 +26,7 @@
 //= require jquery.waypoints
 //= require home.coffee
 //= require issues.coffee
+//= require cocoon
 //= require users.coffee
 //= require comments.js
 //= require flash.js

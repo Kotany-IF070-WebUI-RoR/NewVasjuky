@@ -5,6 +5,12 @@ describe IssuesController, type: :controller do
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :moderator) }
   let(:example_issue) { build(:issue) }
+  let(:valid_issue_params) do
+    example_issue.attributes.merge(
+      issue_attachments_attributes:
+        [FactoryGirl.attributes_for(:issue_attachment)]
+    )
+  end
   describe 'GET #new' do
     it 'when user is not logged in' do
       get :new
@@ -32,37 +38,51 @@ describe IssuesController, type: :controller do
 
   describe 'POST #create' do
     it 'when user is not logged in' do
-      expected = expect do
-        post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
-      end
-      expected.to change(Issue, :count).by(0)
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(Issue, :count).by(0)
     end
 
     it 'when user is a reporter' do
-      pending('minor fix in test needed')
       sign_in reporter
-      expected = expect do
-        post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
-      end
-      expected.to change(Issue, :count).by(1)
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(Issue, :count).by(1)
     end
 
     it 'when user is a moderator' do
-      pending('minor fix in test needed')
       sign_in moderator
-      expected = expect do
-        post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
-      end
-      expected.to change(Issue, :count).by(1)
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(Issue, :count).by(1)
     end
 
     it 'when user is a admin' do
-      pending('minor fix in test needed')
       sign_in admin
-      expected = expect do
-        post :create, params: {  issue: FactoryGirl.attributes_for(:issue)  }
-      end
-      expected.to change(Issue, :count).by(1)
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(Issue, :count).by(1)
+    end
+
+    it 'creates attachment when user is reporter' do
+      sign_in reporter
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(IssueAttachment, :count).by(1)
+    end
+
+    it 'creates attachment when user is admin' do
+      sign_in admin
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(IssueAttachment, :count).by(1)
+    end
+
+    it 'creates attachment when user is moderator' do
+      sign_in moderator
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(IssueAttachment, :count).by(1)
     end
   end
 

@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: 9ef68325dd5ea465b4d340af9a9def10934cd677
+  specs:
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -62,11 +71,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (1.0.0)
-      activemodel (>= 4.0.0)
-      activesupport (>= 4.0.0)
-      mime-types (>= 1.16)
     chunky_png (1.3.8)
+    cocoon (1.2.9)
     codeclimate-test-reporter (1.0.3)
       simplecov
     coffee-rails (4.2.1)
@@ -463,7 +469,8 @@ DEPENDENCIES
   bootstrap-sass (= 3.3.6)
   byebug
   capybara
-  carrierwave
+  carrierwave!
+  cocoon
   codeclimate-test-reporter (~> 1.0.0)
   coffee-rails (~> 4.2)
   compass-rails (~> 3.0, >= 3.0.2)
