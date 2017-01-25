@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass', '3.3.6'
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'cocoon'
 gem 'coffee-rails', '~> 4.2'
 gem 'compass-rails', '~> 3.0', '>= 3.0.2'
@@ -24,9 +24,14 @@ gem 'omniauth-facebook'
 gem 'puma', '~> 3.0'
 gem 'rails', '>= 5.0.0.1'
 gem 'rails-controller-testing'
-gem 'rubocop', require: false
+gem 'rainbow', '2.1.0'
+gem 'redis'
+gem 'resque', '~> 1.22.0', require: 'resque/server'
+gem 'resque_mailer'
+gem 'rubocop', '0.46.0', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
+gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git'
 gem 'slim-rails'
 gem 'socialization'
 gem 'thor', '0.19.1'
@@ -56,6 +61,7 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', '~> 1.0.0'
+  gem 'resque_spec'
   gem 'simplecov'
 end
 

@@ -14,6 +14,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .idea
+**.rdb
 coverage
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
