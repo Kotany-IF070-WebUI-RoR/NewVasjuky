@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
+gem 'any_login'
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass', '3.3.6'
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'

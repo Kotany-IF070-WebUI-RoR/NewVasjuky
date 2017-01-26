@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+FactoryGirl.create(:user, :admin)
+
 issue_categories = [
     { name: 'Соціальний захист',
       description: 'Питання щодо соціального захисту в м.Івано-Франківську',

@@ -62,6 +62,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
+    any_login (1.2.1)
+      rails (>= 4.0.0)
     arel (7.1.4)
     ast (2.3.0)
     attr_required (1.0.1)
@@ -504,6 +506,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  any_login
   bootstrap-kaminari-views
   bootstrap-sass (= 3.3.6)
   byebug

@@ -7,6 +7,11 @@ uk:
         restrict_dependent_destroy:
           has_one: 'Неможливо видалити запис, так як існує залежність: %{record}'
           has_many: 'Неможливо видалити запис, так як існують залежності: %{record}'
+      template:
+        header:
+          one:   "Виправте помилку в формі"
+          other: "Виправте %{count} помилок в формі"
+        body:    "Перелік помилок:"
   date:
     abbr_day_names:
     - нд.
