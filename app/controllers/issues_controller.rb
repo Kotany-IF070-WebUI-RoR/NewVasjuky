@@ -8,7 +8,6 @@ class IssuesController < ApplicationController
 
   def new
     @issue = current_user.issues.new
-    @categories = Category.by_name
   end
 
   def show

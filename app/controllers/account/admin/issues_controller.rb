@@ -15,7 +15,7 @@ module Account
       def update
         if @issue.update_attributes(issues_params)
           flash[:success] = 'Звернення змінено!'
-          @issue.post_to_facebook! if @issue.status == 'open'
+          @issue.post_to_facebook! if @issue.open?
           redirect_to @issue
         else
           render 'edit'

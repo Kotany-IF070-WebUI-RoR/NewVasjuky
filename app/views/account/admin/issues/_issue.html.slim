@@ -4,8 +4,7 @@ tr
   td= issue.user.full_name
   td
     - unless issue.pending?
-      span.label.label-success
-        = issue.status
+      = show_issue_status(issue)
     - else
       span.label.label-info Очікує
       br/

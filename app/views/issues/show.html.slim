@@ -30,8 +30,8 @@
           p.text-muted.text-uppercase.mb-small.pull-left
             span.author Автор: #{@issue.user.full_name }
             br
-            span  #{'Категорія: '}
-            = link_to @issue.category.name, '#'
+            span  Категорія:
+            = link_to @issue.category.name, category_path(@issue.category)
           p.date-comments.pull-right
             span.pull-right
               i.fa.fa-calendar-o
@@ -40,16 +40,12 @@
             span.pull-right
               i.fa.fa-location-arrow
               span  #{@issue.location}
-        .col-md-5.col-sm-5
-          .project.owl-carousel.owl-theme id='issue-carousel'
-            - @issue.issue_attachments.each do |issue_attachment|
-              = image_tag issue_attachment.attachment
         .col-md-7.col-sm-7
           .box-image-text.blog
             .top
               .image
-                = image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@issue.latitude},#{@issue.longitude}&markers=#{@issue.latitude},#{@issue.longitude}&zoom=17&size=640x400&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
-                        class: 'img-responsive', alt: "#{@issue.name} on the map"
+                = image_tag "//maps.googleapis.com/maps/api/staticmap?center=#{@issue.latitude},#{@issue.longitude}&markers=#{@issue.latitude},#{@issue.longitude}&zoom=17&size=640x350&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
+                        class: 'img-responsive', alt: "#{@issue.title} on the map"
               .bg
               .text
                 .buttons
@@ -57,6 +53,10 @@
                     'Координати:
                     br
                     span.copy #{@issue.latitude} #{@issue.longitude}
+        .col-md-5.col-sm-5
+          .project.owl-carousel.owl-theme id='issue-carousel'
+            - @issue.issue_attachments.each do |issue_attachment|
+              = image_tag issue_attachment.attachment
         .col-md-12
           .heading
             h3 Проблема:
