@@ -1,4 +1,2 @@
--if commentable.comments.any?
-  .comment-list.col-md-8
-    h4.text-uppercase.comment-counter 100500 коментарів
-    = render partial: 'comments/comment', collection: commentable.comments.ordered
+.comment_page
+  = render partial: 'comments/comment', collection: @comments
