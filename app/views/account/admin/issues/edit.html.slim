@@ -12,7 +12,7 @@ h1 Редагувати звернення
         = f.input :email, as: :email, label: 'Email', disabled: true
         = f.input :title, label: 'Короткий опис проблеми', disabled: true
         = f.input :description, as: :text, label: 'Текст звернення', disabled: true
-        = f.association :category, collection: Category.ordered_by_name.all, label: 'Категорія'
+        = f.association :category, collection: Category.ordered_by_name, label: 'Категорія'
         = f.input :location, label: 'Адреса проблеми'
         = f.input :latitude, label: 'Широта'
         = f.input :longitude, label: 'Довгота'

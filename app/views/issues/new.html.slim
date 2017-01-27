@@ -25,7 +25,7 @@
             = f.input :email, as: :email, label: 'Email',
                     placeholder: 'user@domain.com'
             = f.input :title, label: 'Короткий опис проблеми'
-            = f.association :category, collection: Category.ordered_by_name.all,
+            = f.association :category, collection: Category.ordered_by_name,
                     label: 'Категорія'
             = f.input :location, label: 'Адреса проблеми',
                     placeholder: 'Івано-Франківськ, Сахарова, 33'
@@ -33,7 +33,7 @@
             #issue_attachments
               = simple_fields_for :issue_attachments do |ia|
                 = link_to_add_association 'Додати зображення', f, :issue_attachments
-            = f.button :submit, class: 'btn btn-primary'
+            = f.button :submit, 'Надіслати звернення', class: 'btn btn-primary'
 
 javascript:
   $('document').ready(validate_form());
