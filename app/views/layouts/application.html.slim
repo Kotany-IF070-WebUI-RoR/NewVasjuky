@@ -7,7 +7,6 @@ html
       = render 'layouts/header'
       main
         = yield
+        = any_login_here if defined?(AnyLogin)
         #footer
       = render 'layouts/footer'
-= any_login_here if defined?(AnyLogin)
-
