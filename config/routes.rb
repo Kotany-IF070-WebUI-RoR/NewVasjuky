@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   resources :issues, only: [:new, :index, :create, :show] do
     post 'follow',   to: 'issues/socializations#follow'
     post 'unfollow', to: 'issues/socializations#unfollow'
-    resources :comments, module: :issues, only: :create
+    resources :comments, module: :issues, only: [:create, :index]
   end
 
   resources :comments, only: [:destroy]
