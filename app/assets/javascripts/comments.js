@@ -33,7 +33,6 @@ function init_comments_page() {
 
     // comments autoload
     var comment_page = 1;
-    start_scroll_listening();
     load_comments();
     // end of comments autoload
 
