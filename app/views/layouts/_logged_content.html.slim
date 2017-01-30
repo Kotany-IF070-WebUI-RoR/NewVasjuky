@@ -12,13 +12,15 @@ li.dropdown
       = link_to 'Мої звернення', user_path(current_user)
     li
       = link_to 'Відслідковувані звернення', followees_path
+    li
+      = link_to 'Всі звернення', issues_path
     - if current_user.admin? || current_user.moderator?
       li
         span Меню модератора
       li
-        = link_to 'Всі звернення', account_admin_issues_path
+        = link_to 'Модерація звернень', account_admin_issues_path
       li
-        = link_to 'Всі користувачі', account_admin_users_path
+        = link_to 'Модерація користувачів', account_admin_users_path
     - else
       li
         = link_to 'Всі звернення', issues_path

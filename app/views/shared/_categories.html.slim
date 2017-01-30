@@ -1,0 +1,5 @@
+- @categories.each do |category|
+  ul.nav.nav-pills.nav-stacked
+    li= link_to category_path(category)
+      =category.name
+      span.badge.pull-right= category.issues.approved.count

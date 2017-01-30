@@ -1,0 +1,7 @@
+= content_tag :form, role: 'search'
+  .input-group
+    = text_field_tag :filter, '', class: 'form-control',
+            placeholder: 'Пошук', autocomplete: :off
+    span.input-group-btn
+      = content_tag :button, type: 'submit', class: 'btn btn-template-main'
+        i.fa.fa-search

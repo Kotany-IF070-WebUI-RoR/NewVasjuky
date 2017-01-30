@@ -17,7 +17,6 @@ class Issue < ApplicationRecord
   REGEXP_NAME = /\p{L}/
   REGEXP_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.\w+\z/i
   REGEXP_PHONE = /\A[ x0-9\+\(\)\-\.]+\z/
-
   validates :name, :address, :phone, :email, :category_id,
             :description, :user_id, :title,
             presence: true
@@ -33,11 +32,18 @@ class Issue < ApplicationRecord
   validates :email, length: { maximum: 255 },
                     format: { with: REGEXP_EMAIL,
                               message: 'Адреса повинна бути справжньою' }
-  validates :description, length: { minimum: 50 }
-
+  validates :description, length: { minimum: 50, maximum: 3000 }
+  validates :title, length: { minimum: 10, maximum: 80 }
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :opened) }
   scope :closed, -> { where(status: :closed) }
+  scope :search, ->(a) { where("title like '%#{a}%'") }
+  scope :status, ->(a) { where(status: a) }
+  like_query = lambda do |a|
+    where("title like '%#{a}%' OR description like '%#{a}%' \
+           OR location like '%#{a}%'")
+  end
+  scope :like, like_query
 
   aasm column: :status, enum: true do
     state :pending, initial: true
@@ -68,12 +74,21 @@ class Issue < ApplicationRecord
                    if: ->(obj) { !obj.location.present? && lt_ln_present?(obj) }
   after_create :notify_support
 
+  acts_as_followable
+
   def lt_ln_present?(obj)
     obj.latitude.present? && obj.longitude.present?
   end
 
   def status_name
     STATUSES[status]
+  end
+
+  def self.status_attributes_for_select
+    m_name = model_name.i18n_key
+    statuses.map do |status, _|
+      [I18n.t("activerecord.attributes.#{m_name}.statuses.#{status}"), status]
+    end
   end
 
   def published?
@@ -114,7 +129,7 @@ class Issue < ApplicationRecord
   end
 
   def post_to_facebook!
-    return if Rails.env.test? || Rails.env.development? || posted_on_facebook?
+    return if !Rails.env.production? || posted_on_facebook?
     page = prepare_facebook_page
     page.feed!(fb_post)
     update_attribute('posted_on_facebook', true)
@@ -127,14 +142,5 @@ class Issue < ApplicationRecord
 
   def notify_support
     IssueMailer.issue_created(id).deliver
-  end
-
-  private
-
-  def create_event
-    event = events.new
-    event.before_status = aasm.from_state
-    event.after_status = aasm.to_state
-    event.save
   end
 end

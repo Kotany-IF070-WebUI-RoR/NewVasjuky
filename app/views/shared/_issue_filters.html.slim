@@ -1,0 +1,10 @@
+= smart_listing_controls_for(:issues, {class: 'form-inline text-right'}) do
+  .form-group.status_select
+    span Статус:
+    = select_tag :issue_status,
+            options_for_select(Issue.status_attributes_for_select),
+            class: 'form-control',
+            prompt: 'Виберіть статус'
+  .form-group.filter.input-append
+    = text_field_tag :filter, '', class: 'search form-control',
+            placeholder: 'Пошук', autocomplete: :off
