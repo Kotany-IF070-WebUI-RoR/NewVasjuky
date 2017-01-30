@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   resources :issues, only: [:new, :index, :create, :show] do
     collection do
       get :map
+      get :closed
     end
     member do
       get :popup

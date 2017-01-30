@@ -34,6 +34,11 @@ class IssuesController < ApplicationController
                  img: @issue.first_attached_image)
   end
 
+  def closed
+    @issues = Issue.closed.ordered.page(params[:page]).per(10)
+    render 'index'
+  end
+
   def followees
     @issues = current_user.followees(Issue)
   end
