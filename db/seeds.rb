@@ -59,6 +59,12 @@ issue_categories = [
       tags: '#ІваноФранківськ #КомунальнеГосподарство'}
 ]
 
+issue_categories.collect do |c|
+  Category.create(name: c[:name],
+                  description: c[:description],
+                  tags: c[:tags])
+end
+
 issues = [
   { title: 'Відсутній тротуар у проході між будинками',
     address: { lat: 49.9225649, lng: 25.710127,
@@ -428,11 +434,6 @@ FactoryGirl.create(:issue,
                               issue[:issue_attachments_attributes][:attachment]
                       }
                     ])
-end
-issue_categories.collect do |c|
-  Category.create(name: c[:name],
-                  description: c[:description],
-                  tags: c[:tags])
 end
 
 Issue.all.each do |issue|

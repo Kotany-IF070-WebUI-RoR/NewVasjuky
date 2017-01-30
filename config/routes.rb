@@ -34,6 +34,12 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
 
   resources :issues, only: [:new, :index, :create, :show] do
+    collection do
+      get :map
+    end
+    member do
+      get :popup
+    end
     post 'follow',   to: 'issues/socializations#follow'
     post 'unfollow', to: 'issues/socializations#unfollow'
     resources :comments, module: :issues, only: [:create, :index]
