@@ -31,6 +31,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @commentable = @comment.commentable
     if @comment.can_delete?(current_user)
+      render json: nil, status: :ok
       @comment.destroy
     else
       redirect_to @commentable

@@ -33,3 +33,4 @@
 //= require comments
 //= require flash
 //= require front
+//= require smart_listing

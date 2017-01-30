@@ -109,6 +109,13 @@
   }
 }
 
+.status_select {
+  margin-right: 25px;
+  span {
+    margin-right: 7px;
+  }
+}
+
 #new_issue {
   input[name='commit'] {
     margin-top: 25px;

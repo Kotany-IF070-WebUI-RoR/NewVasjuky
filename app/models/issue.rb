@@ -3,6 +3,8 @@ class Issue < ApplicationRecord
   include Rails.application.routes.url_helpers
   include AASM
   include Statuses
+  include Search
+  include Facebook
   acts_as_followable
 
   has_many :comments, as: :commentable
@@ -33,11 +35,15 @@ class Issue < ApplicationRecord
   validates :email, length: { maximum: 255 },
                     format: { with: REGEXP_EMAIL,
                               message: 'Адреса повинна бути справжньою' }
-  validates :description, length: { minimum: 50 }
-
+  validates :description, length: { minimum: 50, maximum: 3000 }
+  validates :title, length: { minimum: 10, maximum: 80 }
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :opened) }
   scope :closed, -> { where(status: :closed) }
+  scope :find_issues, ->(a) { where('title like ?', "%#{a}%") }
+  scope :status, ->(a) { where(status: a) }
+  query = search('title like ? OR description like ? OR location like ?')
+  scope :like, query
 
   aasm column: :status, enum: true do
     state :pending, initial: true
@@ -76,6 +82,13 @@ class Issue < ApplicationRecord
     STATUSES[status]
   end
 
+  def self.status_attributes_for_select
+    m_name = model_name.i18n_key
+    statuses.map do |status, _|
+      [I18n.t("activerecord.attributes.#{m_name}.statuses.#{status}"), status]
+    end
+  end
+
   def published?
     %w(opened closed).include? status
   end
@@ -92,41 +105,13 @@ class Issue < ApplicationRecord
     issue_attachments.first_or_initialize.attachment
   end
 
-  def fb_post
-    { message: fb_message, link: fb_link,
-      name: title.to_s, picture: fb_picture }
-  end
-
-  def fb_message
-    fb_location = location.blank? ? '' : "Адреса: #{location} \n \n"
-    fb_description = description.blank? ? '' : "Опис: #{description} \n \n"
-    tags = category.tags.blank? ? '' : category.tags.to_s
-    [fb_location, fb_description, tags].reject(&:blank?).join(' ')
-  end
-
-  def fb_link
-    issue_url(self, host: Rails.application.config.host)
-  end
-
-  def fb_picture
-    picture = first_attached_image.path || 'uploads/default-image.jpg'
-    "#{ENV['IMAGE_HOSTING_URL']}#{picture}"
-  end
-
-  def post_to_facebook!
-    return if !Rails.env.production? || posted_on_facebook?
-    page = prepare_facebook_page
-    page.feed!(fb_post)
-    update_attribute('posted_on_facebook', true)
+  def notify_support
+    IssueMailer.issue_created(id).deliver
   end
 
   def prepare_facebook_page
     FbGraph2::Page.new(ENV['FACEBOOK_GROUP_ID'],
                        access_token: ENV['FACEBOOK_GROUP_TOKEN'])
-  end
-
-  def notify_support
-    IssueMailer.issue_created(id).deliver
   end
 
   private

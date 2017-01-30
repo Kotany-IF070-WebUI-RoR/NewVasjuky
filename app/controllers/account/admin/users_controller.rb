@@ -7,7 +7,14 @@ module Account
       before_action :admin?, only: [:change_role]
 
       def index
-        @users = User.page(params[:page]).per(20)
+        @users_scope = User.all
+        @users_scope = user_role_select if params[:user_role]
+        @users_scope = @users_scope.like(params[:filter]) if params[:filter]
+
+        smart_listing_create :users,
+                             @users_scope,
+                             partial: 'account/admin/users/user',
+                             default_sort: { created_at: 'asc' }
       end
 
       def change_role
@@ -38,6 +45,11 @@ module Account
 
       def user_params
         params.require(:user).permit(:role)
+      end
+
+      def user_role_select
+        return User.all if params[:user_role].empty?
+        @users_scope.role_search(params[:user_role])
       end
     end
   end

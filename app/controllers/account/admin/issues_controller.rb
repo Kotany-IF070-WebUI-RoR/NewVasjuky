@@ -7,7 +7,7 @@ module Account
       before_action :find_issue,
                     only: [:edit, :update, :approve, :close, :decline]
       def index
-        @issues = Issue.ordered.page(params[:page]).per(20)
+        issue_listing(Issue.all)
       end
 
       def edit; end
