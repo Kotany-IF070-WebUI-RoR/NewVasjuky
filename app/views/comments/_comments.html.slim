@@ -11,6 +11,10 @@
           button.btn.btn-danger#confirm_deletion Видалити
           button.btn#cencel_deletion Скасувати
 .comment-list-wrapper
-  = render 'comments/comments_list', commentable: commentable
+  .comment-list.col-md-8
+  #loader-block.col-xs-12.hidden
+    = image_tag 'loader.gif', alt: 'Loader', id: 'loader-img',
+            class: '.img-responsive col-xs-12, col-md-2 col-md-offset-5'
+
 javascript:
     $('document').ready(init_comments_page());
