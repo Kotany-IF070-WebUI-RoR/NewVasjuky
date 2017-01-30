@@ -7,24 +7,10 @@
     .user-info.col-md-9.col-xs-12
       p Електронна пошта: #{@user.email}
       p Запис зареєстровано: #{l @user.created_at, format: :long}
-  - if @issues.any?
     .box.user-issues.col-xs-12
       h4 Мої звернення:
-      .table-responsive
-        table.table.table-hover
-          thead
-            tr
-              th Звернення
-              th Назва
-              th Дата створення
-              th Статус
-              th Посилання
-
-          tbody
-            - @issues.each do |issue|
-              tr
-                td № #{issue.id}
-                td =issue.title
-                td =l issue.created_at, format: :long
-                td =show_issue_status(issue)
-                td =link_to 'Переглянути', issue_path(issue)
+      - if @user.issues.any?
+        = render 'shared/issue_filters'
+        = smart_listing_render(:issues)
+      - else
+          p Не додано жодного звернення

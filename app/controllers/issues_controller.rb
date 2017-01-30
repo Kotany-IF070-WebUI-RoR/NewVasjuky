@@ -5,7 +5,12 @@ class IssuesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @issues = Issue.approved.ordered.page(params[:page]).per(10)
+    issues_scope = Issue.approved.ordered
+    issues_scope = issues_scope.like(params[:filter]) if params[:filter]
+    smart_listing_create :issues,
+                         issues_scope,
+                         partial: 'issues/issue'
+    @categories = Category.all
   end
 
   def new

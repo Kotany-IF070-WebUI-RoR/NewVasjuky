@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :require_active_user, only: [:show]
 
   def show
-    @issues = @user.issues
+    issue_listing(@user.issues)
   end
 
   private

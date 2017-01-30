@@ -15,6 +15,12 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX }
   validates :first_name, presence: true, length: { maximum: 25 }
   validates :last_name, presence: true, length: { maximum: 25 }
+  scope :role_search, ->(a) { where(role: a) }
+  like_query = lambda do |a|
+    where("email like '%#{a}%' OR first_name like '%#{a}%' \
+           OR last_name like '%#{a}%'")
+  end
+  scope :like, like_query
 
   acts_as_follower
 
