@@ -32,5 +32,4 @@
 //= require users.coffee
 //= require comments
 //= require flash
-//= require validate_form
 //= require front

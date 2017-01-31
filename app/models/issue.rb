@@ -114,7 +114,7 @@ class Issue < ApplicationRecord
   end
 
   def post_to_facebook!
-    return if Rails.env.test? || Rails.env.development? || posted_on_facebook?
+    return if !Rails.env.production? || posted_on_facebook?
     page = prepare_facebook_page
     page.feed!(fb_post)
     update_attribute('posted_on_facebook', true)
