@@ -1,12 +1,18 @@
 # Encoding: utf-8
 class Issue < ApplicationRecord
   include Rails.application.routes.url_helpers
+  include AASM
+  acts_as_followable
+
   has_many :comments, as: :commentable
   belongs_to :user
   belongs_to :category
   has_many :issue_attachments
+
   accepts_nested_attributes_for :issue_attachments, allow_destroy: true
+
   enum status: [:pending, :declined, :open, :closed]
+
   STATUSES = { 'open' => 'Запит прийнято',
                'pending' => 'Очікує на модерацію',
                'declined' => 'Запит відхилено',
@@ -14,6 +20,7 @@ class Issue < ApplicationRecord
   REGEXP_NAME = /\p{L}/
   REGEXP_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.\w+\z/i
   REGEXP_PHONE = /\A[ x0-9\+\(\)\-\.]+\z/
+
   validates :name, :address, :phone, :email, :category_id,
             :description, :user_id, :title,
             presence: true
@@ -30,9 +37,11 @@ class Issue < ApplicationRecord
                     format: { with: REGEXP_EMAIL,
                               message: 'Адреса повинна бути справжньою' }
   validates :description, length: { minimum: 50 }
+
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :open) }
   scope :closed, -> { where(status: :closed) }
+
   geocoded_by :location
   after_validation :geocode,
                    if: ->(obj) { obj.location.present? && !obj.latitude? }
@@ -40,8 +49,6 @@ class Issue < ApplicationRecord
   after_validation :reverse_geocode,
                    if: ->(obj) { !obj.location.present? && lt_ln_present?(obj) }
   after_create :notify_support
-
-  acts_as_followable
 
   def lt_ln_present?(obj)
     obj.latitude.present? && obj.longitude.present?
@@ -102,5 +109,25 @@ class Issue < ApplicationRecord
 
   def notify_support
     IssueMailer.issue_created(id).deliver
+  end
+
+  aasm :status, enum: true do
+    state :pending, initial: true
+    state :declined
+    state :open
+    state :closed
+
+    event :approve do
+      transitions from: :pending, to: :open
+    end
+
+    event :decline do
+      transitions from: :pending, to: :declined
+    end
+
+    event :close do
+      transitions from: :open, to: :closed
+    end
+
   end
 end

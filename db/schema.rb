@@ -40,11 +40,6 @@ ActiveRecord::Schema.define(version: 20170131144529) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "feeds", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "follows", force: :cascade do |t|
     t.string   "follower_type"
     t.integer  "follower_id"
@@ -79,23 +74,12 @@ ActiveRecord::Schema.define(version: 20170131144529) do
     t.string   "title"
     t.integer  "status",              default: 0
     t.integer  "followers_count",     default: 0
-    t.integer  "issue_attachment_id"
     t.boolean  "posted_on_facebook",  default: false
+    t.integer  "issue_attachment_id"
     t.index ["category_id"], name: "index_issues_on_category_id"
     t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id"
     t.index ["status"], name: "index_issues_on_status"
     t.index ["user_id"], name: "index_issues_on_user_id"
-  end
-
-  create_table "notifications", force: :cascade do |t|
-    t.string   "before_state"
-    t.string   "after_state"
-    t.string   "owner_type"
-    t.string   "owner_id"
-    t.integer  "status",       default: 0
-    t.integer  "issue_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
   end
 
   create_table "users", force: :cascade do |t|
