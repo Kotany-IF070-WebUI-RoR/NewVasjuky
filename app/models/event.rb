@@ -4,7 +4,6 @@ class Event < ApplicationRecord
   enum after_status: [:pending, :declined, :opened, :closed], _prefix: :after
   belongs_to :issue
 
-
   STATUSES = { 'opened' => 'підтверджено, очікує вирішення',
                'pending' => 'Очікує на модерацію',
                'declined' => 'відхилено модератором',

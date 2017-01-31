@@ -62,7 +62,6 @@ class Issue < ApplicationRecord
     event :close do
       transitions from: :opened, to: :closed
     end
-
   end
 
   geocoded_by :location
@@ -119,7 +118,7 @@ class Issue < ApplicationRecord
   end
 
   def post_to_facebook!
-    return if Rails.env.test? || posted_on_facebook?
+    return if Rails.env.test? || Rails.env.development? || posted_on_facebook?
     page = prepare_facebook_page
     page.feed!(fb_post)
     update_attribute('posted_on_facebook', true)
@@ -137,10 +136,9 @@ class Issue < ApplicationRecord
   private
 
   def create_event
-    @event = Event.new
-    @event.issue_id = self.id
-    @event.before_status = aasm(:issue_status).from_state
-    @event.after_status = aasm(:issue_status).to_state
-    @event.save
+    event = events.new
+    event.before_status = aasm(:issue_status).from_state
+    event.after_status = aasm(:issue_status).to_state
+    event.save
   end
 end

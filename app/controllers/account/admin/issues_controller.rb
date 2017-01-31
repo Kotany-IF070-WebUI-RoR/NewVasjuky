@@ -24,7 +24,7 @@ module Account
 
       def approve
         @issue.approve!
-        # @issue.post_to_facebook!
+        @issue.post_to_facebook!
         redirect_back(fallback_location: root_path)
       end
 

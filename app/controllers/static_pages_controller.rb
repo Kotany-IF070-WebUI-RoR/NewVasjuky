@@ -12,5 +12,4 @@ class StaticPagesController < ApplicationController
   def feed
     @events = Event.ordered.public_events.page(params[:page]).per(10)
   end
-
 end
