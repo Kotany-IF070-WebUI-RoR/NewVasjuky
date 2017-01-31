@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class CommentsController < ApplicationController
-  skip_before_action :authenticate_user!, :require_active_user, only: [:show]
+  skip_before_action :authenticate_user!, :require_active_user, only: [:index]
   before_action :authenticate_user!
 
   def index

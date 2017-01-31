@@ -8,7 +8,7 @@
         ul.breadcrumb
           li= link_to 'На головну', root_path
           li= link_to 'Усі звернення', issues_path
-          li Поточна
+          li= link_to "#{@issue.title}", issue_path(@issue)
 #content
   .container
     section.clearfix.row
@@ -19,27 +19,27 @@
           = show_issue_status(@issue)
         .follow-wrapper
           .follow.pull-right
-            - if user_signed_in?
+            - if user_signed_in? && active?
               = render 'shared/follow_link', issue: @issue
             .followers-count
-              span Слідкує:
+              span Спостерігачів:
               span.badge.pull-right #{@issue.followers_count}
     section.blog-post
       .row
         .clearfix.col-md-12
           p.text-muted.text-uppercase.mb-small.pull-left
-            span.author Автор: #{@issue.user.full_name }
+            span.author Автор: #{@issue.name}
             br
-            span  Категорія:
+            span Категорія: 
             = link_to @issue.category.name, category_path(@issue.category)
           p.date-comments.pull-right
             span.pull-right
               i.fa.fa-calendar-o
-              span  #{time_ago_in_words(@issue.created_at)} тому
+              span #{time_ago_in_words(@issue.created_at)} тому
             br
             span.pull-right
               i.fa.fa-location-arrow
-              span  #{@issue.location}
+              span #{@issue.location}
         .col-md-7.col-sm-7
           .box-image-text.blog
             .top

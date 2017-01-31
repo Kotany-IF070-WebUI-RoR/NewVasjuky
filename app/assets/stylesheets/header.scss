@@ -28,13 +28,12 @@ header {
     }
 
   .banned {
-    float:left;
-    height: 50px;
-    line-height: 30px;
+    height: 30px;
+    line-height: 10px;
+    text-align: center;
     padding: 10px;
-    margin: 10px 0 0 100px;
-    color: $color_boxbg;
-    @include border-radius(5px);
+    color: rgb(255, 26, 26);
+    border-top: 2px solid rgb(255, 26, 26);
   }
 }
 

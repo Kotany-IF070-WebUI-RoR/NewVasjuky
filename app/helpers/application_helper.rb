@@ -16,6 +16,10 @@ module ApplicationHelper
     access_denied
   end
 
+  def active?
+    !current_user.banned?
+  end
+
   def bann_user(user)
     return unless admin_or_moderator? && user.reporter?
     toggle_phrase = user.banned? ? 'Розблокувати' : 'Заблокувати'
