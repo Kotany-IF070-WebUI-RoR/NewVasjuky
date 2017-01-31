@@ -48,5 +48,5 @@ Rails.application.routes.draw do
   resources :comments, only: [:destroy]
   resources :users, only: [:show]
   get  'followees', to: 'issues#followees'
-  root to: 'home#index'
+  root to: 'static_pages#home'
 end

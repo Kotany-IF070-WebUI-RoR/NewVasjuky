@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, :require_active_user, only: [:index]
+class StaticPagesController < ApplicationController
+  skip_before_action :authenticate_user!, :require_active_user, only: [:home]
 
-  def index
+  def home
     @issues = Issue.approved.ordered
     @issues_feed = @issues.first(4)
     @count = Issue.approved.count
