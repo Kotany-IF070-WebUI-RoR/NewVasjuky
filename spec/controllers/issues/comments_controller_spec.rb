@@ -5,7 +5,7 @@ describe Issues::CommentsController, type: :controller do
   let(:banned_reporter) { create(:user, :reporter, banned: true) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :admin) }
-  let(:commentable) { create(:issue, user: reporter, status: 'open') }
+  let(:commentable) { create(:issue, user: reporter, status: 'opened') }
   let(:valid_comment) { build(:comment, commentable: commentable) }
   describe 'Create comment with AJAX when it is valid and ' do
     let(:action) do

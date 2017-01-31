@@ -11,9 +11,9 @@ class Issue < ApplicationRecord
 
   accepts_nested_attributes_for :issue_attachments, allow_destroy: true
 
-  enum status: [:pending, :declined, :open, :closed]
+  enum status: [:pending, :declined, :opened, :closed]
 
-  STATUSES = { 'open' => 'Запит прийнято',
+  STATUSES = { 'opened' => 'Запит прийнято',
                'pending' => 'Очікує на модерацію',
                'declined' => 'Запит відхилено',
                'closed' => 'Запит вирішено' }.freeze
@@ -39,8 +39,30 @@ class Issue < ApplicationRecord
   validates :description, length: { minimum: 50 }
 
   scope :ordered, -> { order(created_at: :desc) }
-  scope :approved, -> { where(status: :open) }
+  scope :approved, -> { where(status: :opened) }
   scope :closed, -> { where(status: :closed) }
+
+  aasm :issue_status, column: :status, enum: true do
+    state :pending, initial: true
+    state :declined
+    state :opened
+    state :closed
+
+    after_all_transitions :create_event
+
+    event :approve do
+      transitions from: :pending, to: :opened
+    end
+
+    event :decline do
+      transitions from: :pending, to: :declined
+    end
+
+    event :close do
+      transitions from: :opened, to: :closed
+    end
+
+  end
 
   geocoded_by :location
   after_validation :geocode,
@@ -59,7 +81,7 @@ class Issue < ApplicationRecord
   end
 
   def published?
-    %w(open closed).include? status
+    %w(opened closed).include? status
   end
 
   def can_read_when_unpublished?(user)
@@ -111,23 +133,13 @@ class Issue < ApplicationRecord
     IssueMailer.issue_created(id).deliver
   end
 
-  aasm :status, enum: true do
-    state :pending, initial: true
-    state :declined
-    state :open
-    state :closed
+  private
 
-    event :approve do
-      transitions from: :pending, to: :open
-    end
-
-    event :decline do
-      transitions from: :pending, to: :declined
-    end
-
-    event :close do
-      transitions from: :open, to: :closed
-    end
-
+  def create_event
+    @event = Event.new
+    @event.issue_id = self.id
+    @event.before_status = aasm(:issue_status).from_state
+    @event.after_status = aasm(:issue_status).to_state
+    @event.save
   end
 end

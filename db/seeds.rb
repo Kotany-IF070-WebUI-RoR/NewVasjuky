@@ -426,7 +426,7 @@ FactoryGirl.create(:issue,
                     category_id: issue[:category_id],
                     description: issue[:description],
                     created_at: Time.now - rand(11).days,
-                    status: :open )
+                    status: :opened )
                     .issue_attachments.create!(
                     [
                       {
