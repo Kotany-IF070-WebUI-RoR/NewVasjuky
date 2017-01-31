@@ -8,4 +8,9 @@ class StaticPagesController < ApplicationController
     @count = Issue.approved.count
     @closed_count = Issue.closed.count
   end
+
+  def feed
+    @events = Event.all
+  end
+
 end

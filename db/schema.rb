@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124105112) do
+ActiveRecord::Schema.define(version: 20170131144529) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(version: 20170124105112) do
     t.datetime "updated_at",       null: false
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "issue_id"
+    t.string   "before_state"
+    t.string   "after_state"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "feeds", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "follows", force: :cascade do |t|
@@ -72,6 +85,17 @@ ActiveRecord::Schema.define(version: 20170124105112) do
     t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id"
     t.index ["status"], name: "index_issues_on_status"
     t.index ["user_id"], name: "index_issues_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "before_state"
+    t.string   "after_state"
+    t.string   "owner_type"
+    t.string   "owner_id"
+    t.integer  "status",       default: 0
+    t.integer  "issue_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "users", force: :cascade do |t|
