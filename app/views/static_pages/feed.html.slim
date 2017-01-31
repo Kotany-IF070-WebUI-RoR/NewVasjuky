@@ -1,1 +1,16 @@
-= render @events
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7.col-sm-6
+        h2 Останні оновлення
+      .col-md-5.col-sm-6
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Останні оновлення
+#content
+  .container
+    .row
+      #blog-listing-medium.col-md-9
+        section.container
+          = render @events
+          .text-center= paginate @events, theme: 'twitter-bootstrap-3'

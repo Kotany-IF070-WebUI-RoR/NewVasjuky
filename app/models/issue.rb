@@ -8,6 +8,7 @@ class Issue < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :issue_attachments
+  has_many :events
 
   accepts_nested_attributes_for :issue_attachments, allow_destroy: true
 

@@ -1,3 +1,21 @@
-= event.id
-= event.before_status
-= event.after_status
+section.post
+  .row
+    .media.issue-container
+      .media-left.media-top.col-md-4.col-sm-4
+        = link_to event.issue
+          = image_tag event.issue.first_attached_image,
+                  class: 'img-responsive attachment media-object'
+      .media-body
+        h2
+          = link_to event.issue.title, issue_path(event.issue_id)
+        .clearfix
+          p.date-comments.info-group-wrapper
+            i.fa.fa-calendar-o
+            span  #{time_ago_in_words(event.created_at)} тому
+        .status_wrapper
+          h4 Статус звернення змінено:
+          p
+            | #{event.before_status_full}
+            span.glyphicon.glyphicon-chevron-right
+            | #{event.after_status_full}
+

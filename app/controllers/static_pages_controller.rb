@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
   end
 
   def feed
-    @events = Event.all
+    @events = Event.ordered.public_events.page(params[:page]).per(10)
   end
 
 end
