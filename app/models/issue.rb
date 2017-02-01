@@ -37,7 +37,7 @@ class Issue < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :opened) }
   scope :closed, -> { where(status: :closed) }
-  scope :search, ->(a) { where("title like ?", "%#{a}%") }
+  scope :search, ->(a) { where('title like ?', "%#{a}%") }
   scope :status, ->(a) { where(status: a) }
   like_query = lambda do |a|
     where("title like ? OR description like ? \
