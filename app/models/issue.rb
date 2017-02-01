@@ -43,7 +43,7 @@ class Issue < ApplicationRecord
   scope :approved, -> { where(status: :opened) }
   scope :closed, -> { where(status: :closed) }
 
-  aasm :issue_status, column: :status, enum: true do
+  aasm column: :status, enum: true do
     state :pending, initial: true
     state :declined
     state :opened
@@ -137,8 +137,8 @@ class Issue < ApplicationRecord
 
   def create_event
     event = events.new
-    event.before_status = aasm(:issue_status).from_state
-    event.after_status = aasm(:issue_status).to_state
+    event.before_status = aasm.from_state
+    event.after_status = aasm.to_state
     event.save
   end
 end
