@@ -17,8 +17,8 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { maximum: 25 }
   scope :role_search, ->(a) { where(role: a) }
   like_query = lambda do |a|
-    where("email like '%#{a}%' OR first_name like '%#{a}%' \
-           OR last_name like '%#{a}%'")
+    where("email like ? OR first_name like ? \
+           OR last_name like ?", "%#{a}%", "%#{a}%", "%#{a}%")
   end
   scope :like, like_query
 
