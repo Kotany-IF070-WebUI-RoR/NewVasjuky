@@ -12,5 +12,5 @@
     .row
       #blog-listing-medium.col-md-9
         section.container
-          = render @events
+          = render partial: 'events/event', collection: @events
           .text-center= paginate @events, theme: 'twitter-bootstrap-3'
