@@ -1,4 +1,6 @@
+
 function initIssuesMap() {
+  initGoogleLayer();
   var map = new L.Map('issues-map', { center: new L.LatLng(48.920597, 24.709566), zoom: 14 }),
       googleLayer = new L.Google('ROADMAP');
 
@@ -26,15 +28,20 @@ function initIssuesMap() {
     marker.on('click', function(e) {
       var popup = e.target.getPopup(),
           url="/issues/"+ id + "/popup/" ;
-      $.get({url: url, dataType:"json"}).done(function(issue) {
-        var shortDescription = truncate(issue.description, 90, true),
-            popupLayout = '<h4>'+issue.title+'</h4>'+
-                          '<img src="'+ issue.img.url +'">'+
-                          '<p>'+shortDescription+'</p>'+
-                          '<p><span>'+issue.created_at+'<span><a class="pull-right" href="/issues/'+id+'">Переглянути</a></p>';
-        popup.setContent(popupLayout);
-        popup.update();
-      });
+      $.get({url: url, dataType:"json"})
+        .done(function(issue) {
+          var shortDescription = truncate(issue.description, 90, true),
+              popupLayout = '<h4>'+issue.title+'</h4>'+
+                            '<img src="'+ issue.img.url +'">'+
+                            '<p>'+shortDescription+'</p>'+
+                            '<p><span>'+issue.created_at+'<span><a class="pull-right" href="/issues/'+id+'">Переглянути</a></p>';
+          popup.setContent(popupLayout);
+          popup.update();
+        })
+        .fail(function (jqXHR) {
+          popup.setContent(jqXHR.responseJSON.error);
+          popup.update();
+        })
     });
   }
 }

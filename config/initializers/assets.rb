@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 # are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( geocoding.js )
+Rails.application.config.assets.precompile += %w( leaflet-google.js )
