@@ -46,7 +46,7 @@ module Account
 
       def issues_params
         params.require(:issue).permit(:category_id, :location, :latitude,
-                                      :longitude, :status)
+                                      :longitude)
       end
     end
   end
