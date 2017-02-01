@@ -5,7 +5,7 @@ module Account
     class IssuesController < ApplicationController
       before_action :admin_or_moderator?
       before_action :find_issue,
-                    only: [:edit, :update, :approve, :destroy, :decline]
+                    only: [:edit, :update, :approve, :close, :decline]
       def index
         @issues = Issue.ordered.page(params[:page]).per(20)
       end
@@ -33,8 +33,8 @@ module Account
         redirect_back(fallback_location: root_path)
       end
 
-      def destroy
-        @issue.destroy
+      def close
+        @issue.close!
         redirect_back(fallback_location: root_path)
       end
 

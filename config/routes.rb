@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :issues, only: [:index, :edit, :update] do
         member do
-          patch :approve, :decline
+          patch :approve, :decline, :close
         end
       end
 
