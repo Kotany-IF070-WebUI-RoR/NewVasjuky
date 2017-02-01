@@ -4,7 +4,7 @@ tr
   td= issue.user.full_name
   td
     - unless issue.pending?
-      = show_issue_status(issue)
+      = get_stylized_status_style(issue.status, issue.status_name)
     - else
       span.label.label-info Очікує
       br/

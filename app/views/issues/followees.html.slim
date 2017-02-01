@@ -17,7 +17,7 @@
               td &#8470; #{issue.id}
               td = issue.title
               td = l issue.created_at, format: :long
-              td = show_issue_status(issue)
+              td = get_stylized_status_style(issue.status, issue.status_name)
               td
                 = link_to 'Переглянути', issue_path(issue),
                         class: 'btn btn-primary btn-xs'

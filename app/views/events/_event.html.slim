@@ -15,7 +15,6 @@ section.post
         .status_wrapper
           h4 Статус звернення змінено:
           p
-            | #{event.before_status_full}
-            span.glyphicon.glyphicon-chevron-right
-            | #{event.after_status_full}
-
+            = get_stylized_status_style(event.before_status, event.before_status_full)
+            span.glyphicon.glyphicon-chevron-right.status_arrow
+            = get_stylized_status_style(event.after_status, event.after_status_full)
