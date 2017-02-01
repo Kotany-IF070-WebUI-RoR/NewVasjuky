@@ -2,6 +2,7 @@
 class Issue < ApplicationRecord
   include Rails.application.routes.url_helpers
   include AASM
+  include Statuses
   acts_as_followable
 
   has_many :comments, as: :commentable
@@ -11,13 +12,8 @@ class Issue < ApplicationRecord
   has_many :events
 
   accepts_nested_attributes_for :issue_attachments, allow_destroy: true
+  enum status: STATUSES_SYM
 
-  enum status: [:pending, :declined, :opened, :closed]
-
-  STATUSES = { 'opened' => 'Запит прийнято',
-               'pending' => 'Очікує на модерацію',
-               'declined' => 'Запит відхилено',
-               'closed' => 'Запит вирішено' }.freeze
   REGEXP_NAME = /\p{L}/
   REGEXP_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.\w+\z/i
   REGEXP_PHONE = /\A[ x0-9\+\(\)\-\.]+\z/
