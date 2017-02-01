@@ -1,11 +1,13 @@
 # Encoding: utf-8
 class IssuesController < ApplicationController
+  before_action :status_inspector, only: [:index]
   skip_before_action :authenticate_user!, :require_active_user,
-                     only: [:index, :show, :followees, :map, :closed]
+                     only: [:index, :show, :followees, :map]
   respond_to :html, :json
 
   def index
-    @issues = Issue.approved.ordered.page(params[:page]).per(10)
+    @issues = Issue.ordered.page(params[:page]).per(10)
+    @issues = @issues.where(status: params[:status])
   end
 
   def new
@@ -34,11 +36,6 @@ class IssuesController < ApplicationController
                  img: @issue.first_attached_image)
   end
 
-  def closed
-    @issues = Issue.closed.ordered.page(params[:page]).per(10)
-    render 'index'
-  end
-
   def followees
     @issues = current_user.followees(Issue)
   end
@@ -65,5 +62,10 @@ class IssuesController < ApplicationController
                                     :attachment,
                                     :_destroy
                                   ])
+  end
+
+  def status_inspector
+    redirect_back(fallback_location: root_path) unless
+      %w(open closed).include?(params[:status])
   end
 end

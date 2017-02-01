@@ -10,7 +10,7 @@
       h5 #{comment.title}
       p #{comment.content}
       p.reply.comment-button
-        - if comment.can_delete?(current_user) && active?
+        - if comment.can_delete?(current_user)
           a.remove-comment.trash.comment-button href="#"  id = comment.id
             i.fa.fa-trash
             span Видалити
