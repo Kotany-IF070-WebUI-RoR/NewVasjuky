@@ -99,6 +99,41 @@ describe Account::Admin::IssuesController do
     end
   end
 
+  describe 'Close issues' do
+    let(:issue_opened) { create(:issue, status: :opened) }
+    let(:action) { patch :close, params: { id: issue_opened.id } }
+    before :each do
+      @request.env['HTTP_REFERER'] = account_admin_issues_url
+    end
+    it 'when user is not logged in' do
+      action
+      expect(action).to have_http_status(302)
+      issue_opened.reload
+      expect(issue_opened.closed?).to be_falsey
+    end
+
+    it 'when user is admin' do
+      sign_in admin
+      action
+      issue_opened.reload
+      expect(issue_opened.closed?).to be_truthy
+    end
+
+    it 'when user is moderator' do
+      sign_in moderator
+      action
+      issue_opened.reload
+      expect(issue_opened.closed?).to be_truthy
+    end
+
+    it 'when user is a reporter' do
+      sign_in reporter
+      action
+      issue_opened.reload
+      expect(issue_opened.closed?).to be_falsey
+    end
+  end
+
   describe 'Create event for.' do
     describe 'pending > approved' do
       let(:issue) { create(:issue) }
@@ -131,7 +166,7 @@ describe Account::Admin::IssuesController do
       it do
         sign_in admin
         expect(issue.events.count).to eq(0)
-        issue.close!
+        patch :close, params: { id: issue.id }
         expect(issue.events.count).to eq(1)
         expect(Event.last.before_status).to eq('opened')
         expect(Event.last.after_status).to eq('closed')
