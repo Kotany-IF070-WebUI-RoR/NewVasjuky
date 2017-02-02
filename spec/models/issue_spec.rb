@@ -136,4 +136,55 @@ describe Issue, type: :model do
       expect(subject.fb_post[:link]).to include(url)
     end
   end
+
+  describe 'AASM statuses.' do
+    describe 'When status change from pending to' do
+      let(:issue) { create(:issue) }
+      it 'opened' do
+        expect(issue).to allow_event :approve
+        expect(issue).to_not allow_event :close
+        expect(issue).to allow_transition_to(:opened)
+        expect(issue).to_not allow_transition_to(:closed)
+        expect(issue).to transition_from(:pending)
+          .to(:opened).on_event(:approve)
+      end
+
+      it 'declined' do
+        expect(issue).to allow_event :decline
+        expect(issue).to_not allow_event :close
+        expect(issue).to allow_transition_to(:declined)
+        expect(issue).to_not allow_transition_to(:closed)
+        expect(issue).to transition_from(:pending)
+          .to(:declined).on_event(:decline)
+      end
+    end
+
+    describe 'When status change from opened to' do
+      let(:issue) { create(:issue, status: :opened) }
+      it 'closed' do
+        expect(issue).to allow_event :close
+        expect(issue).to_not allow_event :open
+        expect(issue).to_not allow_event :decline
+        expect(issue).to allow_transition_to(:closed)
+        expect(issue).to_not allow_transition_to(:opened)
+        expect(issue).to_not allow_transition_to(:pending)
+        expect(issue).to_not allow_transition_to(:declined)
+        expect(issue).to transition_from(:opened)
+          .to(:closed).on_event(:close)
+      end
+    end
+
+    describe 'When status change from declined to' do
+      let(:issue) { create(:issue, status: :declined) }
+      it 'any' do
+        expect(issue).to_not allow_event :close
+        expect(issue).to_not allow_event :open
+        expect(issue).to_not allow_event :decline
+        expect(issue).to_not allow_transition_to(:opened)
+        expect(issue).to_not allow_transition_to(:pending)
+        expect(issue).to_not allow_transition_to(:decline)
+        expect(issue).to_not allow_transition_to(:closed)
+      end
+    end
+  end
 end

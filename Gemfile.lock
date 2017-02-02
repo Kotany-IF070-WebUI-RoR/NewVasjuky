@@ -23,6 +23,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (2.3.4)
+    aasm (4.11.1)
     actioncable (5.0.1)
       actionpack (= 5.0.1)
       nio4r (~> 1.2)
@@ -506,6 +507,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   any_login
   bootstrap-kaminari-views
   bootstrap-sass (= 3.3.6)

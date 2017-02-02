@@ -16,5 +16,4 @@ h1 Редагувати звернення
         = f.input :location, label: 'Адреса проблеми'
         = f.input :latitude, label: 'Широта'
         = f.input :longitude, label: 'Довгота'
-        = f.input :status, label: 'Статус проблеми', as: :select, collection: Issue.statuses.keys.to_a
         = f.button :submit, class: 'btn btn-primary'

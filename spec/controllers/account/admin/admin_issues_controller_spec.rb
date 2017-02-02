@@ -40,28 +40,28 @@ describe Account::Admin::IssuesController do
       action
       expect(action).to have_http_status(302)
       issue.reload
-      expect(issue.open?).to be_falsey
+      expect(issue.opened?).to be_falsey
     end
 
     it 'when user is admin' do
       sign_in admin
       action
       issue.reload
-      expect(issue.open?).to be_truthy
+      expect(issue.opened?).to be_truthy
     end
 
     it 'when user is moderator' do
       sign_in moderator
       action
       issue.reload
-      expect(issue.open?).to be_truthy
+      expect(issue.opened?).to be_truthy
     end
 
     it 'when user is a reporter' do
       sign_in reporter
       action
       issue.reload
-      expect(issue.open?).to be_falsey
+      expect(issue.opened?).to be_falsey
     end
   end
 
@@ -99,37 +99,78 @@ describe Account::Admin::IssuesController do
     end
   end
 
-  describe 'Remove issues' do
-    let(:action) do
-      expect { delete :destroy, params: { id: issue.id } }
-    end
-
+  describe 'Close issues' do
+    let(:issue_opened) { create(:issue, status: :opened) }
+    let(:action) { patch :close, params: { id: issue_opened.id } }
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
-      issue
     end
-
     it 'when user is not logged in' do
-      expect(Issue.count).to eq(1)
-      action.to change(Issue, :count).by(0)
+      action
+      expect(action).to have_http_status(302)
+      issue_opened.reload
+      expect(issue_opened.closed?).to be_falsey
     end
 
     it 'when user is admin' do
-      expect(Issue.count).to eq(1)
       sign_in admin
-      action.to change(Issue, :count).by(-1)
+      action
+      issue_opened.reload
+      expect(issue_opened.closed?).to be_truthy
     end
 
     it 'when user is moderator' do
-      expect(Issue.count).to eq(1)
       sign_in moderator
-      action.to change(Issue, :count).by(-1)
+      action
+      issue_opened.reload
+      expect(issue_opened.closed?).to be_truthy
     end
 
     it 'when user is a reporter' do
-      expect(Issue.count).to eq(1)
       sign_in reporter
-      action.to change(Issue, :count).by(0)
+      action
+      issue_opened.reload
+      expect(issue_opened.closed?).to be_falsey
+    end
+  end
+
+  describe 'Create event for.' do
+    describe 'pending > approved' do
+      let(:issue) { create(:issue) }
+      it do
+        sign_in admin
+        expect(issue.events.count).to eq(0)
+        patch :approve, params: { id: issue.id }
+        issue.reload
+        expect(issue.events.count).to eq(1)
+        expect(Event.last.before_status).to eq('pending')
+        expect(Event.last.after_status).to eq('opened')
+      end
+    end
+
+    describe 'pending > declined' do
+      let(:issue) { create(:issue) }
+      it do
+        sign_in admin
+        expect(issue.events.count).to eq(0)
+        patch :decline, params: { id: issue.id }
+        issue.reload
+        expect(issue.events.count).to eq(1)
+        expect(Event.last.before_status).to eq('pending')
+        expect(Event.last.after_status).to eq('declined')
+      end
+    end
+
+    describe 'opened > closed' do
+      let(:issue) { create(:issue, status: :opened) }
+      it do
+        sign_in admin
+        expect(issue.events.count).to eq(0)
+        patch :close, params: { id: issue.id }
+        expect(issue.events.count).to eq(1)
+        expect(Event.last.before_status).to eq('opened')
+        expect(Event.last.after_status).to eq('closed')
+      end
     end
   end
 end

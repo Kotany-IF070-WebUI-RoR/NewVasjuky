@@ -30,8 +30,7 @@ header
                   a[href="#"]
                     | Рейтинг користувачів
             li
-              a[href="#"]
-                | Корисні посилання
+              = link_to 'Оновлення', feed_path
             - unless user_signed_in?
               li.active
                 = link_to user_facebook_omniauth_authorize_path do

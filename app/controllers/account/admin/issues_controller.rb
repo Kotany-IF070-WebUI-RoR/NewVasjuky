@@ -5,7 +5,7 @@ module Account
     class IssuesController < ApplicationController
       before_action :admin_or_moderator?
       before_action :find_issue,
-                    only: [:edit, :update, :approve, :destroy, :decline]
+                    only: [:edit, :update, :approve, :close, :decline]
       def index
         @issues = Issue.ordered.page(params[:page]).per(20)
       end
@@ -15,7 +15,7 @@ module Account
       def update
         if @issue.update_attributes(issues_params)
           flash[:success] = 'Звернення змінено!'
-          @issue.post_to_facebook! if @issue.open?
+          @issue.post_to_facebook! if @issue.opened?
           redirect_to @issue
         else
           render 'edit'
@@ -23,18 +23,18 @@ module Account
       end
 
       def approve
-        @issue.update_attribute('status', :open)
+        @issue.approve!
         @issue.post_to_facebook!
         redirect_back(fallback_location: root_path)
       end
 
       def decline
-        @issue.update_attribute('status', :declined)
+        @issue.decline!
         redirect_back(fallback_location: root_path)
       end
 
-      def destroy
-        @issue.destroy
+      def close
+        @issue.close!
         redirect_back(fallback_location: root_path)
       end
 
@@ -46,7 +46,7 @@ module Account
 
       def issues_params
         params.require(:issue).permit(:category_id, :location, :latitude,
-                                      :longitude, :status)
+                                      :longitude)
       end
     end
   end

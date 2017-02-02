@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   namespace :account do
     namespace :admin do
-      resources :issues, only: [:index, :destroy, :edit, :update] do
+      resources :issues, only: [:index, :edit, :update] do
         member do
-          patch :approve, :decline
+          patch :approve, :decline, :close
         end
       end
 
@@ -47,6 +47,8 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:destroy]
   resources :users, only: [:show]
+
   get  'followees', to: 'issues#followees'
+  get  'feed', to: 'static_pages#feed'
   root to: 'static_pages#home'
 end

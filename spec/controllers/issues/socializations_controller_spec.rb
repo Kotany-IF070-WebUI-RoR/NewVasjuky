@@ -4,7 +4,7 @@ describe Issues::SocializationsController, type: :controller do
   let(:reporter) { create(:user, :reporter) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :admin) }
-  let(:issue) { create(:issue, user: reporter, status: 'open') }
+  let(:issue) { create(:issue, user: reporter, status: 'opened') }
 
   describe 'Follow issue when' do
     let(:action) { post :follow, params: { issue_id: issue } }

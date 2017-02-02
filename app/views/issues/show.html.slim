@@ -16,7 +16,7 @@
         h2 #{@issue.title}
       .info-group-wrapper.col-md-3.col-sm-6.pull-right
         h3
-          = show_issue_status(@issue)
+          = get_stylized_status_style(@issue.status, @issue.status_name)
         .follow-wrapper
           .follow.pull-right
             - if user_signed_in?

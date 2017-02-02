@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 require 'simplecov'
+require 'aasm/rspec'
+
 SimpleCov.start do
   add_filter 'vendor'
   add_filter 'lib'
