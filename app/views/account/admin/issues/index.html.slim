@@ -12,17 +12,5 @@
   .row
       #users-moderation.col-md-12
         .box
-          .table-responsive
-            table.table.table-hover
-              thead
-                tr
-                  th Створено
-                  th Назва
-                  th Автор
-                  th Статус
-                  th Редагувати
-              tbody
-                tr
-                  = render @issues
-            .text-center
-              = paginate @issues, theme: 'twitter-bootstrap-3'
+          = render 'shared/issue_filters'
+          = smart_listing_render(:issues)

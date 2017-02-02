@@ -34,3 +34,4 @@
 //= require flash
 //= require validate_form
 //= require front
+//= require smart_listing

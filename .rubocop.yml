@@ -44,3 +44,9 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'spec/**/*'
     - 'config/environments/*'
+
+Metrics/ClassLength:
+  Description: 'Avoid classes longer than 110 lines of code.'
+  Enabled: true
+  CountComments: false
+  Max: 110

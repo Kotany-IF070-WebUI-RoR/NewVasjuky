@@ -1,6 +1,13 @@
 ---
 uk:
   activerecord:
+    attributes:
+      issue:
+        statuses:
+          open: 'Запит прийнято'
+          pending: 'Очікує на модерацію'
+          declined: 'Запит відхилено'
+          closed: 'Запит вирішено'
     errors:
       messages:
         record_invalid: 'Виникли помилки: %{errors}'
@@ -12,6 +19,15 @@ uk:
           one:   "Виправте помилку в формі"
           other: "Виправте %{count} помилок в формі"
         body:    "Перелік помилок:"
+  views:
+    pagination:
+      per_page: 'Записів на сторінку:'
+      total: 'Всього:'
+      next: 'Наступна'
+      previous: 'Попередня'
+      last: 'Остання'
+      first: 'Перша'
+
   date:
     abbr_day_names:
     - нд.
@@ -116,7 +132,7 @@ uk:
         few: "%{count} дні"
         many: "%{count} днів"
         one: "%{count} день"
-        other: "%{count} дня"
+        other: "%{count} днів"
       x_minutes:
         few: "%{count} хвилини"
         many: "%{count} хвилин"

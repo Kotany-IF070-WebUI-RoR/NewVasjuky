@@ -15,8 +15,7 @@ class Issue < ApplicationRecord
   REGEXP_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.\w+\z/i
   REGEXP_PHONE = /\A[ x0-9\+\(\)\-\.]+\z/
   validates :name, :address, :phone, :email, :category_id,
-            :description, :user_id, :title,
-            presence: true
+            :description, :user_id, :title, presence: true
   validates :location, presence: true,
                        unless: ->(obj) { lt_ln_present?(obj) }
   validates :name, length: { maximum: 255 },
@@ -29,10 +28,18 @@ class Issue < ApplicationRecord
   validates :email, length: { maximum: 255 },
                     format: { with: REGEXP_EMAIL,
                               message: 'Адреса повинна бути справжньою' }
-  validates :description, length: { minimum: 50 }
+  validates :description, length: { minimum: 50, maximum: 3000 }
+  validates :title, length: { minimum: 10, maximum: 80 }
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :open) }
   scope :closed, -> { where(status: :closed) }
+  scope :search, ->(a) { where('title like ?', "%#{a}%") }
+  scope :status, ->(a) { where(status: a) }
+  like_query = lambda do |a|
+    where("title like ? OR description like ? \
+           OR location like ?", "%#{a}%", "%#{a}%", "%#{a}%")
+  end
+  scope :like, like_query
   geocoded_by :location
   after_validation :geocode,
                    if: ->(obj) { obj.location.present? && !obj.latitude? }
@@ -40,7 +47,6 @@ class Issue < ApplicationRecord
   after_validation :reverse_geocode,
                    if: ->(obj) { !obj.location.present? && lt_ln_present?(obj) }
   after_create :notify_support
-
   acts_as_followable
 
   def lt_ln_present?(obj)
@@ -49,6 +55,13 @@ class Issue < ApplicationRecord
 
   def status_name
     STATUSES[status]
+  end
+
+  def self.status_attributes_for_select
+    m_name = model_name.i18n_key
+    statuses.map do |status, _|
+      [I18n.t("activerecord.attributes.#{m_name}.statuses.#{status}"), status]
+    end
   end
 
   def published?
@@ -89,7 +102,7 @@ class Issue < ApplicationRecord
   end
 
   def post_to_facebook!
-    return if Rails.env.test? || posted_on_facebook?
+    return if !Rails.env.production? || posted_on_facebook?
     page = prepare_facebook_page
     page.feed!(fb_post)
     update_attribute('posted_on_facebook', true)
