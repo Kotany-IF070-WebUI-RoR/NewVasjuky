@@ -6,8 +6,9 @@ class IssuesController < ApplicationController
   respond_to :html, :json
 
   def index
-    issues_scope = Issue.ordered.where(status: params[:status])
+    issues_scope = Issue.where(status: params[:status])
     issues_scope = issues_scope.like(params[:filter]) if params[:filter]
+    @status = params[:status]
     smart_listing_create :issues,
                          issues_scope,
                          partial: 'issues/issue'
@@ -70,6 +71,6 @@ class IssuesController < ApplicationController
 
   def status_inspector
     redirect_back(fallback_location: root_path) unless
-      %w(open closed).include?(params[:status])
+      %w(opened closed).include?(params[:status])
   end
 end

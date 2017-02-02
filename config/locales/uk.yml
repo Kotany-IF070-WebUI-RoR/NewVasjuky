@@ -4,7 +4,7 @@ uk:
     attributes:
       issue:
         statuses:
-          open: 'Відкрито'
+          opened: 'Відкрито'
           pending: 'Очікує на модерацію'
           declined: 'Відхилено модератором'
           closed: 'Закрито'

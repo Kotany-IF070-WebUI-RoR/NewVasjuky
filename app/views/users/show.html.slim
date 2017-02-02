@@ -7,11 +7,10 @@
     .user-info.col-md-9.col-xs-12
       p Електронна пошта: #{@user.email}
       p Запис зареєстровано: #{l @user.created_at, format: :long}
-  - if @issues.any?
-    .box.user-issues.col-xs-12
-      h4 Мої звернення:
-      - if @user.issues.any?
-        = render 'shared/issue_filters'
-        = smart_listing_render(:issues)
-      - else
-          p Не додано жодного звернення
+  .box.user-issues.col-xs-12
+    h4 Мої звернення:
+    - if @user.issues.any?
+      = render 'shared/issue_filters'
+      = smart_listing_render(:issues)
+    - else
+        p Не додано жодного звернення

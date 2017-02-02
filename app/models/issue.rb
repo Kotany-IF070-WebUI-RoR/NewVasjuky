@@ -39,6 +39,7 @@ class Issue < ApplicationRecord
   scope :approved, -> { where(status: :opened) }
   scope :closed, -> { where(status: :closed) }
   scope :find_issues, ->(a) { where('title like ?', "%#{a}%") }
+  scope :status, ->(a) { where(status: a) }
   query = search('title like ? OR description like ? OR location like ?')
   scope :like, query
 
@@ -110,5 +111,14 @@ class Issue < ApplicationRecord
   def prepare_facebook_page
     FbGraph2::Page.new(ENV['FACEBOOK_GROUP_ID'],
                        access_token: ENV['FACEBOOK_GROUP_TOKEN'])
+  end
+
+  private
+
+  def create_event
+    event = events.new
+    event.before_status = aasm.from_state
+    event.after_status = aasm.to_state
+    event.save
   end
 end
