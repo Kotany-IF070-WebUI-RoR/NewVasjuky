@@ -37,7 +37,7 @@ module ApplicationHelper
 
   def issue_listing(issues)
     issues = issue_status_select(issues) if params[:issue_status]
-    issues = issues.search(params[:filter]) if params[:filter]
+    issues = issues.find_issues(params[:filter]) if params[:filter]
     smart_listing_create :issues, issues,
                          sort_attributes: [
                            [:created_at, 'issues.created_at'],

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  include Search
   has_many :issues
   has_many :comments
   devise :database_authenticatable, :rememberable, :trackable, :omniauthable,
@@ -16,10 +15,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 25 }
   validates :last_name, presence: true, length: { maximum: 25 }
   scope :role_search, ->(args) { where(role: args) }
-  query = lambda do |args|
-    where("email like ? OR first_name like ? \
-           OR last_name like ?", "%#{args}%", "%#{args}%", "%#{args}%")
-  end
+  query = search('email like ? OR first_name like ? OR last_name like ?')
   scope :like, query
 
   acts_as_follower
