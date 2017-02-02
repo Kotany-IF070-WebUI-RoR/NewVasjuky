@@ -2,6 +2,8 @@
 class User < ApplicationRecord
   has_many :issues
   has_many :comments
+  has_many :notifications
+  has_many :events, through: :notifications
   devise :database_authenticatable, :rememberable, :trackable, :omniauthable,
          omniauth_providers: [:facebook]
 
@@ -41,11 +43,23 @@ class User < ApplicationRecord
                   .group('users.id').limit(size).order('issues_count DESC')
   end
 
+  def check_notifications
+    update_attribute(:last_check_notifications_at, DateTime.now.utc)
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
 
   def active?
     !banned?
+  end
+
+  def new_notifications
+    notifications.later_than(last_check_notifications_at)
+  end
+
+  def unread_notification_for(event)
+    notifications.find_by(event_id: event.id, readed: false)
   end
 end

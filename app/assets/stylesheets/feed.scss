@@ -2,4 +2,12 @@
   .status_arrow {
     top: 4px
   }
+
+  .unread_event {
+    margin-right: 5px;
+  }
+
+  .post.unread{
+    background-color: rgb(247, 247, 247);
+  }
 }

@@ -49,6 +49,7 @@ class IssuesController < ApplicationController
   def create
     @issue = current_user.issues.new(issues_params)
     if @issue.save
+      current_user.follow!(@issue)
       redirect_to @issue, notice: 'Звернення створене успішно!'
     else
       render 'new'

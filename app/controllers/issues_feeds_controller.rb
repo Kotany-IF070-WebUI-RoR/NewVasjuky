@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-class IssuesFeedsController < ApplicationController
+class StaticPagesController < ApplicationController
+  include Feed
   skip_before_action :authenticate_user!, :require_active_user,
                      only: [:home, :feed]
 
@@ -11,5 +12,6 @@ class IssuesFeedsController < ApplicationController
 
   def feed
     @events = Event.ordered.public_events.page(params[:page]).per(10)
+    respond_for_feed(@events)
   end
 end

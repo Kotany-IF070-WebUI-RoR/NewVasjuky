@@ -1,9 +1,11 @@
 li
   = link_to 'Надіслати звернення', new_issue_path
-li.dropdown
+li.dropdown.user_menu.new_notifications
   a.dropdown-toggle[href='#' data-toggle="dropdown"]
     | Меню користувача
     b.caret
+    - if signed_in? && current_user.new_notifications.any?
+      span.glyphicon.glyphicon-star.new_event
   ul.dropdown-menu role='menu'
     li
       img.user_img src='#{current_user.image_url}'
@@ -12,6 +14,12 @@ li.dropdown
       = link_to 'Мої звернення', user_path(current_user)
     li
       = link_to 'Відслідковувані звернення', followees_path
+    li#notifications
+      = link_to 'Сповіщення', feed_user_path(current_user)
+      - if current_user.new_notifications.any?
+        span.badge.notofication_count #{current_user.new_notifications.count}
+      .clearfix
+
     - if current_user.admin? || current_user.moderator?
       li
         span Меню модератора
