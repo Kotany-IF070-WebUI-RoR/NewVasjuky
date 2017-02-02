@@ -34,4 +34,21 @@ module ApplicationHelper
     redirect_back(fallback_location: root_path)
     flash[:alert] = 'Доступ заборонено'
   end
+
+  def issue_listing(issues)
+    issues = issue_status_select(issues) if params[:issue_status]
+    issues = issues.find_issues(params[:filter]) if params[:filter]
+    smart_listing_create :issues, issues,
+                         sort_attributes: [
+                           [:created_at, 'issues.created_at'],
+                           [:title, 'issues.title'],
+                           [:status, 'issues.status'],
+                           [:user, 'issues.user_id']
+                         ],
+                         default_sort: { created_at: 'desc' }, partial: 'issue'
+  end
+
+  def issue_status_select(issues)
+    params[:issue_status].empty? ? issues : issues.status(params[:issue_status])
+  end
 end

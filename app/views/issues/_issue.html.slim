@@ -1,4 +1,4 @@
-- @issues.each do |issue|
+- smart_listing.collection.each do |issue|
   section.post
     .row
       .media.issue-container
@@ -25,3 +25,6 @@
               span  #{issue.location}
           p.issue-description
             = truncate("#{issue.description}", length: 130)
+.text-center
+  = smart_listing.paginate
+  = smart_listing.pagination_per_page_links

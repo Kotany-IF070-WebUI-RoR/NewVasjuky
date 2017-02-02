@@ -3,6 +3,8 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
   helper_method :admin?, :admin_or_moderator?
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
   protect_from_forgery with: :exception
 
   before_action :authenticate_user!

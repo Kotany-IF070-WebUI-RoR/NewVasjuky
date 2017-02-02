@@ -11,15 +11,16 @@
   .container
     .row
       #blog-listing-medium.col-md-9
-        .pull-right
-          .dropdown.issue-sort-by
-            a.dropdown-toggle href='#' data-toggle="dropdown"
-              span Сортувати
-              span.caret
-              ul.dropdown-menu role='menu'
-                li= link_to 'Спочатку нові', '#'
-                li.divider role='separator'
-                li= link_to 'Спочатку старі', '#'
         section.container
-        = render 'issue', collection: @issues
-        .text-center= paginate @issues, theme: 'twitter-bootstrap-3'
+          = smart_listing_render(:issues)
+      .col-md-3
+        .panel.panel-default.sidebar-menu
+          .panel-heading
+            h3.panel-title Пошук
+          .panel-default
+            = render 'shared/search'
+        .panel.panel-default.sidebar-menu
+          .panel-heading
+            h3.panel-title Категорії
+          .panel-default
+            = render 'shared/categories', collection: @categories

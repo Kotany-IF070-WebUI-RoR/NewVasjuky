@@ -16,11 +16,8 @@ li.dropdown
       li
         span Меню модератора
       li
-        = link_to 'Всі звернення', account_admin_issues_path
+        = link_to 'Модерація звернень', account_admin_issues_path
       li
-        = link_to 'Всі користувачі', account_admin_users_path
-    - else
-      li
-        = link_to 'Всі звернення', issues_path
+        = link_to 'Модерація користувачів', account_admin_users_path
     li
       = link_to('Вийти', destroy_user_session_path, method: :delete)

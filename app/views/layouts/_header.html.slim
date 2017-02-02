@@ -29,8 +29,17 @@ header
                 li
                   a[href="#"]
                     | Рейтинг користувачів
-            li
-              = link_to 'Оновлення', feed_path
+            li.dropdown
+              a.dropdown-toggle[href="#" data-toggle="dropdown"]
+                | Звернення
+                b.caret
+              ul.dropdown-menu
+                li
+                  = link_to 'Оновлення', feed_path
+                li
+                  = link_to 'Відкриті звернення', issues_path(status: 'opened')
+                li
+                  = link_to 'Закриті звернення', issues_path(status: 'closed')
             - unless user_signed_in?
               li.active
                 = link_to user_facebook_omniauth_authorize_path do
