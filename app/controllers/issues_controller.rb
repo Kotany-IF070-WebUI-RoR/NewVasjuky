@@ -1,5 +1,6 @@
 # Encoding: utf-8
 class IssuesController < ApplicationController
+  helper IssuesHelper
   before_action :status_inspector, only: [:index]
   skip_before_action :authenticate_user!, :require_active_user,
                      only: [:index, :show, :followees, :map]

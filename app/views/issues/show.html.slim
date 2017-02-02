@@ -35,9 +35,7 @@
           .box-image-text.blog
             .top
               .image
-                = image_tag "//maps.googleapis.com/maps/api/staticmap?center=#{@issue.latitude},#{@issue.longitude}&markers=#{@issue.latitude},
-                             #{@issue.longitude}&zoom=17&size=640x350&key=#{ENV['GOOGLE_MAPS_API_KEY']}", class: 'img-responsive',
-                             alt: "#{@issue.title} on the map"
+                = image_tag issue_map_url, class: 'img-responsive', alt: "#{@issue.title} on the map"
               .bg
               .text
                 .buttons
