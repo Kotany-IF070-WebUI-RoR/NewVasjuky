@@ -1,18 +1,12 @@
 # frozen_string_literal: true
 class CommentsController < ApplicationController
   skip_before_action :authenticate_user!, :require_active_user, only: [:index]
-  before_action :authenticate_user!
 
   def index
     return redirect_back(fallback_location: root_path) unless request.xhr?
-
     @comments = @commentable.comments.ordered.page(params[:page]).per(5)
-    if @comments.any?
-      render partial: 'comments/comments_list', locals: { comments: @comments },
-             status: :ok
-    else
-      render text: 'end_of_comments_list', status: 444
-    end
+    set_headers_for_index
+    render partial: 'comments/comments_list', locals: { comments: @comments }
   end
 
   def create
@@ -39,6 +33,10 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def set_headers_for_index
+    response.headers['TotalPages'] = @comments.total_pages
+  end
 
   def comment_error
     render json: @comment.errors.messages, status: :unprocessable_entity

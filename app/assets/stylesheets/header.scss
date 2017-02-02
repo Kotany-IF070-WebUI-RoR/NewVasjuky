@@ -35,6 +35,18 @@ header {
     color: rgb(255, 26, 26);
     border-top: 2px solid rgb(255, 26, 26);
   }
+
+  #notifications {
+    a{
+      float: left;
+    }
+
+    span.badge.notofication_count{
+      float: right;
+      margin-right: 10%;
+      margin-top: 2%;
+    }
+  }
 }
 
 .yamm .nav {

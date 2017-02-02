@@ -33,3 +33,5 @@
 //= require flash
 //= require front
 //= require smart_listing
+//= require infinity_scroll
+//= require js-routes

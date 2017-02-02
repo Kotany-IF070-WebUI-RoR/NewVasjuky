@@ -7,6 +7,22 @@ describe Issues::CommentsController, type: :controller do
   let(:moderator) { create(:user, :admin) }
   let(:commentable) { create(:issue, user: reporter, status: 'opened') }
   let(:valid_comment) { build(:comment, commentable: commentable) }
+
+  describe 'Get comments when' do
+    let!(:create_comment) { create(:comment, commentable: commentable) }
+    let(:xhr) { get :index, xhr: true, params: { issue_id: commentable } }
+    let(:no_xhr) { get :index, xhr: false, params: { issue_id: commentable } }
+
+    it 'XHR' do
+      expect(xhr).to have_http_status(200)
+      expect(xhr).to render_template(partial: 'comments/_comments_list')
+    end
+
+    it 'not XHR' do
+      expect(no_xhr).to have_http_status(302)
+    end
+  end
+
   describe 'Create comment with AJAX when it is valid and ' do
     let(:action) do
       post :create, xhr: true, params: { issue_id: commentable,

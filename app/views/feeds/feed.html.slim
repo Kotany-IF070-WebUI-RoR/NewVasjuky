@@ -11,6 +11,10 @@
   .container
     .row
       #blog-listing-medium.col-md-9
-        section.container
-          = render partial: 'events/event', collection: @events
-          .text-center= paginate @events, theme: 'twitter-bootstrap-3'
+        section.container.events_list.loaded_data_container
+        #loader-block.col-xs-12.hidden
+          = image_tag 'loader.gif', alt: 'Loader', id: 'loader-img',
+                  class: 'img-responsive col-xs-2 col-xs-offset-5'
+
+javascript:
+    $('document').ready(init_infinity_scroll(1, window.location.href, true));

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131144529) do
+ActiveRecord::Schema.define(version: 20170208080437) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170131144529) do
     t.integer  "after_status"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "author_id"
     t.index ["issue_id"], name: "index_events_on_issue_id"
   end
 
@@ -75,35 +76,45 @@ ActiveRecord::Schema.define(version: 20170131144529) do
     t.string   "title"
     t.integer  "status",              default: 0
     t.integer  "followers_count",     default: 0
-    t.boolean  "posted_on_facebook",  default: false
     t.integer  "issue_attachment_id"
+    t.boolean  "posted_on_facebook",  default: false
     t.index ["category_id"], name: "index_issues_on_category_id"
     t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id"
     t.index ["status"], name: "index_issues_on_status"
     t.index ["user_id"], name: "index_issues_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.boolean  "readed",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id", "event_id"], name: "index_notifications_on_user_id_and_event_id"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: ""
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                       default: ""
+    t.string   "encrypted_password",          default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",               default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "provider"
     t.string   "uid"
-    t.integer  "role",                   default: 0
-    t.boolean  "banned",                 default: false
+    t.integer  "role",                        default: 0
+    t.boolean  "banned",                      default: false
     t.string   "image_url"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "followees_count",        default: 0
+    t.integer  "followees_count",             default: 0
+    t.datetime "last_check_notifications_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
