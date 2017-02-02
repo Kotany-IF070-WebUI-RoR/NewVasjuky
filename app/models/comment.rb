@@ -12,6 +12,7 @@ class Comment < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
 
   def can_delete?(user)
-    user.present? && (user_id == user.id || user.admin? || user.moderator?)
+    user.present? && user.active? &&
+      (user_id == user.id || user.admin? || user.moderator?)
   end
 end

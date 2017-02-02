@@ -21,7 +21,7 @@ section.bar.background-pentagon.no-mb
           h4
             span.counter #{@count}
             br
-            = link_to 'звернень надіслано', issues_path
+            = link_to 'звернень на розгляді', issues_path(status: 'open')
       .col-sm-6
         .item
           .icon
@@ -29,7 +29,7 @@ section.bar.background-pentagon.no-mb
           h4
             span.counter #{@closed_count}
             br
-            = link_to 'проблем вирішено', issues_path
+            = link_to 'проблем вирішено', issues_path(status: 'closed')
 section.bar.background-white.no-mb
   .container
     .col-md-12
