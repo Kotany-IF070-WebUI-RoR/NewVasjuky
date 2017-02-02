@@ -1,6 +1,8 @@
 # Encoding: utf-8
 class Issue < ApplicationRecord
   include Rails.application.routes.url_helpers
+  include Search
+  include Facebook
   has_many :comments, as: :commentable
   belongs_to :user
   belongs_to :category
@@ -33,13 +35,10 @@ class Issue < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :open) }
   scope :closed, -> { where(status: :closed) }
-  scope :search, ->(a) { where('title like ?', "%#{a}%") }
+  scope :find_issues, ->(a) { where('title like ?', "%#{a}%") }
   scope :status, ->(a) { where(status: a) }
-  like_query = lambda do |a|
-    where("title like ? OR description like ? \
-           OR location like ?", "%#{a}%", "%#{a}%", "%#{a}%")
-  end
-  scope :like, like_query
+  query = search('title like ? OR description like ? OR location like ?')
+  scope :like, query
   geocoded_by :location
   after_validation :geocode,
                    if: ->(obj) { obj.location.present? && !obj.latitude? }
@@ -80,40 +79,12 @@ class Issue < ApplicationRecord
     issue_attachments.first_or_initialize.attachment
   end
 
-  def fb_post
-    { message: fb_message, link: fb_link,
-      name: title.to_s, picture: fb_picture }
-  end
-
-  def fb_message
-    fb_location = location.blank? ? '' : "Адреса: #{location} \n \n"
-    fb_description = description.blank? ? '' : "Опис: #{description} \n \n"
-    tags = category.tags.blank? ? '' : category.tags.to_s
-    [fb_location, fb_description, tags].reject(&:blank?).join(' ')
-  end
-
-  def fb_link
-    issue_url(self, host: Rails.application.config.host)
-  end
-
-  def fb_picture
-    picture = first_attached_image.path || 'uploads/default-image.jpg'
-    "#{ENV['IMAGE_HOSTING_URL']}#{picture}"
-  end
-
-  def post_to_facebook!
-    return if !Rails.env.production? || posted_on_facebook?
-    page = prepare_facebook_page
-    page.feed!(fb_post)
-    update_attribute('posted_on_facebook', true)
+  def notify_support
+    IssueMailer.issue_created(id).deliver
   end
 
   def prepare_facebook_page
     FbGraph2::Page.new(ENV['FACEBOOK_GROUP_ID'],
                        access_token: ENV['FACEBOOK_GROUP_TOKEN'])
-  end
-
-  def notify_support
-    IssueMailer.issue_created(id).deliver
   end
 end

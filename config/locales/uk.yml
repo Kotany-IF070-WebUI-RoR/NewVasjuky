@@ -4,10 +4,10 @@ uk:
     attributes:
       issue:
         statuses:
-          open: 'Запит прийнято'
+          open: 'Відкрито'
           pending: 'Очікує на модерацію'
-          declined: 'Запит відхилено'
-          closed: 'Запит вирішено'
+          declined: 'Відхилено модератором'
+          closed: 'Закрито'
     errors:
       messages:
         record_invalid: 'Виникли помилки: %{errors}'
