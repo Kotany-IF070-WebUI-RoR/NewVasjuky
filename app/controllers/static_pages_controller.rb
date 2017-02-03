@@ -4,8 +4,7 @@ class StaticPagesController < ApplicationController
                      only: [:home, :feed]
 
   def home
-    @issues = Issue.approved.ordered
-    @issues_feed = @issues.first(4)
+    @issues_feed = Issue.approved.ordered.limit(4)
     @count = Issue.approved.count
     @closed_count = Issue.closed.count
   end

@@ -1,14 +1,5 @@
 - provide(:follow_btn_size, 'lg')
-#heading-breadcrumbs
-  .container
-    .row
-      .col-md-7
-        h1= 'Деталі звернення'
-      .col-md-5
-        ul.breadcrumb
-          li= link_to 'На головну', root_path
-          li= link_to 'Усі звернення', issues_path
-          li= link_to "#{@issue.title}", issue_path(@issue)
+= render 'breadcrumbs_show'
 #content
   .container
     section.clearfix.row
@@ -30,7 +21,7 @@
           p.text-muted.text-uppercase.mb-small.pull-left
             span.author Автор: #{@issue.name}
             br
-            span Категорія: 
+            span Категорія:
             = link_to @issue.category.name, category_path(@issue.category)
           p.date-comments.pull-right
             span.pull-right
@@ -44,8 +35,7 @@
           .box-image-text.blog
             .top
               .image
-                = image_tag "//maps.googleapis.com/maps/api/staticmap?center=#{@issue.latitude},#{@issue.longitude}&markers=#{@issue.latitude},#{@issue.longitude}&zoom=17&size=640x350&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
-                        class: 'img-responsive', alt: "#{@issue.title} on the map"
+                = image_tag issue_map_url, class: 'img-responsive', alt: "#{@issue.title} on the map"
               .bg
               .text
                 .buttons
@@ -62,28 +52,8 @@
             h3 Проблема:
           p.lead #{@issue.description}
       - if @relevant_issues.any?
-        section.portfolio
-          .row
-            .heading.col-md-12
-              h3 Схожі звернення:
-            .col-md-12
-              - @relevant_issues.each do |relevant_issue|
-                .col-sm-6.col-md-3
-                  .box-image-text.blog
-                    .top
-                      .image
-                        = image_tag relevant_issue.first_attached_image, class: 'img-responsive'
-                      .bg
-                      .text
-                        .buttons
-                          = link_to 'Читати далі', relevant_issue, class: 'btn btn-template-transparent-primary'
-                    .content
-                      h4.short
-                        = link_to relevant_issue.title, relevant_issue
-      section.comments.row
-        .heading.col-md-12
-          h3 Коментарі:
-        = render 'comments/comments', commentable: @issue
+        = render 'relevant_issues'
+      = render 'comments/comments', commentable: @issue
 javascript:
   $(document).ready(function(){
     $("#issue-carousel").owlCarousel({

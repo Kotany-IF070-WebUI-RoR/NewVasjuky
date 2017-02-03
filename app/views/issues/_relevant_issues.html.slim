@@ -1,0 +1,17 @@
+section.portfolio
+  .row
+    .heading.col-md-12
+      h3 Схожі звернення:
+    - @relevant_issues.each do |relevant_issue|
+      .col-sm-6.col-md-3
+        .box-image-text.blog
+          .top
+            .image
+              = image_tag relevant_issue.first_attached_image, class: 'img-responsive'
+            .bg
+            .text
+              .buttons
+                = link_to 'Читати далі', relevant_issue, class: 'btn btn-template-transparent-primary'
+          .content
+            h4.short
+              = link_to relevant_issue.title, relevant_issue
