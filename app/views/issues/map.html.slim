@@ -1,4 +1,4 @@
-= content_for :map do
+- content_for :map do
   = stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css'
   = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js'
   = javascript_include_tag 'leaflet-google.js'
@@ -7,9 +7,7 @@
   .row
     .col-md-12
       h1 Мапа звернень
-      #issues-map
+      #map-container.issues-map
 
       javascript: 
-        $(document).ready(function(){
-          initIssuesMap();
-        });
+        $(document).ready(initIssuesMap);

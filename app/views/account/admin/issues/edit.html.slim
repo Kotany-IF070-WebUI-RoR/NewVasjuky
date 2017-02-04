@@ -1,3 +1,8 @@
+- content_for :map do
+  = stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css'
+  = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js'
+  = javascript_include_tag 'leaflet-google.js'
+
 h1 Редагувати звернення
 = link_to 'На головну', root_path
 .container
@@ -14,6 +19,13 @@ h1 Редагувати звернення
         = f.input :description, as: :text, label: 'Текст звернення', disabled: true
         = f.association :category, collection: Category.ordered_by_name, label: 'Категорія'
         = f.input :location, label: 'Адреса проблеми'
-        = f.input :latitude, label: 'Широта'
-        = f.input :longitude, label: 'Довгота'
+        = f.hidden_field(:latitude)
+        = f.hidden_field(:longitude)
+        #map-container.issue-map
+        br
         = f.button :submit, class: 'btn btn-primary'
+
+javascript:
+  $('document').ready(function(){
+    editIssueMap(#{@issue.latitude}, #{@issue.longitude});
+  });

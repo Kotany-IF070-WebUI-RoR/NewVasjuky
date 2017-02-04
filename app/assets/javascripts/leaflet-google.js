@@ -1,6 +1,4 @@
-/*
- * L.TileLayer is used for standard xyz-numbered tile layers.
- */
+// L.TileLayer is used for standard xyz-numbered tile layers.
 function initGoogleLayer (){
   L.Google = L.Class.extend({
     includes: L.Mixin.Events,
@@ -14,7 +12,7 @@ function initGoogleLayer (){
       attribution: '',
       opacity: 1,
       continuousWorld: false,
-      noWrap: false,
+      noWrap: false
     },
 
     // Possible types: SATELLITE, ROADMAP, HYBRID
@@ -73,14 +71,12 @@ function initGoogleLayer (){
         this._container.id = "_GMapContainer";
       }
 
-      if (true) {
-        tilePane.insertBefore(this._container, first);
+      tilePane.insertBefore(this._container, first);
 
-        this.setOpacity(this.options.opacity);
-        var size = this._map.getSize();
-        this._container.style.width = size.x + 'px';
-        this._container.style.height = size.y + 'px';
-      }
+      this.setOpacity(this.options.opacity);
+      var size = this._map.getSize();
+      this._container.style.width = size.x + 'px';
+      this._container.style.height = size.y + 'px';
     },
 
     _initMapObject: function() {
@@ -133,8 +129,8 @@ function initGoogleLayer (){
 
     _resize: function() {
       var size = this._map.getSize();
-      if (this._container.style.width == size.x &&
-          this._container.style.height == size.y)
+      if (this._container.style.width === size.x &&
+          this._container.style.height === size.y)
         return;
       this._container.style.width = size.x + 'px';
       this._container.style.height = size.y + 'px';
@@ -145,4 +141,160 @@ function initGoogleLayer (){
       //google.maps.event.trigger(this._google, "resize");
     }
   });
+}
+
+// Initialize map with google maps layer
+function initLayers(){
+  initGoogleLayer();
+  var map = new L.Map('map-container', { center: new L.LatLng(48.920597, 24.709566), zoom: 14 }),
+      googleLayer = new L.Google('ROADMAP');
+  map.addLayer(googleLayer);
+  return map;
+}
+
+// Only for 'Show' page
+function showIssueMap(lat,lng){
+  var map = initLayers(),
+      marker = new L.marker([lat,lng]).addTo(map);
+  map.panTo(marker._latlng);
+}
+
+// Only for 'Edit' page
+function editIssueMap(lat,lng){
+  var map = initLayers(),
+      marker = new L.marker([lat,lng],{draggable:true}).addTo(map);
+  map.panTo(marker._latlng);
+
+  marker.on("dragend",function(e){
+    var newPos = e.target._latlng;
+    getReverseGeocodingData(newPos.lat, newPos.lng)
+    $("#issue_latitude").val(newPos.lat);
+    $("#issue_longitude").val(newPos.lng);
+  });
+
+  map.on('click', function(e){
+    var newPos = e.latlng;
+    marker.setLatLng([newPos.lat,newPos.lng]);
+    getReverseGeocodingData(newPos.lat, newPos.lng)
+    $("#issue_latitude").val(newPos.lat);
+    $("#issue_longitude").val(newPos.lng);
+  });
+}
+
+// Only for 'New' page
+function newIssueMap(){
+  var map = initLayers();
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position){
+      onGeocodeSuccess(map,position)
+    }, function(msg){
+      onGeocodeError(map,msg)
+    });
+  }
+} 
+
+// Fill only location textfield with formatted geodata
+function getReverseGeocodingData(lat, lng) {
+    var geocoder, latlng;
+    latlng = new google.maps.LatLng(lat, lng);
+    geocoder = new google.maps.Geocoder;
+    geocoder.geocode( {'latLng': latlng}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            var location = results[0].formatted_address;
+            $("#issue_location").val(location);
+        }
+    });
+}
+
+// If geocoding succeed, map already has a marker
+function onGeocodeSuccess(map, position) {
+  var lat = position.coords.latitude,
+      lng = position.coords.longitude,
+      marker = new L.marker([lat,lng],{draggable:true}).addTo(map);
+    getReverseGeocodingData(lat,lng);
+    map.panTo(marker._latlng);
+
+    marker.on("dragend",function(e){
+      var newPos = e.target._latlng;
+      getReverseGeocodingData(newPos.lat, newPos.lng)
+    });
+
+    map.on('click', function(e){
+      var newPos = e.latlng;
+      marker.setLatLng([newPos.lat,newPos.lng]);
+      getReverseGeocodingData(newPos.lat, newPos.lng)
+    });
+}
+
+// If geocoding failed, map need to get location coordinates
+function onGeocodeError(map, msg) {
+  console.log(msg);
+  $('#issue_location').attr('placeholder', 'Введіть адресу проблеми');
+  var marker;
+  map.on('click', function(e){
+    var newPos = e.latlng
+    if (typeof(marker)==='undefined') {
+      marker = new L.marker([newPos.lat,newPos.lng],{draggable:true}).addTo(map);
+      marker.on("dragend",function(e){
+        getReverseGeocodingData(e.target._latlng.lat, e.target._latlng.lng)
+      });
+    } else {
+      marker.setLatLng([newPos.lat,newPos.lng]);
+    }
+    getReverseGeocodingData(newPos.lat, newPos.lng)
+  });
+}
+
+// Only for 'issues/map' page
+function initIssuesMap(){
+  var map = initLayers();
+  $.get({url: '/issues/map', dataType:"json", cache:false}).done(function(issues){
+    addMarkers(map,issues)
+  });
+}
+
+// Add markers for every issue
+function addMarkers(map, issues) {
+  var bounds = [];
+
+  issues.forEach(function(issue){
+    var coords = [issue.latitude, issue.longitude],
+        marker = L.marker(coords).addTo(map);
+
+    bounds.push(coords)
+    handlePopup(marker, issue.id);
+  });
+
+  map.fitBounds(bounds);
+}
+
+// Handle popup on every marker
+function handlePopup(marker, id){
+  marker.bindPopup("Завантаження...")
+  marker.on('click', function(e) {
+    var popup = e.target.getPopup(),
+        url="/issues/"+ id + "/popup/" ;
+    $.get({url: url, dataType:"json"})
+      .done(function(issue) {
+        var shortDescription = truncate(issue.description, 90, true),
+            popupLayout = '<h4>'+issue.title+'</h4>'+
+                          '<img src="'+ issue.img.url +'">'+
+                          '<p>'+shortDescription+'</p>'+
+                          '<p><span>'+issue.created_at+'<span><a class="pull-right" href="/issues/'+id+'">Переглянути</a></p>';
+        popup.setContent(popupLayout);
+        popup.update();
+      })
+      .fail(function (jqXHR) {
+        popup.setContent(jqXHR.responseJSON.error);
+        popup.update();
+      })
+  });
+}
+
+// Truncate _strings for a _number of letters
+function truncate(s, n, useWordBoundary){
+    var isTooLong = s.length > n;
+        s = isTooLong ? s.substr(0,n-1) : s;
+        s = (useWordBoundary && isTooLong) ? s.substr(0,s.lastIndexOf(' ')) : s;
+    return  isTooLong ? s + '&hellip;' : s;
 }
