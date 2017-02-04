@@ -3,7 +3,6 @@ class Issue < ApplicationRecord
   include Rails.application.routes.url_helpers
   include AASM
   include Statuses
-  include Search
   include Facebook
   acts_as_followable
 
@@ -42,8 +41,8 @@ class Issue < ApplicationRecord
   scope :closed, -> { where(status: :closed) }
   scope :find_issues, ->(a) { where('title like ?', "%#{a}%") }
   scope :status, ->(a) { where(status: a) }
-  query = search('title like ? OR description like ? OR location like ?')
-  scope :like, query
+  query = 'title like ? OR description like ? OR location like ?'
+  scope :like, ->(a) { where(query, "%#{a}%", "%#{a}%", "%#{a}%") }
 
   aasm column: :status, enum: true do
     state :pending, initial: true
