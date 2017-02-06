@@ -6,6 +6,15 @@ class UsersController < ApplicationController
     issue_listing(@user.issues)
   end
 
+  def ranking
+    @period = 30
+    if params[:period] && [7, 30, 90].include?(params[:period].to_i)
+      @period = params[:period].to_i
+    end
+    @users = User.ranking(@period)
+    @categories = Category.ordered_by_name
+  end
+
   private
 
   def find_user

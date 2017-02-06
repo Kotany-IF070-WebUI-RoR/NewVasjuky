@@ -13,3 +13,14 @@
     }
   }
 }
+.rankings-image {
+  height: 40px;
+  margin-right: 20px;
+  border-radius: 30px;
+}
+#users-ranking table tbody tr:nth-child(-n+4) {
+  font-weight: bold;
+  td:first-child {
+    font-size: 1.5em;
+  }
+}

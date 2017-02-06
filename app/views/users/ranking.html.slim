@@ -1,0 +1,35 @@
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7
+        h1 Рейтинг активності користувачів
+      .col-md-5
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Рейтинг користувачів
+#content
+  .container
+    .row
+      #users-ranking.col-md-9
+        .box
+          .table-responsive
+            table.table.table-hover
+              thead
+                tr
+                  th Місце
+                  th Користувач
+                  th Кількість звернень
+              tbody
+                tr
+                  = render 'rankings', collection: @users
+          blockquote= "На даній сторінці ви можете ознайомитись з рейтингом користувачів за останні #{@period} днів. \
+                     Рейтинг формується на основі кількості поданих звернень за період."
+          p= link_to 'Рейтинг користувачів за 7 днів', ranking_users_path(period: 7)
+          p= link_to 'Рейтинг користувачів за 30 днів', ranking_users_path(period: 30)
+          p= link_to 'Рейтинг користувачів за 90 днів', ranking_users_path(period: 90)
+      .col-md-3
+        .panel.panel-default.sidebar-menu
+          .panel-heading
+            h3.panel-title Категорії
+          .panel-default
+            = render 'shared/categories', collection: @categories
