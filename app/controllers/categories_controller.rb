@@ -4,6 +4,11 @@ class CategoriesController < ApplicationController
                      only: [:show]
   def show
     @category = Category.find(params[:id])
-    @issues = @category.issues.approved.ordered.page(params[:page]).per(10)
+    issues_scope = @category.issues.approved.ordered
+    issues_scope = issues_scope.like(params[:filter]) if params[:filter]
+    smart_listing_create :issues,
+                         issues_scope,
+                         partial: 'issues/issue'
+    @categories = Category.ordered_by_name
   end
 end

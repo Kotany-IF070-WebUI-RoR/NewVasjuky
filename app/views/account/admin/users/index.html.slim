@@ -10,18 +10,16 @@
 #content
   .container
     .row
-      #users-moderation.col-md-9
+      #users-moderation.col-md-12
         .box
-          .table-responsive
-            table.table.table-hover
-              thead
-                tr
-                  th Email
-                  th Ім'я
-                  th Блокування
-                  th Роль
-              tbody
-                tr
-                  = render @users
-          .text-center
-            = paginate @users, theme: 'twitter-bootstrap-3'
+          = smart_listing_controls_for(:users, {class: 'form-inline text-right'}) do
+            .form-group.status_select
+              span Роль:
+              = select_tag :user_role,
+                      options_for_select(User.roles.keys.to_a),
+                      class: 'form-control',
+                      prompt: 'Виберіть роль'
+            .form-group.filter.input-append
+              = text_field_tag :filter, '', class: 'search form-control',
+                      placeholder: 'Пошук', autocomplete: :off
+          = smart_listing_render(:users)
