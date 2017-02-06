@@ -14,8 +14,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 25 }
   validates :last_name, presence: true, length: { maximum: 25 }
   scope :role_search, ->(args) { where(role: args) }
-  query = 'email like ? OR first_name like ? OR last_name like ?'
-  scope :like, ->(a) { where(query, "%#{a}%", "%#{a}%", "%#{a}%") }
+  query = 'email like :args OR first_name like :args OR last_name like :args'
+  scope :like, ->(a) { where(query, args: "%#{a}%") }
 
   acts_as_follower
 

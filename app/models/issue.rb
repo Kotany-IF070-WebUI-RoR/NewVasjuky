@@ -41,8 +41,8 @@ class Issue < ApplicationRecord
   scope :closed, -> { where(status: :closed) }
   scope :find_issues, ->(a) { where('title like ?', "%#{a}%") }
   scope :status, ->(a) { where(status: a) }
-  query = 'title like ? OR description like ? OR location like ?'
-  scope :like, ->(a) { where(query, "%#{a}%", "%#{a}%", "%#{a}%") }
+  query = 'title like :args OR description like :args OR location like :args'
+  scope :like, ->(a) { where(query, args: "%#{a}%") }
 
   aasm column: :status, enum: true do
     state :pending, initial: true
