@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class StaticPagesController < ApplicationController
+class IssuesFeedsController < ApplicationController
   skip_before_action :authenticate_user!, :require_active_user,
                      only: [:home, :feed]
 
