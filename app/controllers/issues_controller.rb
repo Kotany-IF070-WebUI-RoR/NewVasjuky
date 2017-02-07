@@ -22,7 +22,7 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.find(params[:id])
-    @votes = @issue.votes
+    @voted = @issue.votes.where(user_id: current_user.id)
     @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
                              .order('random()').limit(4)
     redirect_back(fallback_location: root_path) unless \
@@ -61,13 +61,14 @@ class IssuesController < ApplicationController
     @vote = @issue.votes.new
     @vote.user = current_user
     @vote.save
-    redirect_to(issues_path)
+    redirect_to @issue, notice: "Ви проголосували за дану проблему."
   end
 
   def downvote
     @issue = Issue.find(params[:id])
-    @issue.votes.destroy(user_id: current_user.id)
-    redirect_to(issues_path)
+    @vote = @issue.votes.where(user_id: current_user.id)
+    @issue.votes.destroy(@vote)
+    redirect_to @issue, notice: "Ви зняли голос з даної проблеми."
   end
 
   private
