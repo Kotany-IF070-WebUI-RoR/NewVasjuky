@@ -3,7 +3,7 @@ class IssuesController < ApplicationController
   helper IssuesHelper
   before_action :status_inspector, only: [:index]
   skip_before_action :authenticate_user!, :require_active_user,
-                     only: [:index, :show, :followees, :map]
+                     only: [:index, :show, :followees, :map, :popup]
   respond_to :html, :json
 
   def index
