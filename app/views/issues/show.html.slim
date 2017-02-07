@@ -21,6 +21,10 @@
           .follow.pull-right
             - if user_signed_in?
               = render 'shared/follow_link', issue: @issue
+              -if @votes.user_id = current_user.id
+                = link_to '+1', upvote_issue_path(@issue), method: :post
+              -else
+                = link_to '-1', downvote_issue_path(@issue), method: :post
             .followers-count
               span Слідкує:
               span.badge.pull-right #{@issue.followers_count}

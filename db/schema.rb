@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124105112) do
+ActiveRecord::Schema.define(version: 20170202085635) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20170124105112) do
     t.string   "title"
     t.integer  "status",              default: 0
     t.integer  "followers_count",     default: 0
-    t.boolean  "posted_on_facebook",  default: false
     t.integer  "issue_attachment_id"
+    t.boolean  "posted_on_facebook",  default: false
     t.index ["category_id"], name: "index_issues_on_category_id"
     t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id"
     t.index ["status"], name: "index_issues_on_status"
@@ -97,6 +97,16 @@ ActiveRecord::Schema.define(version: 20170124105112) do
     t.integer  "followees_count",        default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "voteable_id"
+    t.string   "voteable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["user_id"], name: "index_votes_on_user_id"
+    t.index ["voteable_id", "voteable_type"], name: "index_votes_on_voteable_id_and_voteable_type"
   end
 
 end

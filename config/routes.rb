@@ -37,6 +37,9 @@ Rails.application.routes.draw do
     post 'follow',   to: 'issues/socializations#follow'
     post 'unfollow', to: 'issues/socializations#unfollow'
     resources :comments, module: :issues, only: :create
+    member do
+      post 'upvote'
+    end
   end
 
   resources :comments, only: [:destroy]

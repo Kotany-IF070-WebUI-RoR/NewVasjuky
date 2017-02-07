@@ -2,6 +2,7 @@
 class Issue < ApplicationRecord
   include Rails.application.routes.url_helpers
   has_many :comments, as: :commentable
+  has_many :votes, as: :voteable
   belongs_to :user
   belongs_to :category
   has_many :issue_attachments
