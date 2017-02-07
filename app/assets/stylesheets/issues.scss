@@ -124,8 +124,13 @@
     margin-bottom: 5px;
   }
 }
-#issues-map {
+.issues-map {
   height:600px;
+}
+.issue-map {
+  height:300px;
+}
+#map-container {
   .leaflet-map-pane {
       z-index: 2 !important;
   }

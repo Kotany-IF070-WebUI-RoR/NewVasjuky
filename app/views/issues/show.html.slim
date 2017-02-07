@@ -1,3 +1,8 @@
+- content_for :map do
+  = stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css'
+  = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js'
+  = javascript_include_tag 'leaflet-google.js'
+
 - provide(:follow_btn_size, 'lg')
 = render 'breadcrumbs_show'
 #content
@@ -32,17 +37,7 @@
               i.fa.fa-location-arrow
               span #{@issue.location}
         .col-md-7.col-sm-7
-          .box-image-text.blog
-            .top
-              .image
-                = image_tag issue_map_url, class: 'img-responsive', alt: "#{@issue.title} on the map"
-              .bg
-              .text
-                .buttons
-                  .btn.btn-lg.btn-template-transparent-primary.coordinates
-                    'Координати:
-                    br
-                    span.copy #{@issue.latitude} #{@issue.longitude}
+          #map-container.issue-map
         .col-md-5.col-sm-5
           .project.owl-carousel.owl-theme id='issue-carousel'
             - @issue.issue_attachments.each do |issue_attachment|
@@ -56,6 +51,8 @@
       = render 'comments/comments', commentable: @issue
 javascript:
   $(document).ready(function(){
+    // initIssuesMap(false, #{@issue.latitude}, #{@issue.longitude});
+    showIssueMap(#{@issue.latitude}, #{@issue.longitude});
     $("#issue-carousel").owlCarousel({
         nav : true,
         items : 1,

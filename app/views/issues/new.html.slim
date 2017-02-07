@@ -1,5 +1,8 @@
-- content_for :javascript do
-  = javascript_include_tag 'geocoding'
+- content_for :map do
+  = stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css'
+  = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js'
+  = javascript_include_tag 'leaflet-google.js'
+
 #heading-breadcrumbs
   .container
     .row
@@ -29,6 +32,7 @@
                     label: 'Категорія'
             = f.input :location, label: 'Адреса проблеми',
                     placeholder: 'Івано-Франківськ, Сахарова, 33'
+            #map-container.issue-map
             = f.input :description, as: :text, label: 'Текст звернення'
             #issue_attachments
               = simple_fields_for :issue_attachments do |ia|
@@ -36,4 +40,7 @@
             = f.button :submit, 'Надіслати звернення', class: 'btn btn-primary'
 
 javascript:
-  $("#issue_phone").mask("+38(999)-999-9999");
+  $('document').ready(function(){
+    $("#issue_phone").mask("+38(999)-999-9999");
+    newIssueMap();
+  });
