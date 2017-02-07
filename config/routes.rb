@@ -55,5 +55,6 @@ Rails.application.routes.draw do
 
   get  'followees', to: 'issues#followees'
   get  'feed', to: 'issues_feeds#feed'
+  get  ':page', to: 'pages#show'
   root to: 'issues_feeds#home'
 end
