@@ -38,7 +38,8 @@ Rails.application.routes.draw do
     post 'unfollow', to: 'issues/socializations#unfollow'
     resources :comments, module: :issues, only: :create
     member do
-      post 'upvote'
+      post :upvote
+      delete :downvote
     end
   end
 
