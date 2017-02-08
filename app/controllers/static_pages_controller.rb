@@ -2,7 +2,7 @@
 class StaticPagesController < ApplicationController
   helper StatisticsHelper
   skip_before_action :authenticate_user!, :require_active_user,
-                     only: [:home, :feed]
+                     only: [:home, :feed, :statistics]
 
   def home
     @issues_feed = Issue.approved.ordered.limit(4)
