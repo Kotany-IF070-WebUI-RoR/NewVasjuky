@@ -60,15 +60,23 @@ class IssuesController < ApplicationController
     @issue = Issue.find(params[:id])
     @vote = @issue.votes.new
     @vote.user = current_user
-    @vote.save
-    redirect_to @issue, notice: "Ви проголосували за дану проблему."
+    if @vote.save
+      redirect_to @issue, notice: 'Ви проголосували за дану проблему.'
+    else
+      redirect_to @issue, notice: 'Ви не змогли проголосувати'
+    end
   end
 
   def downvote
     @issue = Issue.find(params[:id])
     @vote = @issue.votes.where(user_id: current_user.id)
-    @issue.votes.destroy(@vote)
-    redirect_to @issue, notice: "Ви зняли голос з даної проблеми."
+    if @vote.present?
+      @issue.votes.destroy(@vote)
+      redirect_to @issue, notice: 'Ви зняли голос з даної проблеми.'
+    else
+      redirect_to @issue, notice: 'Ви уже забрали свій голос.'
+    end
+
   end
 
   private
