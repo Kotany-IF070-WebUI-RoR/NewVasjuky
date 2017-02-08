@@ -33,6 +33,14 @@ class User < ApplicationRecord
       role: :reporter }
   end
 
+  def self.top_ranking_for(period, size = 15)
+    joins(:issues).select('users.*, count(issues.id) AS issues_count')
+                  .where('issues.created_at > ? AND issues.status in (?, ?)',
+                         period.days.ago,
+                         Issue.statuses[:opened], Issue.statuses[:closed])
+                  .group('users.id').limit(size).order('issues_count DESC')
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

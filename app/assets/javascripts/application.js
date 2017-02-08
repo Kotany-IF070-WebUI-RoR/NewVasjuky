@@ -28,7 +28,7 @@
 //= require owl.carousel.min
 //= require home.coffee
 //= require cocoon
-//= require users.coffee
+//= require users.js
 //= require comments
 //= require flash
 //= require front

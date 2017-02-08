@@ -47,7 +47,11 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:destroy]
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    collection do
+      get :ranking
+    end
+  end
 
   get  'followees', to: 'issues#followees'
   get  'feed', to: 'static_pages#feed'
