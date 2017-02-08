@@ -39,6 +39,9 @@ header
                   = link_to 'Відкриті звернення', issues_path(status: 'opened')
                 li
                   = link_to 'Закриті звернення', issues_path(status: 'closed')
+            li
+              a[href="/links"]
+                | Корисні посилання
             - unless user_signed_in?
               li.active
                 = link_to user_facebook_omniauth_authorize_path do
