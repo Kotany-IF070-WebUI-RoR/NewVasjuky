@@ -39,6 +39,7 @@ class Issue < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :opened) }
   scope :closed, -> { where(status: :closed) }
+  scope :total, -> { where(status: [:closed, :opened]) }
   scope :find_issues, ->(a) { where('title like ?', "%#{a}%") }
   scope :status, ->(a) { where(status: a) }
   query = 'title like :args OR description like :args OR location like :args'

@@ -15,6 +15,7 @@ class StaticPagesController < ApplicationController
   end
 
   def statistics
-    @issues = Issue.opened
+    @total = Issue.total
+    @closed = Issue.closed
   end
 end

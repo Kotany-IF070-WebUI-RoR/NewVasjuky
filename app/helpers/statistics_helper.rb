@@ -1,28 +1,58 @@
 # Encoding: utf-8
 module StatisticsHelper
   def issues_by_day
-    area_chart @issues.group_by_day(
-      :created_at, range: 1.month.ago..Time.zone.now
-    ).count, id: 'chart', height: '300px', library: {
-      title: { text: 'Кількість поданих скарг' },
+    line_chart [
+      {
+        name: 'Створено',
+        data: @total.group_by_day(:created_at,
+                                  range: 1.month.ago..Time.zone.now).count
+      },
+      {
+        name: 'Вирішено',
+        data: @closed.group_by_day(:created_at,
+                                   range: 1.month.ago..Time.zone.now).count
+      }
+    ], id: 'chart', height: '300px', library: {
+      colors: ['#88cece', '#64dd4c'],
       chart: {
-        maxWidth: 900
+        type: 'areaspline'
       },
       yAxis: {
-        allowDecimals: false,
         title: {
           text: 'Кількість'
-        }
+        },
+        allowDecimals: false,
+        tickInterval: 5
       },
       xAxis: {
-        startOfWeek: 1,
-        type: 'datetime',
         title: {
           text: 'Дата'
-        }
+        },
+        gridLineWidth: 1
       },
       tooltip: {
-        pointFormat: 'Скарг: <b>{point.y}</b>'
+        pointFormat: '{series.name} скарг: <b>{point.y}</b><br>',
+        shared: true,
+        crosshairs: true
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 40,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: '#FFFFFF',
+        shadow: true
+      },
+      plotOptions: {
+        series: {
+          cursor: 'pointer',
+          marker: {
+            lineWidth: 1
+          }
+        }
       }
     }
   end

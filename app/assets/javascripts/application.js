@@ -17,6 +17,7 @@
 // about supported directives.
 //
 //= require chartkick
+//= require highcharts-options
 //= require jquery
 //= require jquery_ujs
 //= require unobtrusive_flash

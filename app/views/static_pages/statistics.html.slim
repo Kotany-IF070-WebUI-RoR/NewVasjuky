@@ -1,3 +1,14 @@
-script
-  |  Highcharts.setOptions({ global: { useUTC: false }, lang: { months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'], weekdays: ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', "П'ятниця", 'Субота'], shortMonths: ['Січ.', 'Лют.', 'Бер.', 'Квіт.', 'Трав.', 'Черв.', 'Лип.', 'Серп.', 'Вер.', 'Жовт.', 'Лист.', 'Груд.'], shortWeekdays: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'] } }); 
-= issues_by_day
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7
+        h1 Статистика звернень
+      .col-md-5
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Статистика
+#content
+  .container
+    .row
+      .col-md-12
+        = issues_by_day
