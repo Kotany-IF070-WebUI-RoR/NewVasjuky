@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def read_notifications
     events_id = JSON.parse(params[:readed_events])
     notifications = current_user.notifications.unread.by_events_id(events_id)
-    notifications.each(&:mark_as_readed)
+    notifications.update_all(readed: true)
   end
 
   def ranking

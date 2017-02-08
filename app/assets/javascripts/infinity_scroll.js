@@ -38,7 +38,6 @@ function init_infinity_scroll(initial_page_number, request_url, load_first_page)
                 UnobtrusiveFlash.showFlashMessage('Упс... Щось пішло не так. ' +
                     'Перезавантажте сторінку',
                     {type: 'error'});
-                console.log(data)
             },
             beforeSend: function () {
                 $('#loader-block').toggleClass('hidden');

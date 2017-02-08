@@ -24,6 +24,10 @@ class Event < ApplicationRecord
                         user.last_check_notifications_at, user.id).present?
   end
 
+  def unread_by?(user)
+    notifications.unread.find_by(user_id: user.id).present?
+  end
+
   private
 
   def create_notifications

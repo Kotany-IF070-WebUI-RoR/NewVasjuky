@@ -1,4 +1,4 @@
-section.post  class=('unread' if unread?(event)) data-event="#{event.id}"
+section.post  class=('unread' if users_feed? && event.unread_by?(current_user)) data-event="#{event.id}"
 
   .row
     .media.issue-container
@@ -11,8 +11,6 @@ section.post  class=('unread' if unread?(event)) data-event="#{event.id}"
           = link_to event.issue.title, issue_path(event.issue_id)
         .clearfix
           p.date-comments.info-group-wrapper
-            - if signed_in? && event.new_for?(current_user) && users_feed?
-              span.label.label-success.unread_event Нове!
             i.fa.fa-calendar-o
             span  #{time_ago_in_words(event.created_at)} тому
         .status_wrapper
