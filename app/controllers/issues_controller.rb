@@ -60,6 +60,7 @@ class IssuesController < ApplicationController
     @issue = Issue.find(params[:id])
     @vote = @issue.votes.new
     @vote.user = current_user
+
     if @vote.save
       redirect_to @issue, notice: 'Ви проголосували за дану проблему.'
     else
@@ -76,7 +77,6 @@ class IssuesController < ApplicationController
     else
       redirect_to @issue, notice: 'Ви уже забрали свій голос.'
     end
-
   end
 
   private
