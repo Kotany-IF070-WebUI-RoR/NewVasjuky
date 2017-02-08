@@ -2,6 +2,7 @@
 class IssuesController < ApplicationController
   helper IssuesHelper
   before_action :status_inspector, only: [:index]
+  before_action :get_issue, only: [:show, :upvote, :downvote]
   skip_before_action :authenticate_user!, :require_active_user,
                      only: [:index, :show, :followees, :map, :popup]
   respond_to :html, :json
@@ -21,7 +22,6 @@ class IssuesController < ApplicationController
   end
 
   def show
-    @issue = Issue.find(params[:id])
     @voted = @issue.votes.where(user_id: current_user.id)
     @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
                              .order('random()').limit(4)
@@ -57,7 +57,6 @@ class IssuesController < ApplicationController
   end
 
   def upvote
-    @issue = Issue.find(params[:id])
     @vote = @issue.votes.new
     @vote.user = current_user
 
@@ -69,7 +68,6 @@ class IssuesController < ApplicationController
   end
 
   def downvote
-    @issue = Issue.find(params[:id])
     @vote = @issue.votes.where(user_id: current_user.id)
     if @vote.present?
       @issue.votes.destroy(@vote)
@@ -92,6 +90,10 @@ class IssuesController < ApplicationController
                                     :attachment,
                                     :_destroy
                                   ])
+  end
+
+  def get_issue
+    @issue = Issue.find(params[:id])
   end
 
   def status_inspector
