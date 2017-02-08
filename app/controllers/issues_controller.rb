@@ -7,6 +7,8 @@ class IssuesController < ApplicationController
   respond_to :html, :json
 
   def index
+    set_meta_tags title: 'Звернення',
+                  description: 'На цій сторінці можна побачити список звернень'
     issues_scope = Issue.where(status: params[:status])
     issues_scope = issues_scope.like(params[:filter]) if params[:filter]
     @status = params[:status]
@@ -17,11 +19,14 @@ class IssuesController < ApplicationController
   end
 
   def new
+    set_meta_tags title: 'Створити нове звернення'
     @issue = current_user.issues.new
   end
 
   def show
     @issue = Issue.find(params[:id])
+    set_meta_tags title: @issue.title,
+                  description: @issue.description
     @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
                              .order('random()').limit(4)
     redirect_back(fallback_location: root_path) unless \
@@ -29,6 +34,9 @@ class IssuesController < ApplicationController
   end
 
   def map
+    set_meta_tags title: 'Карта звернень',
+                  description: 'На цій сторінці можна побачити звідки було
+                                надіслано звернення'
     @issues = Issue.select('id,latitude, longitude').approved
     respond_with(@issues)
   end
@@ -43,6 +51,7 @@ class IssuesController < ApplicationController
   end
 
   def followees
+    set_meta_tags title: 'Відслідковувані звернення'
     @issues = current_user.followees(Issue)
   end
 

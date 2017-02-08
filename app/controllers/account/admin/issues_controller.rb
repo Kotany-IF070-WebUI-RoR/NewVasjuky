@@ -7,6 +7,7 @@ module Account
       before_action :find_issue,
                     only: [:edit, :update, :approve, :close, :decline]
       def index
+        set_meta_tags title: 'Керування зверненнями'
         issue_listing(Issue.all)
       end
 
