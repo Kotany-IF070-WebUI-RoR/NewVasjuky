@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
+gem 'meta-tags'
 gem 'aasm'
 gem 'activerecord-import'
 gem 'any_login'
