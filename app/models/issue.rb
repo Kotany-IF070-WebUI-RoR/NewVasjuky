@@ -102,13 +102,13 @@ class Issue < ApplicationRecord
     issue_attachments.first_or_initialize.attachment
   end
 
+  def notify_support
+    IssueMailer.issue_created(id).deliver
+  end
+
   def prepare_facebook_page
     FbGraph2::Page.new(ENV['FACEBOOK_GROUP_ID'],
                        access_token: ENV['FACEBOOK_GROUP_TOKEN'])
-  end
-
-  def notify_support
-    IssueMailer.issue_created(id).deliver
   end
 
   def create_event_by(user)

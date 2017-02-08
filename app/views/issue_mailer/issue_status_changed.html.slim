@@ -1,0 +1,12 @@
+h1 NEWVASJUKY
+p
+  | Скарга
+  b  "#{@issue.title}"
+  |  змінила статус на
+  b  "#{@issue.status_name}"
+  |!
+p
+  | Переглянути скаргу можна за цим
+  = link_to issue_url(@issue)
+    |  посиланням
+  | .
