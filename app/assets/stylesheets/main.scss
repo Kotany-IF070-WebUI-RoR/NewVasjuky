@@ -1,4 +1,4 @@
-@include sticky-footer(280px, "main", "#footer" "footer");
+@include sticky-footer(300px, "#all", "#footer", "footer");
 @import "variables_and_mixins";
 
 .clearfix {
@@ -2832,7 +2832,7 @@ fieldset[disabled] {
     margin: 0 0 20px;
   }
 }
-#footer {
+footer {
   background: $color_text_primary;
   padding: 50px 0;
   color: $color_border_light;

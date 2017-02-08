@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   private
 
   def valid_page?
-    @template = "app/views/pages/#{params[:page]}.html.slim"
-    File.exist?(Pathname.new(Rails.root + @template))
+    template = "app/views/pages/#{params[:page]}.html.slim"
+    File.exist?(Pathname.new(Rails.root + template))
   end
 end
