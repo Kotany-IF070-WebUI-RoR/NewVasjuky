@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, :require_active_user, only: [:show]
   def show
+    set_meta_tags title: "your title",
+                keywords: "your keywords",
+                description: "your description"
     if valid_page?
       render template: "pages/#{params[:page]}"
     else
