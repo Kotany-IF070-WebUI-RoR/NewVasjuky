@@ -39,7 +39,6 @@ class Issue < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :opened) }
   scope :closed, -> { where(status: :closed) }
-  scope :total, -> { where(status: [:closed, :opened]) }
   scope :find_issues, ->(a) { where('title like ?', "%#{a}%") }
   scope :status, ->(a) { where(status: a) }
   query = 'title like :args OR description like :args OR location like :args'
@@ -110,6 +109,10 @@ class Issue < ApplicationRecord
   def prepare_facebook_page
     FbGraph2::Page.new(ENV['FACEBOOK_GROUP_ID'],
                        access_token: ENV['FACEBOOK_GROUP_TOKEN'])
+  end
+
+  def self.statistics_for(period, scope)
+    Issue.where(status: scope).group_by_day(:created_at, range: period).count
   end
 
   def create_event_by(user)

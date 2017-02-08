@@ -11,4 +11,8 @@
   .container
     .row
       .col-md-12
+        ul
+          li=link_to 'За місяць', statistics_path(period: 'month')
+          li=link_to 'За рік', statistics_path(period: 'year')
+          li=link_to 'За весь час', statistics_path(period: 'total')
         = issues_by_day

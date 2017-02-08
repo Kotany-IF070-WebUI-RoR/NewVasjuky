@@ -4,13 +4,11 @@ module StatisticsHelper
     line_chart [
       {
         name: 'Створено',
-        data: @total.group_by_day(:created_at,
-                                  range: 1.month.ago..Time.zone.now).count
+        data: @opened
       },
       {
         name: 'Вирішено',
-        data: @closed.group_by_day(:created_at,
-                                   range: 1.month.ago..Time.zone.now).count
+        data: @closed
       }
     ], id: 'chart', height: '300px', library: {
       colors: ['#88cece', '#64dd4c'],
@@ -39,8 +37,8 @@ module StatisticsHelper
         layout: 'vertical',
         align: 'right',
         verticalAlign: 'top',
-        x: -40,
-        y: 40,
+        x: -20,
+        y: 20,
         floating: true,
         borderWidth: 1,
         backgroundColor: '#FFFFFF',
