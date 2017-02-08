@@ -29,7 +29,7 @@
 //= require home.coffee
 //= require issues.js
 //= require cocoon
-//= require users.coffee
+//= require users.js
 //= require comments
 //= require flash
 //= require front
