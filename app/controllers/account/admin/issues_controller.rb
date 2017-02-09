@@ -11,7 +11,9 @@ module Account
         issue_listing(Issue.all)
       end
 
-      def edit; end
+      def edit
+        set_meta_tags title: 'Редагувати звернення'
+      end
 
       def update
         if @issue.update_attributes(issues_params)
