@@ -34,4 +34,4 @@
 //= require front
 //= require smart_listing
 //= require infinity_scroll
-//= require feed
+//= require js-routes

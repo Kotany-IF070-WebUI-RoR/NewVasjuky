@@ -60,6 +60,10 @@ class User < ApplicationRecord
   end
 
   def unread_notification_for(event)
-    notifications.find_by(event_id: event.id, readed: false)
+    notifications.unread.find_by(event_id: event.id)
+  end
+
+  def unread_notifications_for(events)
+    notifications.where(event_id: events.ids)
   end
 end

@@ -49,8 +49,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:destroy]
   resources :users, only: [:show] do
     member do
-      get 'feed', to: 'users@feed'
-      patch 'read_notifications', to: 'users@read_notifications'
+      get 'feed', to: 'users#feed'
     end
 
     collection do

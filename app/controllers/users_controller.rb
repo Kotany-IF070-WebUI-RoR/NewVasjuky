@@ -12,12 +12,7 @@ class UsersController < ApplicationController
     current_user.check_notifications unless request.xhr?
     @events = current_user.events.ordered.page(params[:page]).per(3)
     respond_for_feed(@events)
-  end
-
-  def read_notifications
-    events_id = JSON.parse(params[:readed_events])
-    notifications = current_user.notifications.unread.by_events_id(events_id)
-    notifications.update_all(readed: true)
+    read_notifications_for_loaded_events
   end
 
   def ranking
@@ -31,5 +26,10 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def read_notifications_for_loaded_events
+    notifications = current_user.unread_notifications_for(@events)
+    notifications.update_all(readed: true)
   end
 end

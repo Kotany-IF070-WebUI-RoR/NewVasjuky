@@ -29,7 +29,6 @@ function init_comments_page() {
         }
     });
     // end of removing comments
-
     init_infinity_scroll(1, comments_source_url());
 
     // Helpers
@@ -59,7 +58,7 @@ function init_comments_page() {
     }
 
     function remove_comment(remove_link) {
-        return $.ajax({url: '/comments/' + remove_link.id, method: 'DELETE'});
+        return $.ajax({url: Routes.comment_path(remove_link.id) , method: 'DELETE'});
     }
 
 
