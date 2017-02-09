@@ -32,7 +32,9 @@ class User < ApplicationRecord
       first_name: auth.info.first_name,
       last_name: auth.info.last_name,
       image_url: auth.info.image,
-      role: :reporter }
+      role: :reporter,
+      last_check_notifications_at: Time.zone.now
+      }
   end
 
   def self.top_ranking_for(period, size = 15)
@@ -44,7 +46,7 @@ class User < ApplicationRecord
   end
 
   def check_notifications
-    update_attribute(:last_check_notifications_at, DateTime.now.utc)
+    update_attribute(:last_check_notifications_at, Time.zone.now)
   end
 
   def full_name
@@ -59,11 +61,7 @@ class User < ApplicationRecord
     notifications.later_than(last_check_notifications_at)
   end
 
-  def unread_notification_for(event)
-    notifications.unread.find_by(event_id: event.id)
-  end
-
   def unread_notifications_for(events)
-    notifications.where(event_id: events.ids)
+    notifications.unread.where(event_id: events.ids)
   end
 end

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   include Feed
   before_action :find_user, only: [:show]
+  after_action :mark_as_read_loaded, only: [:feed]
   skip_before_action :require_active_user, only: [:show, :ranking]
   skip_before_action :authenticate_user!, only: [:ranking]
 
@@ -12,7 +13,6 @@ class UsersController < ApplicationController
     current_user.check_notifications unless request.xhr?
     @events = current_user.events.ordered.page(params[:page]).per(3)
     respond_for_feed(@events)
-    read_notifications_for_loaded_events
   end
 
   def ranking
@@ -28,7 +28,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def read_notifications_for_loaded_events
+  def mark_as_read_loaded
+    return unless request.xhr?
     notifications = current_user.unread_notifications_for(@events)
     notifications.update_all(readed: true)
   end
