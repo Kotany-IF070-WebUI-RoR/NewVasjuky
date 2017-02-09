@@ -1,11 +1,11 @@
 "use strict";
 function init_infinity_scroll(initial_page_number, request_url, load_first_page) {
-    var page_number;
+    var current_page;
     if (initial_page_number === undefined) {
-        page_number = 1;
+        current_page = 1;
     }
     else {
-        page_number = initial_page_number
+        current_page = initial_page_number
     }
     if (load_first_page === true) load_data();
     start_infinity_scroll();
@@ -27,11 +27,12 @@ function init_infinity_scroll(initial_page_number, request_url, load_first_page)
         $.ajax({
             url: get_request_url(),
             headers: {'HTTP_X_REQUESTED_WITH': 'XMLHttpRequest'},
-            success: function (data) {
-                if (data !== 'end_of_list') {
-                    $('.loaded_data_container').append(data);
+            success: function (data, textStatus, request) {
+                var total_pages = +request.getResponseHeader('TotalPages');
+                $('.loaded_data_container').append(data);
+                if (current_page < total_pages) {
                     start_infinity_scroll();
-                    page_number++;
+                    current_page++;
                 }
             },
             error: function (data) {
@@ -57,7 +58,7 @@ function init_infinity_scroll(initial_page_number, request_url, load_first_page)
         else {
             page_parameter_definition = '&page=';
         }
-        return url + page_parameter_definition + page_number;
+        return url + page_parameter_definition + current_page;
     }
 }
 

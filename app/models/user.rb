@@ -33,8 +33,7 @@ class User < ApplicationRecord
       last_name: auth.info.last_name,
       image_url: auth.info.image,
       role: :reporter,
-      last_check_notifications_at: Time.zone.now
-      }
+      last_check_notifications_at: Time.zone.now }
   end
 
   def self.top_ranking_for(period, size = 15)

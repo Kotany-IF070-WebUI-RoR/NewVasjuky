@@ -5,13 +5,13 @@ class CommonPagesController < ApplicationController
                      only: [:home, :feed]
 
   def home
-    @issues_feed = Issue.approved.ordered.limit(4)
+    @issues_feed = Issue.approved.ordered.limit(3)
     @count = Issue.approved.count
     @closed_count = Issue.closed.count
   end
 
   def feed
-    @events = Event.ordered.public_events.page(params[:page]).per(10)
+    @events = Event.ordered.public_events.page(params[:page]).per(5)
     respond_for_feed(@events)
   end
 end

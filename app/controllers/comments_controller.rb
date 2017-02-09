@@ -5,14 +5,9 @@ class CommentsController < ApplicationController
 
   def index
     return redirect_back(fallback_location: root_path) unless request.xhr?
-
     @comments = @commentable.comments.ordered.page(params[:page]).per(5)
-    if @comments.any?
-      render partial: 'comments/comments_list', locals: { comments: @comments },
-             status: :ok
-    else
-      render plain: 'end_of_list'
-    end
+    set_headers_for_index
+    render partial: 'comments/comments_list', locals: { comments: @comments }
   end
 
   def create
@@ -39,6 +34,10 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def set_headers_for_index
+    response.headers['TotalPages'] = @comments.total_pages
+  end
 
   def comment_error
     render json: @comment.errors.messages, status: :unprocessable_entity
