@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
-gem 'meta-tags'
 gem 'aasm'
 gem 'activerecord-import'
 gem 'any_login'
@@ -24,6 +23,7 @@ gem 'jquery-waypoints-rails', '~> 2.0', '>= 2.0.5'
 gem 'js-routes'
 gem 'json'
 gem 'kaminari'
+gem 'meta-tags'
 gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-facebook'

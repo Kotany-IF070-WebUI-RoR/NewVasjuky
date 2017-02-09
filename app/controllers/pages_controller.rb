@@ -1,3 +1,4 @@
+# Encoding: utf-8
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, :require_active_user, only: [:show]
   def show
