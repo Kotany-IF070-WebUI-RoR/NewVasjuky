@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       render partial: 'comments/comments_list', locals: { comments: @comments },
              status: :ok
     else
-      render text: 'end_of_comments_list', status: 444
+      render plain: 'end_of_list'
     end
   end
 

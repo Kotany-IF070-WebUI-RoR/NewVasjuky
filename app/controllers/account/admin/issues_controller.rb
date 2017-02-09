@@ -23,18 +23,18 @@ module Account
       end
 
       def approve
-        @issue.approve!
+        @issue.create_event_by(current_user) if @issue.approve!
         @issue.post_to_facebook!
         redirect_back(fallback_location: root_path)
       end
 
       def decline
-        @issue.decline!
+        @issue.create_event_by(current_user) if @issue.decline!
         redirect_back(fallback_location: root_path)
       end
 
       def close
-        @issue.close!
+        @issue.create_event_by(current_user) if @issue.close!
         redirect_back(fallback_location: root_path)
       end
 

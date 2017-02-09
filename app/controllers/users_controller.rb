@@ -1,10 +1,23 @@
 class UsersController < ApplicationController
+  include Feed
   before_action :find_user, only: [:show]
   skip_before_action :require_active_user, only: [:show, :ranking]
   skip_before_action :authenticate_user!, only: [:ranking]
 
   def show
     issue_listing(@user.issues)
+  end
+
+  def feed
+    current_user.check_notifications unless request.xhr?
+    @events = current_user.events.ordered.page(params[:page]).per(3)
+    respond_for_feed(@events)
+  end
+
+  def read_notifications
+    events_id = JSON.parse(params[:readed_events])
+    notifications = current_user.notifications.unread.by_events_id(events_id)
+    notifications.each(&:mark_as_readed)
   end
 
   def ranking

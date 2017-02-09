@@ -1,0 +1,24 @@
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7.col-sm-6
+        h2 Останні оновлення
+      .col-md-5.col-sm-6
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Останні оновлення
+#content.feed
+  .container
+    .row
+      #blog-listing-medium.col-md-9
+        section.container.events_list.loaded_data_container
+        #loader-block.col-xs-12.hidden
+          = image_tag 'loader.gif', alt: 'Loader', id: 'loader-img',
+                  class: 'img-responsive col-xs-2 col-xs-offset-5'
+
+javascript:
+    $('document').ready(init_infinity_scroll(1, window.location.href, true));
+
+- if users_feed?
+  javascript:
+      $('document').ready(init_users_feed_page());

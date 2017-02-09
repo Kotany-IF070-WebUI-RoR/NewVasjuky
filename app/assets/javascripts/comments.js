@@ -30,13 +30,13 @@ function init_comments_page() {
     });
     // end of removing comments
 
-
-    // comments autoload
-    var comment_page = 1;
-    load_comments();
-    // end of comments autoload
+    init_infinity_scroll(1, comments_source_url());
 
     // Helpers
+
+    function comments_source_url() {
+        return window.location.href + '/comments'
+    }
 
     function confirm_removing(remove_link) {
         var confirmation_modal = $('#delete_confirmation');
@@ -89,42 +89,6 @@ function init_comments_page() {
             $(this).removeClass('has-error');
             $(this).find('.help-block').remove();
         })
-    }
-
-    function end_of_page() {
-        return $(window).scrollTop() + $(window).height() > $(document).height() - 100
-    }
-
-    function load_comments() {
-        var url = window.location.href;
-        var request = $.ajax({ url: url + '/comments?page=' + comment_page,
-            headers: {'HTTP_X_REQUESTED_WITH': 'XMLHttpRequest'},
-            method: 'GET', cache: false });
-        $('#loader-block').toggleClass('hidden');
-        request.success(function(data){
-            $('.comment-list').append(data);
-            start_scroll_listening();
-            comment_page++;
-            $('#loader-block').toggleClass('hidden');
-        });
-
-        request.fail(function (response) {
-            if (response.responseText !== "end_of_comments_list") {
-                UnobtrusiveFlash.showFlashMessage('Ми не змогли ' +
-                    'завантажити коментарі, перезавантажте сторінку',
-                    {type: 'error'});
-            }
-            $('#loader-block').toggleClass('hidden');
-        })
-    }
-
-    function start_scroll_listening() {
-        $(window).on('scroll', function () {
-            if (end_of_page()) {
-                load_comments();
-                $(window).off('scroll');
-            }
-        });
     }
 }
 
