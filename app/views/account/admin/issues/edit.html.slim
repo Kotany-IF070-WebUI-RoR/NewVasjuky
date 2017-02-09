@@ -2,6 +2,7 @@
   = stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css'
   = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js'
   = javascript_include_tag 'leaflet-google.js'
+  = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD9_Kz2vq3-WLfATRY1KglTzLTDG8idF-k&libraries=places'
 
 h1 Редагувати звернення
 = link_to 'На головну', root_path
@@ -28,4 +29,7 @@ h1 Редагувати звернення
 javascript:
   $('document').ready(function(){
     editIssueMap(#{@issue.latitude}, #{@issue.longitude});
+    google.maps.event.addDomListener(window, 'load', function () {
+        var places = new google.maps.places.Autocomplete(document.getElementById('issue_location'));
+      });
   });
