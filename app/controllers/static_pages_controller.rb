@@ -17,8 +17,13 @@ class StaticPagesController < ApplicationController
   end
 
   def statistics
-    @opened = Issue.statistics_for(period, group_by, 'opened')
-    @closed = Issue.statistics_for(period, group_by, 'closed')
+    @by_issues_opened = Issue.statistics_for(period, group_by, 'opened')
+    @by_issues_closed = Issue.statistics_for(period, group_by, 'closed')
+
+    @by_category_opened = Category.statistics_for(day_range, 'opened')
+                                  .transform_keys { |key| Category.find(key).name }
+    @by_category_closed = Category.statistics_for(day_range, 'closed')
+                                  .transform_keys { |key| Category.find(key).name }
   end
 
   private

@@ -18,9 +18,12 @@ module Statistics
     @one_month
   end
 
-  def group_by
-    day_range = ((period.last - period.first) / 1.day).ceil
+  def day_range
+    ((period.last - period.first) / 1.day).ceil
+  end
 
+  def group_by
+    day_range
     return :day if day_range < 90
     return :month if day_range < 368
     :week

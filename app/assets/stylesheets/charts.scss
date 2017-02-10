@@ -1,6 +1,10 @@
 div.col-md-12 {
   width: 100%;
   margin-top: -20px;
+  #chart-1, #chart-2 {
+    float: left;
+    width: 50%!important;
+  }
 }
 
 ul#charts-list {
@@ -9,7 +13,8 @@ ul#charts-list {
   width: 461px;
   list-style: none;
   line-height: 32px;
-  text-transform: uppercase;  
+  text-transform: uppercase;
+  margin-bottom: 20px;
   > li {
     display: inline;
     > a {
@@ -27,7 +32,7 @@ ul#charts-list {
   > li:last-child > a {
       border-right: 1px solid #999;
   }
-  .dropdown.open > a:focus {
+  .dropdown.open > a:focus, > li > a.active {
     background-color: #38a7bb;
     color: white;
   }
@@ -59,6 +64,15 @@ ul#charts-list {
     .dropdown.open .dropdown-menu {
       margin-top: 30px;
       min-width: 160px;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  div.col-md-12 {
+    #chart-1, #chart-2 {
+      display: block;
+      width: 100%!important;
     }
   }
 }
