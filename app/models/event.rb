@@ -32,8 +32,10 @@ class Event < ApplicationRecord
 
   def create_notifications
     users = issue.followers(User)
+    notifications = []
     users.each do |u|
-      u.notifications.create(event_id: id) unless u.id == author_id
+      notifications << u.notifications.new(event_id: id) unless u.id == author_id
     end
+    Notification.import(notifications)
   end
 end
