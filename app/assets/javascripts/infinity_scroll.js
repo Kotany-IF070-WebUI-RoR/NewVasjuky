@@ -7,8 +7,13 @@ function init_infinity_scroll(initial_page_number, request_url, load_first_page)
     else {
         current_page = initial_page_number
     }
-    if (load_first_page === true) load_data();
-    start_infinity_scroll();
+
+    if (load_first_page === true) {
+        load_data();
+    }
+    else {
+        start_infinity_scroll();
+    }
 
     function start_infinity_scroll() {
         $(window).on('scroll', function () {
