@@ -15,7 +15,7 @@ li.dropdown.user_menu.new_notifications
     li
       = link_to 'Відслідковувані звернення', followees_path
     li#notifications
-      = link_to 'Сповіщення', feed_user_path(current_user)
+      = link_to 'Сповіщення', user_feed_path
       - if current_user.new_notifications.any?
         span.badge.notofication_count #{current_user.new_notifications.count}
       .clearfix

@@ -48,17 +48,14 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:destroy]
   resources :users, only: [:show] do
-    member do
-      get 'feed', to: 'users#feed'
-    end
-
     collection do
       get :ranking
     end
   end
 
   get  'followees', to: 'issues#followees'
-  get  'feed', to: 'common_pages#feed'
+  get  'feed', to: 'feeds#common_feed'
+  get  'user_feed', to: 'feeds#user_feed'
   get  ':page', to: 'pages#show'
   root to: 'common_pages#home'
 end
