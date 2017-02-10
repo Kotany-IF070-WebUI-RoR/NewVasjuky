@@ -2,7 +2,7 @@
 class IssuesController < ApplicationController
   helper IssuesHelper
   before_action :status_inspector, only: [:index]
-  before_action :get_issue, only: [:show, :upvote, :downvote]
+  before_action :init_issue, only: [:show, :upvote, :downvote]
   skip_before_action :authenticate_user!, :require_active_user,
                      only: [:index, :show, :followees, :map, :popup]
   respond_to :html, :json
@@ -57,9 +57,7 @@ class IssuesController < ApplicationController
   end
 
   def upvote
-    @vote = @issue.votes.new
-    @vote.user = current_user
-
+    @vote = @issue.votes.build :user => current_user
     if @vote.save
       redirect_to @issue, notice: 'Ви проголосували за дану проблему.'
     else
@@ -68,7 +66,7 @@ class IssuesController < ApplicationController
   end
 
   def downvote
-    @vote = @issue.votes.where(user_id: current_user.id)
+    @vote = @issue.votes.find_by(user_id: current_user.id)
     if @vote.present?
       @issue.votes.destroy(@vote)
       redirect_to @issue, notice: 'Ви зняли голос з даної проблеми.'
@@ -92,7 +90,7 @@ class IssuesController < ApplicationController
                                   ])
   end
 
-  def get_issue
+  def init_issue
     @issue = Issue.find(params[:id])
   end
 
