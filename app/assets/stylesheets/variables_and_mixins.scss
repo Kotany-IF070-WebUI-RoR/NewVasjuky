@@ -90,3 +90,11 @@ $bg_2: url("/images/fixed-background-2.jpg");
   transform-origin: top left;
   transform: scale(.7);
 }
+
+@mixin padding-start($padding) {
+  -moz-padding-start: $padding;
+  -webkit-padding-start: $padding;
+  -khtml-padding-start: $padding;
+  -o-padding-start: $padding;
+  padding-start: $padding;
+}

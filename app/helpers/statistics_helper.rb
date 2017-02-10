@@ -16,9 +16,6 @@ module StatisticsHelper
         type: 'areaspline'
       },
       yAxis: {
-        title: {
-          text: 'Кількість'
-        },
         allowDecimals: false,
         tickInterval: 5
       },

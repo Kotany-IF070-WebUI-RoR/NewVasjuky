@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class StaticPagesController < ApplicationController
   helper StatisticsHelper
+  include Statistics
   before_action :status_inspector, only: [:statistics]
   skip_before_action :authenticate_user!, :require_active_user,
                      only: [:home, :feed, :statistics]
@@ -16,18 +17,8 @@ class StaticPagesController < ApplicationController
   end
 
   def statistics
-    @period = case params[:period]
-              when 'month' then 1.month.ago..Time.zone.now
-              when 'year'
-                case
-                when 1.year.ago < '2017-01-02' then '2017-01-02'..Time.zone.now
-                else 1.year.ago..Time.zone.now
-                end
-              when 'total' then '2017-01-02'..Time.zone.now
-              else 1.month.ago..Time.zone.now
-              end
-    @opened = Issue.statistics_for(@period, 'opened')
-    @closed = Issue.statistics_for(@period, 'closed')
+    @opened = Issue.statistics_for(period, group_by, 'opened')
+    @closed = Issue.statistics_for(period, group_by, 'closed')
   end
 
   private
