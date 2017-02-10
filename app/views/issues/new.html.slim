@@ -44,7 +44,4 @@ javascript:
   $('document').ready(function(){
     $("#issue_phone").mask("+38(999)-999-9999");
     newIssueMap();
-    google.maps.event.addDomListener(window, 'load', function () {
-        var places = new google.maps.places.Autocomplete(document.getElementById('issue_location'));
-      });
   });
