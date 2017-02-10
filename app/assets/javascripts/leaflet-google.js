@@ -164,84 +164,92 @@ function editIssueMap(lat,lng){
   var map = initLayers(),
       marker = new L.marker([lat,lng],{draggable:true}).addTo(map);
   map.panTo(marker._latlng);
+  bindMarkerEvents(map,marker);
+  bindAutocomplete(map, marker);
+}
 
+function setCoordinates(lat,lng){
+  if ($("#issue_latitude").length){
+    $("#issue_latitude").val(lat);
+    $("#issue_longitude").val(lng);
+  }
+}
+
+function bindMarkerEvents(map,marker){
   marker.on("dragend",function(e){
     var newPos = e.target._latlng;
-    getReverseGeocodingData(newPos.lat, newPos.lng)
-    $("#issue_latitude").val(newPos.lat);
-    $("#issue_longitude").val(newPos.lng);
+    getReverseGeocodingData(newPos.lat,newPos.lng)
+    setCoordinates(newPos.lat,newPos.lng);
   });
-
   map.on('click', function(e){
     var newPos = e.latlng;
     marker.setLatLng([newPos.lat,newPos.lng]);
-    getReverseGeocodingData(newPos.lat, newPos.lng)
-    $("#issue_latitude").val(newPos.lat);
-    $("#issue_longitude").val(newPos.lng);
+    getReverseGeocodingData(newPos.lat, newPos.lng);
+    setCoordinates(newPos.lat,newPos.lng);
+    $('.leaflet-objects-pane').removeClass('hidden');
   });
 }
 
 // Only for 'New' page
 function newIssueMap(){
   var map = initLayers();
+      marker = new L.marker([48.920597, 24.709566],{draggable:true}).addTo(map);
+  $('.leaflet-objects-pane').addClass('hidden');
+  bindMarkerEvents(map,marker);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position){
-      onGeocodeSuccess(map,position)
+      onGeocodeSuccess(map,marker,position)
     }, function(msg){
-      onGeocodeError(map,msg)
+      onGeocodeError(map,marker,msg)
     });
   }
 } 
 
-// Fill only location textfield with formatted geodata
-function getReverseGeocodingData(lat, lng) {
-    var geocoder, latlng;
-    latlng = new google.maps.LatLng(lat, lng);
-    geocoder = new google.maps.Geocoder;
-    geocoder.geocode( {'latLng': latlng}, function(results, status) {
-        if (status === google.maps.GeocoderStatus.OK) {
-            var location = results[0].formatted_address;
-            $("#issue_location").val(location);
-        }
-    });
-}
-
-// If geocoding succeed, map already has a marker
-function onGeocodeSuccess(map, position) {
+function onGeocodeSuccess(map, marker, position) {
   var lat = position.coords.latitude,
-      lng = position.coords.longitude,
-      marker = new L.marker([lat,lng],{draggable:true}).addTo(map);
-    getReverseGeocodingData(lat,lng);
-    map.panTo(marker._latlng);
-
-    marker.on("dragend",function(e){
-      var newPos = e.target._latlng;
-      getReverseGeocodingData(newPos.lat, newPos.lng)
-    });
-
-    map.on('click', function(e){
-      var newPos = e.latlng;
-      marker.setLatLng([newPos.lat,newPos.lng]);
-      getReverseGeocodingData(newPos.lat, newPos.lng)
-    });
+      lng = position.coords.longitude;
+  marker.setLatLng([lat,lng]);
+  map.panTo(marker._latlng);
+  $('.leaflet-objects-pane').removeClass('hidden');
+  getReverseGeocodingData(lat,lng);
+  bindAutocomplete(map,marker);
 }
 
-// If geocoding failed, map need to get location coordinates
-function onGeocodeError(map, msg) {
+function onGeocodeError(map, marker, msg) {
   console.log(msg);
   $('#issue_location').attr('placeholder', 'Введіть адресу проблеми');
-  var marker;
-  map.on('click', function(e){
-    var newPos = e.latlng
-    if (typeof(marker)==='undefined') {
-      marker = new L.marker([newPos.lat,newPos.lng],{draggable:true}).addTo(map);
-      marker.on("dragend",function(e){
-        getReverseGeocodingData(e.target._latlng.lat, e.target._latlng.lng)
-      });
+  bindAutocomplete(map,marker);
+}
+
+// Synchronize autocomplete events with map
+function bindAutocomplete(map,marker){
+  var input = document.getElementById('issue_location'),
+      autocomplete = new google.maps.places.Autocomplete(input);
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {  
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      return;
     } else {
-      marker.setLatLng([newPos.lat,newPos.lng]);
+      var lat = place.geometry.location.lat(),
+          lng = place.geometry.location.lng();
+      marker.setLatLng([lat,lng]);
+      $('.leaflet-objects-pane').removeClass('hidden');
+      map.panTo(marker._latlng);
+      setCoordinates(lat,lng);
     }
-    getReverseGeocodingData(newPos.lat, newPos.lng)
+  }); 
+}
+
+// Fill only location textfield with formatted geodata
+function getReverseGeocodingData(lat, lng) {
+  var geocoder, latlng;
+  latlng = new google.maps.LatLng(lat, lng);
+  geocoder = new google.maps.Geocoder;
+  geocoder.geocode( {'latLng': latlng}, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+          var location = results[0].formatted_address;
+          $("#issue_location").val(location);
+      }
   });
 }
 
