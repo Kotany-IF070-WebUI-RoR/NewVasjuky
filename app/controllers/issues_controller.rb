@@ -57,9 +57,9 @@ class IssuesController < ApplicationController
   end
 
   def upvote
-    @vote = @issue.votes.build :user => current_user
+    @vote = @issue.votes.build user: current_user
     if @vote.save
-      redirect_to @issue, notice: 'Ви проголосували за дану проблему.'
+      redirect_to @issue
     else
       redirect_to @issue, notice: 'Ви не змогли проголосувати'
     end
@@ -69,7 +69,7 @@ class IssuesController < ApplicationController
     @vote = @issue.votes.find_by(user_id: current_user.id)
     if @vote.present?
       @issue.votes.destroy(@vote)
-      redirect_to @issue, notice: 'Ви зняли голос з даної проблеми.'
+      redirect_to @issue
     else
       redirect_to @issue, notice: 'Ви уже забрали свій голос.'
     end
