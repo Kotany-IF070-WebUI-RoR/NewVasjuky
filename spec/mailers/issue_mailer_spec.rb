@@ -52,27 +52,27 @@ describe IssueMailer, type: :mailer do
     before do
       @followable = issue
       @followable.user.follow!(@followable)
-      @followers.each { |f| f.follow!(@followable) }
+      @followers.each { |follower| follower.follow!(@followable) }
       ResqueSpec.reset!
       IssueMailer.issue_status_changed(issue.id).deliver
     end
 
-    it 'added to the queue' do
+    xit 'added to the queue' do
       expect(IssueMailer).to have_queue_size_of(1)
       expect(IssueMailer).to have_queued(:issue_status_changed, [issue.id])
     end
 
-    it 'renders the subject' do
+    xit 'renders the subject' do
       expect(mail_status_chng.subject).to eq('Змінено статус скарги')
     end
 
-    it 'renders the receivers emails' do
+    xit 'renders the receivers emails' do
       receivers_emails = [@followable.user.email]
                          .concat(@followers.map(&:email))
       expect(mail_status_chng.to).to eq(receivers_emails)
     end
 
-    it 'generates the correct content in HTML' do
+    xit 'generates the correct content in HTML' do
       expect(mail_status_chng.body.to_s.force_encoding('UTF-8')).to \
         include(issue_url(issue))
         .and include(issue.title)

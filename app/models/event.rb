@@ -31,7 +31,7 @@ class Event < ApplicationRecord
   private
 
   def mail_on_issue_status_changed
-    IssueMailer.issue_status_changed(issue.id).deliver
+    IssueMailer.issue_status_changed(issue.id)
   end
 
   def create_notifications
