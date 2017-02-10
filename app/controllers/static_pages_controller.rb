@@ -19,17 +19,15 @@ class StaticPagesController < ApplicationController
   def statistics
     @by_issues_opened = Issue.statistics_for(period, group_by, 'opened')
     @by_issues_closed = Issue.statistics_for(period, group_by, 'closed')
-
     @by_category_opened = Category.statistics_for(day_range, 'opened')
-                                  .transform_keys { |key| Category.find(key).name }
     @by_category_closed = Category.statistics_for(day_range, 'closed')
-                                  .transform_keys { |key| Category.find(key).name }
   end
 
   private
 
   def status_inspector
-    redirect_to statistics_path(period: 'month') unless
-      %w(month year total).include?(params[:period])
+    redirect_to statistics_path(period: 'month', sort: 'time') unless
+      %w(month year total).include?(params[:period]) &&
+      %w(time category).include?(params[:sort])
   end
 end

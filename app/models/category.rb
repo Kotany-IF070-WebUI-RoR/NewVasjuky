@@ -8,5 +8,6 @@ class Category < ApplicationRecord
                          day_range.days.ago, Issue.statuses[scope])
                   .group('categories.id').calculate(:count, :all)
                   .sort_by { |_key, value| value }.to_h
+                  .transform_keys { |key| Category.find(key).name }
   end
 end

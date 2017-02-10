@@ -24,8 +24,9 @@ module Statistics
 
   def group_by
     day_range
-    return :day if day_range < 90
-    return :month if day_range < 368
+    return :day if day_range < 60
+    return :month if day_range < 367
+    return :quarter if Rails.env.production?
     :week
   end
 end
