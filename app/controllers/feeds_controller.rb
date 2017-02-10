@@ -1,5 +1,7 @@
 class FeedsController < ApplicationController
-  after_action :mark_as_read_loaded, only: [:users_feed]
+  after_action :mark_as_read_loaded, only: [:user_feed]
+  skip_before_action :require_active_user, only: [:user_feed, :common_feed]
+  skip_before_action :authenticate_user!, only: [:common_feed]
 
   def user_feed
     current_user.check_notifications unless request.xhr?

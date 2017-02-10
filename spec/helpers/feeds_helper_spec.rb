@@ -1,15 +1,14 @@
 require 'rails_helper'
-
-# Specs in this file have access to a helper object that includes
-# the FeedsHelper. For example:
-#
-# describe FeedsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe FeedsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'Should return true when users feed' do
+    controller.params[:controller] = 'feeds'
+    controller.params[:action] = 'user_feed'
+    expect(users_feed?).to be_truthy
+  end
+
+  it 'Should return true when not users feed' do
+    controller.params[:controller] = 'feeds'
+    controller.params[:action] = 'common_feed'
+    expect(users_feed?).to be_falsey
+  end
 end

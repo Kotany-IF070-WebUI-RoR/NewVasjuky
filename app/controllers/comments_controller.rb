@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 class CommentsController < ApplicationController
   skip_before_action :authenticate_user!, :require_active_user, only: [:index]
-  before_action :authenticate_user!
 
   def index
     return redirect_back(fallback_location: root_path) unless request.xhr?
