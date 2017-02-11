@@ -3,7 +3,7 @@ class Category < ApplicationRecord
   scope :ordered_by_name, -> { order(:name) }
 
   def self.statistics_for(day_range, scope)
-    stat_filter(day_range, scope).group('categories.id').calculate(:count, :all)
+    stat_filter(day_range, scope).calculate(:count, :all)
                                  .sort_by { |_key, value| value }.to_h
                                  .transform_keys do |key|
                                    Category.find(key).name
@@ -15,5 +15,6 @@ class Category < ApplicationRecord
                   .where('issues.created_at > ? AND issues.status in (?, ?)',
                          day_range.days.ago,
                          Issue.statuses[scope[0]], Issue.statuses[scope[1]])
+                  .group('categories.id')
   end
 end
