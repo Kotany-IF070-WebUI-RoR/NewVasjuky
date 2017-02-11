@@ -1,16 +1,16 @@
 #heading-breadcrumbs
   .container
-    .row
-      .col-md-7
-        h1=title 'Керування зверненнями'
-      .col-md-5
+    .row.flex-row
+      .col-md-7.col-sm-7.col-xs-7
+        h2 Керування зверненнями
+      .col-md-5.col-sm-5.col-xs-5
         ul.breadcrumb
           li= link_to 'На головну', root_path
-          li Керування зверненнями
+          li Керування
 #content
-.container
+.container.zero-padding
   .row
-      #issues-moderation.col-md-12
-        .box
-          = render 'shared/issue_filters'
-          = smart_listing_render(:issues)
+    #issues-moderation.col-md-12.col-sm-12.col-xs-12
+      .box
+        = render 'shared/issue_filters'
+        = smart_listing_render(:issues)

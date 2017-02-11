@@ -114,6 +114,10 @@ class Issue < ApplicationRecord
     issue_attachments.first_or_initialize.attachment
   end
 
+  def one_attachment?
+    issue_attachments.count == 1
+  end
+
   def notify_support
     IssueMailer.issue_created(id).deliver
   end

@@ -1,18 +1,13 @@
-- content_for :map do
-  = stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css'
-  = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js'
-  = javascript_include_tag 'leaflet-google.js'
-  = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}&libraries=places"
-
+= render 'include_map_assets'
 #heading-breadcrumbs
   .container
-    .row
-      .col-md-7
-        h2=title 'Надіслати нове звернення'
-      .col-md-5
+    .row.flex-row
+      .col-md-7.col-sm-7.col-xs-7
+        h3 Надіслати нове звернення
+      .col-md-5.col-sm-5.col-xs-5
         ul.breadcrumb
           li= link_to 'На головну', root_path
-          li Надіслати нове звернення
+          li Hове звернення
 #content
   #contact.container
     section
@@ -35,11 +30,11 @@
             #issue_attachments
               = simple_fields_for :issue_attachments do |ia|
                 = link_to_add_association 'Додати зображення', f, :issue_attachments, class: 'btn btn-template-main'
+            br
             = f.input :location, label: 'Адреса проблеми',
                     placeholder: 'Івано-Франківськ, Сахарова, 33'
             #map-container.issue-map
-            = f.button :submit, 'Надіслати звернення', class: 'btn btn-primary'
-
+            = f.button :submit, 'Надіслати звернення', class: 'btn btn-template-primary'
 javascript:
   $('document').ready(function(){
     $("#issue_phone").mask("+38(999)-999-9999");

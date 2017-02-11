@@ -1,38 +1,40 @@
 #heading-breadcrumbs
   .container
-    .row
-      .col-md-7.col-sm-6
-        h2=title 'Корисні посилання'
-      .col-md-5.col-sm-6
+    .row.flex-row
+      .col-md-7.col-sm-7.col-xs-7
+        h2 Корисні посилання
+      .col-md-5.col-sm-5.col-xs-5
         ul.breadcrumb
           li= link_to 'На головну', root_path
           li Корисні посилання
 #content
   .container
-    .col-md-12
-      p.lead На цій сторінці зібрані посилання на веб-сайти комунальних підприємств та різноманітних міських сервісів.
-    .col-md-6
-      .heading
-        h3 Місцева влада
-        ul
-          li= link_to 'Офіційний сайт міста Івано-Франківська', 'http://www.mvk.if.ua/', target: '_blank', rel: 'noopener noreferrer'
-          li= link_to 'Івано-Франківська міська рада', 'http://www.mvk.if.ua/', target: '_blank', rel: 'noopener noreferrer'
-          li= link_to 'Електронна приймальна', 'http://www.emvk.if.ua/', target: '_blank', rel: 'noopener noreferrer'
-          li= link_to 'Служба оперативного реагування МВК', 'http://1580.if.ua/', target: '_blank', rel: 'noopener noreferrer'
-          li= link_to 'Міські петиції', 'http://petition.mvk.if.ua/', target: '_blank', rel: 'noopener noreferrer'
-    .col-md-6
-      .heading
-        h3 Комунальні підприємства
-        ul
-          li= link_to 'Прикарпаттяобленерго', 'http://oe.if.ua/', target: '_blank', rel: 'noopener noreferrer'
-          li= link_to 'Водоекотехпром', 'http://vodokanal.if.ua/', target: '_blank', rel: 'noopener noreferrer'
-          li= link_to 'Теплокомуненерго', 'http://www.tke.if.ua/', target: '_blank', rel: 'noopener noreferrer'
-          li= link_to 'Іванофранківськгаз', 'https://if.104.ua/ua/', target: '_blank', rel: 'noopener noreferrer'
-          li= link_to 'МІУК', 'http://www.domivka.if.ua/', target: '_blank', rel: 'noopener noreferrer'
+    .blog-post
+      .row
+        .col-md-12
+          p.lead На цій сторінці зібрані посилання на веб-сайти комунальних підприємств та різноманітних міських сервісів.
+          .col-md-6
+            .heading
+              h3 Місцева влада
+              ul
+                li= link_to 'Офіційний сайт міста Івано-Франківська', 'http://www.mvk.if.ua/', target: '_blank', rel: 'noopener noreferrer'
+                li= link_to 'Івано-Франківська міська рада', 'http://www.mvk.if.ua/', target: '_blank', rel: 'noopener noreferrer'
+                li= link_to 'Електронна приймальна', 'http://www.emvk.if.ua/', target: '_blank', rel: 'noopener noreferrer'
+                li= link_to 'Служба оперативного реагування МВК', 'http://1580.if.ua/', target: '_blank', rel: 'noopener noreferrer'
+                li= link_to 'Міські петиції', 'http://petition.mvk.if.ua/', target: '_blank', rel: 'noopener noreferrer'
+          .col-md-6
+            .heading
+              h3 Комунальні підприємства
+              ul
+                li= link_to 'Прикарпаттяобленерго', 'http://oe.if.ua/', target: '_blank', rel: 'noopener noreferrer'
+                li= link_to 'Водоекотехпром', 'http://vodokanal.if.ua/', target: '_blank', rel: 'noopener noreferrer'
+                li= link_to 'Теплокомуненерго', 'http://www.tke.if.ua/', target: '_blank', rel: 'noopener noreferrer'
+                li= link_to 'Іванофранківськгаз', 'https://if.104.ua/ua/', target: '_blank', rel: 'noopener noreferrer'
+                li= link_to 'МІУК', 'http://www.domivka.if.ua/', target: '_blank', rel: 'noopener noreferrer'
 
-    .col-md-6
-      .heading
-        h3 Довідкова інформація
-        ul
-          li= link_to 'GPS-моніторинг міського транспорту', 'https://city.dozor.tech/ua/iv-frankivsk/city', target: '_blank', rel: 'noopener noreferrer'
-          li= link_to 'Парковки міста', 'http://carpark.if.ua/', target: '_blank', rel: 'noopener noreferrer'
+          .col-md-6
+            .heading
+              h3 Довідкова інформація
+              ul
+                li= link_to 'GPS-моніторинг міського транспорту', 'https://city.dozor.tech/ua/iv-frankivsk/city', target: '_blank', rel: 'noopener noreferrer'
+                li= link_to 'Парковки міста', 'http://carpark.if.ua/', target: '_blank', rel: 'noopener noreferrer'

@@ -53,13 +53,11 @@ describe IssueMailer, type: :mailer do
 
     describe '#issue_status_changed' do
       before do
-        @emails = IssueMailer.issue_status_changed(issue.id).pluck(:email)
+        @emails = IssueMailer.issue_status_changed(issue.id).collect(&:email)
       end
 
       it 'finds all recipients when issue changed its status' do
-        exit
-        pending('something else getting finished')
-        expect(@emails).to eq(@followers.pluck(:email))
+        expect @emails =~ @followers.collect(&:email)
       end
 
       it 'finds no recipients when issue has no followers' do

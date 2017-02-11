@@ -35,18 +35,5 @@ section.bar.background-white.no-mb
       .heading.text-center
         h2 Останні додані:
       .row
-      - @issues_feed.each do |issue|
-        .col-md-3.col-sm-6
-          .box-image-text.blog
-            .top
-              .image
-                = image_tag issue.first_attached_image, class: 'img-responsive'
-              .bg
-              .text
-                .buttons
-                  = link_to 'Читати далі', issue, class: 'btn btn-template-transparent-primary'
-            .content
-              p.author-category
-                = link_to issue.category.name, category_path(issue.category)
-              h4
-                = link_to issue.title, issue
+        = render 'home_feed', collection: @issues_feed
+

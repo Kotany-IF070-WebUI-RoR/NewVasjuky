@@ -56,7 +56,6 @@
 
 .followers-count {
   text-align: end;
-  margin-bottom: 20px;
   span {
     display: inline-block;
     margin-left: 5px;
@@ -93,7 +92,7 @@
     }
   }
   .owl-dots {
-    margin-top: 15px;
+    margin-top: 5px;
     .owl-dot span {
       width: 12px;
       height: 12px;
@@ -125,12 +124,15 @@
     margin-bottom: 5px;
   }
 }
+
 .issues-map {
   height:600px;
 }
+
 .issue-map {
-  height:300px;
+  height:350px;
 }
+
 #map-container {
   margin-top:15px;
   .leaflet-map-pane {
@@ -155,7 +157,6 @@
   width:auto;
   display:block;
   margin:0 auto;
-  height:300px
 }
 #issues-moderation {
   .glyphicon {
@@ -169,6 +170,76 @@
   color: red;
 }
 
-.votes-wrapper{
-  clear:both;
+.media-body-fix {
+  p {
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
+  .custom-heading {
+    margin: 0 0 20px;
+  }
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.issue-category {
+  padding-left: 0;
+  //display: table-cell;
+}
+
+.category-badge {
+  text-align: right;
+  //display: table-cell;
+  vertical-align: middle;
+}
+
+.zero-margin.date-comments {
+  margin: 10px 0;
+}
+
+#heading-breadcrumbs .status-badge {
+  margin-top: -15px;
+}
+
+.votes {
+  text-align: end;
+  padding: 15px 0;
+}
+
+.form-group:last-child {
+  margin-top: 20px;
+}
+
+.search-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  margin: -20px 0 20px;
+}
+
+.flex-table .actions {
+  text-align: center;
+}
+
+#heading-breadcrumbs {
+  ul.breadcrumb {
+    margin-bottom: 20px;
+  }
+}
+.word-break {
+  word-break: break-word;
+}
+.flex-row {
+  display: flex;
+  align-items: center;
+  ul.breadcrumb {
+    margin-bottom: 0!important;
+  }
+}
+
+.media-attachment {
+  margin-top: 15px;
 }

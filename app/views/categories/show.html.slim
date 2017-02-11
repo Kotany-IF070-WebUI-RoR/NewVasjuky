@@ -1,28 +1,24 @@
 #heading-breadcrumbs
   .container
-    .row
-      .col-md-7.col-sm-6
+    .row.flex-row
+      .col-md-7.col-sm-7.col-xs-7
         #category-group-wrapper
           h2=title @category.name
           h5=description @category.description
-      .col-md-5.col-sm-6
+      .col-md-5.col-sm-5.col-xs-5
         ul.breadcrumb
           li= link_to 'На головну', root_path
           li Категорія
 #content
-  .container
+  .container.zero-padding
     .row
-      #blog-listing-medium.col-md-9
-        section.container
-        = smart_listing_render(:issues)
-      .col-md-3
-        .panel.panel-default.sidebar-menu
+      #blog-listing-medium.col-md-9.col-xs-12
+        section
+          = smart_listing_render(:issues)
+      .col-md-3.col-xs-12.mobile-container
+        .panel.panel-default.sidebar-menu.search-bar
           .panel-heading
             h3.panel-title Пошук по категорії
-          .panel
+          .panel-default
             = render 'shared/search'
-        .panel.panel-default.sidebar-menu
-          .panel-heading
-            h3.panel-title Категорії
-          .panel
-            = render 'shared/categories', collection: @categories
+        = render 'shared/categories_side_bar'

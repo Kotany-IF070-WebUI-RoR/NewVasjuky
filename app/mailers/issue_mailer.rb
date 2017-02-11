@@ -9,18 +9,22 @@ class IssueMailer < ApplicationMailer
          subject: 'Подано нову скаргу'
   end
 
+  def mail_to_followers(follower, issue)
+    @follower = follower
+    @issue = issue
+    mail to: follower.email, subject: 'Змінено статус скарги'
+  end
+
   def self.issue_status_changed(id)
     @issue = Issue.find(id)
     @followers = @issue.followers(User)
     return unless @followers.any?
-    @followers.each do |follower|
-      mail_to_followers(follower, @issue).deliver
+    if @followers.count == 1
+      mail_to_followers(@followers[0], @issue).deliver
+    else
+      @followers.each do |follower|
+        mail_to_followers(follower, @issue).deliver
+      end
     end
-  end
-
-  def mail_to_followers(follower, issue)
-    @follower = follower
-    @issue = issue
-    mail to: @follower.email, subject: 'Змінено статус скарги'
   end
 end
