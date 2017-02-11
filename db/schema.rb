@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20170208080437) do
     t.boolean  "readed",     default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["user_id", "event_id"], name: "index_notifications_on_user_id_and_event_id"
+    t.index ["user_id", "event_id", "readed"], name: "index_notifications_on_user_id_and_event_id_and_readed"
   end
 
   create_table "users", force: :cascade do |t|

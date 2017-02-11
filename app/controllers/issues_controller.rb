@@ -7,7 +7,8 @@ class IssuesController < ApplicationController
   respond_to :html, :json
 
   def index
-    issues_scope = Issue.where(status: params[:status])
+    issues_scope = Issue.ordered
+                        .where(status: params[:status])
     issues_scope = issues_scope.like(params[:filter]) if params[:filter]
     @status = params[:status]
     smart_listing_create :issues,

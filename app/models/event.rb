@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   enum after_status: STATUSES_SYM, _prefix: :after
   belongs_to :issue
   has_many :notifications
-  after_create :create_notifications
+  after_create :create_notifications, :mail_on_issue_status_changed
   validates :issue_id, :before_status, :after_status,
             presence: true
 
@@ -29,6 +29,10 @@ class Event < ApplicationRecord
   end
 
   private
+
+  def mail_on_issue_status_changed
+    IssueMailer.issue_status_changed(issue.id)
+  end
 
   def create_notifications
     users = issue.followers(User)
