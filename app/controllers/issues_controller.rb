@@ -22,8 +22,7 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.find(params[:id])
-    @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
-                             .order('random()').limit(4)
+    load_relevant_issues
     redirect_back(fallback_location: root_path) unless \
                                                 @issue.can_read?(current_user)
   end
@@ -57,6 +56,11 @@ class IssuesController < ApplicationController
   end
 
   private
+
+  def load_relevant_issues
+    @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
+                             .order('random()').limit(4)
+  end
 
   def issues_params
     params.require(:issue).permit(:name, :address, :phone,

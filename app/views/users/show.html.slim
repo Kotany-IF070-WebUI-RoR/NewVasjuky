@@ -1,6 +1,5 @@
-
 .container
-  h2 =@user.full_name
+  h2=title "Особистий кабінет користувача #{@user.full_name}"
   .user-profile.row 
     .user-photo.col-md-3.col-xs-12
       =image_tag(@user.image_url)
@@ -8,7 +7,7 @@
       p Електронна пошта: #{@user.email}
       p Запис зареєстровано: #{l @user.created_at, format: :long}
   .box.user-issues.col-xs-12
-    h4 Мої звернення:
+    h3 Мої звернення:
     - if @user.issues.any?
       = render 'shared/issue_filters'
       = smart_listing_render(:issues)

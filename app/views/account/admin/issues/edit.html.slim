@@ -4,27 +4,36 @@
   = javascript_include_tag 'leaflet-google.js'
   = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}&libraries=places"
 
-h1 Редагувати звернення
-= link_to 'На головну', root_path
-.container
-  .row
-    .col-md-8.col-md-offset-2
-      = simple_form_for @issue, html: {multipart: true} ,
-              url: account_admin_issue_path do |f|
-        = f.error_messages
-        = f.input :name, label: 'Ім\'я репортера', disabled: true
-        = f.input :address, label: 'Адреса репортера', disabled: true
-        = f.input :phone, label: 'Номер телефону', disabled: true
-        = f.input :email, as: :email, label: 'Email', disabled: true
-        = f.input :title, label: 'Короткий опис проблеми', disabled: true
-        = f.input :description, as: :text, label: 'Текст звернення', disabled: true
-        = f.association :category, collection: Category.ordered_by_name, label: 'Категорія'
-        = f.input :location, label: 'Адреса проблеми'
-        = f.hidden_field(:latitude)
-        = f.hidden_field(:longitude)
-        #map-container.issue-map
-        br
-        = f.button :submit, class: 'btn btn-primary'
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7.col-sm-6
+        h2=title 'Редагувати звернення'
+      .col-md-5.col-sm-6
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Редагувати звернення
+#content
+  .container
+    section
+      .row
+        .col-md-8.col-md-offset-2
+          = simple_form_for @issue, html: {multipart: true} ,
+                  url: account_admin_issue_path do |f|
+            = f.error_messages
+            = f.input :name, label: 'Ім\'я репортера', disabled: true
+            = f.input :address, label: 'Адреса репортера', disabled: true
+            = f.input :phone, label: 'Номер телефону', disabled: true
+            = f.input :email, as: :email, label: 'Email', disabled: true
+            = f.input :title, label: 'Короткий опис проблеми', disabled: true
+            = f.input :description, as: :text, label: 'Текст звернення', disabled: true
+            = f.association :category, collection: Category.ordered_by_name, label: 'Категорія'
+            = f.input :location, label: 'Адреса проблеми'
+            = f.hidden_field(:latitude)
+            = f.hidden_field(:longitude)
+            #map-container.issue-map
+            br
+            = f.button :submit, 'Редагувати звернення', class: 'btn btn-primary'
 
 javascript:
   $('document').ready(function(){
