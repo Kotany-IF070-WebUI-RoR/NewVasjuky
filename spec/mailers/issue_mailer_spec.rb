@@ -2,19 +2,14 @@
 require 'rails_helper'
 
 describe IssueMailer, type: :mailer do
-  let(:reporter)  { create(:user, :reporter) }
-  let(:admin)     { create(:user, :admin) }
-  let(:moderator) { create(:user, :moderator) }
-  let!(:issue)    { create(:issue) }
-  let(:category)  { create(:category) }
+  let(:reporter)   { create(:user, :reporter) }
+  let!(:admin)     { create(:user, :admin) }
+  let!(:moderator) { create(:user, :moderator) }
+  let!(:issue)     { create(:issue) }
+  let(:category)   { create(:category) }
   let(:mail_on_created)      { IssueMailer.issue_created(issue.id).deliver! }
   let(:issue_status_changed) { IssueMailer.issue_status_changed(issue.id) }
   let(:mail_to_fllwr) { IssueMailer.mail_to_followers(admin, issue).deliver! }
-
-  before :each do
-    admin
-    moderator
-  end
 
   describe '#issue_created' do
     before do
