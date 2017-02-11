@@ -7,11 +7,10 @@ class IssuesController < ApplicationController
   respond_to :html, :json
 
   def index
-    set_meta_tags title: 'Звернення',
-                  description: 'На цій сторінці можна побачити список звернень'
     issues_scope = Issue.where(status: params[:status])
     issues_scope = issues_scope.like(params[:filter]) if params[:filter]
     @status = params[:status]
+    feed_metatags
     smart_listing_create :issues,
                          issues_scope,
                          partial: 'issues/issue'
@@ -25,18 +24,14 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.find(params[:id])
-    set_meta_tags title: @issue.title,
-                  description: @issue.description
-    @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
-                             .order('random()').limit(4)
+    issues_metatags
+    relevant_issues
     redirect_back(fallback_location: root_path) unless \
                                                 @issue.can_read?(current_user)
   end
 
   def map
-    set_meta_tags title: 'Карта звернень',
-                  description: 'На цій сторінці можна побачити звідки було
-                                надіслано звернення'
+    set_meta_tags title: 'Карта звернень'
     @issues = Issue.select('id,latitude, longitude').approved
     respond_with(@issues)
   end
@@ -66,6 +61,26 @@ class IssuesController < ApplicationController
   end
 
   private
+
+  def relevant_issues
+    @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
+                             .order('random()').limit(4)
+  end
+
+  def issues_metatags
+    set_meta_tags title: @issue.title,
+                  description: @issue.description
+  end
+
+  def feed_metatags
+    set_meta_tags description: 'На цій сторінці можна побачити список
+                                звернень з обраним статусом'
+    if @status == 'opened'
+      set_meta_tags title: 'Відкриті звернення'
+    elsif @status == 'closed'
+      set_meta_tags title: 'Закриті звернення'
+    end
+  end
 
   def issues_params
     params.require(:issue).permit(:name, :address, :phone,

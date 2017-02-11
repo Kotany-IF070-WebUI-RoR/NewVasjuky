@@ -22,25 +22,13 @@ class ApplicationController < ActionController::Base
                   звернення для вирішення різноманітних комунальних проблем'
     image       = options[:image] || '/images/if.jpg'
     current_url = request.url
-
-    defaults = {
-      site:        site_name,
-      title:       title,
-      image:       image,
-      description: description,
-      keywords:    %w(Івано-Франківськ Ivano-Frankivsk),
-      og: {
-        url: current_url,
-        site_name: site_name,
-        title: title,
-        image: image,
-        description: description,
-        type: 'website'
-      }
-    }
-
+    defaults = { site: site_name, title: title, image: image,
+                 description: description,
+                 keywords: %w(Івано-Франківськ Ivano-Frankivsk),
+                 og: { url: current_url, site_name: site_name, title: title,
+                       image: image, description: description,
+                       type: 'website' } }
     options.reverse_merge!(defaults)
-
     set_meta_tags options
   end
 
