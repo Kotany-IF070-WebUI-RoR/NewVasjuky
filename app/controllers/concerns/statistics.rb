@@ -2,7 +2,7 @@ module Statistics
   extend ActiveSupport::Concern
 
   def dates_and_ranges
-    @start = DateTime.parse('2015-01-01').in_time_zone
+    @start = DateTime.parse('2017-01-01').in_time_zone
     @one_month = 1.month.ago..Time.zone.now
     @one_year = 1.year.ago..Time.zone.now
     @from_start = @start..Time.zone.now

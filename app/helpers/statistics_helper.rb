@@ -3,10 +3,10 @@ module StatisticsHelper
   def by_time
     line_chart [{
       name: 'Створено',
-      data: @by_issues_opened
+      data: @by_time_opened
     }, {
-      name: 'Вирішено',
-      data: @by_issues_closed
+      name: 'З них вирішено',
+      data: @by_time_closed
     }], id: 'chart', height: '300px', library: {
       colors: ['#88cece', '#64dd4c'],
       chart: {
@@ -54,12 +54,13 @@ module StatisticsHelper
           cursor: 'pointer',
           dataLabels: {
             enabled: true,
-            format: '{point.percentage:.1f}%',
+            format: '{point.y} шт.',
             style: {
               color: '#555'
             },
             connectorColor: 'silver'
-          }
+          },
+          showInLegend: true
         }
       }
     }

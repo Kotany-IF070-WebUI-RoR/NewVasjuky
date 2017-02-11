@@ -27,3 +27,10 @@ Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, 
         ]
     };
 });
+
+Highcharts.getOptions().legend.labelFormatter = function () {  
+  return this.name == 'Створено' ?
+    this.name + ' ' + gon.opened_calculate :
+    this.name == 'З них вирішено' ?
+      this.name + ' ' + gon.closed_calculate : this.name
+};

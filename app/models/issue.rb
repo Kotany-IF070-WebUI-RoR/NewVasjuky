@@ -112,8 +112,8 @@ class Issue < ApplicationRecord
   end
 
   def self.statistics_for(period, group, scope)
-    Issue.where(status: scope)
-         .group_by_period(group, :created_at, range: period).count
+    where(status: scope)
+      .group_by_period(group, :created_at, range: period).count
   end
 
   def create_event_by(user)
