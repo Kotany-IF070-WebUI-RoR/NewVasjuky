@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170208080437) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",  null: false
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170208080437) do
     t.text     "content"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
   create_table "events", force: :cascade do |t|
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170208080437) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "author_id"
-    t.index ["issue_id"], name: "index_events_on_issue_id"
+    t.index ["issue_id"], name: "index_events_on_issue_id", using: :btree
   end
 
   create_table "follows", force: :cascade do |t|
@@ -48,8 +51,8 @@ ActiveRecord::Schema.define(version: 20170208080437) do
     t.string   "followable_type"
     t.integer  "followable_id"
     t.datetime "created_at"
-    t.index ["followable_id", "followable_type"], name: "fk_followables"
-    t.index ["follower_id", "follower_type"], name: "fk_follows"
+    t.index ["followable_id", "followable_type"], name: "fk_followables", using: :btree
+    t.index ["follower_id", "follower_type"], name: "fk_follows", using: :btree
   end
 
   create_table "issue_attachments", force: :cascade do |t|
@@ -57,7 +60,7 @@ ActiveRecord::Schema.define(version: 20170208080437) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "issue_id"
-    t.index ["issue_id"], name: "index_issue_attachments_on_issue_id"
+    t.index ["issue_id"], name: "index_issue_attachments_on_issue_id", using: :btree
   end
 
   create_table "issues", force: :cascade do |t|
@@ -78,10 +81,10 @@ ActiveRecord::Schema.define(version: 20170208080437) do
     t.integer  "followers_count",     default: 0
     t.integer  "issue_attachment_id"
     t.boolean  "posted_on_facebook",  default: false
-    t.index ["category_id"], name: "index_issues_on_category_id"
-    t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id"
-    t.index ["status"], name: "index_issues_on_status"
-    t.index ["user_id"], name: "index_issues_on_user_id"
+    t.index ["category_id"], name: "index_issues_on_category_id", using: :btree
+    t.index ["issue_attachment_id"], name: "index_issues_on_issue_attachment_id", using: :btree
+    t.index ["status"], name: "index_issues_on_status", using: :btree
+    t.index ["user_id"], name: "index_issues_on_user_id", using: :btree
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -90,7 +93,7 @@ ActiveRecord::Schema.define(version: 20170208080437) do
     t.boolean  "readed",     default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["user_id", "event_id", "readed"], name: "index_notifications_on_user_id_and_event_id_and_readed"
+    t.index ["user_id", "event_id", "readed"], name: "index_notifications_on_user_id_and_event_id_and_readed", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -115,8 +118,8 @@ ActiveRecord::Schema.define(version: 20170208080437) do
     t.string   "last_name"
     t.integer  "followees_count",             default: 0
     t.datetime "last_check_notifications_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end

@@ -30,6 +30,7 @@ gem 'meta-tags'
 gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'rails', '>= 5.0.0.1'
 gem 'rails-controller-testing'
@@ -56,10 +57,6 @@ group :development, :test do
   gem 'sqlite3'
   # Environment variables
   gem 'dotenv-rails'
-end
-
-group :production do
-  gem 'pg'
 end
 
 group :development do
