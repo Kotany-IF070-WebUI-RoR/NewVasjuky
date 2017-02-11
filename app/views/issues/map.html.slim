@@ -7,7 +7,7 @@
   .container
     .row
       .col-md-7.col-sm-6
-        h2 Карта звернень
+        h2=title 'Карта звернень'
       .col-md-5.col-sm-6
         ul.breadcrumb
           li= link_to 'На головну', root_path
@@ -17,6 +17,7 @@
     section
       .row
         .col-md-12
+          p.intro=description 'На цій сторінці ви можете переглянути усі звернення, накладені на карту міста'
           #map-container.issues-map
 javascript:
   $(document).ready(initIssuesMap);

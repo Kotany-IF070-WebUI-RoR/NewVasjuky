@@ -7,7 +7,6 @@ module Account
       before_action :admin?, only: [:change_role]
 
       def index
-        set_meta_tags title: 'Керування користувачами'
         @users_scope = User.all
         @users_scope = user_role_select if params[:user_role]
         @users_scope = @users_scope.like(params[:filter]) if params[:filter]

@@ -1,8 +1,6 @@
-# Encoding: utf-8
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, :require_active_user, only: [:show]
   def show
-    set_meta_tags title: 'Корисні посилання'
     if valid_page?
       render template: "pages/#{params[:page]}"
     else

@@ -7,13 +7,10 @@ module Account
       before_action :find_issue,
                     only: [:edit, :update, :approve, :close, :decline]
       def index
-        set_meta_tags title: 'Керування зверненнями'
         issue_listing(Issue.all)
       end
 
-      def edit
-        set_meta_tags title: 'Редагувати звернення'
-      end
+      def edit; end
 
       def update
         if @issue.update_attributes(issues_params)
