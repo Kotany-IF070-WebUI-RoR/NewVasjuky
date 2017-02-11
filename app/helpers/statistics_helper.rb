@@ -3,7 +3,7 @@ module StatisticsHelper
   def by_time
     line_chart [{
       name: 'Створено',
-      data: @by_time_opened
+      data: @by_time_total
     }, {
       name: 'З них вирішено',
       data: @by_time_closed

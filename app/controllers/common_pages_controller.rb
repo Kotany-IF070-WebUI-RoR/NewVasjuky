@@ -13,21 +13,21 @@ class CommonPagesController < ApplicationController
   end
 
   def statistics
-    @by_time_opened = Issue.statistics_for(period, group_by,
-                                           %w(opened closed))
+    @by_time_total = Issue.statistics_for(period, group_by,
+                                          %w(opened closed))
     @by_time_closed = Issue.statistics_for(period, group_by, 'closed')
 
     @by_category_opened = Category.statistics_for(day_range,
                                                   %w(opened closed))
     @by_category_closed = Category.statistics_for(day_range,
-                                                  %w(closed closed))
+                                                  %w(closed))
     calculate
   end
 
   private
 
   def calculate
-    gon.opened_calculate = @by_time_opened.values.sum
+    gon.total_calculate = @by_time_total.values.sum
     gon.closed_calculate = @by_time_closed.values.sum
   end
 
