@@ -92,13 +92,13 @@ class Issue < ApplicationRecord
   end
 
   def self.find_issues(search_query)
-    where('title like :args OR users.last_name like :args',
-          args: "%#{search_query}%")
+    where('title ilike :arg OR users.last_name ilike :arg',
+          arg: "%#{search_query}%")
   end
 
   def self.like(search_query)
-    where('title like :args OR description like :args OR location like :args',
-          args: "%#{search_query}%")
+    where('title ilike :arg OR description ilike :arg OR location ilike :arg',
+          arg: "%#{search_query}%")
   end
 
   def can_read_when_unpublished?(user)

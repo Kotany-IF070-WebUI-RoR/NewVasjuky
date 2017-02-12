@@ -43,8 +43,8 @@ class User < ApplicationRecord
   end
 
   def self.like(search_query)
-    where('email like :args OR first_name like :args OR last_name like :args',
-          args: "%#{search_query}%")
+    where('email ilike :arg OR first_name ilike :arg OR last_name ilike :arg',
+          arg: "%#{search_query}%")
   end
 
   def check_notifications
