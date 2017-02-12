@@ -853,8 +853,11 @@ body {
   border-radius: 0;
 }
 
-@media (max-width: 460px){
+@media (max-width: 640px){
 
+  .jumbotron{
+    padding: 0 30px 30px;
+  }
   .jumbotron h1 {
     font-size: 1.8em;
   }
