@@ -7,6 +7,7 @@ gem 'any_login'
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass', '3.3.6'
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
+gem 'chartkick'
 gem 'cocoon'
 gem 'coffee-rails', '~> 4.2'
 gem 'compass-rails', '~> 3.0', '>= 3.0.2'
@@ -17,6 +18,8 @@ gem 'faker'
 gem 'fb_graph2'
 gem 'fog'
 gem 'geocoder'
+gem 'gon'
+gem 'groupdate'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jquery-waypoints-rails', '~> 2.0', '>= 2.0.5'
@@ -27,6 +30,7 @@ gem 'meta-tags'
 gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'rails', '>= 5.0.0.1'
 gem 'rails-controller-testing'
@@ -53,10 +57,6 @@ group :development, :test do
   gem 'sqlite3'
   # Environment variables
   gem 'dotenv-rails'
-end
-
-group :production do
-  gem 'pg'
 end
 
 group :development do

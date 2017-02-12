@@ -1,0 +1,84 @@
+div.col-md-12 {
+  width: 100%;
+  margin-top: -20px;
+  #chart-1, #chart-2 {
+    float: left;
+    height: 400px!important;
+    width: 50%!important;
+  }
+}
+
+ul#charts-list {
+  @include padding-start(0);
+  margin: auto;
+  width: 461px;
+  list-style: none;
+  line-height: 32px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  > li {
+    display: inline;
+    > a {
+      padding: 10px 20px;
+      color: #555;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid #999;
+      border-right: none;
+    }
+    a:hover {
+      background-color: #80cbd9;
+    }
+  }
+  > li:last-child > a {
+      border-right: 1px solid #999;
+  }
+  .dropdown.open > a:focus, > li > a.active {
+    background-color: #38a7bb;
+    color: white;
+  }
+  .dropdown.open .dropdown-menu  {
+    margin-top: 10px;
+    min-width: 133px;
+    font-size: 12px;
+  }
+  .dropdown-menu > li > a {
+    color: #999;
+  }
+}
+
+@media (max-width: 600px) {
+  ul#charts-list {
+    margin: auto;
+    width: 160px;
+    > li > a {
+      display: block;
+      padding: 0;
+      width: 160px;
+      text-align: center;
+      border: 1px solid #999;
+      border-bottom: none;
+    }
+    > li:last-child > a {
+      border-bottom: 1px solid #999;
+    }
+    .dropdown.open .dropdown-menu {
+      margin-top: 30px;
+      min-width: 160px;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  div.col-md-12 {
+    #chart-1, #chart-2 {
+      display: block;
+      width: 100%!important;
+    }
+  }
+}
+
+#chart {
+  margin: 20px auto;
+  max-width: 1140px;
+}

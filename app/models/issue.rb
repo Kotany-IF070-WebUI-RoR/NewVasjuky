@@ -111,6 +111,11 @@ class Issue < ApplicationRecord
                        access_token: ENV['FACEBOOK_GROUP_TOKEN'])
   end
 
+  def self.statistics_for(period, group, scope)
+    where(status: scope)
+      .group_by_period(group, :created_at, range: period).count
+  end
+
   def create_event_by(user)
     event = events.new
     event.author_id = user.id

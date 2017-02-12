@@ -24,8 +24,7 @@ header
                 b.caret
               ul.dropdown-menu
                 li
-                  a[href="#"]
-                    | Статистика звернень
+                  = link_to 'Статистика звернень', statistics_path(period: 'month', sort: 'time')
                 li
                   = link_to 'Рейтинг користувачів', ranking_users_path
             li.dropdown

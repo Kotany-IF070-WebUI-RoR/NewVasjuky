@@ -45,6 +45,10 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'config/environments/*'
 
+Metrics/MethodLength:
+  Exclude:
+    - 'app/helpers/*'
+
 Metrics/ClassLength:
   Exclude:
     - 'app/models/*'
