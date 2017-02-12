@@ -807,9 +807,6 @@ section {
     //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
     transition: all 0.5s ease-out;
   }
-  .navbar-collapse {
-    max-height: 340px;
-  }
 }
 body {
   font-family: $sans1, $sans2, $sans3, $default_sans;
@@ -848,6 +845,40 @@ body {
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 0;
 }
+.btn-xl {
+  padding: 16px 20px;
+  font-size: 32px;
+  line-height: 1.33;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 0;
+}
+
+@media (max-width: 460px){
+
+  .jumbotron h1 {
+    font-size: 1.8em;
+  }
+
+  .jumbotron h2 {
+    font-size: 1.4em;
+    font-weight: normal;
+    letter-spacing: 0;
+    text-align: left;
+    text-transform: none;
+  }
+
+  .jumbotron p {
+    font-size: 1.2em;
+    line-height: 1em;
+}
+
+  .btn-xl{
+    font-size: 24px;
+    padding: 5px 10px;
+    white-space: normal;
+  }
+}
+
 .btn-lg {
   padding: 10px 16px;
   font-size: 14px;
@@ -3193,9 +3224,6 @@ footer {
 }
 @media(max-width: 480px) and(orientation: landscape) {
   .navbar-fixed-top .navbar-collapse {
-    max-height: 200px;
-  }
-  .navbar-affixed-top .navbar-collapse {
     max-height: 200px;
   }
   .navbar-fixed-bottom .navbar-collapse {
