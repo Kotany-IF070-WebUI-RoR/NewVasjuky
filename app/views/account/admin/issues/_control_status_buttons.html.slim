@@ -1,8 +1,0 @@
-- if issue.status == 'pending'
-  = link_to 'Схвалити', approve_account_admin_issue_path(issue),
-          method: :patch, class: 'btn btn-xs btn-warning'
-  = link_to 'Відхилити', decline_account_admin_issue_path(issue),
-          method: :patch, class: 'btn btn-xs btn-danger'
-- elsif issue.status == 'opened'
-  = link_to 'Закрити', close_account_admin_issue_path(issue),
-          method: :patch, class: 'btn btn-xs btn-success'

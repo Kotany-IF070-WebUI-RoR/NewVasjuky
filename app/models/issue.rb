@@ -39,10 +39,7 @@ class Issue < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :opened) }
   scope :closed, -> { where(status: :closed) }
-  scope :find_issues, ->(a) { where('title like ?', "%#{a}%") }
   scope :status, ->(a) { where(status: a) }
-  query = 'title like :args OR description like :args OR location like :args'
-  scope :like, ->(a) { where(query, args: "%#{a}%") }
 
   aasm column: :status, enum: true do
     state :pending, initial: true
@@ -88,6 +85,20 @@ class Issue < ApplicationRecord
 
   def published?
     %w(opened closed).include? status
+  end
+
+  def self.moderation_list
+    joins(:user).select('issues.*, users.first_name, users.last_name')
+  end
+
+  def self.find_issues(search_query)
+    where('title ilike :arg OR users.last_name ilike :arg',
+          arg: "%#{search_query}%")
+  end
+
+  def self.like(search_query)
+    where('title ilike :arg OR description ilike :arg OR location ilike :arg',
+          arg: "%#{search_query}%")
   end
 
   def can_read_when_unpublished?(user)

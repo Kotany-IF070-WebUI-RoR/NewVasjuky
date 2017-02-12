@@ -1,25 +1,20 @@
-.table-responsive
-  table.table.table-hover
-    thead
-      tr
-        th= smart_listing.sortable 'Створено', :created_at
-        th= smart_listing.sortable 'Назва', :title
-        th= smart_listing.sortable 'Автор', :user
-        th= smart_listing.sortable 'Статус', :status
-        th Редагувати
-    tbody
-      - smart_listing.collection.each do |issue|
+- unless smart_listing.empty?
+  .table-responsive
+    table.table.table-hover
+      thead
         tr
-          td= issue.created_at.strftime("%d/%m/%Y %H:%M")
-          td= link_to issue.title, issue
-          td= issue.user.full_name
-          td
-            = get_stylized_status_style(issue.status, issue.status_name)
-            br
-            = render 'account/admin/issues/control_status_buttons', issue: issue
-          td= link_to 'Редагувати', edit_account_admin_issue_path(issue),
-                      class: 'btn btn-template-main btn-sm'
-.text-center
-  = smart_listing.paginate
-  = smart_listing.pagination_per_page_links
+          th= smart_listing.sortable 'Створено', :created_at
+          th= smart_listing.sortable 'Назва', :title
+          th= smart_listing.sortable 'Автор', :user
+          th= smart_listing.sortable 'Статус', :status
+          th colspan='2' Редагувати
+      tbody
+        - smart_listing.collection.each do |issue|
+          tr.editable data-id=issue.id
+            = smart_listing.render object: issue, partial: 'issue_item', locals: {object: issue}
+  .text-center
+    = smart_listing.paginate
+    = smart_listing.pagination_per_page_links
+- else
+  p Нічого не знайдено
 

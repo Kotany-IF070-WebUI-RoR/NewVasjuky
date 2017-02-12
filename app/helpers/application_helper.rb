@@ -43,7 +43,7 @@ module ApplicationHelper
                            [:created_at, 'issues.created_at'],
                            [:title, 'issues.title'],
                            [:status, 'issues.status'],
-                           [:user, 'issues.user.first_name']
+                           [:user, 'users.first_name']
                          ],
                          default_sort: { created_at: 'desc' }, partial: 'issue'
   end

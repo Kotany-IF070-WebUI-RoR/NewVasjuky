@@ -1,0 +1,25 @@
+td= object.created_at.strftime("%d/%m/%Y %H:%M")
+td= link_to object.title, object
+td= object.user.full_name
+td
+  = get_stylized_status_style(object.status, object.status_name)
+td.actions= smart_listing_item_actions [{name: :custom,
+                                         url: approve_account_admin_issue_path(object),
+                                         method: :patch,
+                                         icon: 'glyphicon glyphicon-ok-circle',
+                                         remote: true, if: object.pending?,
+                                         title: 'Схвалити звернення'},
+                                         {name: :custom,
+                                          url: decline_account_admin_issue_path(object),
+                                          method: :patch,
+                                          icon: 'glyphicon glyphicon-remove-circle',
+                                          remote: true, if: object.pending?,
+                                          title: 'Відхилити звернення'},
+                                         {name: :custom,
+                                          url: close_account_admin_issue_path(object),
+                                          method: :patch,
+                                          icon: 'glyphicon glyphicon-thumbs-up',
+                                          remote: true, if: object.opened?,
+                                          title: 'Закрити звернення'}]
+td= link_to 'Редагувати', edit_account_admin_issue_path(object),
+        class: 'btn btn-template-main btn-sm'
