@@ -16,8 +16,6 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 25 }
   validates :last_name, presence: true, length: { maximum: 25 }
   scope :role_search, ->(args) { where(role: args) }
-  query = 'email like :args OR first_name like :args OR last_name like :args'
-  scope :like, ->(a) { where(query, args: "%#{a}%") }
 
   acts_as_follower
 
@@ -42,6 +40,11 @@ class User < ApplicationRecord
                          period.days.ago,
                          Issue.statuses[:opened], Issue.statuses[:closed])
                   .group('users.id').limit(size).order('issues_count DESC')
+  end
+
+  def self.like(search_query)
+    where('email like :args OR first_name like :args OR last_name like :args',
+          args: "%#{search_query}%")
   end
 
   def check_notifications

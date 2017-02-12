@@ -1,17 +1,20 @@
-.table-responsive
-  table.table.table-hover
-    thead
-      tr
-        th= smart_listing.sortable 'Створено', :created_at
-        th= smart_listing.sortable 'Назва', :title
-        th= smart_listing.sortable 'Автор', :user
-        th= smart_listing.sortable 'Статус', :status
-        th colspan='2' Редагувати
-    tbody
-      - smart_listing.collection.each do |issue|
-        tr.editable data-id=issue.id
-          = smart_listing.render object: issue, partial: 'issue_item', locals: {object: issue}
-.text-center
-  = smart_listing.paginate
-  = smart_listing.pagination_per_page_links
+- unless smart_listing.empty?
+  .table-responsive
+    table.table.table-hover
+      thead
+        tr
+          th= smart_listing.sortable 'Створено', :created_at
+          th= smart_listing.sortable 'Назва', :title
+          th= smart_listing.sortable 'Автор', :user
+          th= smart_listing.sortable 'Статус', :status
+          th colspan='2' Редагувати
+      tbody
+        - smart_listing.collection.each do |issue|
+          tr.editable data-id=issue.id
+            = smart_listing.render object: issue, partial: 'issue_item', locals: {object: issue}
+  .text-center
+    = smart_listing.paginate
+    = smart_listing.pagination_per_page_links
+- else
+  p Нічого не знайдено
 
