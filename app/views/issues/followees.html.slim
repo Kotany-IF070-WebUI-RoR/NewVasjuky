@@ -1,28 +1,41 @@
-- provide(:follow_btn_size, 'xs')
-- if current_user.followees_count > 0
-    h4 Відслідковувані:
-    .table-responsive
-      table.table.table-hover
-        thead
-          tr
-            th Звернення
-            th Назва
-            th Дата створення
-            th Статус
-            th Дія
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7.col-sm-6
+        h2=title 'Відслідковувані звернення'
+      .col-md-5.col-sm-6
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Відслідковувані звернення
+#content
+  .container
+    section
+      .row
+        .col-md-12
+          - provide(:follow_btn_size, 'xs')
+          - if current_user.followees_count > 0
+              .table-responsive
+                table.table.table-hover
+                  thead
+                    tr
+                      th Звернення
+                      th Назва
+                      th Дата створення
+                      th Статус
+                      th Дія
 
-        tbody
-          - @issues.each do |issue|
-            tr
-              td &#8470; #{issue.id}
-              td = issue.title
-              td = l issue.created_at, format: :long
-              td = get_stylized_status_style(issue.status, issue.status_name)
-              td
-                = link_to 'Переглянути', issue_path(issue),
-                        class: 'btn btn-primary btn-xs'
-                = render 'shared/follow_link', issue: issue
+                  tbody
+                    - @issues.each do |issue|
+                      tr
+                        td &#8470; #{issue.id}
+                        td = issue.title
+                        td = l issue.created_at, format: :long
+                        td = get_stylized_status_style(issue.status, issue.status_name)
+                        td
+                          = link_to 'Переглянути', issue_path(issue),
+                                  class: 'btn btn-primary btn-xs'
+                          = render 'shared/follow_link', issue: issue
 
-- else
-  h3 Ви поки не слідкуєте за жодним зверненням...
-  = link_to 'Переглянути усі', issues_path
+          - else
+            h3 Ви поки не слідкуєте за жодним зверненням...
+            = link_to 'Переглянути усі', issues_path, class: 'btn btn-primary'

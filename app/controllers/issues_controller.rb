@@ -8,9 +8,10 @@ class IssuesController < ApplicationController
   respond_to :html, :json
 
   def index
-    issues_scope = Issue.where(status: params[:status])
+    @status = params[:status] || 'opened'
+    issues_scope = Issue.ordered
+                        .where(status: @status)
     issues_scope = issues_scope.like(params[:filter]) if params[:filter]
-    @status = params[:status]
     smart_listing_create :issues,
                          issues_scope,
                          partial: 'issues/issue'
@@ -23,8 +24,7 @@ class IssuesController < ApplicationController
 
   def show
     @voted = @issue.votes.where(user_id: current_user.id)
-    @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
-                             .order('random()').limit(4)
+    load_relevant_issues
     redirect_back(fallback_location: root_path) unless \
                                                 @issue.can_read?(current_user)
   end
@@ -50,6 +50,7 @@ class IssuesController < ApplicationController
   def create
     @issue = current_user.issues.new(issues_params)
     if @issue.save
+      current_user.follow!(@issue)
       redirect_to @issue, notice: 'Звернення створене успішно!'
     else
       render 'new'
@@ -77,6 +78,11 @@ class IssuesController < ApplicationController
 
   private
 
+  def load_relevant_issues
+    @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
+                             .order('random()').limit(4)
+  end
+
   def issues_params
     params.require(:issue).permit(:name, :address, :phone,
                                   :email,
@@ -96,6 +102,6 @@ class IssuesController < ApplicationController
 
   def status_inspector
     redirect_back(fallback_location: root_path) unless
-      %w(opened closed).include?(params[:status])
+      %w(opened closed).include?(params[:status]) || params[:status].blank?
   end
 end

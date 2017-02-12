@@ -8,8 +8,10 @@ class UsersController < ApplicationController
   end
 
   def ranking
-    @period = params[:period] || 30
-    @period = @period.to_i if [7, 30, 90].include?(@period.to_i)
+    @period = 30
+    if params[:period] && [7, 30, 90].include?(params[:period].to_i)
+      @period = params[:period].to_i
+    end
     @users = User.top_ranking_for(@period)
     @categories = Category.ordered_by_name
   end

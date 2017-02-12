@@ -10,8 +10,23 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :require_active_user,
                 if: -> { user_signed_in? && !devise_controller? }
+  before_action :prepare_meta_tags,
+                if: 'request.get?'
 
   after_action :prepare_unobtrusive_flash
+
+  def prepare_meta_tags(options = {})
+    site_name   = 'No Problems'
+    title       = 'Онлайн-платформа для тих, кому не байдуже'
+    description = 'З допомогою цього додатка можна у кілька кліків надіслати
+                  звернення для вирішення різноманітних комунальних проблем'
+    image       = options[:image] || '/images/if.jpg'
+    defaults = { site: site_name, title: title, image: image,
+                 description: description,
+                 keywords: %w(Івано-Франківськ Ivano-Frankivsk) }
+    options.reverse_merge!(defaults)
+    set_meta_tags options
+  end
 
   def require_active_user
     return unless current_user.banned?

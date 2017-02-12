@@ -5,11 +5,25 @@ rvm:
 
 cache: bundler
 
+env:
+  - DB=pgsql
+
+services:
+  - postgresql
+
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database test;' -U postgres
+
+test:
+  adapter: postgresql
+  database: travis_ci_test
   
 script:
   - bundle exec rubocop
-  - bin/rake db:migrate RAILS_ENV=test
-  - bin/rake
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
 
 addons:
     code_climate:

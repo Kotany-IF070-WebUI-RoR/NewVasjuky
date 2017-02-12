@@ -2,50 +2,49 @@
   = stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css'
   = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js'
   = javascript_include_tag 'leaflet-google.js'
+  = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}&libraries=places"
 
 - provide(:follow_btn_size, 'lg')
 = render 'breadcrumbs_show'
 #content
   .container
-    section.clearfix.row
-      .heading.col-md-7.col-sm-6.pull-left
-        h2 #{@issue.title}
-      .info-group-wrapper.col-md-3.col-sm-6.pull-right
-        h3
-          = get_stylized_status_style(@issue.status, @issue.status_name)
-        .follow-wrapper
-          .follow.pull-right
-            - if user_signed_in? && current_user.active?
-              = render 'shared/follow_link', issue: @issue
-              .followers-count
-                span Спостерігачів:
-                span.badge.pull-right #{@issue.followers_count}
-        .votes-wrapper
-          .votes.pull-right
-            - if user_signed_in? && current_user.active?
-              - if @voted.empty?
-                = link_to upvote_issue_path(@issue), method: :post do
-                  i.fa.fa-heart-o.heart aria-hidden='true'
-              - else
-                = link_to downvote_issue_path(@issue), method: :delete do
-                  i.fa.fa-heart.heart aria-hidden='true'
-              span.badge.pull-right #{@issue.votes.count}
-    section.blog-post
+    section.clearfix
       .row
-        .clearfix.col-md-12
-          p.text-muted.text-uppercase.mb-small.pull-left
+        .clearfix.col-md-6
+          p.text-muted.text-uppercase.mb-small
             span.author Автор: #{@issue.name}
             br
             span Категорія:
             = link_to @issue.category.name, category_path(@issue.category)
-          p.date-comments.pull-right
-            span.pull-right
+          p.date-comments
+            span
               i.fa.fa-calendar-o
               span #{time_ago_in_words(@issue.created_at)} тому
             br
-            span.pull-right
+            span
               i.fa.fa-location-arrow
               span #{@issue.location}
+        .info-group-wrapper.col-md-6.col-sm-6
+          .follow-wrapper
+            .follow.pull-right
+              .addthis_sharing_toolbox
+              - if user_signed_in? && current_user.active?
+                = render 'shared/follow_link', issue: @issue
+              .followers-count
+                span Спостерігачів:
+                span.badge.pull-right #{@issue.followers_count}
+          .votes-wrapper
+            .votes.pull-right
+              - if user_signed_in? && current_user.active?
+                - if @voted.empty?
+                  = link_to upvote_issue_path(@issue), method: :post do
+                  i.fa.fa-heart-o.heart aria-hidden='true'
+                - else
+                 = link_to downvote_issue_path(@issue), method: :delete do
+                i.fa.fa-heart.heart aria-hidden='true'
+                span.badge.pull-right #{@issue.votes.count}
+    section.blog-post
+      .row
         .col-md-7.col-sm-7
           #map-container.issue-map
         .col-md-5.col-sm-5
@@ -55,7 +54,7 @@
         .col-md-12
           .heading
             h3 Проблема:
-          p.lead #{@issue.description}
+          p.lead=description "#{@issue.description}"
       - if @relevant_issues.any?
         = render 'relevant_issues'
       = render 'comments/comments', commentable: @issue

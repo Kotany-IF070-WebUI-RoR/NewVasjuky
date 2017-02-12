@@ -58,7 +58,9 @@ Rails.application.routes.draw do
   end
 
   get  'followees', to: 'issues#followees'
-  get  'feed', to: 'issues_feeds#feed'
-  get  ':page', to: 'pages#show'
-  root to: 'issues_feeds#home'
+  get  'feed', to: 'feeds#common_feed'
+  get  'user_feed', to: 'feeds#user_feed'
+  get  'statistics', to: 'common_pages#statistics'
+  get  ':page', to: 'pages#show', as: :static_pages
+  root to: 'common_pages#home'
 end

@@ -16,6 +16,8 @@
 //(https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require chartkick
+//= require highcharts-options
 //= require jquery
 //= require jquery_ujs
 //= require unobtrusive_flash
@@ -33,3 +35,5 @@
 //= require flash
 //= require front
 //= require smart_listing
+//= require infinity_scroll
+//= require js-routes

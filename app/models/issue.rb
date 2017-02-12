@@ -40,18 +40,13 @@ class Issue < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
   scope :approved, -> { where(status: :opened) }
   scope :closed, -> { where(status: :closed) }
-  scope :find_issues, ->(a) { where('title like ?', "%#{a}%") }
   scope :status, ->(a) { where(status: a) }
-  query = 'title like :args OR description like :args OR location like :args'
-  scope :like, ->(a) { where(query, args: "%#{a}%") }
 
   aasm column: :status, enum: true do
     state :pending, initial: true
     state :declined
     state :opened
     state :closed
-
-    after_all_transitions :create_event
 
     event :approve do
       transitions from: :pending, to: :opened
@@ -93,6 +88,20 @@ class Issue < ApplicationRecord
     %w(opened closed).include? status
   end
 
+  def self.moderation_list
+    joins(:user).select('issues.*, users.first_name, users.last_name')
+  end
+
+  def self.find_issues(search_query)
+    where('title ilike :arg OR users.last_name ilike :arg',
+          arg: "%#{search_query}%")
+  end
+
+  def self.like(search_query)
+    where('title ilike :arg OR description ilike :arg OR location ilike :arg',
+          arg: "%#{search_query}%")
+  end
+
   def can_read_when_unpublished?(user)
     user.admin? || user.moderator? || (self.user == user)
   end
@@ -114,10 +123,14 @@ class Issue < ApplicationRecord
                        access_token: ENV['FACEBOOK_GROUP_TOKEN'])
   end
 
-  private
+  def self.statistics_for(period, group, scope)
+    where(status: scope)
+      .group_by_period(group, :created_at, range: period).count
+  end
 
-  def create_event
+  def create_event_by(user)
     event = events.new
+    event.author_id = user.id
     event.before_status = aasm.from_state
     event.after_status = aasm.to_state
     event.save

@@ -7,7 +7,7 @@ module Account
       before_action :find_issue,
                     only: [:edit, :update, :approve, :close, :decline]
       def index
-        issue_listing(Issue.all)
+        issue_listing(Issue.moderation_list)
       end
 
       def edit; end
@@ -23,19 +23,19 @@ module Account
       end
 
       def approve
-        @issue.approve!
+        @issue.create_event_by(current_user) if @issue.approve!
         @issue.post_to_facebook!
-        redirect_back(fallback_location: root_path)
+        render :update, issue: @issue
       end
 
       def decline
-        @issue.decline!
-        redirect_back(fallback_location: root_path)
+        @issue.create_event_by(current_user) if @issue.decline!
+        render :update, issue: @issue
       end
 
       def close
-        @issue.close!
-        redirect_back(fallback_location: root_path)
+        @issue.create_event_by(current_user) if @issue.close!
+        render :update, issue: @issue
       end
 
       private

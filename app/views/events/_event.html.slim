@@ -1,4 +1,4 @@
-section.post
+section.post  class=('unread' if users_feed? && event.unread_by?(current_user)) data-event="#{event.id}"
   .row
     .media.issue-container
       .media-left.media-top.col-md-4.col-sm-4

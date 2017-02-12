@@ -1,0 +1,23 @@
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7.col-sm-6
+        h2=title 'Останні оновлення'
+      .col-md-5.col-sm-6
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Останні оновлення
+#content.feed
+  .container
+    .row
+      - if current_user.notifications.any?
+        #blog-listing-medium.col-md-9
+          section.container.events_list.loaded_data_container
+          #loader-block.col-xs-12.hidden
+            = image_tag 'loader.gif', alt: 'Loader', id: 'loader-img',
+                    class: 'img-responsive col-xs-2 col-xs-offset-5'
+      - else
+        h3 У вас поки немає жодних оновлень...
+        = link_to 'Переглянути усі', issues_url
+javascript:
+    $('document').ready(init_infinity_scroll(1, window.location.href, true));

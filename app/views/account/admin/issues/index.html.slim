@@ -2,7 +2,7 @@
   .container
     .row
       .col-md-7
-        h1 Керування зверненнями
+        h1=title 'Керування зверненнями'
       .col-md-5
         ul.breadcrumb
           li= link_to 'На головну', root_path
@@ -10,7 +10,7 @@
 #content
 .container
   .row
-      #users-moderation.col-md-12
+      #issues-moderation.col-md-12
         .box
           = render 'shared/issue_filters'
           = smart_listing_render(:issues)

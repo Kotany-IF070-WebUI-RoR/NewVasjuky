@@ -1,20 +1,23 @@
-.table-responsive
-  table.table.table-hover
-    thead
-      tr
-        th= smart_listing.sortable 'Email', :email
-        th= smart_listing.sortable 'Ім\'я', :first_name
-        th Блокування
-        th= smart_listing.sortable 'Роль', :role
-    tbody
-      - smart_listing.collection.each do |user|
+- unless smart_listing.empty?
+  .table-responsive
+    table.table.table-hover
+      thead
         tr
-          td= user.email
-          td= user.full_name
-          td
-            = bann_user(user)
-          td
-            = admin_change_role(user)
-.text-center
-  = smart_listing.paginate
-  = smart_listing.pagination_per_page_links
+          th= smart_listing.sortable 'Email', :email
+          th= smart_listing.sortable 'Ім\'я', :first_name
+          th Блокування
+          th= smart_listing.sortable 'Роль', :role
+      tbody
+        - smart_listing.collection.each do |user|
+          tr
+            td= user.email
+            td= user.full_name
+            td
+              = bann_user(user)
+            td
+              = admin_change_role(user)
+  .text-center
+    = smart_listing.paginate
+    = smart_listing.pagination_per_page_links
+- else
+  p Нічого не знайдено
