@@ -847,6 +847,7 @@ body {
 }
 .btn-xl {
   padding: 16px 20px;
+  margin-top: 1em;
   font-size: 32px;
   line-height: 1.33;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
