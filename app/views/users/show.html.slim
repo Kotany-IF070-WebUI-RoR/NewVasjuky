@@ -1,15 +1,27 @@
-.container
-  h2=title "Особистий кабінет користувача #{@user.full_name}"
-  .user-profile.row 
-    .user-photo.col-md-3.col-xs-12
-      =image_tag(@user.image_url)
-    .user-info.col-md-9.col-xs-12
-      p Електронна пошта: #{@user.email}
-      p Запис зареєстровано: #{l @user.created_at, format: :long}
-  .box.user-issues.col-xs-12
-    h3 Мої звернення:
-    - if @user.issues.any?
-      = render 'shared/issue_filters'
-      = smart_listing_render(:issues)
-    - else
-        p Не додано жодного звернення
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7
+        h2=title "Особистий кабінет користувача"
+      .col-md-5
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Особистий кабінет користувача
+#content
+  .container
+    .user-profile.row
+      h3= "#{@user.full_name}"
+      .user-photo.col-md-3.col-xs-12
+        =image_tag(@user.image_url)
+      .user-info.col-md-9.col-xs-12
+        h4 Контактна інформація:
+        p Електронна пошта: #{@user.email}
+        p Запис зареєстровано: #{l @user.created_at, format: :long}
+    .box.user-issues.row
+      .col-xs-12
+        h3 Мої звернення:
+        - if @user.issues.any?
+          = render 'shared/issue_filters'
+          = smart_listing_render(:issues)
+        - else
+            p Не додано жодного звернення
