@@ -37,7 +37,7 @@
             = f.input :description, as: :text, label: 'Текст звернення'
             #issue_attachments
               = simple_fields_for :issue_attachments do |ia|
-                = link_to_add_association 'Додати зображення', f, :issue_attachments
+                = link_to_add_association 'Додати зображення', f, :issue_attachments, class: 'btn btn-template-main'
             = f.button :submit, 'Надіслати звернення', class: 'btn btn-primary'
 
 javascript:

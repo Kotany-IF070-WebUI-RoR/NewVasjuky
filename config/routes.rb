@@ -57,6 +57,6 @@ Rails.application.routes.draw do
   get  'feed', to: 'feeds#common_feed'
   get  'user_feed', to: 'feeds#user_feed'
   get  'statistics', to: 'common_pages#statistics'
-  get  ':page', to: 'pages#show'
+  get  ':page', to: 'pages#show', as: :static_pages
   root to: 'common_pages#home'
 end

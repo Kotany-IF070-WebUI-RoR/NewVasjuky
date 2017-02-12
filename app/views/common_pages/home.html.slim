@@ -2,19 +2,18 @@ section.no-mb
   .jumbotron
     .dark-mask
     .container
-      .row.mb-small
-        .col-sm-12.text-center
-          h1 Hello, Франківськ!
-          h2 До вашої уваги соціальний проект під кодовою назвою "NewVasjuky" групи IF-070.WebUI-RoR
       .row
-        .col-md-6.col-sm-12
-          p З допомогою цього додатка можна у кілька кліків надіслати звернення для вирішення різноманітних комунальних проблем з будь-якого пристрою: смартфона, планшета, комп'ютера.
-        .col-md-6.col-sm-12
-          = link_to 'Повідомити про проблему', new_issue_path, class: 'scroll-to btn btn-lg btn-template-transparent-black'
+        .col-md-12.text-center
+          h1 No problems, Франківськ!
+          h2 Перша онлайн платформа для вирішення проблем та пошуку шляхів покращення життя мешканців&nbsp;Івано-Франківська
+        .col-md-12
+          p З допомогою цього додатка можна у кілька кліків з будь-якого пристрою (смартфона, планшета, комп'ютера) надіслати звернення до місцевої влади чи комунальних служб для вирішення різноманітних комунальних проблем.
+        .col-md-12.text-center
+          = link_to 'Повідомити про проблему', new_issue_path, class: 'btn btn-xl btn-template-transparent-black'
 section.bar.background-pentagon.no-mb
   .container
     .row.showcase
-      .col-sm-6
+      .col-xs-6
         .item
           .icon
             i.fa.fa-question
@@ -22,7 +21,7 @@ section.bar.background-pentagon.no-mb
             span.counter #{@count}
             br
             = link_to 'відкритих звернень', issues_path(status: 'opened')
-      .col-sm-6
+      .col-xs-6
         .item
           .icon
             i.fa.fa-check

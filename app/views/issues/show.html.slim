@@ -27,6 +27,7 @@
         .info-group-wrapper.col-md-6.col-sm-6
           .follow-wrapper
             .follow.pull-right
+              .addthis_sharing_toolbox
               - if user_signed_in? && current_user.active?
                 = render 'shared/follow_link', issue: @issue
               .followers-count

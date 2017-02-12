@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
   after_action :prepare_unobtrusive_flash
 
   def prepare_meta_tags(options = {})
-    site_name   = 'NewVasjuky'
-    title       = 'Помічник у вирішенні комунальних проблем'
+    site_name   = 'No Problems'
+    title       = 'Онлайн-платформа для тих, кому не байдуже'
     description = 'З допомогою цього додатка можна у кілька кліків надіслати
                   звернення для вирішення різноманітних комунальних проблем'
     image       = options[:image] || '/images/if.jpg'
