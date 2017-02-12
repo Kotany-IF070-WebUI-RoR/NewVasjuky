@@ -1354,6 +1354,10 @@ fieldset[disabled] {
     color: $color_text_light;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+    span.label{
+      font-size: 12px;
+      vertical-align: top;
+    }
   }
   h3 {
     color: $color_text_light;

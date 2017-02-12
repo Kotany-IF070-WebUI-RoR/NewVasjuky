@@ -41,8 +41,7 @@ header
                 li
                   = link_to 'Рейтинг користувачів', ranking_users_path
                 li
-                  a[href="/links"]
-                    | Корисні посилання
+                  = link_to 'Корисні посилання', static_pages_path('links')
             - unless user_signed_in?
               li.active
                 = link_to user_facebook_omniauth_authorize_path do
