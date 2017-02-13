@@ -27,3 +27,16 @@
     font-size: 1.5em;
   }
 }
+
+.user-label {
+  display: none;
+}
+
+.flex-item {
+  text-align: center;
+  form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}

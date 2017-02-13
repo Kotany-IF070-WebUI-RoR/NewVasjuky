@@ -1,0 +1,11 @@
+.panel.panel-default.sidebar-menu
+  .panel-heading.categories-heading
+    h3.panel-title Категорії
+  .container-fluid
+    .categoties-toggle.navbar-toggle.collapsed.pull-left type="button" data-toggle="collapse" data-target="#category-nav-list"
+      .btn.btn-sm.btn-default.btn-template-main
+        span Категорії
+  #category-nav-list.collapse
+    .panel-default
+      ul.nav.nav-pills.nav-stacked.row
+        = render 'shared/categories', collection: @categories

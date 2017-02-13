@@ -1,18 +1,14 @@
 = render 'breadcrumbs_index'
 #content
-  .container
+  .container.zero-padding
     .row
-      #blog-listing-medium.col-md-9
-        section.container
+      #blog-listing-medium.col-md-9.col-xs-12
+        section
           = smart_listing_render(:issues)
-      .col-md-3
-        .panel.panel-default.sidebar-menu
+      .col-md-3.col-xs-12.mobile-container
+        .panel.panel-default.sidebar-menu.search-bar
           .panel-heading
             h3.panel-title Пошук
           .panel-default
             = render 'shared/search'
-        .panel.panel-default.sidebar-menu
-          .panel-heading
-            h3.panel-title Категорії
-          .panel-default
-            = render 'shared/categories', collection: @categories
+        = render 'shared/categories_side_bar'

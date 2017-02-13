@@ -3,22 +3,21 @@
     section.post
       .row
         .media.issue-container
-          .media-left.media-top.col-md-4.col-sm-4
+          .media-left.media-top.col-lg-4.col-md-5.col-sm-5.custom-img
             = link_to issue
-              = image_tag issue.first_attached_image, class: 'img-responsive attachment media-object'
-          .media-body
-            h2
-              = link_to issue.title, issue
-            .clearfix
-              p.author-category
+              = image_tag issue.first_attached_image, class: 'img-responsive'
+          .media-body-fix.col-lg-8.col-md-7.col-sm-7
+            h3.custom-heading
+              = link_to issue
+                = truncate("#{issue.title}", length: 50)
+            .clearfix.row
+              p.author-category.col-md-7.col-sm-7.col-xs-12
                 span.author Автор:
-                br
-                span #{issue.user.full_name }
+                span  #{issue.user.full_name }
                 br
                 span  #{'Категорія: '}
-                br
                 = link_to issue.category.name, category_path(issue.category)
-              p.date-comments.info-group-wrapper
+              p.date-comments.info-group-wrapper.col-md-5.col-sm-5.col-xs-12
                 i.fa.fa-calendar-o
                 span  #{time_ago_in_words(issue.created_at)} тому
                 br

@@ -1,20 +1,28 @@
 - unless smart_listing.empty?
   .table-responsive
-    table.table.table-hover
+    table.table.table-hover.flex-table
       thead
         tr
-          th= smart_listing.sortable 'Email', :email
-          th= smart_listing.sortable 'Ім\'я', :first_name
-          th Блокування
-          th= smart_listing.sortable 'Роль', :role
+          th.col-md-4.col-sm-3.word-break
+            = smart_listing.sortable 'Email', :email
+          th.col-md-3.col-sm-3
+            = smart_listing.sortable 'Ім\'я', :first_name
+          th.col-md-2.col-sm-2.hidden-title
+            | Блокування
+          th.col-md-4.col-sm-5.text-center
+            = smart_listing.sortable 'Роль', :role
       tbody
         - smart_listing.collection.each do |user|
           tr
-            td= user.email
-            td= user.full_name
-            td
+            td.col-md-4.col-sm-3.col-xs-12.word-break.flex-order-0
+              span.user-label Email:
+              = user.email
+            td.col-md-3.col-sm-3.col-xs-12.flex-order-1
+              span.user-label Ім'я:
+              = user.full_name
+            td.col-md-2.col-sm-2.col-xs-5.flex-order-2.flex-item
               = bann_user(user)
-            td
+            td.col-md-4.col-sm-5.col-xs-6.flex-order-3.flex-item
               = admin_change_role(user)
   .text-center
     = smart_listing.paginate

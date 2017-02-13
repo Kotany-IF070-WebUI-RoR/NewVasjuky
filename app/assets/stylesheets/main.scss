@@ -1,4 +1,4 @@
-@include sticky-footer(260px, "#main", "#footer", "footer");
+@include sticky-footer(260px, "#all", "#footer", "footer");
 @import "variables_and_mixins";
 
 .clearfix {
@@ -4399,4 +4399,8 @@ ul.list-style-none {
 
 span.glyphicon.glyphicon-star.new_event {
   color: #2a7d8c;
+}
+
+a:focus {
+  outline: none!important;
 }

@@ -1,14 +1,10 @@
-- content_for :map do
-  = stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css'
-  = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js'
-  = javascript_include_tag 'leaflet-google.js'
-  = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}&libraries=places"
+= render 'include_map_assets'
 #heading-breadcrumbs
   .container
-    .row
-      .col-md-7.col-sm-6
-        h2=title 'Карта звернень'
-      .col-md-5.col-sm-6
+    .row.flex-row
+      .col-md-7.col-sm-7.col-xs-7
+        h2 Карта звернень
+      .col-md-5.col-sm-5.col-xs-5
         ul.breadcrumb
           li= link_to 'На головну', root_path
           li Карта звернень
