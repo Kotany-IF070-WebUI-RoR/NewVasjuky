@@ -48,17 +48,18 @@
   overflow: hidden;
 }
 
+.badge {
+  background-color: white;
+  border: 2px solid $color_primary;
+  color: $color_text_primary;
+}
+
 .followers-count {
   text-align: end;
   margin-bottom: 20px;
   span {
     display: inline-block;
     margin-left: 5px;
-  }
-  .badge {
-    background-color: white;
-    border: 2px solid $color_primary;
-    color: $color_text_primary;
   }
 }
 
@@ -161,4 +162,13 @@
     font-size: 1.5em;
     padding: 3px;
   }
+}
+
+.heart{
+  font-size:18pt;
+  color: red;
+}
+
+.votes-wrapper{
+  clear:both;
 }
