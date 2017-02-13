@@ -145,4 +145,48 @@ describe IssuesController, type: :controller do
       expect(request).to have_http_status(200)
     end
   end
+
+  describe 'POST #upvote' do
+    let(:created_issue) { create(:issue) }
+
+    it 'when user is logged in as reporter' do
+      sign_in reporter
+      expect do
+        post :upvote, params: { id: created_issue.id }
+      end.to change { Vote.count }.by(1)
+    end
+
+    it 'when user is logged in as moderator' do
+      sign_in admin
+      expect do
+        post :upvote, params: { id: created_issue.id }
+      end.to change { Vote.count }.by(1)
+    end
+
+    it 'when user is logged in as admin' do
+      sign_in admin
+      expect do
+        post :upvote, params: { id: created_issue.id }
+      end.to change { Vote.count }.by(1)
+    end
+  end
+
+  describe 'DELETE #downvote' do
+    let(:created_issue) { create(:issue) }
+
+    it 'when user is logged in and downvotes issue' do
+      sign_in reporter
+      expect do
+        post :upvote, params: { id: created_issue.id }
+        delete :downvote, params: { id: created_issue.id }
+      end.to change { Vote.count }.by(0)
+    end
+
+    it 'when user tries to downvote not voted issue' do
+      sign_in admin
+      expect do
+        delete :downvote, params: { id: created_issue.id }
+      end.to change { Vote.count }.by(0)
+    end
+  end
 end

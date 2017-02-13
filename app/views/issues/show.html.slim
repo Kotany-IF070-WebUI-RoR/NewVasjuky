@@ -33,6 +33,10 @@
               .followers-count
                 span Спостерігачів:
                 span.badge.pull-right #{@issue.followers_count}
+          .votes-wrapper
+            .votes.pull-right
+              - if user_signed_in? && current_user.active?
+               = render 'votes'
     section.blog-post
       .row
         .col-md-7.col-sm-7

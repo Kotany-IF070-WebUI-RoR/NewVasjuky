@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     end
     member do
       get :popup
+      post :upvote
+      delete :downvote
     end
     post 'follow',   to: 'issues/socializations#follow'
     post 'unfollow', to: 'issues/socializations#unfollow'
