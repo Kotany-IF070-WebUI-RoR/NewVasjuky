@@ -1,173 +1,192 @@
 require 'rails_helper'
 
-describe Account::Admin::IssuesController do
+describe IssuesController, type: :controller do
   let(:reporter) { create(:user, :reporter) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :moderator) }
-  let(:issue) { create(:issue) }
-
-  describe 'Get #index' do
-    let(:action) { get :index }
-    it 'when user is not logged in' do
-      expect(action).to have_http_status(302)
-    end
-
-    it 'when user is admin' do
-      sign_in admin
-      expect(action).to have_http_status(200)
-      expect(action).to render_template(:index)
-    end
-
-    it 'when user is moderator' do
-      sign_in moderator
-      expect(action).to have_http_status(200)
-      expect(action).to render_template(:index)
-    end
-
-    it 'when user is a reporter' do
-      sign_in admin
-      expect(action).to have_http_status(200)
-      expect(action).to render_template(:index)
-    end
+  let(:example_issue) { build(:issue) }
+  let(:valid_issue_params) do
+    example_issue.attributes.merge(
+      issue_attachments_attributes:
+        [FactoryGirl.attributes_for(:issue_attachment)]
+    )
   end
-
-  describe 'Approve issues' do
-    let(:action) { patch :approve, params: { id: issue.id }, xhr: true }
-    before :each do
-      @request.env['HTTP_REFERER'] = account_admin_issues_url
-    end
+  describe 'GET #new' do
     it 'when user is not logged in' do
-      action
-      issue.reload
-      expect(issue.opened?).to be_falsey
+      get :new
+      expect(response).to have_http_status(:found)
     end
 
     it 'when user is admin' do
       sign_in admin
-      action
-      issue.reload
-      expect(issue.opened?).to be_truthy
+      get :new
+      expect(response).to have_http_status(:success)
     end
 
     it 'when user is moderator' do
       sign_in moderator
-      action
-      issue.reload
-      expect(issue.opened?).to be_truthy
+      get :new
+      expect(response).to have_http_status(:success)
     end
 
     it 'when user is a reporter' do
       sign_in reporter
-      action
-      issue.reload
-      expect(issue.opened?).to be_falsey
+      get :new
+      expect(response).to have_http_status(:success)
     end
   end
 
-  describe 'Decline issues' do
-    let(:action) { patch :decline, params: { id: issue.id }, xhr: true }
-    before :each do
-      @request.env['HTTP_REFERER'] = account_admin_issues_url
-    end
+  describe 'POST #create' do
     it 'when user is not logged in' do
-      action
-      issue.reload
-      expect(issue.declined?).to be_falsey
-    end
-
-    it 'when user is admin' do
-      sign_in admin
-      action
-      issue.reload
-      expect(issue.declined?).to be_truthy
-    end
-
-    it 'when user is moderator' do
-      sign_in moderator
-      action
-      issue.reload
-      expect(issue.declined?).to be_truthy
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(Issue, :count).by(0)
     end
 
     it 'when user is a reporter' do
       sign_in reporter
-      action
-      issue.reload
-      expect(issue.declined?).to be_falsey
-    end
-  end
-
-  describe 'Close issues' do
-    let(:issue_opened) { create(:issue, status: :opened) }
-    let(:action) { patch :close, params: { id: issue_opened.id }, xhr: true }
-    before :each do
-      @request.env['HTTP_REFERER'] = account_admin_issues_url
-    end
-    it 'when user is not logged in' do
-      action
-      issue_opened.reload
-      expect(issue_opened.closed?).to be_falsey
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(Issue, :count).by(1)
     end
 
-    it 'when user is admin' do
-      sign_in admin
-      action
-      issue_opened.reload
-      expect(issue_opened.closed?).to be_truthy
-    end
-
-    it 'when user is moderator' do
+    it 'when user is a moderator' do
       sign_in moderator
-      action
-      issue_opened.reload
-      expect(issue_opened.closed?).to be_truthy
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(Issue, :count).by(1)
     end
 
-    it 'when user is a reporter' do
+    it 'when user is a admin' do
+      sign_in admin
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(Issue, :count).by(1)
+    end
+
+    it 'creates attachment when user is reporter' do
       sign_in reporter
-      action
-      issue_opened.reload
-      expect(issue_opened.closed?).to be_falsey
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(IssueAttachment, :count).by(1)
+    end
+
+    it 'creates attachment when user is admin' do
+      sign_in admin
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(IssueAttachment, :count).by(1)
+    end
+
+    it 'creates attachment when user is moderator' do
+      sign_in moderator
+      expect do
+        post :create, params: { issue: valid_issue_params }
+      end.to change(IssueAttachment, :count).by(1)
     end
   end
 
-  describe 'Create event for.' do
-    describe 'pending > approved' do
-      let(:issue) { create(:issue) }
-      it do
-        sign_in admin
-        expect(issue.events.count).to eq(0)
-        patch :approve, params: { id: issue.id }, xhr: true
-        issue.reload
-        expect(issue.events.count).to eq(1)
-        expect(Event.last.before_status).to eq('pending')
-        expect(Event.last.after_status).to eq('opened')
-      end
+  describe 'Read issue when status is "pending"' do
+    let!(:pending_issue) { create(:issue, status: 'pending') }
+    let(:request) { get :show, params: { id: pending_issue.id } }
+    let(:author) { pending_issue.user }
+
+    it 'when user is not logged in' do
+      expect(request).to have_http_status(302)
     end
 
-    describe 'pending > declined' do
-      let(:issue) { create(:issue) }
-      it do
-        sign_in admin
-        expect(issue.events.count).to eq(0)
-        patch :decline, params: { id: issue.id }, xhr: true
-        issue.reload
-        expect(issue.events.count).to eq(1)
-        expect(Event.last.before_status).to eq('pending')
-        expect(Event.last.after_status).to eq('declined')
-      end
+    it 'when user is a reporter but not author of issue' do
+      sign_in(reporter)
+      expect(request).to have_http_status(302)
     end
 
-    describe 'opened > closed' do
-      let(:issue) { create(:issue, status: :opened) }
-      it do
-        sign_in admin
-        expect(issue.events.count).to eq(0)
-        patch :close, params: { id: issue.id }, xhr: true
-        expect(issue.events.count).to eq(1)
-        expect(Event.last.before_status).to eq('opened')
-        expect(Event.last.after_status).to eq('closed')
-      end
+    it 'when user is a reporter and author of issue' do
+      sign_in(author)
+      expect(request).to have_http_status(200)
+    end
+
+    it 'when user is a moderator' do
+      sign_in(moderator)
+      expect(request).to have_http_status(200)
+    end
+
+    it 'when user is a admin' do
+      sign_in(admin)
+      expect(request).to have_http_status(200)
+    end
+  end
+
+  describe 'Read issue when status is "declined"' do
+    let!(:declined_issue) { create(:issue, status: 'declined') }
+    let(:request) { get :show, params: { id: declined_issue.id } }
+    let(:author) { declined_issue.user }
+
+    it 'when user is not logged in' do
+      expect(request).to have_http_status(302)
+    end
+
+    it 'when user is a reporter but not author of issue' do
+      sign_in(reporter)
+      expect(request).to have_http_status(302)
+    end
+
+    it 'when user is a reporter and author of issue' do
+      sign_in(author)
+      expect(request).to have_http_status(200)
+    end
+
+    it 'when user is a moderator' do
+      sign_in(moderator)
+      expect(request).to have_http_status(200)
+    end
+
+    it 'when user is a admin' do
+      sign_in(admin)
+      expect(request).to have_http_status(200)
+    end
+  end
+
+  describe 'POST #upvote' do
+    let(:created_issue) { create(:issue) }
+
+    it 'when user is logged in as reporter' do
+      sign_in reporter
+      expect do
+        post :upvote, params: { id: created_issue.id }
+      end.to change { Vote.count }.by(1)
+    end
+
+    it 'when user is logged in as moderator' do
+      sign_in admin
+      expect do
+        post :upvote, params: { id: created_issue.id }
+      end.to change { Vote.count }.by(1)
+    end
+
+    it 'when user is logged in as admin' do
+      sign_in admin
+      expect do
+        post :upvote, params: { id: created_issue.id }
+      end.to change { Vote.count }.by(1)
+    end
+  end
+
+  describe 'DELETE #downvote' do
+    let(:created_issue) { create(:issue) }
+
+    it 'when user is logged in and downvotes issue' do
+      sign_in reporter
+      expect do
+        post :upvote, params: { id: created_issue.id }
+        delete :downvote, params: { id: created_issue.id }
+      end.to change { Vote.count }.by(0)
+    end
+
+    it 'when user tries to downvote not voted issue' do
+      sign_in admin
+      expect do
+        delete :downvote, params: { id: created_issue.id }
+      end.to change { Vote.count }.by(0)
     end
   end
 end
