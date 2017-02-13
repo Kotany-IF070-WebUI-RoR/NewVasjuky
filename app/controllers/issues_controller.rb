@@ -25,8 +25,6 @@ class IssuesController < ApplicationController
   def show
     @voted = @issue.votes.where(user_id: current_user.id)
     load_relevant_issues
-    redirect_back(fallback_location: root_path) unless \
-                                                @issue.can_read?(current_user)
   end
 
   def map
@@ -81,6 +79,8 @@ class IssuesController < ApplicationController
   def load_relevant_issues
     @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
                              .order('random()').limit(4)
+    redirect_back(fallback_location: root_path) unless \
+                      @issue.can_read?(current_user)
   end
 
   def issues_params
