@@ -1,7 +1,44 @@
 footer
   .container
     .row
-      .col-md-6
-        .bg-info
-          = debug(params) if Rails.env.development?
-
+      .col-md-3.col-xs-12
+        h4 No Problems, Франківськ!
+        p.light Перша онлайн платформа для вирішення проблем та пошуку шляхів покращення життя мешканців Івано-Франківська
+        p.footer
+          | &copy; 2017 Зроблено в
+          a href="//my.softserve.ua/technology"  SoftServe Academy
+      .col-md-9.hidden-xs
+        h4 Карта сайту
+        ul.nav
+          li
+            = link_to 'Надіслати звернення', new_issue_path
+          li
+            | Переглянути звернення
+            b.caret
+            ul
+              li
+                a[href="/issues/map"]
+                  | Карта звернень
+              li
+                = link_to 'Стрічка оновлень', feed_path
+              li
+                = link_to 'Відкриті звернення', issues_path(status: 'opened')
+              li
+                = link_to 'Закриті звернення', issues_path(status: 'closed')
+          li
+            | Інформація
+            b.caret
+            ul
+              li
+               = link_to 'Статистика звернень', statistics_path(period: 'month', sort: 'time')
+              li
+                = link_to 'Рейтинг користувачів', ranking_users_path
+              li
+                = link_to 'Корисні посилання', static_pages_path('links')
+          - unless user_signed_in?
+            li.active
+              = link_to user_facebook_omniauth_authorize_path do
+                i.fa.fa-facebook
+                | Авторизуватися
+          - else
+            = link_to 'Особистий кабінет', user_path(current_user)
