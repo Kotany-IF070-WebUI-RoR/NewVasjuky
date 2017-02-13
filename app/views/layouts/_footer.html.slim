@@ -5,7 +5,7 @@ footer
         h4 No Problems, Франківськ!
         p.light Перша онлайн платформа для вирішення проблем та пошуку шляхів покращення життя мешканців Івано-Франківська
         p.footer
-          | &copy; 2017 Зроблено в
+          | &copy; 2017 Зроблено групою IF-070-WebUI/RoR в
           a href="//my.softserve.ua/technology"  SoftServe Academy
       .col-md-9.hidden-xs
         h4 Карта сайту
@@ -14,7 +14,6 @@ footer
             = link_to 'Надіслати звернення', new_issue_path
           li
             | Переглянути звернення
-            b.caret
             ul
               li
                 a[href="/issues/map"]
@@ -27,7 +26,6 @@ footer
                 = link_to 'Закриті звернення', issues_path(status: 'closed')
           li
             | Інформація
-            b.caret
             ul
               li
                = link_to 'Статистика звернень', statistics_path(period: 'month', sort: 'time')
