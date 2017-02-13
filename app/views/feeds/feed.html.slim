@@ -19,6 +19,6 @@
         #loader-block.col-xs-12.hidden
           = image_tag 'loader.gif', alt: 'Loader', id: 'loader-img',
                   class: 'img-responsive col-xs-2 col-xs-offset-5'
-- if users_feed? && !current_user.notifications.any?
+- if common_feed? || (users_feed? && current_user.notifications.any?)
   javascript:
       $('document').ready(init_infinity_scroll(1, window.location.href, true));
