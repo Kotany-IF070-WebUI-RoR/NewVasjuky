@@ -4,7 +4,7 @@
 - if @issue.one_attachment?
   .media-attachment
     = image_tag @issue.first_attached_image, class: 'img-responsive'
-- else
+- if @issue.multiple_attachments?
   .project.owl-carousel.owl-theme id='issue-carousel'
     - @attachments.each do |issue_attachment|
       = image_tag issue_attachment.attachment, class: 'img-responsive'
