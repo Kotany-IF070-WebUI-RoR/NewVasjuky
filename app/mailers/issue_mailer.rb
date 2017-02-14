@@ -9,9 +9,9 @@ class IssueMailer < ApplicationMailer
          subject: 'Подано нову скаргу'
   end
 
-  def mail_to_followers(email, issue)
+  def mail_to_followers(email, id)
     @follower = User.find_by(email: email)
-    @issue = issue
+    @issue = Issue.find(id)
     mail to: email, subject: 'Змінено статус скарги'
   end
 
@@ -21,7 +21,7 @@ class IssueMailer < ApplicationMailer
     return unless @followers.any?
     emails = @followers.pluck(:email)
     emails.each do |email|
-      mail_to_followers(email, @issue).deliver
+      mail_to_followers(email, id).deliver
     end
   end
 end

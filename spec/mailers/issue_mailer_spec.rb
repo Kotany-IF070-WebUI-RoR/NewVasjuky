@@ -8,10 +8,11 @@ describe IssueMailer, type: :mailer do
   let!(:email)     { admin.email }
   let!(:moderator) { create(:user, :moderator) }
   let!(:issue)     { create(:issue) }
+  let!(:id)        { issue.id }
   let(:category)   { create(:category) }
   let(:mail_on_created)      { IssueMailer.issue_created(issue.id).deliver! }
   let(:issue_status_changed) { IssueMailer.issue_status_changed(issue.id) }
-  let(:mail_to_fllwr) { IssueMailer.mail_to_followers(email, issue).deliver! }
+  let(:mail_to_fllwr) { IssueMailer.mail_to_followers(email, id).deliver! }
 
   describe '#issue_created' do
     before do
@@ -55,7 +56,7 @@ describe IssueMailer, type: :mailer do
 
     describe '#issue_status_changed' do
       before do
-        @emails = IssueMailer.issue_status_changed(issue.id)
+        @emails = IssueMailer.issue_status_changed(id)
       end
 
       it 'finds all recipients when issue changed its status' do
@@ -71,13 +72,13 @@ describe IssueMailer, type: :mailer do
     describe '#mail_to_followers' do
       before do
         ResqueSpec.reset!
-        IssueMailer.mail_to_followers(email, issue).deliver
+        IssueMailer.mail_to_followers(email, id).deliver
       end
 
       it 'added to the queue' do
         expect(IssueMailer).to have_queue_size_of(1)
         expect(IssueMailer)
-          .to have_queued(:mail_to_followers, [email, issue])
+          .to have_queued(:mail_to_followers, [email, id])
       end
 
       it 'renders the subject' do
