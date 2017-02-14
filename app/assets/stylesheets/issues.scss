@@ -223,6 +223,11 @@
 .flex-table .actions {
   text-align: center;
 }
+.flex-table {
+  td {
+    word-break: break-all;
+  }
+}
 
 #heading-breadcrumbs {
   ul.breadcrumb {

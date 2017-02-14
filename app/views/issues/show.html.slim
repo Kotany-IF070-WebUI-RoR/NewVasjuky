@@ -19,6 +19,7 @@
             .followers-count
               span Слідкують:
               span.badge.pull-right #{@issue.followers_count}
+    .row
       .col-md-6.col-sm-6.col-xs-8
         p.date-comments
           span
@@ -39,10 +40,10 @@
         .col-lg-5.col-md-6.col-sm-12.col-xs-12
           =render 'issues/issues_carousel'
     .row
-      .col-md-12.media-body-fix
+      .col-md-12
         .heading
           h3 Проблема:
-        p.word-wrap.lead= description "#{@issue.description}"
+        p.word-break.lead= description "#{@issue.description}"
     section.blog-post
       - if @relevant_issues.any?
         = render 'relevant_issues'

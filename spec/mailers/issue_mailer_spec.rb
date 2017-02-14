@@ -1,15 +1,17 @@
 # Encoding: utf-8
 require 'rails_helper'
+require 'byebug'
 
 describe IssueMailer, type: :mailer do
   let(:reporter)   { create(:user, :reporter) }
   let!(:admin)     { create(:user, :admin) }
+  let!(:email)     { admin.email }
   let!(:moderator) { create(:user, :moderator) }
   let!(:issue)     { create(:issue) }
   let(:category)   { create(:category) }
   let(:mail_on_created)      { IssueMailer.issue_created(issue.id).deliver! }
   let(:issue_status_changed) { IssueMailer.issue_status_changed(issue.id) }
-  let(:mail_to_fllwr) { IssueMailer.mail_to_followers(admin, issue).deliver! }
+  let(:mail_to_fllwr) { IssueMailer.mail_to_followers(email, issue).deliver! }
 
   describe '#issue_created' do
     before do
@@ -53,7 +55,7 @@ describe IssueMailer, type: :mailer do
 
     describe '#issue_status_changed' do
       before do
-        @emails = IssueMailer.issue_status_changed(issue.id).collect(&:email)
+        @emails = IssueMailer.issue_status_changed(issue.id)
       end
 
       it 'finds all recipients when issue changed its status' do
@@ -69,13 +71,13 @@ describe IssueMailer, type: :mailer do
     describe '#mail_to_followers' do
       before do
         ResqueSpec.reset!
-        IssueMailer.mail_to_followers(@followers, issue).deliver
+        IssueMailer.mail_to_followers(email, issue).deliver
       end
 
       it 'added to the queue' do
         expect(IssueMailer).to have_queue_size_of(1)
         expect(IssueMailer)
-          .to have_queued(:mail_to_followers, [@followers, issue])
+          .to have_queued(:mail_to_followers, [email, issue])
       end
 
       it 'renders the subject' do
@@ -85,7 +87,7 @@ describe IssueMailer, type: :mailer do
       it 'generates the correct content in HTML' do
         expect(mail_to_fllwr.body.to_s.force_encoding('UTF-8')).to \
           include(issue_url(issue))
-          .and include(@followers[0].first_name)
+          .and include(admin.first_name)
           .and include(issue.title)
       end
     end
