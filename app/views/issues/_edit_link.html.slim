@@ -1,0 +1,3 @@
+- if current_user.admin?
+  = link_to 'Редагувати', edit_account_admin_issue_path(issue),
+          class: "btn btn-danger pull-right btn-#{ yield(:follow_btn_size) } edit-button"
