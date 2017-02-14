@@ -1,11 +1,11 @@
 #heading-breadcrumbs
   .container
     .row.flex-row
-      .col-md-7.col-sm-7.col-xs-7
+      .col-md-7.col-sm-7.col-xs-7.word-break
         h2=title @issue.title
         h4.status-badge=get_stylized_status_style(@issue.status, @issue.status_name)
       .col-md-5.col-sm-5.col-xs-5
         ul.breadcrumb
           li= link_to 'На головну', root_path
           li= link_to 'Усі звернення', issues_path(status: 'opened')
-          li= @issue.title
+          li= truncate(@issue.title, length: 40)

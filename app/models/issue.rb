@@ -118,6 +118,10 @@ class Issue < ApplicationRecord
     issue_attachments.count == 1
   end
 
+  def no_attachment?
+    issue_attachments.empty?
+  end
+
   def notify_support
     IssueMailer.issue_created(id).deliver
   end

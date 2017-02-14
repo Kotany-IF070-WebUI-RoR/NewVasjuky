@@ -1,6 +1,6 @@
 td.col-md-2.col-sm-2.col-xs-5.flex-order-0
   = object.created_at.strftime("%d/%m/%Y %H:%M")
-td.col-md-4.col-sm-4.col-xs-12.flex-order-2
+td.col-md-4.col-sm-4.col-xs-12.word-break.flex-order-2
   span.user-label Назва:
   = link_to object
     = truncate(object.title, length: 50)

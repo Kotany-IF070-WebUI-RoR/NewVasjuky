@@ -1,5 +1,5 @@
 - @issues_feed.each do |issue|
-  .col-md-3.col-sm-6
+  .col-md-3.col-sm-6.zero-padding
     .box-image-text.blog
       .top
         .image
@@ -11,6 +11,6 @@
       .content
         p.author-category
           = link_to issue.category.name, category_path(issue.category)
-        h4
+        h4.word-break
           = link_to issue
             = truncate("#{issue.title}", length: 40)

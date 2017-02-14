@@ -5,3 +5,6 @@
   .project.owl-carousel.owl-theme id='issue-carousel'
     - @attachments.each do |issue_attachment|
       = image_tag issue_attachment.attachment, class: 'img-responsive'
+- if @issue.no_attachment?
+  .media-attachment
+    = image_tag "fallback.jpg", class: 'img-responsive'
