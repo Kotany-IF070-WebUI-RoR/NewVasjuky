@@ -1,4 +1,9 @@
 @media (max-width: 767px) {
+  .jumbotron {
+    background-image: $main_bg_mobile;
+    padding: 30px 0;
+  }
+
   .zero-padding {
     padding: 0;
   }
@@ -87,7 +92,6 @@
       }
     }
     tbody tr {
-      width: 100%;
       border-top: 2px solid $black_7_5;
       border-bottom: 2px solid $black_7_5;
       margin-bottom: 20px;
@@ -189,4 +193,8 @@
   .relevant {
     margin-bottom: 0;
   }
+}
+
+@media (min-width: 767px) and (max-width: 980px) {
+  @include sticky-footer(340px, "#all", "#footer", "footer");
 }
