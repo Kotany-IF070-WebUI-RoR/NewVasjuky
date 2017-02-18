@@ -6,7 +6,7 @@ module Account
       before_action :admin_or_moderator?
       before_action :find_issue,
                     only: [:edit, :update, :approve, :close, :decline]
-      before_action :build_event
+      before_action :build_event, only: [:approve, :close, :decline]
       def index
         issue_listing(Issue.moderation_list)
       end
