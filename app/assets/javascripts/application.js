@@ -37,3 +37,4 @@
 //= require smart_listing
 //= require infinity_scroll
 //= require js-routes
+//= require issues
