@@ -6,6 +6,7 @@ module Account
       before_action :admin_or_moderator?
       before_action :find_issue,
                     only: [:edit, :update, :approve, :close, :decline]
+      before_action :build_event
       def index
         issue_listing(Issue.moderation_list)
       end
@@ -23,19 +24,19 @@ module Account
       end
 
       def approve
-        @issue.create_event_by(current_user) if @issue.approve!
+        @issue.create_event(@event) if @issue.approve!
         @issue.post_to_facebook!
-        render :update, issue: @issue
+        redirect_back(fallback_location: root_path)
       end
 
       def decline
-        @issue.create_event_by(current_user) if @issue.decline!
-        render :update, issue: @issue
+        @issue.create_event(@event) if @issue.decline!
+        redirect_back(fallback_location: root_path)
       end
 
       def close
-        @issue.create_event_by(current_user) if @issue.close!
-        render :update, issue: @issue
+        @issue.create_event(@event) if @issue.close!
+        redirect_back(fallback_location: root_path)
       end
 
       private
@@ -47,6 +48,16 @@ module Account
       def issues_params
         params.require(:issue).permit(:category_id, :location, :latitude,
                                       :longitude)
+      end
+
+      def build_event
+        @event = @issue.events.new(event_params)
+        @event.author_id = current_user.id
+        @issue.reload
+      end
+
+      def event_params
+        params.require(:event).permit(:description, :image)
       end
     end
   end

@@ -45,7 +45,7 @@ RSpec.describe FeedsController, type: :controller do
       reporter.follow!(issue)
       expect(reporter.new_notifications.any?).to be_falsey
       issue.approve!
-      issue.create_event_by(admin)
+      issue.create_event(admin)
       expect(reporter.new_notifications.any?).to be_truthy
     end
 
@@ -53,7 +53,7 @@ RSpec.describe FeedsController, type: :controller do
       reporter.follow!(issue)
       expect(reporter.new_notifications.any?).to be_falsey
       issue.approve!
-      issue.create_event_by(admin)
+      issue.create_event(admin)
       reporter.reload
       expect(reporter.new_notifications.any?).to be_truthy
       sign_in reporter
@@ -65,7 +65,7 @@ RSpec.describe FeedsController, type: :controller do
     it 'mark as read notifications when load it' do
       reporter.follow!(issue)
       issue.approve!
-      issue.create_event_by(admin)
+      issue.create_event(admin)
       expect(reporter.notifications.last.readed).to be_falsey
       sign_in reporter
       get :user_feed, xhr: true
@@ -77,14 +77,14 @@ RSpec.describe FeedsController, type: :controller do
         admin.follow!(issue)
         expect(admin.new_notifications.any?).to be_falsey
         issue.approve!
-        issue.create_event_by(admin)
+        issue.create_event(admin)
         expect(admin.new_notifications.any?).to be_falsey
       end
 
       it 'get notification when not follower and not author of event' do
         expect(reporter.new_notifications.any?).to be_falsey
         issue.approve!
-        issue.create_event_by(admin)
+        issue.create_event(admin)
         expect(reporter.new_notifications.any?).to be_falsey
       end
     end

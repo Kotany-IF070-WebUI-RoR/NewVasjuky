@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170218140442) do
     t.datetime "updated_at",    null: false
     t.integer  "author_id"
     t.text     "description"
-    t.string   "attachment"
+    t.string   "image"
     t.index ["issue_id"], name: "index_events_on_issue_id", using: :btree
   end
 
