@@ -1,0 +1,26 @@
+.control_status_panel
+  - if @issue.pending?
+    = status_control_link('Підтвердити', approve_account_admin_issue_path(@issue), 'success')
+    = status_control_link('Відхилити', decline_account_admin_issue_path(@issue), 'danger')
+  - if @issue.opened?
+    = status_control_link('Закрити',close_account_admin_issue_path, 'success')
+
+/! Modal
+#change_status_form.modal.fade role="dialog"
+  .modal-dialog
+    /! Modal content
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"  &times;
+        h4.modal-title Підтвердіть зміну статусу
+      .modal-body
+        = simple_form_for @issue, html: {multipart: true} do |f|
+
+          = f.simple_fields_for :events do |event_form|
+            = event_form.input :events, label: 'Опис',
+                    placeholder: 'Обґрунтування зміни статусу'
+            #event_atachments
+            = event_form.input :image, as: :file, label: 'Додати зображення'
+          .modal-footer
+            = f.button :submit, 'Підтвердити', class: 'btn btn-template-primary'
+            button.btn.btn-default data-dismiss="modal" type="button"  Відмінити

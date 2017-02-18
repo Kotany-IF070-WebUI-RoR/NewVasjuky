@@ -10,6 +10,8 @@
           br
           span Категорія:
           = link_to " #{@issue.category.name}", category_path(@issue.category)
+        -if admin_or_moderator?
+          = render 'issues/moderate_panel'
       .info-group-wrapper.col-md-6.col-sm-6.col-xs-6
         .follow-wrapper
           .follow.pull-right

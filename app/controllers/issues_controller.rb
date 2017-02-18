@@ -25,6 +25,7 @@ class IssuesController < ApplicationController
   def show
     @attachments = @issue.issue_attachments
     @voted = @issue.votes.where(user_id: current_user.id)
+    @event = @issue.events.new
     load_relevant_issues
   end
 
