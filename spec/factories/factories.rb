@@ -54,4 +54,10 @@ FactoryGirl.define do
     association :commentable, factory: :issue
     association :user, factory: :user
   end
+
+  factory :event do
+    description { Faker::Lorem.characters(255) }
+    image { Faker::Avatar.image }
+    association :issue, factory: :issue
+  end
 end
