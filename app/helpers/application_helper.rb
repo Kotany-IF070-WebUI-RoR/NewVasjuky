@@ -30,6 +30,11 @@ module ApplicationHelper
     end
   end
 
+  def calculate_category_items(id)
+    render plain: "#{Category.calculate(id, 'opened')} /
+                   #{Category.calculate(id, 'closed')}"
+  end
+
   def access_denied
     redirect_back(fallback_location: root_path)
     flash[:alert] = 'Доступ заборонено'

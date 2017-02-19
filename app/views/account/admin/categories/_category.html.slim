@@ -1,0 +1,6 @@
+tr
+  td= category.created_at
+  td= category.updated_at
+  td= link_to category.name, category
+  td= calculate_category_items(category.id)
+  td= link_to 'Редагувати', edit_account_admin_category_path(category.id)

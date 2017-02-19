@@ -24,6 +24,8 @@ Rails.application.routes.draw do
           patch :change_role
         end
       end
+
+      resources :categories, only: [:index, :edit, :update]
     end
   end
 

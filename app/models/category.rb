@@ -17,4 +17,11 @@ class Category < ApplicationRecord
                          Issue.statuses[scope[0]], Issue.statuses[scope[1]])
                   .group('categories.id')
   end
+
+  def self.calculate(id, scope)
+    joins(:issues).select('categories.*')
+                  .where('categories.id = ? AND issues.status = ?',
+                         Category.find(id), Issue.statuses[scope])
+                  .calculate(:count, :all)
+  end
 end

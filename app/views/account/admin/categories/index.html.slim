@@ -1,0 +1,26 @@
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7
+        h1=title 'Керування категоріями'
+      .col-md-5
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Керування категоріями
+#content
+  .container
+    .row
+        #issues-moderation.col-md-12
+          .box
+            .table-responsive
+              table.table.table-bordered
+                thead
+                  tr
+                    th Створено
+                    th Востаннє змінено
+                    th Назва
+                    th Кількість скарг (відкритих/закритих)
+                    th Дії
+                tbody
+                  tr
+                    = render @categories
