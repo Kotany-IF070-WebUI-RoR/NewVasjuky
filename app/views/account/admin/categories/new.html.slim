@@ -1,0 +1,27 @@
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7.col-sm-6
+        #category-group-wrapper
+          h2 Створення нової категорії
+      .col-md-5.col-sm-6
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li= link_to 'Категорії', account_admin_categories_path
+          li Створити
+#content
+  #contact.container
+    section
+      .row
+        .col-md-8.col-md-offset-2
+          = simple_form_for @category, html: {multipart: true} ,
+                                url: account_admin_categories_path do |f|
+            = f.error_messages
+            = f.input :name, label: 'Назва:',
+                    placeholder: "Вкажіть назву"
+            = f.input :description, label: 'Опис:',
+                    placeholder: "Коротко опишіть тематику категорії"
+            = f.input :tags, label: 'Теги:',
+                    placeholder: "Додайте теги, використовуючи символ #"
+            = f.button :button, 'Очистити', type: 'reset', class: 'btn'
+            = f.button :submit, 'Створити', class: 'btn btn-primary'

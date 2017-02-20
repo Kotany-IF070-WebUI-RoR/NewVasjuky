@@ -1,3 +1,4 @@
+# Encoding: utf-8
 module Account
   module Admin
     class CategoriesController < ApplicationController
@@ -7,6 +8,10 @@ module Account
 
       def index
         @categories = Category.all.ordered_by_name
+      end
+
+      def new
+        @category = Category.new
       end
 
       def edit; end
@@ -27,7 +32,7 @@ module Account
       end
 
       def category_params
-        params.require(:category).permit(:name, :description)
+        params.require(:category).permit(:name, :description, :tags)
       end
     end
   end

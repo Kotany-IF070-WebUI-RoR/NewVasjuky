@@ -18,9 +18,8 @@
           = simple_form_for @category, html: {multipart: true} ,
                                 url: account_admin_category_path do |f|
             = f.error_messages
-            = f.input :name, label: 'Назва:',
-                    placeholder: @category.name
-            = f.input :description, label: 'Опис:',
-                    placeholder: @category.description
-            = f.button :button, 'Відміна', type: 'reset', class: 'btn'
+            = f.input :name, label: 'Назва:'
+            = f.input :description, label: 'Опис:'
+            = f.input :tags, label: 'Теги:'
+            = f.button :button, 'Відновити', type: 'reset', class: 'btn'
             = f.button :submit, 'Зберегти', class: 'btn btn-primary'
