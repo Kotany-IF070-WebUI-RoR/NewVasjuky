@@ -41,7 +41,8 @@ FactoryGirl.define do
 
   factory :category do
     name { Faker::Name.title }
-    tags { '#tags' }
+    description { Faker::Lorem.characters(255) }
+    tags { 'tags' }
   end
 
   sequence :email do |n|

@@ -3,8 +3,8 @@ class Category < ApplicationRecord
   has_many :issues
   scope :ordered_by_name, -> { order(:name) }
 
-  REGEXP_NAME = /\p{Alnum}/
-  REGEXP_TAGS = /\A[a-zA-Z0-9_ ]*\z/
+  REGEXP_NAME = /\A[[:alnum:] ,-]*\z/
+  REGEXP_TAGS = /\A[[:alnum:] _]*\z/
 
   validates :name, :description, :tags,
             presence: true
@@ -21,14 +21,6 @@ class Category < ApplicationRecord
 
   def name=(s)
     self[:name] = s.to_s.capitalize
-  end
-
-  def tags=(s)
-    self[:tags] = ('#' + s).to_s.downcase.gsub(' ', ' #')
-  end
-
-  def tags
-    self[:tags].mb_chars.delete('#').to_s
   end
 
   def self.statistics_for(day_range, scope)

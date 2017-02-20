@@ -14,6 +14,16 @@ module Account
         @category = Category.new
       end
 
+      def create
+        @category = Category.new(category_params)
+        if @category.save
+          flash[:success] = 'Категорію створено!'
+          redirect_to account_admin_categories_path
+        else
+          render 'new'
+        end
+      end
+
       def edit; end
 
       def update

@@ -10,7 +10,7 @@ module Facebook
     def fb_message
       fb_location = location.blank? ? '' : "Адреса: #{location} \n \n"
       fb_description = description.blank? ? '' : "Опис: #{description} \n \n"
-      tags = category.tags.blank? ? '' : category.tags.to_s
+      tags = ('#' + category.tags).to_s.gsub(' ', ' #')
       [fb_location, fb_description, tags].reject(&:blank?).join(' ')
     end
 
