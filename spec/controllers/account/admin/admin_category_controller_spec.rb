@@ -2,9 +2,8 @@ require 'rails_helper'
 
 describe Account::Admin::CategoriesController do
   let(:reporter) { create(:user, :reporter) }
-  let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :moderator) }
-  let(:issue) { create(:issue) }
+  let(:admin) { create(:user, :admin) }
 
   describe 'Get #index' do
     let(:action) { get :index }
@@ -13,9 +12,8 @@ describe Account::Admin::CategoriesController do
     end
 
     it 'when user is a reporter' do
-      sign_in admin
-      expect(action).to have_http_status(200)
-      expect(action).to render_template(:index)
+      sign_in reporter
+      expect(action).to have_http_status(302)
     end
 
     it 'when user is moderator' do
