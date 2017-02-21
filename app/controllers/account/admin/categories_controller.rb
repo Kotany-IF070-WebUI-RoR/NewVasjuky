@@ -7,7 +7,15 @@ module Account
                     only: [:edit, :update, :calculate]
 
       def index
-        @categories = Category.all.ordered_by_name
+        @categories = Category.all
+        smart_listing_create :categories, @categories,
+                             sort_attributes: [
+                               [:created_at, 'categories.created_at'],
+                               [:updated_at, 'categories.updated_at'],
+                               [:name, 'categories.name']#,
+                               #[:calculate, 'categories.calculate']
+                             ],
+                             default_sort: { name: 'asc' }, partial: 'category'
       end
 
       def new

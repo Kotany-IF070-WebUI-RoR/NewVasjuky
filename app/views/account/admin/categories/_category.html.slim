@@ -1,6 +1,31 @@
-tr
-  td= category.created_at.strftime("%m.%d.%Y, %T")
-  td= category.updated_at.strftime("%m.%d.%Y, %T")
-  td= link_to category.name, category
-  td= calculate_category_items(category.id)
-  td= link_to 'Редагувати', edit_account_admin_category_path(category.id)
+.table-responsive
+  table.table.table-hover.flex-table
+    thead
+      tr.centered
+        th.col-md-2.col-sm-3
+          = smart_listing.sortable 'Створено', :created_at
+        th.col-md-2.col-sm-3
+          = smart_listing.sortable 'Змінено', :updated_at
+        th.col-md-4.col-sm-3
+          = smart_listing.sortable 'Назва', :name
+        th.col-md-2.col-sm-2.hidden-title
+          = smart_listing.sortable 'Кількість скарг (відкритих/закритих)', :calculate
+        th.col-md-2.col-sm-2.hidden-title
+          | Дії
+    tbody
+      - smart_listing.collection.each do |category|
+        tr.centered
+          td.col-md-2.col-sm-3.col-xs-12.flex-order-0
+            span.user-label Створено:
+            = category.created_at.strftime("%m.%d.%Y, %T")
+          td.td.col-md-2.col-sm-3.col-xs-12.flex-order-1
+            span.user-label Змінено:
+            = category.updated_at.strftime("%m.%d.%Y, %T")
+          td.col-md-4.col-sm-2.col-xs-12.flex-order-2
+            = link_to category.name, category
+          td.col-md-2.col-sm-5.col-xs-12.flex-order-3
+            span.user-label Скарг (відкритих/закритих):
+            = calculate_category_items(category.id)
+          td.col-md-4.col-sm-5.col-xs-12.flex-order-4
+            = link_to 'Редагувати', edit_account_admin_category_path(category.id)
+= smart_listing.paginate
