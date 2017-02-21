@@ -51,9 +51,9 @@ module Account
       end
 
       def build_event
-        @event = @issue.events.new(event_params)
+        @event = Event.new(event_params)
+        @event.issue = @issue
         @event.author_id = current_user.id
-        @issue.reload
       end
 
       def event_params

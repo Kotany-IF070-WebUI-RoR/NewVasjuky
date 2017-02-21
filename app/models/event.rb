@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   include Statuses
   enum before_status: STATUSES_SYM, _prefix: :before
   enum after_status: STATUSES_SYM, _prefix: :after
-  mount_uploader :image, AttachmentUploader
+  mount_uploader :image, EventUploader
   belongs_to :issue
   has_many :notifications
   after_create :create_notifications, :mail_on_issue_status_changed
