@@ -6,12 +6,10 @@ class Event < ApplicationRecord
   belongs_to :issue
   has_many :notifications
   after_create :create_notifications, :mail_on_issue_status_changed
-  validates :issue_id, :before_status, :after_status,
-            presence: true
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :public_events, -> { where(after_status: [:opened, :closed]) }
-  validates :description, presence: true, length: { minimum: 50, maximum: 3000 }
+  validates :description, presence: true, length: { minimum: 50, maximum: 2000 }
 
   def before_status_full
     STATUSES[before_status]

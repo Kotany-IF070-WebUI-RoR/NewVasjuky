@@ -24,19 +24,25 @@ module Account
       end
 
       def approve
-        @issue.create_event(@event) if @issue.approve!
-        @issue.post_to_facebook!
-        redirect_back(fallback_location: root_path)
+        if validation_result_for(@event) && @issue.may_approve?
+          @issue.approve!
+          @issue.create_event(@event)
+          @issue.post_to_facebook!
+        end
       end
 
       def decline
-        @issue.create_event(@event) if @issue.decline!
-        redirect_back(fallback_location: root_path)
+        if validation_result_for(@event) && @issue.may_decline?
+          @issue.decline!
+          @issue.create_event(@event)
+        end
       end
 
       def close
-        @issue.create_event(@event) if @issue.close!
-        redirect_back(fallback_location: root_path)
+        if validation_result_for(@event) && @issue.may_close?
+          @issue.close!
+          @issue.create_event(@event)
+        end
       end
 
       private
@@ -56,9 +62,19 @@ module Account
         @event.author_id = current_user.id
       end
 
+      def validation_result_for(event)
+        if event.invalid?
+          render json: @event.errors.full_messages
+          false
+        else
+          true
+        end
+      end
+
       def event_params
         params.require(:event).permit(:description, :image)
       end
+
     end
   end
 end
