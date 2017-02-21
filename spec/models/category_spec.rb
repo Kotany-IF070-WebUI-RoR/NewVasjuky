@@ -52,7 +52,7 @@ describe Category, type: :model do
     end
 
     it 'should not be too short' do
-      subject.description = 'a' * 29
+      subject.description = 'a' * 19
       expect(subject).to be_invalid
     end
 
