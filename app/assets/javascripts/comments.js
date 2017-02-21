@@ -11,7 +11,7 @@ function init_comments_page() {
         UnobtrusiveFlash.showFlashMessage('Коментар не надіслано',
             {type: 'error'});
         remove_error_status(this);
-        render_errors(xhr.responseText, this);
+        render_errors(xhr.responseText, this, 'comment');
     });
     // end of comments sending
 
@@ -59,35 +59,6 @@ function init_comments_page() {
 
     function remove_comment(remove_link) {
         return $.ajax({url: Routes.comment_path(remove_link.id) , method: 'DELETE'});
-    }
-
-
-    function render_errors(json, form) {
-        var errors = JSON.parse(json);
-        for (var key in errors) {
-            if (errors.hasOwnProperty(key)) {
-                var error_block = $(form).find('[name="comment[' + key +
-                    ']"]').parent();
-                var error_text = errors[key][0];
-                add_error_status(error_block, error_text);
-            }
-        }
-    }
-
-
-    function add_error_status(error_block, error_text) {
-        if ($(error_block).find('.help-block').length !== 0) return;
-        $(error_block).append('<span class="help-block">' + error_text + '</span>');
-        $(error_block).addClass('has-error');
-    }
-
-    function remove_error_status(form) {
-        var form_errors = $(form).find('.has-error');
-        if (form_errors.length === 0) return;
-        $(form_errors).each(function () {
-            $(this).removeClass('has-error');
-            $(this).find('.help-block').remove();
-        })
     }
 }
 

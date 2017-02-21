@@ -64,7 +64,8 @@ module Account
 
       def validation_result_for(event)
         if event.invalid?
-          render json: @event.errors.full_messages
+          render json: @event.errors.messages,
+                 status: :unprocessable_entity
           false
         else
           true

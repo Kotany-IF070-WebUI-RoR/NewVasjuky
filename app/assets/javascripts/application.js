@@ -38,3 +38,5 @@
 //= require infinity_scroll
 //= require js-routes
 //= require issues
+//= require ajax_form_validation
+//= require change_status_form
