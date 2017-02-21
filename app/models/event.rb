@@ -1,3 +1,4 @@
+# Encoding: utf-8
 class Event < ApplicationRecord
   include Statuses
   enum before_status: STATUSES_SYM, _prefix: :before
@@ -9,7 +10,11 @@ class Event < ApplicationRecord
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :public_events, -> { where(after_status: [:opened, :closed]) }
-  validates :description, presence: true, length: { minimum: 50, maximum: 2000 }
+  validates :description, presence: true,
+            length: { minimum: 50, too_short: 'Надто короткий.
+ Мінімум %{count} символів',
+                      maximum: 2000, too_long: 'Надто довгий.
+ Максимум %{count} символів'}
 
   def before_status_full
     STATUSES[before_status]
