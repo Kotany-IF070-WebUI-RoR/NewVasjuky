@@ -46,6 +46,9 @@
         .heading
           h3 Проблема:
         p.word-break.lead= description "#{@issue.description}"
+
+    - if @events.any?
+            = render 'issues/events'
     section.blog-post
       - if @relevant_issues.any?
         = render 'relevant_issues'

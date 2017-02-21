@@ -11,6 +11,7 @@ class Event < ApplicationRecord
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :public_events, -> { where(after_status: [:opened, :closed]) }
+  validates :description, presence: true, length: { minimum: 50, maximum: 3000 }
 
   def before_status_full
     STATUSES[before_status]
