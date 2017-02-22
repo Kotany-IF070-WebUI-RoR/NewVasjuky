@@ -9,7 +9,7 @@ class Issue < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :votes, as: :voteable
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, counter_cache: :issues_count
   has_many :issue_attachments
   has_many :events
 

@@ -1,0 +1,7 @@
+= link_to Category.calculate(id, 'opened'), issues_account_admin_category_path(id: id, status: 'opened'), title: 'Відкриті'
+|  | 
+= link_to Category.calculate(id, 'closed'), issues_account_admin_category_path(id: id, status: 'closed'), title: 'Закриті'
+|  | 
+= link_to Category.calculate(id, 'pending'), issues_account_admin_category_path(id: id, status: 'pending'), title: 'На модерації'
+|  | 
+= link_to Category.calculate(id, 'declined'), issues_account_admin_category_path(id: id, status: 'declined'), title: 'Відхилені'

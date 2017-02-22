@@ -10,8 +10,6 @@ tr.centered
   td.col-md-2.col-sm-5.col-xs-12.flex-order-3
     span.user-label Скарг (відкритих/закритих):
     = calculate_category_items(object.id)
-  / td.col-md-4.col-sm-5.col-xs-12.flex-order-4
-  /   = link_to 'Редагувати', edit_account_admin_category_path(object.id)
   td.actions.col-md-4.col-sm-5.col-xs-12.flex-order-4
     = smart_listing_item_actions [{name: :custom,
                                    url: edit_account_admin_category_path(object.id),
@@ -23,37 +21,3 @@ tr.centered
                                    icon: 'glyphicon glyphicon-remove',
                                    remote: true, if: object.issue_ids.empty?,
                                    title: 'Видалити'},]
-
-/ td.col-md-2.col-sm-2.col-xs-5.flex-order-0
-/   = object.created_at.strftime("%d/%m/%Y %H:%M")
-/ td.col-md-4.col-sm-4.col-xs-12.word-break.flex-order-2
-/   span.user-label Назва:
-/   = link_to object
-/     = truncate(object.title, length: 50)
-/ td.col-md-2.col-sm-2.col-xs-12.flex-order-3
-/   span.user-label Автор:
-/   = object.user.full_name
-/ td.col-md-1.col-sm-1.col-xs-7.status-label.flex-order-1
-/   = get_stylized_status_style(object.status, object.status_name)
-/ td.actions.col-md-2.col-sm-2.col-xs-8.flex-order-4
-/   = smart_listing_item_actions [{name: :custom,
-/                                          url: approve_account_admin_issue_path(object),
-/                                          method: :patch,
-/                                          icon: 'glyphicon glyphicon-ok-circle',
-/                                          remote: true, if: object.pending?,
-/                                          title: 'Схвалити звернення'},
-/                                          {name: :custom,
-/                                           url: decline_account_admin_issue_path(object),
-/                                           method: :patch,
-/                                           icon: 'glyphicon glyphicon-remove-circle',
-/                                           remote: true, if: object.pending?,
-/                                           title: 'Відхилити звернення'},
-/                                          {name: :custom,
-/                                           url: close_account_admin_issue_path(object),
-/                                           method: :patch,
-/                                           icon: 'glyphicon glyphicon-thumbs-up',
-/                                           remote: true, if: object.opened?,
-/                                           title: 'Закрити звернення'}]
-/ td.actions.col-md-1.col-sm-1.col-xs-4.flex-order-5
-/   = link_to edit_account_admin_issue_path(object)
-/     span.glyphicon.glyphicon-pencil

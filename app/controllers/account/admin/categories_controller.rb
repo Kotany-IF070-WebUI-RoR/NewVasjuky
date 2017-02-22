@@ -3,8 +3,9 @@ module Account
   module Admin
     class CategoriesController < ApplicationController
       before_action :admin_or_moderator?
+      before_action :status_inspector, only: [:issues]
       before_action :find_category,
-                    only: [:edit, :update, :calculate]
+                    only: [:edit, :update, :issues]
 
       def index
         @categories = Category.all
@@ -43,6 +44,18 @@ module Account
         end
       end
 
+      def issues
+        @status = params[:status] || 'opened'
+        issues_scope = @category.issues.ordered
+                                .where(status: @status)
+        issues_scope = issues_scope.like(params[:filter]) if params[:filter]
+        smart_listing_create :issues,
+                             issues_scope,
+                             partial: 'issues/issue'
+        @categories = Category.ordered_by_name
+        render 'issues/index'
+      end
+
       private
 
       def find_category
@@ -51,6 +64,11 @@ module Account
 
       def category_params
         params.require(:category).permit(:name, :description, :tags)
+      end
+
+      def status_inspector
+        redirect_to issues_account_admin_category_path(status: 'opened') unless
+          %w(opened closed pending declined).include?(params[:status])
       end
     end
   end

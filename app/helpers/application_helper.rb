@@ -31,8 +31,7 @@ module ApplicationHelper
   end
 
   def calculate_category_items(id)
-    render plain: "#{Category.calculate(id, 'opened')} /
-                   #{Category.calculate(id, 'closed')}"
+    render partial: 'shared/number_of_issues', locals: { id: id }
   end
 
   def access_denied
