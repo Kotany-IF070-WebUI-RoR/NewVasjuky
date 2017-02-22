@@ -45,4 +45,8 @@ class Category < ApplicationRecord
                          Category.find(id), Issue.statuses[scope])
                   .calculate(:count, :all)
   end
+
+  def self.with_issues
+    left_outer_joins(:issues).select('categories.*, COUNT(issues.*) AS issues_count').group('categories.id')
+  end
 end

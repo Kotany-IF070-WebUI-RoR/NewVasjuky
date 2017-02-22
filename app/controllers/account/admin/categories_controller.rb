@@ -12,8 +12,8 @@ module Account
                              sort_attributes: [
                                [:created_at, 'categories.created_at'],
                                [:updated_at, 'categories.updated_at'],
-                               [:name, 'categories.name']#,
-                               #[:calculate, 'categories.calculate']
+                               [:name, 'categories.name'],
+                               [:calculate, 'categories.issues_count']
                              ],
                              default_sort: { name: 'asc' }, partial: 'category'
       end
