@@ -30,10 +30,6 @@ module ApplicationHelper
     end
   end
 
-  def calculate_category_items(id)
-    render partial: 'shared/number_of_issues', locals: { id: id }
-  end
-
   def access_denied
     redirect_back(fallback_location: root_path)
     flash[:alert] = 'Доступ заборонено'
