@@ -57,10 +57,7 @@ FactoryGirl.define do
 
   factory :event do
     description { Faker::Lorem.characters(255) }
-    image Rack::Test::UploadedFile.new(
-        Rails.root.join('spec', 'files', 'avatar.jpg')
-    )
-
+    image File.open("#{Rails.root}/spec/files/avatar.jpg")
     before_status :pending
     after_status :opened
     association :issue, factory: :issue
