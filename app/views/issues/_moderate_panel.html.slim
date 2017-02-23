@@ -1,8 +1,8 @@
 .control_status_panel
-  - if @issue.pending?
+  - if @issue.pending? && (current_user.admin? || current_user.moderator?)
     = status_control_link('Підтвердити', approve_account_admin_issue_path(@issue), 'success')
     = status_control_link('Відхилити', decline_account_admin_issue_path(@issue), 'danger')
-  - if @issue.opened?
+  - if @issue.opened? && current_user.can_close?(@issue)
     = status_control_link('Закрити',close_account_admin_issue_path, 'success')
 
 /! Modal

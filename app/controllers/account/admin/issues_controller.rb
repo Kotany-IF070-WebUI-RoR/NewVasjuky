@@ -4,10 +4,12 @@ module Account
   module Admin
     class IssuesController < ApplicationController
       before_action :admin_or_moderator?
+      skip_before_action :admin_or_moderator?, only: [:close]
       before_action :find_issue,
                     only: [:edit, :update, :approve, :close, :decline]
       before_action :build_event,
                     only: [:approve, :close, :decline]
+      before_action :can_close?, only: [:close]
       def index
         issue_listing(Issue.moderation_list)
       end
@@ -30,7 +32,7 @@ module Account
           @issue.create_event(@event)
           @issue.post_to_facebook!
         else
-          render 'issues/show', error: 'Щось пішло не так, спробуйте ще раз...'
+          redirect_to @issue, error: 'Щось пішло не так, спробуйте ще раз...'
         end
       end
 
@@ -39,7 +41,7 @@ module Account
           @issue.decline!
           @issue.create_event(@event)
         else
-          render 'issues/show', error: 'Щось пішло не так, спробуйте ще раз...'
+          redirect_to @issue, error: 'Щось пішло не так, спробуйте ще раз...'
         end
       end
 
@@ -48,7 +50,7 @@ module Account
           @issue.close!
           @issue.create_event(@event)
         else
-          render 'issues/show', error: 'Щось пішло не так, спробуйте ще раз...'
+          redirect_to @issue, error: 'Щось пішло не так, спробуйте ще раз...'
         end
       end
 
@@ -75,6 +77,12 @@ module Account
 
       def event_params
         params.require(:event).permit(:description, :image)
+      end
+
+      def can_close?
+        unless current_user.can_close?(@issue)
+          redirect_to @issue, notice: 'Ви не маєте права на це...'
+        end
       end
 
     end
