@@ -5,21 +5,21 @@
   right: -80%;
 }
 
-tr.centered th, tr.centered td {
-  text-align: center;
-  clear:both;
-  line-height: 1.2em;
-}
-
 #categories-moderation {
-  .glyphicon {
-    font-size: 1.2em;
-    padding: 3px;
+  .centered th, td {
+    text-align: center;
   }
   .lefted {
     text-align: left;
   }
   .issues_count {
     font-size: 1.1em;
+    a {
+      font-weight: bold;
+    }
+  }
+  .glyphicon {
+    font-size: 1.2em;
+    padding: 3px;
   }
 }

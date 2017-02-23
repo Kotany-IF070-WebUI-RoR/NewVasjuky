@@ -59,6 +59,7 @@ module Account
         if @category.issues.empty?
           @category.destroy
           flash[:success] = 'Категорію видалено!'
+          redirect_to action: 'index', status: 303
         else
           flash[:alert] = 'Неможливо видалити непусту категорію!
                            Спочатку Вам необхідно перемістити з неї

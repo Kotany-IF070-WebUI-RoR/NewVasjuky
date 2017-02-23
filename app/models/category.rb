@@ -8,7 +8,8 @@ class Category < ApplicationRecord
 
   validates :name, :description, :tags,
             presence: true
-  validates :name, length: { minimum: 5, maximum: 100 },
+  validates :name, uniqueness: { case_sensitive: false },
+                   length: { minimum: 5, maximum: 100 },
                    format: { with: REGEXP_NAME,
                              message: 'Назва може містити тільки
                                        літери і цифри' }

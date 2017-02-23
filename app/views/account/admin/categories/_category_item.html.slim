@@ -11,13 +11,13 @@ tr.centered
     span.user-label Скарг (відкритих/закритих):
     = render partial: 'shared/number_of_issues', locals: { id: object.id }
   td.actions.col-md-4.col-sm-5.col-xs-12.flex-order-4
-    = smart_listing_item_actions [{name: :custom,
-                                   url: edit_account_admin_category_path(object.id),
+    = smart_listing_item_actions [{name: :edit,
+                                   url: edit_account_admin_category_path(object),
                                    icon: 'glyphicon glyphicon-pencil',
                                    title: 'Редагувати'},
                                   {name: :destroy,
-                                   url: account_admin_category_path(object.id),
+                                   url: account_admin_category_path(object),
                                    confirmation: 'Видалити?',
-                                   icon: 'glyphicon glyphicon-remove',
+                                   icon: 'glyphicon glyphicon-trash',
                                    remote: true, if: object.issue_ids.empty?,
                                    title: 'Видалити'}]
