@@ -6,7 +6,8 @@ module Account
       before_action :admin_or_moderator?
       before_action :find_issue,
                     only: [:edit, :update, :approve, :close, :decline]
-      before_action :build_event, only: [:approve, :close, :decline]
+      before_action :build_event,
+                    only: [:approve, :close, :decline]
       def index
         issue_listing(Issue.moderation_list)
       end
@@ -24,24 +25,30 @@ module Account
       end
 
       def approve
-        if validation_result_for(@event) && @issue.may_approve?
+        if @issue.may_approve?
           @issue.approve!
           @issue.create_event(@event)
           @issue.post_to_facebook!
+        else
+          render 'issues/show', error: 'Щось пішло не так, спробуйте ще раз...'
         end
       end
 
       def decline
-        if validation_result_for(@event) && @issue.may_decline?
+        if @issue.may_decline?
           @issue.decline!
           @issue.create_event(@event)
+        else
+          render 'issues/show', error: 'Щось пішло не так, спробуйте ще раз...'
         end
       end
 
       def close
-        if validation_result_for(@event) && @issue.may_close?
+        if @issue.may_close?
           @issue.close!
           @issue.create_event(@event)
+        else
+          render 'issues/show', error: 'Щось пішло не так, спробуйте ще раз...'
         end
       end
 
@@ -60,15 +67,9 @@ module Account
         @event = Event.new(event_params)
         @event.issue = @issue
         @event.author_id = current_user.id
-      end
-
-      def validation_result_for(event)
-        if event.invalid?
+        if @event.invalid?
           render json: @event.errors.messages,
                  status: :unprocessable_entity
-          false
-        else
-          true
         end
       end
 
