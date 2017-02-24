@@ -57,6 +57,7 @@ javascript:
   $(document).ready(function(){
     // initIssuesMap(false, #{@issue.latitude}, #{@issue.longitude});
     showIssueMap(#{@issue.latitude}, #{@issue.longitude});
+    init_event_details();
     $("#issue-carousel").owlCarousel({
         nav : true,
         items : 1,

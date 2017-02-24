@@ -1,1 +1,15 @@
-= @event
+section.event-details
+  .row
+    .col-md-12
+      .event-img
+        = image_tag @event.image, class: 'img-responsive'
+  .row.event-description
+    .col-md-12
+      .row
+        .col-md-3
+          h4 Опис:
+        .col-md-6
+          = render 'events/status-change-labels', event: @event
+        .row
+          .col-md-12
+            p #{@event.description}

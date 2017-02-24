@@ -11,9 +11,8 @@
     .col-sm-6.col-xs-12
       .row
         .col-md-6.col-sm-8.col-xs-7
-          .status-labels_wrapper
-            = get_stylized_status_style(event.before_status, event.before_status_full)
-            span.glyphicon.glyphicon-chevron-right.status_arrow
-            = get_stylized_status_style(event.after_status, event.after_status_full)
+          = render 'events/status-change-labels', event: event
         .col-sm-2.col-md-offset-3.col-xs-5
-          = link_to 'Деталі', event_path(event), class: 'btn btn-primary detail-link'
+          = button_tag 'Деталі', data: { event_id: "#{event.id}"},
+                  class: 'btn btn-primary event-detail-link'
+  = render 'events/event_details_modal'

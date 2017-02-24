@@ -39,3 +39,4 @@
 //= require js-routes
 //= require ajax_form_validation
 //= require change_status_form
+//= require events
