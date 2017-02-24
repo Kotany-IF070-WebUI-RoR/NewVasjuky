@@ -1,16 +1,33 @@
 .newcategory {
   @include border-radius(5px);
-  position: relative;
-  margin: 10px;
-  right: -80%;
+  position: absolute;
+  right: 20px;
+  margin-top: 10px;
+}
+
+@media (max-width: 450px) {
+  .newcategory {
+    right: 0;
+    width: 100%;
+  }
 }
 
 #categories-moderation {
-  .centered th, td {
+  position: relative;
+  width: 100%;
+  #categories {
+    margin-top: 50px;
+  }
+  .centered {
     text-align: center;
   }
   .lefted {
     text-align: left;
+  }
+  @media (max-width: 767px) {
+    .lefted {
+      text-align: center;
+    }
   }
   .issues_count {
     font-size: 1.1em;
@@ -21,5 +38,21 @@
   .glyphicon {
     font-size: 1.2em;
     padding: 3px;
+  }
+  .popover-content {
+    min-width: 130px;
+  }
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.popover.bottom {
+  margin-left: -78px;
+  margin-top: 90px;
+  > .arrow {
+    top: -11px!important;
   }
 }

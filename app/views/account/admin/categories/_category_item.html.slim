@@ -1,23 +1,22 @@
-tr.centered
-  td.col-md-2.col-sm-3.col-xs-12.flex-order-0
-    span.user-label Створено:
-    = object.created_at.strftime("%m.%d.%Y, %T")
-  td.td.col-md-2.col-sm-3.col-xs-12.flex-order-1
-    span.user-label Змінено:
-    = object.updated_at.strftime("%m.%d.%Y, %T")
-  td.lefted.col-md-4.col-sm-2.col-xs-12.flex-order-2
-    = link_to object.name, object
-  td.issues_count.col-md-2.col-sm-5.col-xs-12.flex-order-3
-    span.user-label Скарг (відкритих/закритих):
-    = render partial: 'shared/number_of_issues', locals: { id: object.id }
-  td.actions.col-md-4.col-sm-5.col-xs-12.flex-order-4
-    = smart_listing_item_actions [{name: :edit,
-                                   url: edit_account_admin_category_path(object),
-                                   icon: 'glyphicon glyphicon-pencil',
-                                   title: 'Редагувати'},
-                                  {name: :destroy,
-                                   url: account_admin_category_path(object),
-                                   confirmation: 'Видалити?',
-                                   icon: 'glyphicon glyphicon-trash',
-                                   remote: true, if: object.issue_ids.empty?,
-                                   title: 'Видалити'}]
+td.col-md-2.col-sm-3.col-xs-12.flex-order-0
+  span.user-label Створено:
+  = object.created_at.strftime("%m.%d.%Y, %T")
+td.td.col-md-2.col-sm-3.col-xs-12.flex-order-1
+  span.user-label Змінено:
+  = object.updated_at.strftime("%m.%d.%Y, %T")
+td.lefted.col-md-4.col-sm-2.col-xs-12.flex-order-2
+  = link_to object.name, object
+td.issues_count.col-md-2.col-sm-5.col-xs-12.flex-order-3
+  span.user-label Кількість скарг:
+  = render partial: 'shared/number_of_issues', locals: { id: object.id }
+td.actions.col-md-4.col-sm-5.col-xs-12.flex-order-4
+  = smart_listing_item_actions [{name: :edit,
+                                 url: edit_account_admin_category_path(object),
+                                 icon: 'glyphicon glyphicon-pencil',
+                                 title: 'Редагувати'},
+                                {name: :destroy,
+                                 url: account_admin_category_path(object),
+                                 confirmation: 'Видалити?',
+                                 icon: 'glyphicon glyphicon-trash',
+                                 remote: true, if: object.issue_ids.empty?,
+                                 title: 'Видалити'}]

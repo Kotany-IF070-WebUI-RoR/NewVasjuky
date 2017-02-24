@@ -40,3 +40,4 @@
 //= require ajax_form_validation
 //= require change_status_form
 //= require events
+//= require category_destroy_confirmation

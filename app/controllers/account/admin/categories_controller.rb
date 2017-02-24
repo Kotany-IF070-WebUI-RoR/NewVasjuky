@@ -81,6 +81,11 @@ module Account
         redirect_to account_admin_category_path(status: 'opened') unless
           %w(opened closed pending declined).include?(params[:status])
       end
+
+      def smart_listing_config_profile
+        :category_profile
+      end
+      helper_method :smart_listing_config_profile
     end
   end
 end
