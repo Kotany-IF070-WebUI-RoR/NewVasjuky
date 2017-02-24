@@ -9,7 +9,6 @@ module Account
                     only: [:edit, :update, :approve, :close, :decline]
       before_action :build_event,
                     only: [:approve, :close, :decline]
-      before_action :can_close?, only: [:close]
       def index
         issue_listing(Issue.moderation_list)
       end
@@ -48,7 +47,7 @@ module Account
       end
 
       def close
-        if @issue.may_close?
+        if @issue.may_close? && current_user.can_close?(@issue)
           @issue.close!
           @issue.create_event(@event)
           redirect_to @issue, notice: 'Статус успішно змінений.'
@@ -76,11 +75,6 @@ module Account
 
       def event_params
         params.require(:event).permit(:description, :image)
-      end
-
-      def can_close?
-        redirect_to @issue, notice: 'Ви не маєте права на це...' \
-                                          unless current_user.can_close?(@issue)
       end
     end
   end
