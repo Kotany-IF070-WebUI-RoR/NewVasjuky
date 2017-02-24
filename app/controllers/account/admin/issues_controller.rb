@@ -79,11 +79,9 @@ module Account
       end
 
       def can_close?
-        unless current_user.can_close?(@issue)
-          redirect_to @issue, notice: 'Ви не маєте права на це...'
-        end
+        redirect_to @issue, notice: 'Ви не маєте права на це...' \
+                                          unless current_user.can_close?(@issue)
       end
-
     end
   end
 end

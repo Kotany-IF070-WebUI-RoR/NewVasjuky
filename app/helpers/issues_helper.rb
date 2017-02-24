@@ -18,7 +18,7 @@ module IssuesHelper
 
   def status_control_link(text, path, style)
     button_tag text, class: "btn btn-#{style} btn-sm change_status_link",
-            method: :patch, 'data-target': '#change_status_form',
-            'data-toggle': 'modal', 'data-path': path
+                     method: :patch, 'data-target': '#change_status_form',
+                     'data-toggle': 'modal', 'data-path': path
   end
 end

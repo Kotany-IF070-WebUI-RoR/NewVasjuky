@@ -43,8 +43,9 @@ RSpec.describe FeedsController, type: :controller do
     let(:issue) { create(:issue) }
     let(:event) do
       build(:event, author_id: admin.id, before_status: :pending,
-            after_status: :opened, issue: issue )
+                    after_status: :opened, issue: issue)
     end
+
     it 'get notification when follower and not author of event' do
       reporter.follow!(issue)
       expect(reporter.new_notifications.any?).to be_falsey

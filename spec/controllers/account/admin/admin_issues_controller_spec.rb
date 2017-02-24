@@ -7,8 +7,8 @@ describe Account::Admin::IssuesController do
   let(:issue) { create(:issue) }
   let(:event) do
     build(:event, author_id: admin, before_status: :pending,
-          after_status: :opened )
-    end
+                  after_status: :opened)
+  end
 
   describe 'Get #index' do
     let(:action) { get :index }
@@ -36,10 +36,14 @@ describe Account::Admin::IssuesController do
   end
 
   describe 'Approve issues' do
-    let(:action) { patch :approve, params: { id: issue.id, event: event.attributes } }
+    let(:action) do
+      patch :approve, params: { id: issue.id, event: event.attributes }
+    end
+
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
     end
+
     it 'when user is not logged in' do
       action
       issue.reload
@@ -69,10 +73,14 @@ describe Account::Admin::IssuesController do
   end
 
   describe 'Decline issues' do
-    let(:action) { patch :decline, params: { id: issue.id, event: event.attributes } }
+    let(:action) do
+      patch :decline, params: { id: issue.id, event: event.attributes }
+    end
+
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
     end
+
     it 'when user is not logged in' do
       action
       issue.reload
@@ -103,11 +111,14 @@ describe Account::Admin::IssuesController do
 
   describe 'Close issues' do
     let(:issue_opened) { create(:issue, status: :opened) }
-    let(:action) { patch :close, params: { id: issue_opened.id,
-                                           event: event.attributes } }
+    let(:action) do
+      patch :close, params: { id: issue_opened.id, event: event.attributes }
+    end
+
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
     end
+
     it 'when user is not logged in' do
       action
       issue_opened.reload

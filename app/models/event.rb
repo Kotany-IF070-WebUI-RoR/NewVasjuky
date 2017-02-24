@@ -1,4 +1,3 @@
-# Encoding: utf-8
 class Event < ApplicationRecord
   include Statuses
   enum before_status: STATUSES_SYM, _prefix: :before

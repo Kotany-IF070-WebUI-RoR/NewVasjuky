@@ -62,7 +62,6 @@ FactoryGirl.define do
     after_status :opened
     association :issue, factory: :issue
 
-
     trait :approve do
       before_status :pending
       after_status :opened
