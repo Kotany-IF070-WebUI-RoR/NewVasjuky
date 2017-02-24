@@ -14,10 +14,11 @@
         button.close data-dismiss="modal" type="button"  &times;
         h4.modal-title Підтвердіть зміну статусу
       .modal-body
-        = simple_form_for @event, url: '#', remote: true, authenticity_token: true,
+        = simple_form_for @event, url: '#', authenticity_token: true,
         html: { method: :patch, id: 'add_event_description' } do |f|
           = f.input :description, label: 'Опис',
-                  placeholder: 'Обґрунтування зміни статусу'
+                  placeholder: 'Обґрунтування зміни статусу',
+                  input_html: {maxlength: 2000}
           #event_atachments
           = f.input :image, as: :file, label: 'Додати зображення'
           .modal-footer

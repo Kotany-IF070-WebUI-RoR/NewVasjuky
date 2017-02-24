@@ -31,6 +31,7 @@ module Account
           @issue.approve!
           @issue.create_event(@event)
           @issue.post_to_facebook!
+          redirect_to @issue, notice: 'Статус успішно змінений.'
         else
           redirect_to @issue, error: 'Щось пішло не так, спробуйте ще раз...'
         end
@@ -40,6 +41,7 @@ module Account
         if @issue.may_decline?
           @issue.decline!
           @issue.create_event(@event)
+          redirect_to @issue, notice: 'Статус успішно змінений.'
         else
           redirect_to @issue, error: 'Щось пішло не так, спробуйте ще раз...'
         end
@@ -49,6 +51,7 @@ module Account
         if @issue.may_close?
           @issue.close!
           @issue.create_event(@event)
+          redirect_to @issue, notice: 'Статус успішно змінений.'
         else
           redirect_to @issue, error: 'Щось пішло не так, спробуйте ще раз...'
         end
@@ -69,10 +72,6 @@ module Account
         @event = Event.new(event_params)
         @event.issue = @issue
         @event.author_id = current_user.id
-        if @event.invalid?
-          render json: @event.errors.messages,
-                 status: :unprocessable_entity
-        end
       end
 
       def event_params

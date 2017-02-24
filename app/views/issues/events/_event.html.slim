@@ -12,7 +12,7 @@
       .row
         .col-md-6.col-sm-8.col-xs-7
           = render 'events/status-change-labels', event: event
-        .col-sm-2.col-md-offset-3.col-xs-5
-          = button_tag 'Деталі', data: { event_id: "#{event.id}"},
-                  class: 'btn btn-primary event-detail-link'
-  = render 'events/event_details_modal'
+        -if event.details?
+          .col-sm-2.col-md-offset-3.col-xs-5
+            = button_tag 'Деталі', data: { event_id: "#{event.id}"},
+                    class: 'btn btn-primary event-detail-link'

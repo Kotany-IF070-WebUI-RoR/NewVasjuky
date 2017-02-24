@@ -10,9 +10,7 @@ class Event < ApplicationRecord
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :public_events, -> { where(after_status: [:opened, :closed]) }
-  validates :description, presence: true, length: { maximum: 2000,
-                                                    too_long: 'Надто довгий.
- Максимум %{count} символів'}
+  validates :description, length: { maximum: 2000 }
 
   def before_status_full
     STATUSES[before_status]
@@ -29,6 +27,10 @@ class Event < ApplicationRecord
 
   def unread_by?(user)
     notifications.unread.find_by(user_id: user.id).present?
+  end
+
+  def details?
+    image.present? || description.present?
   end
 
   private
