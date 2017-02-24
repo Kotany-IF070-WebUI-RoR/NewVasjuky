@@ -1,6 +1,6 @@
 function init_change_status_form() {
     $("#add_event_description").on("ajax:success", function (e, data, status, xhr) {
-        location.reload()
+        location.reload();
     }).on("ajax:error", function (e, xhr, status, error) {
         remove_error_status(this);
         render_errors(xhr.responseText, this, 'event');
@@ -8,7 +8,7 @@ function init_change_status_form() {
 
     $( ".control_status_panel" ).on( "click", function( event ) {
         if ($(event.target).hasClass('change_status_link')){
-            var url = event.target.getAttribute('data-path')
+            var url = event.target.getAttribute('data-path');
             set_form_action(url)
         }
     });
