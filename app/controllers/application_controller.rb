@@ -31,8 +31,9 @@ class ApplicationController < ActionController::Base
   def require_active_user
     return if current_user.active?
     redirect_back(fallback_location: root_path)
-    flash[:alert] = 'У вас немає доступу доступу цієї сторінки.
-                     Ваш аккаунт заблоковано.'
+    flash[:alert] = "У вас немає доступу доступу цієї сторінки.
+                     Ваш аккаунт заблоковано.
+                     Причина: #{current_user.ban_reason}"
   end
 
   def current_user

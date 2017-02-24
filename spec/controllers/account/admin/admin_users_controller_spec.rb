@@ -81,14 +81,16 @@ describe Account::Admin::UsersController, type: :controller do
 
       it 'when logged user is a moderator' do
         sign_in moderator
-        patch :toggle_ban, params: { id: reporter.id }
+        patch :toggle_ban, params: { id: reporter.id,
+                                     user: { ban_reason: 'Reason of a ban' } }
         reporter.reload
         expect(reporter.active).to be false
       end
 
       it 'when logged user is a admin' do
         sign_in admin
-        patch :toggle_ban, params: { id: reporter.id }
+        patch :toggle_ban, params: { id: reporter.id,
+                                     user: { ban_reason: 'Reason of a ban' } }
         reporter.reload
         expect(reporter.active).to be false
       end

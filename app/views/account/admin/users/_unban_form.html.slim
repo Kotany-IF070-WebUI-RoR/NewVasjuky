@@ -1,0 +1,12 @@
+.modal.fade id="unban_user"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"  &times;
+        h4 Підтвердження розблокування користувача
+      =simple_form_for(:user, url: '', method: :patch) do |f|
+        .modal-body
+          #ban_reason
+        .modal-footer
+          = f.submit 'Розблокувати', class: 'button btn btn-success'
+          button.btn.btn-default data-dismiss='modal' type='button'  Скасувати

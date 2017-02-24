@@ -1,0 +1,13 @@
+.modal.fade id="ban_user"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"  &times;
+        h4 Підтвердження блокування користувача
+      =simple_form_for(:user, url: '', method: :patch) do |f|
+        .modal-body
+          = f.input :ban_reason, label: 'Вкажіть причину блокування', required: true,
+                  input_html: { value: '', minlength: 10, maxlength: 255, class: 'control-label' }
+        .modal-footer
+          = f.submit 'Заблокувати', class: 'button btn btn-danger'
+          button.btn.btn-default data-dismiss='modal' type='button'  Скасувати
