@@ -3,15 +3,24 @@ uk:
   activerecord:
     attributes:
       issue:
+        name: 'Ім`я:'
+        address: 'Адреса:'
+        phone: 'Телефон:'
+        email: 'Email:'
+        title: 'Короткий опис:'
+        category_id: 'Категорія:'
+        description: 'Текст звернення:'
+        location: 'Адреса проблеми:'
+        issue_attachment_id: 'Прикріплені файли:'
         statuses:
           opened: 'Відкрито'
           pending: 'Очікує на модерацію'
           declined: 'Відхилено модератором'
           closed: 'Закрито'
       category:
-        name: 'Помилка назви:'
-        description: 'Помилка опису:'
-        tags: 'Помилка тегів:'
+        name: 'Назва:'
+        description: 'Опис:'
+        tags: 'Теги:'
     errors:
       messages:
         record_invalid: 'Виникли наступні помилки: %{errors}'
@@ -21,7 +30,7 @@ uk:
       template:
         header:
           one:   "Виправте помилку в формі"
-          other: "Виправте %{count} помилок в формі"
+          other: "Виправте помилки в формі (%{count} шт.)"
         body:    "Перелік помилок:"
   views:
     pagination:
@@ -163,44 +172,44 @@ uk:
     format: "%{attribute} %{message}"
     messages:
       accepted: має бути прийнятий
-      blank: не може бути пустим
+      blank: необхідно заповнити
       confirmation: не збігається з підтвердженням
-      empty: не може бути порожнім
+      empty: необхідно заповнити
       equal_to: має дорівнювати %{count}
       even: має бути парним
       exclusion: зарезервовано
       greater_than: має бути більше ніж %{count}
       greater_than_or_equal_to: має бути більше ніж або дорівнювати %{count}
       inclusion: не включено до переліку
-      invalid: недійсний
+      invalid: недійсне значення
       less_than: має бути менше ніж %{count}
       less_than_or_equal_to: має бути менше ніж або дорівнювати %{count}
       not_a_number: не число
-      not_an_integer: не э цілим числом
+      not_an_integer: не є цілим числом
       odd: має бути непарним
       taken: вже існує
       too_long:
-        few: 'забагато символів (максимум %{count})'
-        many: 'забагато символів (максимум %{count})'
-        one: 'забагато символів (максимум %{count})'
-        other: 'забагато символів (максимум %{count})'
+        few: занадто багато символів (максимум %{count})
+        many: занадто багато символів (максимум %{count})
+        one: занадто багато символів (максимум %{count})
+        other: занадто багато символів (максимум %{count})
       too_short:
-        few: 'замало символів (мінімум %{count})'
-        many: 'замало символів (мінімум %{count})'
-        one: 'замало символів (мінімум %{count})'
-        other: 'замало символів (мінімум %{count})'
+        few: занадто мало символів (мінімум %{count})
+        many: занадто мало символів (мінімум %{count})
+        one: занадто мало символів (мінімум %{count})
+        other: занадто мало символів (мінімум %{count})
       wrong_length:
-        few: неправильна довжина (має бути %{count} знаки)
-        many: неправильна довжина (має бути %{count} знаків)
-        one: неправильна довжина (має бути %{count} знак)
-        other: неправильна довжина (має бути %{count} знаку)
+        few: неправильна кількість символів (має бути %{count})
+        many: неправильна кількість символів (має бути %{count})
+        one: неправильна кількість символів (має бути %{count})
+        other: неправильна кількість символів (має бути %{count})
     template:
       body: 'Помилки виявлено в таких полях:'
       header:
-        few: "%{model} не збережено через %{count} помилки"
-        many: "%{model} не збережено через %{count} помилок"
-        one: "%{model} не збережено через %{count} помилку"
-        other: "%{model} не збережено через %{count} помилки"
+        few: "%{model} не збережено через помилки (%{count} шт.)"
+        many: "%{model} не збережено через помилки (%{count} шт.)"
+        one: "%{model} не збережено через помилки (%{count} шт.)"
+        other: "%{model} не збережено через помилки (%{count} шт.)"
   helpers:
     select:
       prompt: 'Оберіть: '
