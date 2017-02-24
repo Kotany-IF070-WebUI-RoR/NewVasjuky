@@ -16,4 +16,4 @@
             span.glyphicon.glyphicon-chevron-right.status_arrow
             = get_stylized_status_style(event.after_status, event.after_status_full)
         .col-sm-2.col-md-offset-3.col-xs-5
-          = link_to 'Деталі', '#', class: 'btn btn-primary detail-link'
+          = link_to 'Деталі', event_path(event), class: 'btn btn-primary detail-link'
