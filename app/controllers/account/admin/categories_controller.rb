@@ -18,22 +18,6 @@ module Account
                              default_sort: { name: 'asc' }, partial: 'category'
       end
 
-      def create
-        @category = Category.new(category_params)
-        if @category.save
-          flash[:success] = 'Категорію створено!'
-          redirect_to account_admin_categories_path
-        else
-          render 'new'
-        end
-      end
-
-      def new
-        @category = Category.new
-      end
-
-      def edit; end
-
       def show
         @status = params[:status] || 'opened'
         issues_scope = @category.issues.ordered
@@ -45,6 +29,22 @@ module Account
         @categories = Category.ordered_by_name
         render 'issues/index'
       end
+
+      def new
+        @category = Category.new
+      end
+
+      def create
+        @category = Category.new(category_params)
+        if @category.save
+          flash[:success] = 'Категорію створено!'
+          redirect_to account_admin_categories_path
+        else
+          render 'new'
+        end
+      end
+
+      def edit; end
 
       def update
         if @category.update_attributes(category_params)
@@ -64,6 +64,7 @@ module Account
           flash[:alert] = 'Неможливо видалити непусту категорію!
                            Спочатку Вам необхідно перемістити з неї
                            всі скарги.'
+          redirect_to account_admin_categories_path
         end
       end
 

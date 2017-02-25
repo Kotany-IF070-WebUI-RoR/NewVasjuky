@@ -10,7 +10,7 @@ td.issues_count.col-md-2.col-sm-5.col-xs-12.flex-order-3
   span.user-label Кількість скарг:
   = render partial: 'shared/number_of_issues', locals: { id: object.id }
 td.actions.col-md-4.col-sm-5.col-xs-12.flex-order-4
-  = smart_listing_item_actions [{name: :edit,
+  = smart_listing_item_actions [{name: :custom,
                                  url: edit_account_admin_category_path(object),
                                  icon: 'glyphicon glyphicon-pencil',
                                  title: 'Редагувати'},

@@ -24,6 +24,10 @@ class Category < ApplicationRecord
     self[:name] = s.to_s.capitalize
   end
 
+  def description=(s)
+    self[:description] = s.to_s.capitalize
+  end
+
   def self.statistics_for(day_range, scope)
     stat_filter(day_range, scope).calculate(:count, :all)
                                  .sort_by { |_key, value| value }.to_h
