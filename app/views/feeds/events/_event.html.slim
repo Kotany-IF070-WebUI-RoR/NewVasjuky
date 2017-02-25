@@ -1,20 +1,32 @@
-section.post  class=('unread' if users_feed? && event.unread_by?(current_user)) data-event="#{event.id}"
-  .row
-    .media.issue-container
-      .media-left.media-top.col-md-4.col-sm-4
-        = link_to event.issue
+section.event  class=('unread' if users_feed? && event.unread_by?(current_user)) data-event="#{event.id}"
+  .container
+    .row
+      .col-sm-12.col-md-4
+        - if event.image.present?
+          = image_tag event.image.thumb,
+                  class: 'img-responsive'
+        - else
           = image_tag event.issue.first_attached_image,
-                  class: 'img-responsive attachment media-object'
-      .media-body
-        h2
-          = link_to event.issue.title, issue_path(event.issue_id)
-        .clearfix
-          p.date-comments.info-group-wrapper
-            i.fa.fa-calendar-o
-            span  #{time_ago_in_words(event.created_at)} тому
-        .status_wrapper
-          h4 Статус звернення змінено:
-          p
-            = get_stylized_status_style(event.before_status, event.before_status_full)
-            span.glyphicon.glyphicon-chevron-right.status_arrow
-            = get_stylized_status_style(event.after_status, event.after_status_full)
+                  class: 'img-responsive'
+      .col-sm-12.col-md-8
+        .row
+          .col-xs-12
+            h2
+              = link_to event.issue.title, issue_path(event.issue_id)
+        .row
+          .col-xs-6
+            h4 Статус звернення змінено:
+          .col-xs-4.pull-right
+            p.date-comments.info-group-wrapper.event-date
+              i.fa.fa-calendar-o
+              span  #{I18n.l(event.created_at, format: :short)}
+        .row
+          .col-xs-8.event-status-labels
+            p
+              = get_stylized_status_style(event.before_status, event.before_status_full)
+              span.glyphicon.glyphicon-chevron-right.status_arrow
+              = get_stylized_status_style(event.after_status, event.after_status_full)
+          - if event.details?
+            .col-xs-4.event-details.pull-right
+              = button_tag 'Деталі', data: { event_id: "#{event.id}"},
+                      class: 'btn btn-primary event-detail-link pull-right'

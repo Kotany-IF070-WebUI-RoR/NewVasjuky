@@ -10,7 +10,7 @@ class EventUploader < CarrierWave::Uploader::Base
   process resize_to_limit: [1920, 1080]
 
   version :thumb do
-    process resize_to_fill: [360, 240]
+    process resize_to_fill: [800, 600]
   end
 
   # Choose what kind of storage to use for this uploader:

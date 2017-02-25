@@ -11,14 +11,20 @@
   .container
     .row
       - if users_feed? && !current_user.notifications.any?
-        h3 У вас поки немає жодних оновлень...
-        = link_to 'Переглянути усі', issues_url
+        .col-xs-12
+          h3 У вас поки немає жодних оновлень...
+          = link_to 'Переглянути усі', feed_url
       - else
-      #blog-listing-medium.col-md-9
-        section.container.events_list.loaded_data_container
-        #loader-block.col-xs-12.hidden
-          = image_tag 'loader.gif', alt: 'Loader', id: 'loader-img',
-                  class: 'img-responsive col-xs-2 col-xs-offset-5'
+        #blog-listing-medium.col-md-12
+          section.container.events_list.loaded_data_container
+          #loader-block.col-xs-12.hidden
+            = image_tag 'loader.gif', alt: 'Loader', id: 'loader-img',
+                    class: 'img-responsive col-xs-2 col-xs-offset-5'
+        = render 'events/event_details_modal'
 - if common_feed? || (users_feed? && current_user.notifications.any?)
   javascript:
-      $('document').ready(init_infinity_scroll(1, window.location.href, true));
+      $('document').ready(function () {
+              init_infinity_scroll(1, window.location.href, true);
+              init_event_details();
+          }
+      );
