@@ -10,7 +10,7 @@ function modalWindow() {
           popover.forEach(function (popover) {
             popover.className = 'popover fade bottom in';
           });
-        };
+        }
 
         var buttonYes = Array.from($('.btn.btn-danger')),
         buttonNo = Array.from($('.btn.btn-small'));

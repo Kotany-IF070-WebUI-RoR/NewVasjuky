@@ -47,7 +47,9 @@ module Account
       def edit; end
 
       def update
-        if @category.update_attributes(category_params)
+        @category.assign_attributes(category_params)
+        flash[:notice] = 'Ви не внесли жодних змін' unless @category.changed?
+        if @category.save
           flash[:success] = 'Категорію відредаговано!'
           redirect_to account_admin_categories_path
         else

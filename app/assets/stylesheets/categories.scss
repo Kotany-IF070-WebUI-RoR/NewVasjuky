@@ -56,3 +56,21 @@ html, body {
     top: -11px!important;
   }
 }
+
+.glyphicon.glyphicon-trash.text-muted:hover::after { 
+  content: "Містить скарги";
+  @include border-radius(5px);
+  position: absolute;
+  top: 24px;
+  left: -54px;
+  width: 132px;
+  text-align: center;
+  font-family: $sans1;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: $white_90;
+  padding: 10px;
+  opacity: 1;
+  background-color: $black;
+  z-index: 2000;
+}
