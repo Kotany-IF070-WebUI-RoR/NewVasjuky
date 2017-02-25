@@ -131,6 +131,6 @@ class Issue < ApplicationRecord
   def create_event(event)
     event.before_status = aasm.from_state
     event.after_status = aasm.to_state
-    event.save
+    event.save!
   end
 end
