@@ -49,5 +49,5 @@ header
                   | Авторизуватися
             - else
               = render 'layouts/logged_content'
-        - if current_user.banned?
+        - unless current_user.active?
           div.banned Ваш обліковий запис заблоковано!

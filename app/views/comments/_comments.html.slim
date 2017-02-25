@@ -2,8 +2,7 @@ section.comments.row
   .heading.col-md-12
     h3 Коментарі:
   -if user_signed_in?
-    = render 'comments/form', commentable: commentable \
-    unless current_user.banned?
+    = render 'comments/form', commentable: commentable if current_user.active?
     #delete_confirmation.modal
       .modal-dialog.modal-sm
         .modal-content

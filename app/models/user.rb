@@ -55,10 +55,6 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def active?
-    !banned?
-  end
-
   def new_notifications
     notifications.later_than(last_check_notifications_at)
   end

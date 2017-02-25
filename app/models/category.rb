@@ -12,7 +12,7 @@ class Category < ApplicationRecord
                    length: { minimum: 5, maximum: 100 },
                    format: { with: REGEXP_NAME,
                              message: 'Назва може містити тільки
-                                       літери і цифри' }
+                                       літери, цифри, коми і дефіс.' }
   validates :description, length: { minimum: 20, maximum: 300 }
   validates :tags, length: { minimum: 2, maximum: 100 },
                    format: { with: REGEXP_TAGS,

@@ -32,12 +32,12 @@ module Account
         @user = User.find(params[:id])
 
         return unless @user.reporter?
-        @user.toggle!(:banned)
+        @user.toggle!(:active)
         redirect_back(fallback_location: root_path)
-        if @user.banned?
-          flash[:notice] = "Користувач #{@user.full_name} заблокований"
-        else
+        if @user.active?
           flash[:notice] = "Користувач #{@user.full_name} розблокований"
+        else
+          flash[:notice] = "Користувач #{@user.full_name} заблокований"
         end
       end
 

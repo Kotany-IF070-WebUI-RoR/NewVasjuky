@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Issues::CommentsController, type: :controller do
   let(:reporter) { create(:user, :reporter) }
-  let(:banned_reporter) { create(:user, :reporter, banned: true) }
+  let(:banned_reporter) { create(:user, :reporter, active: false) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :admin) }
   let(:commentable) { create(:issue, user: reporter, status: 'opened') }

@@ -18,7 +18,7 @@ module ApplicationHelper
 
   def bann_user(user)
     return unless admin_or_moderator? && user.reporter?
-    toggle_phrase = user.banned? ? 'Розблокувати' : 'Заблокувати'
+    toggle_phrase = user.active? ? 'Заблокувати' : 'Розблокувати'
     render 'account/admin/users/bann_user', user: user, phrase: toggle_phrase
   end
 

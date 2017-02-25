@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Account::Admin::UsersController, type: :controller do
   let(:reporter) { create(:user, :reporter) }
-  let(:banned_reporter) { create(:user, :reporter, banned: true) }
+  let(:banned_reporter) { create(:user, :reporter, active: false) }
   let(:admin) { create(:user, :admin) }
   let!(:moderator) { create(:user, :moderator) }
 
@@ -69,35 +69,35 @@ describe Account::Admin::UsersController, type: :controller do
       it 'when user is not logged in' do
         patch :toggle_ban, params: { id: reporter.id }
         reporter.reload
-        expect(reporter.banned).to be false
+        expect(reporter.active).to be true
       end
 
       it 'when logged user is a reporter' do
         sign_in reporter
         patch :toggle_ban, params: { id: reporter.id }
         reporter.reload
-        expect(reporter.banned).to be false
+        expect(reporter.active).to be true
       end
 
       it 'when logged user is a moderator' do
         sign_in moderator
         patch :toggle_ban, params: { id: reporter.id }
         reporter.reload
-        expect(reporter.banned).to be true
+        expect(reporter.active).to be false
       end
 
       it 'when logged user is a admin' do
         sign_in admin
         patch :toggle_ban, params: { id: reporter.id }
         reporter.reload
-        expect(reporter.banned).to be true
+        expect(reporter.active).to be false
       end
 
       it 'when unbanning' do
         sign_in admin
         patch :toggle_ban, params: { id: banned_reporter.id }
         banned_reporter.reload
-        expect(banned_reporter.banned).to be false
+        expect(banned_reporter.active).to be true
       end
     end
 
@@ -106,14 +106,14 @@ describe Account::Admin::UsersController, type: :controller do
         sign_in admin
         patch :toggle_ban, params: { id: moderator.id }
         moderator.reload
-        expect(moderator.banned).to be false
+        expect(moderator.active).to be true
       end
 
       it 'when trying to ban admin' do
         sign_in moderator
         patch :toggle_ban, params: { id: admin.id }
         admin.reload
-        expect(admin.banned).to be false
+        expect(admin.active).to be true
       end
     end
   end
