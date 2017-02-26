@@ -289,8 +289,11 @@
     margin-top: 4px;
   }
 }
-.fa-thumbs-o-up, .fa-thumbs-up, .fa-thumbs-down{
-    font-size: 1.4em;
+.fa-thumbs-o-up, .fa-thumbs-up,
+.fa-thumbs-down, .fa-thumbs-o-down,
+.fa-check-square-o, .fa-pencil-square-o{
+  font-size: 1.4em;
+  padding-right: 0.5em;
 }
 
 a{

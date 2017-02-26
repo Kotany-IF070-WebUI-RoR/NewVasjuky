@@ -19,7 +19,7 @@
                 = link_to issue.category.name, category_path(issue.category)
               p.date-comments.info-group-wrapper.col-md-5.col-sm-5.col-xs-12
                 i.fa.fa-calendar-o
-                span  #{time_ago_in_words(issue.created_at)} тому
+                span  #{issue.created_at.strftime("%d/%m/%Y %H:%M")}
                 br
                 i.fa.fa-location-arrow
                 span  #{issue.location}
