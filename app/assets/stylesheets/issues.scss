@@ -251,8 +251,6 @@
   margin-top: 15px;
 }
 
-//events block
-
 .row.status_changes {
   .event-wrapper {
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -279,5 +277,16 @@
 
   .detail-link {
     margin-top: 4px;
+  }
+}
+.fa-thumbs-o-up, .fa-thumbs-up, .fa-thumbs-down{
+    font-size: 1.4em;
+}
+
+a{
+  &:hover {
+    .fa-thumbs-up:before{
+      content: "\f165";
+    }
   }
 }
