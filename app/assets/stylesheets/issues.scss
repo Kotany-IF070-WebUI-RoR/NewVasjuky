@@ -198,8 +198,18 @@
   vertical-align: middle;
 }
 
-.zero-margin.date-comments {
+.zero-margin{
+  .date-comments {
   margin: 10px 0;
+  }
+}
+
+.date-comments {
+  span {
+    .fa {
+    padding-right: 0.5em;
+    }
+  }
 }
 
 #heading-breadcrumbs .status-badge {
