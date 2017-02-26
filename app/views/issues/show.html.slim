@@ -17,16 +17,16 @@
           .follow.pull-right
             .addthis_sharing_toolbox
             - if user_signed_in? && current_user.active?
-              = render 'shared/follow_link', issue: @issue
+            = render 'shared/follow_link', issue: @issue
             .followers-count
               span Слідкують:
-              span.badge.pull-right #{@issue.followers_count}
+              span.badge #{@issue.followers_count}
     .row
       .col-md-6.col-sm-6.col-xs-8
         p.date-comments
           span
             i.fa.fa-calendar-o
-            span  #{time_ago_in_words(@issue.created_at)} тому
+            span  #{@issue.created_at.strftime("%d/%m/%Y %H:%M")}
           br
           span
             i.fa.fa-location-arrow
