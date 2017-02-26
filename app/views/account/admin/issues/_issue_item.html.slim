@@ -9,25 +9,6 @@ td.col-md-2.col-sm-2.col-xs-11.word-break.flex-order-3
   = object.user.full_name
 td.col-md-1.col-sm-1.col-xs-5.status-label.flex-order-1
   = get_stylized_status_style(object.status, object.status_name)
-td.actions.col-md-2.col-sm-2.col-xs-8.flex-order-4
-  = smart_listing_item_actions [{name: :custom,
-                                         url: approve_account_admin_issue_path(object),
-                                         method: :patch,
-                                         icon: 'fa fa-thumbs-o-up',
-                                         remote: true, if: object.pending?,
-                                         title: 'Схвалити звернення'},
-                                         {name: :custom,
-                                          url: decline_account_admin_issue_path(object),
-                                          method: :patch,
-                                          icon: 'fa fa-thumbs-o-down',
-                                          remote: true, if: object.pending?,
-                                          title: 'Відхилити звернення'},
-                                         {name: :custom,
-                                          url: close_account_admin_issue_path(object),
-                                          method: :patch,
-                                          icon: 'fa fa-check-square-o',
-                                          remote: true, if: object.opened?,
-                                          title: 'Закрити звернення'}]
-td.actions.col-md-1.col-sm-1.col-xs-4.flex-order-5
+td.actions.col-md-1.col-sm-1.col-xs-4.flex-order-4
   = link_to edit_account_admin_issue_path(object)
     span.fa.fa-pencil-square-o
