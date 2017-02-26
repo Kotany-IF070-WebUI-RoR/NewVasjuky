@@ -1,11 +1,14 @@
 header
-  .navbar-affixed-top.affix-top[data-spy="affix" data-offset-top="200"]
-    #navbar.navbar.navbar-default.yamm[role="navigation"]
-      .container
-        .navbar-header
-          a.navbar-brand.home[href="/"]
-            img.hidden-xs.hidden-sm[src="/images/logo-small.png" alt="New Vasjuky logo"]
-            img.visible-xs.visible-sm[src="/images/logo-small.png" alt="New Vasjuky logo"]
+  #navbar.navbar.navbar-default.yamm[role="navigation"]
+    .container
+      .navbar-header
+        a.navbar-brand.home[href="/"]
+          img.hidden-xs.hidden-sm[src="/images/logo-small.png" alt="New Vasjuky logo"]
+          img.visible-xs.visible-sm[src="/images/logo-small.png" alt="New Vasjuky logo"]
+          span.sr-only
+            | На головну
+        .navbar-buttons
+          button.navbar-toggle.btn-template-main[type="button" data-toggle="collapse" data-target="#navigation"]
             span.sr-only
               | На головну
           .navbar-buttons
@@ -37,7 +40,7 @@ header
                 b.caret
               ul.dropdown-menu
                 li
-                 = link_to 'Статистика звернень', statistics_path(period: 'month', sort: 'time')
+                  = link_to 'Статистика звернень', statistics_path(period: 'month', sort: 'time')
                 li
                   = link_to 'Рейтинг користувачів', ranking_users_path
                 li
