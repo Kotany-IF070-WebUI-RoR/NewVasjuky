@@ -32,9 +32,10 @@
   //margin: 0 auto;
 }
 
-.unobtrusive-flash-container.fixed .alert {
-  z-index: 1051;
+.unobtrusive-flash-container  {
+  width: 100%;
   position: fixed;
+  z-index: 1051 !important;
 }
 
 .coordinates {
