@@ -5,10 +5,7 @@ describe Account::Admin::IssuesController do
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :moderator) }
   let(:issue) { create(:issue) }
-  let(:event) do
-    build(:event, author_id: admin, before_status: :pending,
-                  after_status: :opened)
-  end
+  let(:event) { build(:event, author_id: admin) }
 
   describe 'Get #index' do
     let(:action) { get :index }
