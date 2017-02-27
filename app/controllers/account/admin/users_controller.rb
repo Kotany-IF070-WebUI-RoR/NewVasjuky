@@ -28,12 +28,11 @@ module Account
       end
 
       def toggle_ban
-
         return unless @user.reporter?
-        if @user.banned?
-          @user.update_attribute(:ban_reason, '')
-        else
+        if @user.active?
           @user.update_attributes(user_params)
+        else
+          @user.update_attribute(:ban_reason, '')
         end
         @user.toggle!(:active)
         redirect_back(fallback_location: root_path)
@@ -44,7 +43,7 @@ module Account
 
       def ban_notice_message
         if @user.active?
-          flash[:notice] = "Користувач #{@user.full_name} розблокований"  
+          flash[:notice] = "Користувач #{@user.full_name} розблокований"
         else
           flash[:notice] = "Користувач #{@user.full_name} заблокований"
         end

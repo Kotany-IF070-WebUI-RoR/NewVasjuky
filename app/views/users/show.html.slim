@@ -17,6 +17,8 @@
         h4 Контактна інформація:
         p Електронна пошта: #{@user.email}
         p Запис зареєстровано: #{l @user.created_at, format: :long}
+        - if access_to_information_about_ban?(@user)
+          .alert.alert-danger = "Обліковий запис заблоковано. Причина: #{@user.ban_reason}"
     .box.user-issues.row
       .col-xs-12
         h3 Мої звернення:

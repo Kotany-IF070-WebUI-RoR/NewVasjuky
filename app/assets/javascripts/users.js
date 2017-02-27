@@ -4,7 +4,7 @@ function submit_rankings_period(select_period) {
 function init_user_ban_form() {
     $( 'body' ).on( 'click', '.ban', function( event ) {
         var user = event.target.getAttribute('data-user');
-        var url = '/account/admin/users/' + user +  '/toggle_ban';
+        var url = Routes.toggle_ban_account_admin_user_path(user);
         set_form_action(url);
         $('#user_ban_reason').val('');
         $('#ban_user').modal('show');
@@ -12,7 +12,7 @@ function init_user_ban_form() {
 
     $( 'body' ).on( 'click', '.unban', function( event ) {
         var user = event.target.getAttribute('data-user');
-        var url = '/account/admin/users/' + user +  '/toggle_ban';
+        var url = Routes.toggle_ban_account_admin_user_path(user);
         var reason = event.target.getAttribute('data-reason');
         set_form_action(url);
         $('#ban_reason').text('Причина блокування: ' + reason);
