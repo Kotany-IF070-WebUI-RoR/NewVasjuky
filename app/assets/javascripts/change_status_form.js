@@ -37,7 +37,7 @@ function init_change_status_form() {
             $('#submit-event').prop('disabled', true);
             flash_messages(errors)
         }
-        else if (errors.length == 0) {
+        else if (errors.length === 0) {
             $('#submit-event').prop('disabled', false);
         }
     }
@@ -54,12 +54,12 @@ function init_change_status_form() {
         var errors = [];
 
         $.each(files, function() {
-            if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {
+            if (this.size && maxFileSize && this.size > parseInt(maxFileSize, 10)) {
                 errors.push(maxExceededMessage)
             }
 
             extName = this.name.split('.').pop();
-            if ($.inArray(extName, allowedExtension) == -1) {
+            if ($.inArray(extName, allowedExtension) === -1) {
                 errors.push(extErrorMessage)
             }
         });
