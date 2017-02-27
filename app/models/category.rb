@@ -20,14 +20,6 @@ class Category < ApplicationRecord
                                        літери, цифри і знак _.
                                        Розділяти теги потрібно пробілом.' }
 
-  def name=(s)
-    self[:name] = s.mb_chars.capitalize.to_s
-  end
-
-  def description=(s)
-    self[:description] = s.mb_chars.capitalize.to_s
-  end
-
   def self.statistics_for(day_range, scope)
     stat_filter(day_range, scope).calculate(:count, :all)
                                  .sort_by { |_key, value| value }.to_h

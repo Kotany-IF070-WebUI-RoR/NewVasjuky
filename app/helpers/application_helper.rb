@@ -62,4 +62,8 @@ module ApplicationHelper
                          ],
                          default_sort: { name: 'asc' }, partial: 'category'
   end
+
+  def date_formatter(date)
+    date.strftime('%m.%d.%Y, %T')
+  end
 end
