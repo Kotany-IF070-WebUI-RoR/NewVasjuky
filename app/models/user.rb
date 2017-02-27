@@ -70,4 +70,8 @@ class User < ApplicationRecord
   def can_close?(issue)
     admin? || moderator? || (issue.user == self)
   end
+
+  def can_get_details_of?(event)
+    event.public? || moderator? || (event.issue.user == self)
+  end
 end

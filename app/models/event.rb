@@ -32,6 +32,10 @@ class Event < ApplicationRecord
     image.present? || description.present?
   end
 
+  def public?
+    %w(opened closed).include?(after_status)
+  end
+
   private
 
   def mail_on_issue_status_changed
