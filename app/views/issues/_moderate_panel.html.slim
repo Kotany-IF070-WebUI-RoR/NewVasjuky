@@ -23,7 +23,7 @@
           #event_atachments
             = f.file_field :image, as: :file, label: 'Додати зображення',
                     data: { max_file_size: 8.megabytes }
-            img#img_prev.img-thumbnail.hidden alt=('your image') height="300" src="#" width="300" /
+            img#img_prev.img-thumbnail.hidden alt=('Завантажене зображення') height="300" src="#" width="300" /
 
           .modal-footer
             = f.button :submit, 'Підтвердити', class: 'btn btn-success',

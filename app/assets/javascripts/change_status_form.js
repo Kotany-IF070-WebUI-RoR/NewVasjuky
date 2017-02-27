@@ -7,8 +7,8 @@ function init_change_status_form() {
     });
 
     $("#event_image").change(function(){
-        $('#img_prev').removeClass('hidden');
-        readURL(this);
+        $('#img_prev').attr('src', '').addClass('hidden');
+        load_preview(this);
         validateFiles(this)
     });
 
@@ -19,12 +19,12 @@ function init_change_status_form() {
         form.attr('action', url)
     }
 
-    function readURL(input) {
+    function load_preview(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                $('#img_prev').attr('src', e.target.result);
+                $('#img_prev').attr('src', e.target.result).removeClass('hidden');
             };
             reader.readAsDataURL(input.files[0]);
         }
@@ -32,7 +32,6 @@ function init_change_status_form() {
 
     function validateFiles(inputFile) {
         var errors = get_errors(inputFile.files, $(inputFile).data('max-file-size'));
-
         if (errors.length > 0) {
             $('#submit-event').prop('disabled', true);
             flash_messages(errors)
