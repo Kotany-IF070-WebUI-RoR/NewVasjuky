@@ -1,0 +1,34 @@
+.control_status_panel
+  - if @issue.pending? && (current_user.admin? || current_user.moderator?)
+    = status_control_link('Підтвердити', approve_account_admin_issue_path(@issue), 'success')
+    = status_control_link('Відхилити', decline_account_admin_issue_path(@issue), 'danger')
+  - if @issue.opened? && current_user.can_close?(@issue)
+    = status_control_link('Закрити',close_account_admin_issue_path, 'success')
+
+
+/modal
+#change_status_form.modal.fade role="dialog"
+  .modal-dialog
+    /! Modal content
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"  &times;
+        h4.modal-title Підтвердіть зміну статусу
+      .modal-body
+        = simple_form_for @event, url: '#', authenticity_token: true,
+                html: { method: :patch, id: 'add_event_description' } do |f|
+          = f.input :description, label: 'Опис',
+                  placeholder: 'Обґрунтування зміни статусу',
+                  input_html: {maxlength: 2000}
+          #event_atachments
+            = f.file_field :image, as: :file, label: 'Додати зображення',
+                    data: { max_file_size: 8.megabytes }
+            img#img_prev.img-thumbnail.hidden alt=('your image') height="300" src="#" width="300" /
+
+          .modal-footer
+            = f.button :submit, 'Підтвердити', class: 'btn btn-success',
+                    id: 'submit-event'
+            button.btn.btn-default data-dismiss="modal" type="button"  Відмінити
+
+javascript:
+    $(document).ready(function () { init_change_status_form() });

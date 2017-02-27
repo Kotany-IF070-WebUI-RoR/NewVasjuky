@@ -55,6 +55,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :events, only: [:show]
+
   get  'followees', to: 'issues#followees'
   get  'feed', to: 'feeds#common_feed'
   get  'user_feed', to: 'feeds#user_feed'

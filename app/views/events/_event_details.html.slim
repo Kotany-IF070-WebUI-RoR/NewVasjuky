@@ -1,0 +1,20 @@
+section.event-details
+  - if @event.image.present?
+    .row
+      .col-xs-12.img-block
+          = image_tag @event.image, class: 'img-responsive'
+  .text-block
+    .row.event-status
+      .col-xs-5.col-md-4
+        h4 Статус змінено:
+      .col-xs-7.col-md-5
+        = render 'events/status-change-labels', event: @event
+      .col-xs-3.pull-right
+        p.date-comments.info-group-wrapper.event-date
+          i.fa.fa-calendar-o
+          span  #{I18n.l(@event.created_at, format: :short)}
+    - if @event.description.present?
+      .row.event-description
+        .col-xs-12
+          h4 Опис:
+          p #{@event.description}

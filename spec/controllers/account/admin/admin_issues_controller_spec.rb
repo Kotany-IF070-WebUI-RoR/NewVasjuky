@@ -5,6 +5,7 @@ describe Account::Admin::IssuesController do
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :moderator) }
   let(:issue) { create(:issue) }
+  let(:event) { build(:event, author_id: admin) }
 
   describe 'Get #index' do
     let(:action) { get :index }
@@ -32,10 +33,14 @@ describe Account::Admin::IssuesController do
   end
 
   describe 'Approve issues' do
-    let(:action) { patch :approve, params: { id: issue.id }, xhr: true }
+    let(:action) do
+      patch :approve, params: { id: issue.id, event: event.attributes }
+    end
+
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
     end
+
     it 'when user is not logged in' do
       action
       issue.reload
@@ -65,10 +70,14 @@ describe Account::Admin::IssuesController do
   end
 
   describe 'Decline issues' do
-    let(:action) { patch :decline, params: { id: issue.id }, xhr: true }
+    let(:action) do
+      patch :decline, params: { id: issue.id, event: event.attributes }
+    end
+
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
     end
+
     it 'when user is not logged in' do
       action
       issue.reload
@@ -99,10 +108,14 @@ describe Account::Admin::IssuesController do
 
   describe 'Close issues' do
     let(:issue_opened) { create(:issue, status: :opened) }
-    let(:action) { patch :close, params: { id: issue_opened.id }, xhr: true }
+    let(:action) do
+      patch :close, params: { id: issue_opened.id, event: event.attributes }
+    end
+
     before :each do
       @request.env['HTTP_REFERER'] = account_admin_issues_url
     end
+
     it 'when user is not logged in' do
       action
       issue_opened.reload
@@ -137,7 +150,7 @@ describe Account::Admin::IssuesController do
       it do
         sign_in admin
         expect(issue.events.count).to eq(0)
-        patch :approve, params: { id: issue.id }, xhr: true
+        patch :approve, params: { id: issue.id, event: event.attributes }
         issue.reload
         expect(issue.events.count).to eq(1)
         expect(Event.last.before_status).to eq('pending')
@@ -150,7 +163,7 @@ describe Account::Admin::IssuesController do
       it do
         sign_in admin
         expect(issue.events.count).to eq(0)
-        patch :decline, params: { id: issue.id }, xhr: true
+        patch :decline, params: { id: issue.id, event: event.attributes }
         issue.reload
         expect(issue.events.count).to eq(1)
         expect(Event.last.before_status).to eq('pending')
@@ -163,7 +176,7 @@ describe Account::Admin::IssuesController do
       it do
         sign_in admin
         expect(issue.events.count).to eq(0)
-        patch :close, params: { id: issue.id }, xhr: true
+        patch :close, params: { id: issue.id, event: event.attributes }
         expect(issue.events.count).to eq(1)
         expect(Event.last.before_status).to eq('opened')
         expect(Event.last.after_status).to eq('closed')

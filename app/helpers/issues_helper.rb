@@ -15,4 +15,10 @@ module IssuesHelper
      #{@issue.latitude},#{@issue.longitude}&markers=#{@issue.latitude},
      #{@issue.longitude}&zoom=17&size=640x350&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
   end
+
+  def status_control_link(text, path, style)
+    button_tag text, class: "btn btn-#{style} btn-sm change_status_link",
+                     method: :patch, 'data-target': '#change_status_form',
+                     'data-toggle': 'modal', 'data-path': path
+  end
 end

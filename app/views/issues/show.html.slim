@@ -10,6 +10,8 @@
           br
           span Категорія:
           = link_to " #{@issue.category.name}", category_path(@issue.category)
+        -if current_user.admin? || current_user.moderator? || current_user.can_close?(@issue)
+          = render 'issues/moderate_panel'
       .info-group-wrapper.col-md-6.col-sm-6.col-xs-6
         .follow-wrapper
           .follow.pull-right
@@ -44,14 +46,19 @@
         .heading
           h3 Проблема:
         p.word-break.lead= description "#{@issue.description}"
+
+    - if @events.any?
+            = render 'issues/events/events'
     section.blog-post
       - if @relevant_issues.any?
         = render 'relevant_issues'
       = render 'comments/comments', commentable: @issue
+
 javascript:
   $(document).ready(function(){
     // initIssuesMap(false, #{@issue.latitude}, #{@issue.longitude});
     showIssueMap(#{@issue.latitude}, #{@issue.longitude});
+    init_event_details();
     $("#issue-carousel").owlCarousel({
         nav : true,
         items : 1,

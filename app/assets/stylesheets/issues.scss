@@ -32,8 +32,10 @@
   //margin: 0 auto;
 }
 
-.unobtrusive-flash-container.fixed .alert {
+.unobtrusive-flash-container  {
+  width: 100%;
   position: fixed;
+  z-index: 1051 !important;
 }
 
 .coordinates {
@@ -247,4 +249,35 @@
 
 .media-attachment {
   margin-top: 15px;
+}
+
+//events block
+
+.row.status_changes {
+  .event-wrapper {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .row {
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+
+    .date-comments {
+      margin-top: 9px;
+      margin-bottom: 0
+    }
+
+  }
+  .status-labels_wrapper {
+    margin-top: 6px;
+    font-size: 17px;
+  }
+
+  .detail-link {
+    margin-top: 4px;
+  }
 }

@@ -54,4 +54,27 @@ FactoryGirl.define do
     association :commentable, factory: :issue
     association :user, factory: :user
   end
+
+  factory :event do
+    description { Faker::Lorem.characters(255) }
+    image File.open("#{Rails.root}/spec/files/avatar.jpg")
+    before_status :pending
+    after_status :opened
+    association :issue, factory: :issue
+
+    trait :approve do
+      before_status :pending
+      after_status :opened
+    end
+
+    trait :decline do
+      before_status :pending
+      after_status :declined
+    end
+
+    trait :close do
+      before_status :opened
+      after_status :closed
+    end
+  end
 end

@@ -1,0 +1,7 @@
+.row.status_changes
+  .col-md-12
+    section.events_list
+      .heading
+        h3 Оновлення статусу:
+      = render partial: 'issues/events/event', collection: @events
+  = render 'events/event_details_modal'

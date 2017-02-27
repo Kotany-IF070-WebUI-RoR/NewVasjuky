@@ -1,9 +1,9 @@
 doctype html
 html
   = render 'shared/head'
-
   body
     #all
+      .unobtrusive-flash-container
       = render 'layouts/header'
       main
         = yield

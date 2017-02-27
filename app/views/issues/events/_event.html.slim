@@ -1,0 +1,18 @@
+.container.event-wrapper
+  .row
+    .col-sm-6.col-xs-12
+      .row
+        .col-xs-6
+          h4 Статус змінено:
+        .col-xs-6
+          p.date-comments
+            i.fa.fa-calendar-o
+            span  #{I18n.l(event.created_at, format: :short)}
+    .col-sm-6.col-xs-12
+      .row
+        .col-md-6.col-sm-8.col-xs-7
+          = render 'events/status-change-labels', event: event
+        -if event.details?
+          .col-sm-2.col-md-offset-3.col-xs-5
+            = button_tag 'Деталі', data: { event_id: "#{event.id}"},
+                    class: 'btn btn-primary event-detail-link'

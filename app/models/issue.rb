@@ -128,11 +128,9 @@ class Issue < ApplicationRecord
       .group_by_period(group, :created_at, range: period).count
   end
 
-  def create_event_by(user)
-    event = events.new
-    event.author_id = user.id
+  def create_event(event)
     event.before_status = aasm.from_state
     event.after_status = aasm.to_state
-    event.save
+    event.save!
   end
 end

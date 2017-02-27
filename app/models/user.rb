@@ -66,4 +66,12 @@ class User < ApplicationRecord
   def unread_notifications_for(events)
     notifications.unread.where(event_id: events.ids)
   end
+
+  def can_close?(issue)
+    admin? || moderator? || (issue.user == self)
+  end
+
+  def can_get_details_of?(event)
+    event.public? || moderator? || (event.issue.user == self)
+  end
 end

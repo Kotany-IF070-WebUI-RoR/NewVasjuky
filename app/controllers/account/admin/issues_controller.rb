@@ -6,6 +6,9 @@ module Account
       before_action :admin_or_moderator?
       before_action :find_issue,
                     only: [:edit, :update, :approve, :close, :decline]
+      skip_before_action :admin_or_moderator?, only: [:close]
+      before_action :can_close?, only: [:close]
+
       def index
         issue_listing(Issue.moderation_list)
       end
@@ -23,22 +26,55 @@ module Account
       end
 
       def approve
-        @issue.create_event_by(current_user) if @issue.approve!
-        @issue.post_to_facebook!
-        render :update, issue: @issue
+        if change_status_transaction(@issue, 'approve', event_params)
+          @issue.post_to_facebook!
+          redirect_to @issue, notice: 'Статус успішно змінений.'
+        else
+          redirect_to @issue, alert: 'Щось пішло не так, спробуйте ще раз...'
+        end
       end
 
       def decline
-        @issue.create_event_by(current_user) if @issue.decline!
-        render :update, issue: @issue
+        if change_status_transaction(@issue, 'decline', event_params)
+          redirect_to @issue, notice: 'Статус успішно змінений.'
+        else
+          redirect_to @issue, alert: 'Щось пішло не так, спробуйте ще раз...'
+        end
       end
 
       def close
-        @issue.create_event_by(current_user) if @issue.close!
-        render :update, issue: @issue
+        if change_status_transaction(@issue, 'close', event_params)
+          redirect_to @issue, notice: 'Статус успішно змінений.'
+        else
+          redirect_to @issue, alert: 'Щось пішло не так, спробуйте ще раз...'
+        end
       end
 
       private
+
+      def change_status_transaction(issue, status, event_params)
+        ActiveRecord::Base.transaction do
+          issue.send("#{status}!")
+          @event = build_event(issue, event_params)
+          @event.save!
+        end
+      rescue ActiveRecord::RecordInvalid, AASM::InvalidTransition
+        false
+      end
+
+      def build_event(issue, event_params)
+        event = Event.new(event_params)
+        event.issue = issue
+        event.author_id = current_user.id
+        event.before_status = issue.aasm.from_state
+        event.after_status = issue.aasm.to_state
+        event
+      end
+
+      def can_close?
+        redirect_to @issue, error: 'Щось пішло не так, спробуйте ще раз...'\
+                                          unless current_user.can_close?(@issue)
+      end
 
       def find_issue
         @issue = Issue.find(params[:id])
@@ -47,6 +83,10 @@ module Account
       def issues_params
         params.require(:issue).permit(:category_id, :location, :latitude,
                                       :longitude)
+      end
+
+      def event_params
+        params.require(:event).permit(:description, :image)
       end
     end
   end

@@ -2,14 +2,15 @@ class Event < ApplicationRecord
   include Statuses
   enum before_status: STATUSES_SYM, _prefix: :before
   enum after_status: STATUSES_SYM, _prefix: :after
+  mount_uploader :image, EventUploader
   belongs_to :issue
   has_many :notifications
   after_create :create_notifications, :mail_on_issue_status_changed
-  validates :issue_id, :before_status, :after_status,
-            presence: true
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :public_events, -> { where(after_status: [:opened, :closed]) }
+  validates :image, file_size: { less_than: 8.megabytes }
+  validates :description, length: { maximum: 2000 }
 
   def before_status_full
     STATUSES[before_status]
@@ -26,6 +27,14 @@ class Event < ApplicationRecord
 
   def unread_by?(user)
     notifications.unread.find_by(user_id: user.id).present?
+  end
+
+  def details?
+    image.present? || description.present?
+  end
+
+  def public?
+    %w(opened closed).include?(after_status)
   end
 
   private
