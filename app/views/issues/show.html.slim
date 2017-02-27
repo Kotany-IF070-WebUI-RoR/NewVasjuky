@@ -18,6 +18,7 @@
             .addthis_sharing_toolbox
             - if user_signed_in? && current_user.active?
               = render 'shared/follow_link', issue: @issue
+              = render 'edit_link', issue: @issue
             .followers-count
               span Слідкують:
               span.badge.pull-right #{@issue.followers_count}
