@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20170225112600) do
     t.string   "last_name"
     t.integer  "followees_count",             default: 0
     t.datetime "last_check_notifications_at"
+    t.string   "ban_reason"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

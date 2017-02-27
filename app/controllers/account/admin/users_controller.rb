@@ -5,6 +5,7 @@ module Account
     class UsersController < ApplicationController
       before_action :admin_or_moderator?, only: [:index, :toggle_ban]
       before_action :admin?, only: [:change_role]
+      before_action :find_user, only: [:change_role, :toggle_ban]
 
       def index
         @users_scope = User.all
@@ -18,8 +19,6 @@ module Account
       end
 
       def change_role
-        @user = User.find(params[:id])
-
         if @user.update_attributes(user_params)
           redirect_back(fallback_location: root_path)
         else
@@ -29,11 +28,20 @@ module Account
       end
 
       def toggle_ban
-        @user = User.find(params[:id])
-
         return unless @user.reporter?
+        if @user.active?
+          @user.update_attributes(user_params)
+        else
+          @user.update_attribute(:ban_reason, '')
+        end
         @user.toggle!(:active)
         redirect_back(fallback_location: root_path)
+        ban_notice_message
+      end
+
+      private
+
+      def ban_notice_message
         if @user.active?
           flash[:notice] = "Користувач #{@user.full_name} розблокований"
         else
@@ -41,10 +49,12 @@ module Account
         end
       end
 
-      private
+      def find_user
+        @user = User.find(params[:id])
+      end
 
       def user_params
-        params.require(:user).permit(:role)
+        params.require(:user).permit(:role, :ban_reason)
       end
 
       def user_role_select

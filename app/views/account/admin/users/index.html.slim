@@ -23,3 +23,7 @@
               = text_field_tag :filter, '', class: 'search form-control',
                       placeholder: 'Пошук', autocomplete: :off
           = smart_listing_render(:users)
+= render 'account/admin/users/ban_reason_form'
+= render 'account/admin/users/unban_form'
+javascript:
+  $(document).ready(function () { init_user_ban_form() });
