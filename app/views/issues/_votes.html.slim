@@ -1,7 +1,7 @@
 - if @voted.empty?
   = link_to upvote_issue_path(@issue), method: :post do
-    i.fa.fa-heart-o.heart aria-hidden='true'
+    i.fa.fa-thumbs-o-up aria-hidden='true' title='Підтримати'
 - else
   = link_to downvote_issue_path(@issue), method: :delete do
-    i.fa.fa-heart.heart aria-hidden='true'
+    i.fa.fa-thumbs-up aria-hidden='true' title='Скасувати підтримку'
 span.badge.pull-right #{@issue.votes.count}

@@ -1,53 +1,50 @@
 header
-  .navbar-affixed-top.affix-top[data-spy="affix" data-offset-top="200"]
-    #navbar.navbar.navbar-default.yamm[role="navigation"]
-      .container
-        .navbar-header
-          a.navbar-brand.home[href="/"]
-            img.hidden-xs.hidden-sm[src="/images/logo-small.png" alt="New Vasjuky logo"]
-            img.visible-xs.visible-sm[src="/images/logo-small.png" alt="New Vasjuky logo"]
+  #navbar.navbar.navbar-default.yamm[role="navigation"]
+    .container
+      .navbar-header
+        a.navbar-brand.home[href="/"]
+          img.hidden-xs.hidden-sm[src="/images/logo-small.png" alt="New Vasjuky logo"]
+          img.visible-xs.visible-sm[src="/images/logo-small.png" alt="New Vasjuky logo"]
+          span.sr-only
+            | На головну
+        .navbar-buttons
+          button.navbar-toggle.btn-template-main[type="button" data-toggle="collapse" data-target="#navigation"]
             span.sr-only
-              | На головну
-          .navbar-buttons
-            button.navbar-toggle.btn-template-main[type="button" data-toggle="collapse" data-target="#navigation"]
-              span.sr-only
-                | Перемкнути навігацію
-              i.fa.fa-align-justify
-        #navigation.navbar-collapse.collapse
-          ul.nav.navbar-nav.navbar-right
-            li
-              = link_to 'Надіслати звернення', new_issue_path
-            li.dropdown
-              a.dropdown-toggle[href="#" data-toggle="dropdown"]
-                | Звернення
-                b.caret
-              ul.dropdown-menu
-                li
-                  a[href="/issues/map"]
-                    | Карта звернень
-                li
-                  = link_to 'Стрічка оновлень', feed_path
-                li
-                  = link_to 'Відкриті звернення', issues_path(status: 'opened')
-                li
-                  = link_to 'Закриті звернення', issues_path(status: 'closed')
-            li.dropdown
-              a.dropdown-toggle[href="#" data-toggle="dropdown"]
-                | Інформація
-                b.caret
-              ul.dropdown-menu
-                li
-                 = link_to 'Статистика звернень', statistics_path(period: 'month', sort: 'time')
-                li
-                  = link_to 'Рейтинг користувачів', ranking_users_path
-                li
-                  = link_to 'Корисні посилання', static_pages_path('links')
-            - unless user_signed_in?
-              li.active
-                = link_to user_facebook_omniauth_authorize_path do
-                  i.fa.fa-facebook
-                  | Авторизуватися
-            - else
-              = render 'layouts/logged_content'
-        - unless current_user.active?
-          div.banned Ваш обліковий запис заблоковано!
+              | Перемкнути навігацію
+            i.fa.fa-align-justify
+      #navigation.navbar-collapse.collapse
+        ul.nav.navbar-nav.navbar-right
+          li
+            = link_to 'Надіслати звернення', new_issue_path
+          li.dropdown
+            a.dropdown-toggle[href="#" data-toggle="dropdown"]
+              | Переглянути звернення
+              b.caret
+            ul.dropdown-menu
+              li
+                a[href="/issues/map"]
+                  | Карта звернень
+              li
+                = link_to 'Стрічка оновлень', feed_path
+              li
+                = link_to 'Відкриті звернення', issues_path(status: 'opened')
+              li
+                = link_to 'Закриті звернення', issues_path(status: 'closed')
+          li.dropdown
+            a.dropdown-toggle[href="#" data-toggle="dropdown"]
+              | Інформація
+              b.caret
+            ul.dropdown-menu
+              li
+                = link_to 'Статистика звернень', statistics_path(period: 'month', sort: 'time')
+              li
+                = link_to 'Рейтинг користувачів', ranking_users_path
+              li
+                = link_to 'Корисні посилання', static_pages_path('links')
+          - unless user_signed_in?
+            li.active
+              = link_to user_facebook_omniauth_authorize_path do
+                i.fa.fa-facebook
+                | Авторизуватися
+          - else
+            = render 'layouts/logged_content'

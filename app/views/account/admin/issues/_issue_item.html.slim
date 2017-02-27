@@ -1,14 +1,14 @@
 td.col-md-2.col-sm-2.col-xs-5.flex-order-0
   = object.created_at.strftime("%d/%m/%Y %H:%M")
-td.col-md-4.col-sm-4.col-xs-12.word-break.flex-order-2
+td.col-md-4.col-sm-4.col-xs-11.word-break.flex-order-2
   span.user-label Назва:
   = link_to object
     = truncate(object.title, length: 50)
-td.col-md-2.col-sm-2.col-xs-12.flex-order-3
+td.col-md-2.col-sm-2.col-xs-11.word-break.flex-order-3
   span.user-label Автор:
   = object.user.full_name
-td.col-md-1.col-sm-1.col-xs-7.status-label.flex-order-1
+td.col-md-1.col-sm-1.col-xs-5.status-label.flex-order-1
   = get_stylized_status_style(object.status, object.status_name)
-td.actions.col-md-1.col-sm-1.col-xs-4.flex-order-5
+td.actions.col-md-1.col-sm-1.col-xs-4.flex-order-4
   = link_to edit_account_admin_issue_path(object)
-    span.glyphicon.glyphicon-pencil
+    span.fa.fa-pencil-square-o

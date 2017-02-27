@@ -4,10 +4,12 @@ html
   body
     #all
       .unobtrusive-flash-container
+      - unless current_user.active?
+        div.banned.alert.alert-danger Ваш обліковий запис заблоковано!
       = render 'layouts/header'
       main
         = yield
         = any_login_here if defined?(AnyLogin)
       #footer
     = render 'layouts/footer'
-  script src='//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-588b061ef111c6c7'
+    script src='//s7.addthis.com/js/300/addthis_widget.js#pubid=skipenko'

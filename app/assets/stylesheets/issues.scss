@@ -198,8 +198,18 @@
   vertical-align: middle;
 }
 
-.zero-margin.date-comments {
+.zero-margin{
+  .date-comments {
   margin: 10px 0;
+  }
+}
+
+.date-comments {
+  span {
+    .fa {
+    padding-right: 0.5em;
+    }
+  }
 }
 
 #heading-breadcrumbs .status-badge {
@@ -251,8 +261,6 @@
   margin-top: 15px;
 }
 
-//events block
-
 .row.status_changes {
   .event-wrapper {
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -279,5 +287,19 @@
 
   .detail-link {
     margin-top: 4px;
+  }
+}
+.fa-thumbs-o-up, .fa-thumbs-up,
+.fa-thumbs-down, .fa-thumbs-o-down,
+.fa-check-square-o, .fa-pencil-square-o{
+  font-size: 1.4em;
+  padding-right: 0.5em;
+}
+
+a{
+  &:hover {
+    .fa-thumbs-up:before{
+      content: "\f165";
+    }
   }
 }
