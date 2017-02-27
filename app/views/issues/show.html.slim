@@ -17,10 +17,10 @@
           .follow.pull-right
             .addthis_sharing_toolbox
             - if user_signed_in? && current_user.active?
-            = render 'shared/follow_link', issue: @issue
-            .followers-count
-              span Слідкують:
-              span.badge #{@issue.followers_count}
+              = render 'shared/follow_link', issue: @issue
+              .followers-count
+                span Слідкують:
+                span.badge #{@issue.followers_count}
     .row
       .col-md-6.col-sm-6.col-xs-8
         p.date-comments
