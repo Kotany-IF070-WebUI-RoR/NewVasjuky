@@ -5,7 +5,7 @@ RSpec.describe FeedsController, type: :controller do
     create(:user, :reporter, last_check_notifications_at: Time.zone.now)
   end
   let(:admin) { create(:user, :admin) }
-  let(:banned_reporter) { create(:user, :reporter, banned: true) }
+  let(:banned_reporter) { create(:user, :reporter, active: false) }
 
   describe 'Open common feed when' do
     let(:action) { get :common_feed }

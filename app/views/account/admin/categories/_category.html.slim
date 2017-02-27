@@ -1,0 +1,22 @@
+- unless smart_listing.empty?
+  .table-responsive
+    table.table.table-hover.flex-table
+      thead
+        tr
+          th.col-md-2.col-sm-2.text-center
+            = smart_listing.sortable 'Створено', :created_at
+          th.col-md-2.col-sm-4.text-center
+            = smart_listing.sortable 'Змінено', :updated_at
+          th.col-md-4.col-sm-2.text-center
+            = smart_listing.sortable 'Назва', :name
+          th.col-md-2.col-sm-2.text-center.hidden-title
+            = smart_listing.sortable 'Кількість скарг', :calculate
+          th.col-md-2.col-sm-2.text-center.hidden-title
+            | Дії
+      tbody
+        - smart_listing.collection.each do |category|
+          tr.centered.editable[data-id=category.id]
+            = smart_listing.render object: category, partial: 'category_item', locals: {object: category}
+  = smart_listing.paginate
+- else
+  p Нічого не знайдено

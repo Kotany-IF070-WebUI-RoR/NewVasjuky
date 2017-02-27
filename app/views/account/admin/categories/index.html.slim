@@ -1,0 +1,15 @@
+#heading-breadcrumbs
+  .container
+    .row
+      .col-md-7
+        h1=title 'Керування категоріями'
+      .col-md-5
+        ul.breadcrumb
+          li= link_to 'На головну', root_path
+          li Керування категоріями
+#content
+  .container.zero-padding
+    .row
+      #categories-moderation.col-md-12.col-sm-12.col-xs-12
+        = link_to 'Створити категорію', new_account_admin_category_path, class: "newcategory btn btn-lg btn-info"
+        = smart_listing_render(:categories)

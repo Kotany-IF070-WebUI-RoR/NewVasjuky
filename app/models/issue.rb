@@ -9,7 +9,7 @@ class Issue < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :votes, as: :voteable
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, counter_cache: :issues_count
   has_many :issue_attachments
   has_many :events
 
@@ -25,7 +25,7 @@ class Issue < ApplicationRecord
             presence: true
   validates :location, presence: true,
                        unless: ->(obj) { lt_ln_present?(obj) }
-  validates :name, length: { maximum: 255 },
+  validates :name, length: { minimum: 4, maximum: 255 },
                    format: { with: REGEXP_NAME,
                              message: 'Ім\'я повинне містити лише літери' }
   validates :phone, length: { maximum: 50 },

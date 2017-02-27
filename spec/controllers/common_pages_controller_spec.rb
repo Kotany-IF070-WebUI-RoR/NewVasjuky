@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CommonPagesController, type: :controller do
   let(:reporter) { create(:user, :reporter) }
-  let(:banned_reporter) { create(:user, :reporter, banned: true) }
+  let(:banned_reporter) { create(:user, :reporter, active: false) }
 
   describe 'GET #home' do
     it 'when user is not logged in' do

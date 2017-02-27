@@ -1,0 +1,76 @@
+.newcategory {
+  @include border-radius(5px);
+  position: absolute;
+  right: 20px;
+  margin-top: 10px;
+}
+
+@media (max-width: 450px) {
+  .newcategory {
+    right: 0;
+    width: 100%;
+  }
+}
+
+#categories-moderation {
+  position: relative;
+  width: 100%;
+  #categories {
+    margin-top: 50px;
+  }
+  .centered {
+    text-align: center;
+  }
+  .lefted {
+    text-align: left;
+  }
+  @media (max-width: 767px) {
+    .lefted {
+      text-align: center;
+    }
+  }
+  .issues_count {
+    font-size: 1.1em;
+    a {
+      font-weight: bold;
+    }
+  }
+  .glyphicon {
+    font-size: 1.2em;
+    padding: 3px;
+  }
+  .popover-content {
+    min-width: 130px;
+  }
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.popover.bottom {
+  margin-left: -78px;
+  margin-top: 90px;
+  > .arrow {
+    top: -11px!important;
+  }
+}
+
+.glyphicon.glyphicon-trash.text-muted:hover::after { 
+  content: "Містить скарги";
+  @include border-radius(5px);
+  position: absolute;
+  top: 24px;
+  left: -54px;
+  width: 132px;
+  text-align: center;
+  font-family: $sans1;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: $white_90;
+  padding: 10px;
+  opacity: 1;
+  background-color: $black;
+  z-index: 2000;
+}

@@ -18,7 +18,7 @@ module ApplicationHelper
 
   def bann_user(user)
     return unless admin_or_moderator? && user.reporter?
-    toggle_phrase = user.banned? ? 'Розблокувати' : 'Заблокувати'
+    toggle_phrase = user.active? ? 'Заблокувати' : 'Розблокувати'
     render 'account/admin/users/bann_user', user: user, phrase: toggle_phrase
   end
 
@@ -50,5 +50,20 @@ module ApplicationHelper
 
   def issue_status_select(issues)
     params[:issue_status].empty? ? issues : issues.status(params[:issue_status])
+  end
+
+  def category_listing(categories)
+    smart_listing_create :categories, categories,
+                         sort_attributes: [
+                           [:created_at, 'categories.created_at'],
+                           [:updated_at, 'categories.updated_at'],
+                           [:name, 'categories.name'],
+                           [:calculate, 'categories.issues_count']
+                         ],
+                         default_sort: { name: 'asc' }, partial: 'category'
+  end
+
+  def date_formatter(date)
+    date.strftime('%m.%d.%Y, %T')
   end
 end

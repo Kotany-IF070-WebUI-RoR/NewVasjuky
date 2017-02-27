@@ -3,7 +3,7 @@ require 'rails_helper'
 describe CommentsController, type: :controller do
   let(:reporter_1) { create(:user, :reporter) }
   let(:reporter_2) { create(:user, :reporter) }
-  let(:banned_reporter) { create(:user, :reporter, banned: true) }
+  let(:banned_reporter) { create(:user, :reporter, active: false) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user, :moderator) }
   let(:commentable) { create(:issue, user: reporter_1) }
