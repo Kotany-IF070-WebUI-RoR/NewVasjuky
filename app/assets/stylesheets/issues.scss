@@ -33,6 +33,7 @@
 }
 
 .unobtrusive-flash-container.fixed .alert {
+  z-index: 1051;
   position: fixed;
 }
 

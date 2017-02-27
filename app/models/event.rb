@@ -9,6 +9,7 @@ class Event < ApplicationRecord
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :public_events, -> { where(after_status: [:opened, :closed]) }
+  validates :image, file_size: { less_than: 8.megabytes }
   validates :description, length: { maximum: 2000 }
 
   def before_status_full
