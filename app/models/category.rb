@@ -21,11 +21,11 @@ class Category < ApplicationRecord
                                        Розділяти теги потрібно пробілом.' }
 
   def name=(s)
-    self[:name] = s.to_s.capitalize
+    self[:name] = s.mb_chars.capitalize.to_s
   end
 
   def description=(s)
-    self[:description] = s.to_s.capitalize
+    self[:description] = s.mb_chars.capitalize.to_s
   end
 
   def self.statistics_for(day_range, scope)
@@ -44,10 +44,11 @@ class Category < ApplicationRecord
                   .group('categories.id')
   end
 
-  def self.calculate(id, scope)
-    joins(:issues).select('categories.*')
-                  .where('categories.id = ? AND issues.status = ?',
-                         Category.find(id), Issue.statuses[scope])
-                  .calculate(:count, :all)
+  def calculate(status)
+    issues.where(status: status).count
+  end
+
+  def issues_list(status, filter)
+    issues.ordered.where(status: status).like(filter)
   end
 end

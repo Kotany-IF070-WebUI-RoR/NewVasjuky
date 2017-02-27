@@ -15,10 +15,13 @@
     section
       .row
         .col-md-8.col-md-offset-2
-          = simple_form_for @category, html: {multipart: true} ,
+          = simple_form_for @category, html: {multipart: true},
                                 url: account_admin_category_path do |f|
             = f.error_messages
-            = f.input :name, label: 'Назва:'
-            = f.input :description, label: 'Опис:'
-            = f.input :tags, label: 'Теги:'
+            = f.input :name, label: 'Назва:',
+                    placeholder: "Вкажіть назву"
+            = f.input :description, label: 'Опис:',
+                    placeholder: "Коротко опишіть тематику категорії"
+            = f.input :tags, label: 'Теги:',
+                    placeholder: "Додайте теги, розділяючи їх пробілом"
             = f.button :submit, 'Зберегти', class: 'btn btn-template-primary'

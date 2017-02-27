@@ -16,8 +16,7 @@ engines:
   duplication:
     enabled: true
     exclude_fingerprints:
-    - cb60f754d19d79b29dbf50a448837acf
-    - 7e764faf1d1240019258b9010e7476e5
+    - e968c9432e684c27e68d82f3b50b064a
     config:
       languages:
       - ruby

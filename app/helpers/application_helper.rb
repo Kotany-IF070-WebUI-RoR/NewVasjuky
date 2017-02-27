@@ -51,4 +51,15 @@ module ApplicationHelper
   def issue_status_select(issues)
     params[:issue_status].empty? ? issues : issues.status(params[:issue_status])
   end
+
+  def category_listing(categories)
+    smart_listing_create :categories, categories,
+                         sort_attributes: [
+                           [:created_at, 'categories.created_at'],
+                           [:updated_at, 'categories.updated_at'],
+                           [:name, 'categories.name'],
+                           [:calculate, 'categories.issues_count']
+                         ],
+                         default_sort: { name: 'asc' }, partial: 'category'
+  end
 end

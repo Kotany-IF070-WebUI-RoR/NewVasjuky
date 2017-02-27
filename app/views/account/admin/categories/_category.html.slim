@@ -17,5 +17,6 @@
         - smart_listing.collection.each do |category|
           tr.centered.editable[data-id=category.id]
             = smart_listing.render object: category, partial: 'category_item', locals: {object: category}
+  = smart_listing.paginate
 - else
   p Нічого не знайдено
