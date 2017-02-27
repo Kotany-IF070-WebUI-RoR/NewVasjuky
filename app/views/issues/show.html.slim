@@ -54,14 +54,11 @@
         = render 'relevant_issues'
       = render 'comments/comments', commentable: @issue
 
-= render 'issues/events/event_modal'
-
 javascript:
   $(document).ready(function(){
     // initIssuesMap(false, #{@issue.latitude}, #{@issue.longitude});
     showIssueMap(#{@issue.latitude}, #{@issue.longitude});
     init_event_details();
-    init_change_status_form()
     $("#issue-carousel").owlCarousel({
         nav : true,
         items : 1,

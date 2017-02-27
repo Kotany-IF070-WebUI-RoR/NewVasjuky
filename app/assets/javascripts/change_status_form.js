@@ -31,7 +31,7 @@ function init_change_status_form() {
     }
 
     function validateFiles(inputFile) {
-        var errors = get_errors(inputFile.files);
+        var errors = get_errors(inputFile.files, $(inputFile).data('max-file-size'));
 
         if (errors.length > 0) {
             $('#submit-event').prop('disabled', true);
@@ -42,9 +42,8 @@ function init_change_status_form() {
         }
     }
 
-    function get_errors(files) {
+    function get_errors(files, maxFileSize) {
         var extName;
-        var maxFileSize = $(files).data('max-file-size');
         var maxFileSizeInMb = bytesToSize(maxFileSize);
 
         var maxExceededMessage = "Максимальний розмір зображення " +
@@ -64,7 +63,6 @@ function init_change_status_form() {
                 errors.push(extErrorMessage)
             }
         });
-
         return errors
     }
 

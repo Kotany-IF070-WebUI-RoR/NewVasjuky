@@ -37,7 +37,7 @@ describe IssuesController, type: :controller do
     end
 
     describe 'event is not public' do
-      let(:event) { create(:event, :decline)}
+      let(:event) { create(:event, :decline) }
       let(:action) { get :show, params: { id: event.id } }
 
       it 'and user is not logged in' do
