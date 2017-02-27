@@ -4,6 +4,8 @@ html
   body
     #all
       .unobtrusive-flash-container
+      - unless current_user.active?
+        div.banned.alert.alert-danger Ваш обліковий запис заблоковано!
       = render 'layouts/header'
       main
         = yield
