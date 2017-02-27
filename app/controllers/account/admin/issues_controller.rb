@@ -30,7 +30,7 @@ module Account
           @issue.post_to_facebook!
           redirect_to @issue, notice: 'Статус успішно змінений.'
         else
-          redirect_to @issue, notice: 'Щось пішло не так, спробуйте ще раз...'
+          redirect_to @issue, alert: 'Щось пішло не так, спробуйте ще раз...'
         end
       end
 
@@ -38,7 +38,7 @@ module Account
         if change_status_transaction(@issue, 'decline', event_params)
           redirect_to @issue, notice: 'Статус успішно змінений.'
         else
-          redirect_to @issue, notice: 'Щось пішло не так, спробуйте ще раз...'
+          redirect_to @issue, alert: 'Щось пішло не так, спробуйте ще раз...'
         end
       end
 
@@ -46,7 +46,7 @@ module Account
         if change_status_transaction(@issue, 'close', event_params)
           redirect_to @issue, notice: 'Статус успішно змінений.'
         else
-          redirect_to @issue, notice: 'Щось пішло не так, спробуйте ще раз...'
+          redirect_to @issue, alert: 'Щось пішло не так, спробуйте ще раз...'
         end
       end
 
