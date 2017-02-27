@@ -48,5 +48,4 @@ header
                 | Авторизуватися
           - else
             = render 'layouts/logged_content'
-      - unless current_user.active?
-        div.banned= "Ваш обліковий запис заблоковано! Детальна інформація #{link_to 'на сторінці вашого профайлу', current_user}".html_safe
+

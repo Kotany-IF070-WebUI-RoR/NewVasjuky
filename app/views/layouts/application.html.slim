@@ -5,7 +5,7 @@ html
     #all
       .unobtrusive-flash-container
       - unless current_user.active?
-        div.banned.alert.alert-danger Ваш обліковий запис заблоковано!
+        div.banned.alert.alert-danger= "Ваш обліковий запис заблоковано! Детальна інформація #{link_to 'на сторінці вашого профайлу', current_user}".html_safe
       = render 'layouts/header'
       main
         = yield
