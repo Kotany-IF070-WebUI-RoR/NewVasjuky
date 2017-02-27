@@ -20,9 +20,12 @@
                   placeholder: 'Обґрунтування зміни статусу',
                   input_html: {maxlength: 2000}
           #event_atachments
-          = f.input :image, as: :file, label: 'Додати зображення'
+            = f.input :image, as: :file, label: 'Додати зображення',
+                    input_html: { class: 'btn btn-default btn-file' }
+            img#img_prev.img-thumbnail.hidden alt=('your image') height="300" src="#" width="300" /
+
           .modal-footer
-            = f.button :submit, 'Підтвердити', class: 'btn btn-template-primary'
+            = f.button :submit, 'Підтвердити', class: ''
             button.btn.btn-default data-dismiss="modal" type="button"  Відмінити
 
 javascript:

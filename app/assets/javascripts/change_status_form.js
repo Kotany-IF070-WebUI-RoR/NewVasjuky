@@ -9,4 +9,23 @@ function init_change_status_form() {
         var form = $('#add_event_description');
         form.attr('action', url)
     }
+
+    $("#event_image").change(function(){
+        $('#img_prev').removeClass('hidden');
+        readURL(this);
+    });
+
+    // helpers
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img_prev').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
 }

@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  skip_before_action :authenticate_user!
   def show
     @event = Event.find(params[:id])
     if current_user.can_get_details_of?(@event)
