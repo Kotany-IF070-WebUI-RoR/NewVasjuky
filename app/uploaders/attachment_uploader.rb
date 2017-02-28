@@ -1,6 +1,6 @@
 class AttachmentUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  process resize_and_pad: [1002, 750]
+  process resize_to_fill: [1002, 750]
 
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production?
