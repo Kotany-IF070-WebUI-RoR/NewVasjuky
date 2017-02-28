@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     title       = 'Онлайн-платформа для тих, кому не байдуже'
     description = 'З допомогою цього додатка можна у кілька кліків надіслати
                   звернення для вирішення різноманітних комунальних проблем'
-    image       = options[:image] || '/images/if.jpg'
+    image       = options[:image] || '/images/fallback.jpg'
     defaults = { site: site_name, title: title, image: image,
                  description: description,
                  keywords: %w(Івано-Франківськ Ivano-Frankivsk) }
