@@ -1,6 +1,24 @@
 .nested-fields
-  = f.input :attachment, as: :file, label: 'Додати фото (формат: jpeg, gif, png)', input_html: {accept: ('image/*'), capture: ('camera') }, class: 'btn btn-template-main'
-  span.plus +
-  = link_to_remove_association 'X', f, class: 'remove-asoc'
+  = f.input :attachment, as: :file, label: 'Додати фото (формат: jpeg, gif, png)', input_html: {accept: ('image/*'), capture: ('camera') }, class: 'btn btn-template-main', onchange: "previewFile()"
+  img src="" alt="Image preview"/
 javascript:
-  init_images_gallery()
+    $('document').ready(function(){
+      function previewFile() {
+        console.log("here");
+        var preview = document.getElementsByClassName('nested-fields')[0].querySelector('img');
+        var file    = document.getElementsByClassName('nested-fields')[0].querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+
+        reader.addEventListener("load", function () {
+          preview.src = reader.result;
+        }, false);
+
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      }
+
+      $(".nested-fields > div > input").on("change",previewFile());
+
+    });
+
