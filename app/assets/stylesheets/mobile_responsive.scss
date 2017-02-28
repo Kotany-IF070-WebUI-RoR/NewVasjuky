@@ -1,16 +1,9 @@
 @media (max-width: 767px) {
-  #all{
-        margin-top: 50px;
-    }
-    .navbar-default {
-        position: fixed;
-        z-index: 1030; //this value is from variables.less -> @zindex-navbar-fixed
-        right: 0;
-        left: 0;
-        border-radius: 0;
-        top: 0;
-        border-width: 0 0 1px;
-    }
+  .navbar-default {
+    z-index: 1030; //this value is from variables.less -> @zindex-navbar-fixed
+    border-radius: 0;
+    border-width: 0 0 1px;
+  }
 
   .jumbotron {
     background-image: $main_bg_mobile;
@@ -28,7 +21,7 @@
   }
 
   .custom-img {
-    background-color: black
+    background-color: black;
     img {
       opacity: 0.4;
     }
