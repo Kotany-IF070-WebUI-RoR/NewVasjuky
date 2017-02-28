@@ -29,7 +29,7 @@ function init_comments_page() {
         }
     });
     // end of removing comments
-    init_infinity_scroll(1, comments_source_url(), true);
+    init_infinity_scroll(1, comments_source_url(), false);
 
     // Helpers
 
