@@ -284,3 +284,23 @@
 .edit-button{
   clear:right;
 }
+
+// Attachments
+
+.nested-fields{
+}
+.hide{
+  display:none;
+}
+.nested-fields input{
+
+}
+.nested-fields > img{
+  width:200px;
+  height:200px;
+  background-color: #e5e5e5;
+  float: left;
+  text-decoration: none;
+  margin-right:10px;
+  text-align:center;
+}
