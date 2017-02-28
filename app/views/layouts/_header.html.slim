@@ -1,6 +1,6 @@
 header
   #navbar.navbar.navbar-default.yamm[role="navigation"]
-    .container
+    .container.custom-absolute
       .navbar-header
         a.navbar-brand.home[href="/"]
           img.hidden-xs.hidden-sm[src="/images/logo-small.png" alt="New Vasjuky logo"]
@@ -12,7 +12,7 @@ header
             span.sr-only
               | Перемкнути навігацію
             i.fa.fa-align-justify
-      #navigation.navbar-collapse.collapse
+      #navigation.navbar-collapse.collapse.custom-absolute
         ul.nav.navbar-nav.navbar-right
           li
             = link_to 'Надіслати звернення', new_issue_path

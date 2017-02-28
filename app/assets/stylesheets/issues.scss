@@ -85,9 +85,10 @@
     top: -6px;
     right: 3px;
     * {
+      @include shadow;
       background-color: $white_90;
       color: $color-primary;
-      opacity: 1;
+      box-shadow: #1c2324;
     }
     .disabled {
       opacity: 0.8;

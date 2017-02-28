@@ -70,9 +70,7 @@ $bg_2: url("/images/fixed-background-2.jpg");
 }
 
 @mixin shadow {
-  position: relative;
-  box-shadow: 1px 5px 20px -4px $color-shadow;
-  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 5px $color-shadow;
 }
 
 @mixin pseudo-shadow {
