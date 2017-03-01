@@ -34,7 +34,10 @@ function init_comments_page() {
     // Helpers
 
     function comments_source_url() {
-        return window.location.href + '/comments'
+        var location = window.location;
+        var source = location.protocol + '//' + location.host +
+            location.pathname + '/comments'
+        return source
     }
 
     function confirm_removing(remove_link) {
