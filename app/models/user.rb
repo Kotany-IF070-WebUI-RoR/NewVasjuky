@@ -68,6 +68,6 @@ class User < ApplicationRecord
   end
 
   def can_get_details_of?(event)
-    event.public? || moderator? || (event.issue.user == self)
+    event.public? || moderator? || admin? || (event.issue.user == self)
   end
 end
