@@ -50,6 +50,7 @@ class IssuesController < ApplicationController
 
   def create
     @issue = current_user.issues.new(issues_params)
+    @issue = delete_empty_images(@issue)
     if @issue.save
       current_user.follow!(@issue)
       redirect_to @issue, notice: 'Звернення створене успішно!'
@@ -78,6 +79,15 @@ class IssuesController < ApplicationController
   end
 
   private
+
+  def delete_empty_images(issue)
+    filtered = issue.issue_attachments.to_ary.select do |a|
+      a.attachment.to_s != '/images/fallback.jpg'
+    end
+    filtered ||= IssueAttachment.new
+    issue.issue_attachments = filtered
+    issue
+  end
 
   def load_relevant_issues
     @relevant_issues = @issue.category.issues.where.not(id: @issue.id)
