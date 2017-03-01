@@ -11,7 +11,7 @@
         tr
           td= issue.created_at.strftime("%d/%m/%Y %H:%M")
           td= link_to issue.title, issue
-          td= issue.user.full_name
+          td= issue.name
           td= get_stylized_status_style(issue.status, issue.status_name)
 .text-center
   = smart_listing.paginate
