@@ -39,9 +39,6 @@ Style/BlockComments:
   StyleGuide: '#no-block-comments'
   Enabled: false
 
-Metrics/ClassLength:
-  Max: 250
-
 Metrics/BlockLength:
   Exclude:
     - 'config/routes.rb'
