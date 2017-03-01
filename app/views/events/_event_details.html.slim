@@ -1,5 +1,5 @@
 section.event-details
-  - if @event.image.present?
+  - if @event.image.to_s.present?
     .row
       .col-xs-12.img-block
           = image_tag @event.image, class: 'img-responsive'
