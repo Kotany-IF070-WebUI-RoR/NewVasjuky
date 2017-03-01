@@ -38,7 +38,6 @@
 //= require infinity_scroll
 //= require js-routes
 //= require ajax_form_validation
-//= require attachment
 //= require change_status_form
 //= require events
 //= require category_destroy_confirmation
