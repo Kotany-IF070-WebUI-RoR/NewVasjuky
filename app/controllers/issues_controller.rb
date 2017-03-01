@@ -85,7 +85,7 @@ class IssuesController < ApplicationController
       a.attachment.to_s != '/images/fallback.jpg'
     end
     filtered ||= IssueAttachment.new
-    issue.issue_attachments = @filtered
+    issue.issue_attachments = filtered
     issue
   end
 
