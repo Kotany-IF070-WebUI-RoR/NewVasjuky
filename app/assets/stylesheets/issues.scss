@@ -288,12 +288,11 @@
 // Attachments
 
 .nested-fields{
+  margin-top:20px !important;
+  padding:0;
 }
 .hide{
   display:none;
-}
-.nested-fields input{
-
 }
 .nested-fields > img{
   width:200px;
@@ -303,4 +302,7 @@
   text-decoration: none;
   margin-right:10px;
   text-align:center;
+}
+.add_fields{
+  margin-top:15px;
 }

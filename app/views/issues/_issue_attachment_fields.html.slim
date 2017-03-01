@@ -1,12 +1,12 @@
-.nested-fields
-  = f.input :attachment, as: :file, label: 'Додати фото (формат: jpeg, gif, png)', input_html: {accept: ('image/*'), capture: ('camera') }, class: 'btn btn-template-main', onchange: "previewFile()"
+.nested-fields.col-md-12.col-sm-12.col-xs-12
+  = f.input :attachment, as: :file, label: 'Додати фото (формат: jpeg, gif, png)', input_html: {accept: ('image/*'), capture: ('camera') }, class: 'btn btn-template-main'
   img src="" alt="Image preview"/
 javascript:
     $('document').ready(function(){
-      function previewFile() {
-        console.log("here");
-        var preview = document.getElementsByClassName('nested-fields')[0].querySelector('img');
-        var file    = document.getElementsByClassName('nested-fields')[0].querySelector('input[type=file]').files[0];
+      $(".nested-fields > div > input").on("change",function(e){
+        var preview = e.target.parentNode.parentNode.getElementsByTagName("img")[0];
+        console.log(e.target.parentNode.getElementsByTagName("input")[0].files[0]);
+        var file    = e.target.parentNode.getElementsByTagName("input")[0].files[0]
         var reader  = new FileReader();
 
         reader.addEventListener("load", function () {
@@ -16,9 +16,7 @@ javascript:
         if (file) {
           reader.readAsDataURL(file);
         }
-      }
-
-      $(".nested-fields > div > input").on("change",previewFile());
+      });
 
     });
 
