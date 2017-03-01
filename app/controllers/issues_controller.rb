@@ -81,10 +81,10 @@ class IssuesController < ApplicationController
   private
 
   def delete_empty_images(issue)
-    @filtered = issue.issue_attachments.to_ary.select do |a|
+    filtered = issue.issue_attachments.to_ary.select do |a|
       a.attachment.to_s != '/images/fallback.jpg'
     end
-    @filtered ||= IssueAttachment.new
+    filtered ||= IssueAttachment.new
     issue.issue_attachments = @filtered
     issue
   end
